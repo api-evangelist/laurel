@@ -1,0 +1,17 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/laurel-identity-openapi-original.json, openapi/laurel-ingestion-openapi-original.json,
+  openapi/laurel-time-openapi-original.json
+summary:
+  types:
+  - http
+schemes:
+- name: ApiBearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: Enter access token
+  sources:
+  - openapi/laurel-identity-openapi-original.json
+  - openapi/laurel-ingestion-openapi-original.json
+  - openapi/laurel-time-openapi-original.json

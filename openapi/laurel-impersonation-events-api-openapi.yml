@@ -1,0 +1,148 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Impersonation Events API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Impersonation Events
+paths:
+  /api/v1/impersonation-events:
+    post:
+      operationId: ImpersonationEventController_create_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateImpersonationEventDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImpersonationEvent'
+      summary: Create a new impersonation event record
+      tags:
+      - Impersonation Events
+    get:
+      operationId: ImpersonationEventController_getAll_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ImpersonationEvent'
+      summary: List all impersonation events
+      tags:
+      - Impersonation Events
+  /api/v1/impersonation-events/{eventId}:
+    get:
+      operationId: ImpersonationEventController_getOne_v1
+      parameters:
+      - name: eventId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImpersonationEvent'
+      summary: Return a specific impersonation event by ID
+      tags:
+      - Impersonation Events
+components:
+  schemas:
+    CreateImpersonationEventDto:
+      type: object
+      properties:
+        impersonatedUserId:
+          type: string
+          description: the user being impersonated
+          format: objectid
+        impersonatedCustomerId:
+          type: string
+          description: the customer id of the impersonated user
+          format: objectid
+        ipAddress:
+          type: string
+          description: IP address from which impersonation was initiated
+        userAgent:
+          type: string
+          description: user agent of the browser/client initiating impersonation
+        reason:
+          type: string
+          description: reason for impersonating this user
+      required:
+      - impersonatedUserId
+      - impersonatedCustomerId
+      - reason
+    ImpersonationEvent:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: impersonation event's id
+          format: objectid
+        impersonatorUserId:
+          type: string
+          description: the user who initiated the impersonation
+          format: objectid
+        impersonatedUserId:
+          type: string
+          description: the user being impersonated
+          format: objectid
+        impersonatedCustomerId:
+          type: string
+          description: the customer id of the impersonated user
+          format: objectid
+        ipAddress:
+          type: string
+          description: IP address from which impersonation was initiated
+        userAgent:
+          type: string
+          description: user agent of the browser/client initiating impersonation
+        reason:
+          type: string
+          description: reason for impersonating this user
+        createdAt:
+          type: string
+          description: the date and time this impersonation event was recorded
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: the date and time this impersonation event was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - impersonatorUserId
+      - impersonatedUserId
+      - impersonatedCustomerId
+      - reason
+      - createdAt
+      - updatedAt
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

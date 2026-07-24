@@ -1,0 +1,200 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Timer Carryovers API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Timer Carryovers
+paths:
+  /api/v1/timer-carryovers:
+    get:
+      operationId: TimerCarryoverController_findAllByUser_v1
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          format: int64
+          type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimerCarryoverResponseDto'
+      tags:
+      - Timer Carryovers
+    post:
+      operationId: TimerCarryoverController_runCarryover_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunCarryoverRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunCarryoverResponseDto'
+      tags:
+      - Timer Carryovers
+  /api/v1/timer-carryovers/{date}:
+    get:
+      operationId: TimerCarryoverController_findOneByDate_v1
+      parameters:
+      - name: date
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                nullable: true
+                oneOf:
+                - $ref: '#/components/schemas/TimerCarryoverResponseDto'
+      tags:
+      - Timer Carryovers
+components:
+  schemas:
+    TimerCarryoverInProgressState:
+      type: object
+      properties:
+        type:
+          enum:
+          - in_progress
+          type: string
+      required:
+      - type
+    TimerCarryoverCompletedState:
+      type: object
+      properties:
+        type:
+          enum:
+          - completed
+          type: string
+        carriedCount:
+          type: number
+          format: int64
+          minimum: 0
+        skippedCount:
+          type: number
+          format: int64
+          minimum: 0
+      required:
+      - type
+      - carriedCount
+      - skippedCount
+    RunCarryoverResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: objectid
+        customerId:
+          type: string
+          format: objectid
+        userId:
+          type: string
+          format: objectid
+        date:
+          type: string
+        createdAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        state:
+          oneOf:
+          - $ref: '#/components/schemas/TimerCarryoverInProgressState'
+          - $ref: '#/components/schemas/TimerCarryoverCompletedState'
+          - $ref: '#/components/schemas/TimerCarryoverFailedState'
+      required:
+      - _id
+      - customerId
+      - userId
+      - date
+      - createdAt
+      - updatedAt
+      - state
+    TimerCarryoverResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: objectid
+        customerId:
+          type: string
+          format: objectid
+        userId:
+          type: string
+          format: objectid
+        date:
+          type: string
+        createdAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        state:
+          oneOf:
+          - $ref: '#/components/schemas/TimerCarryoverInProgressState'
+          - $ref: '#/components/schemas/TimerCarryoverCompletedState'
+          - $ref: '#/components/schemas/TimerCarryoverFailedState'
+      required:
+      - _id
+      - customerId
+      - userId
+      - date
+      - createdAt
+      - updatedAt
+      - state
+    TimerCarryoverFailedState:
+      type: object
+      properties:
+        type:
+          enum:
+          - failed
+          type: string
+        message:
+          type: string
+      required:
+      - type
+      - message
+    RunCarryoverRequestDto:
+      type: object
+      properties:
+        date:
+          type: string
+      required:
+      - date
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

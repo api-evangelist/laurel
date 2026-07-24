@@ -1,0 +1,210 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Metrics API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Metrics
+paths:
+  /api/v1/customers/{customerId}/metrics/entry:
+    get:
+      operationId: CustomerMetricsController_getEntryMetrics_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: startDate
+        required: true
+        in: query
+        schema:
+          format: iso-date
+          example: '2022-08-12'
+          type: string
+      - name: endDate
+        required: true
+        in: query
+        schema:
+          format: iso-date
+          example: '2022-08-12'
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryCustomerMetricsResponseDto'
+      tags:
+      - Metrics
+  /api/v1/metrics/entry-release:
+    get:
+      operationId: MetricsController_getEntryReleaseMetrics_v1
+      parameters:
+      - name: date
+        required: true
+        in: query
+        schema:
+          format: iso-date
+          example: '2022-08-12'
+          type: string
+      - name: timePeriod
+        required: true
+        in: query
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          - year
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryReleaseMetricsWithGoalResponseDto'
+      tags:
+      - Metrics
+  /api/v1/metrics/entry-work-dates:
+    get:
+      operationId: MetricsController_getEntryWorkDatesByInitiative_v1
+      parameters:
+      - name: initiativeId
+        required: true
+        in: query
+        description: initiative id whose entry work dates are being requested
+        schema:
+          format: objectid
+          type: string
+      - name: workDateStart
+        required: true
+        in: query
+        description: inclusive lower bound for entry work dates
+        schema:
+          format: iso-date
+          example: '2022-08-12'
+          type: string
+      - name: workDateEnd
+        required: true
+        in: query
+        description: inclusive upper bound for entry work dates
+        schema:
+          format: iso-date
+          example: '2022-08-12'
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EntryWorkDateByInitiativeResponseDto'
+      summary: 'Returns the work dates on which the current user has entries for the given
+
+        initiative within the requested date range, plus the total seconds logged
+
+        on each date. Dates are returned as `YYYY-MM-DD` strings (UTC) so callers
+
+        don''t have to interpret a timestamp across timezones.'
+      tags:
+      - Metrics
+components:
+  schemas:
+    EntryWorkDateByInitiativeResponseDto:
+      type: object
+      properties:
+        workDate:
+          type: string
+          description: ISO calendar date (YYYY-MM-DD) on which the user logged time for this initiative.
+        totalSeconds:
+          type: number
+          description: Total time the user logged for this initiative on workDate, in seconds.
+          format: int64
+      required:
+      - workDate
+      - totalSeconds
+    EntryReleaseMetricsWithGoalResponseDto:
+      type: object
+      properties:
+        billableProjectionInSeconds:
+          type: number
+          description: Projection in seconds
+          format: int64
+          minimum: 0
+        billableGoalInSeconds:
+          type: number
+          description: Goal in seconds
+          format: int64
+        billable:
+          description: Metrics for entries with billable initiatives
+          allOf:
+          - $ref: '#/components/schemas/Metrics'
+        nonBillable:
+          description: Metrics for entries with nonBillable initiatives
+          allOf:
+          - $ref: '#/components/schemas/Metrics'
+      required:
+      - billable
+      - nonBillable
+    EntryCustomerMetricsResponseDto:
+      type: object
+      properties:
+        startDate:
+          type: string
+          example: '2022-08-12'
+          format: iso-date
+        endDate:
+          type: string
+          example: '2022-08-12'
+          format: iso-date
+        unreleasedTimeInSeconds:
+          type: number
+          format: int64
+        releasePendingTimeInSeconds:
+          type: number
+          format: int64
+        releasedTimeInSeconds:
+          type: number
+          format: int64
+      required:
+      - startDate
+      - endDate
+      - unreleasedTimeInSeconds
+      - releasePendingTimeInSeconds
+      - releasedTimeInSeconds
+    Metrics:
+      type: object
+      properties:
+        releasedInSeconds:
+          type: number
+          description: Released in seconds
+          format: int64
+          minimum: 0
+        unreleasedInSeconds:
+          type: number
+          description: Released in seconds
+          format: int64
+          minimum: 0
+      required:
+      - releasedInSeconds
+      - unreleasedInSeconds
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

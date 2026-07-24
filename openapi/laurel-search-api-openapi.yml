@@ -1,0 +1,1121 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Search API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Search
+paths:
+  /api/v1/search/initiatives:
+    get:
+      operationId: SearchController_searchInitiatives_v1
+      parameters:
+      - name: query
+        required: true
+        in: query
+        description: the search query
+        schema:
+          minLength: 1
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: 'Optional limit for the number of results returned (non-paginated mode only).
+
+          Cannot be combined with page — when page is provided, use pageSize instead.'
+        schema:
+          minimum: 1
+          maximum: 100
+          format: int64
+          type: number
+      - name: displayClientCallSign
+        required: false
+        in: query
+        description: when true, search by client.callSign instead of initiative callSign
+        schema:
+          type: boolean
+      - name: page
+        required: false
+        in: query
+        description: 'Optional page number for paginated results (1-indexed).
+
+          When omitted, pagination is disabled and results are returned as a flat array
+
+          to preserve backward compatibility with existing consumers.'
+        schema:
+          minimum: 1
+          format: int64
+          type: number
+      - name: pageSize
+        required: false
+        in: query
+        description: 'Optional page size for paginated results. Requires page to be set.
+
+          Defaults to 50 to match the previous maximumSearchLimit, preserving the same
+
+          result count that existing consumers received before pagination was introduced.'
+        schema:
+          minimum: 1
+          maximum: 50
+          format: int64
+          type: number
+      - name: workDate
+        required: false
+        in: query
+        description: When set (and restrictions are enabled), excludes initiatives restricted on this date.
+        schema:
+          format: iso-date
+          nullable: true
+          example: '2022-08-12'
+          type: string
+      responses:
+        '200':
+          description: Returns a flat array without pagination params, or an OffsetResponseDto when page is provided.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - items:
+                    $ref: '#/components/schemas/InitiativeSearchResultDto'
+                  type: array
+                - items:
+                    $ref: '#/components/schemas/InitiativePropsSearchResultDto'
+                  type: array
+                - properties:
+                    items:
+                      items:
+                        oneOf:
+                        - $ref: '#/components/schemas/InitiativeSearchResultDto'
+                        - $ref: '#/components/schemas/InitiativePropsSearchResultDto'
+                      type: array
+                    nextPage:
+                      type: number
+                    totalItems:
+                      type: number
+                    totalPages:
+                      type: number
+                  type: object
+      tags:
+      - Search
+  /api/v1/customers/{customerId}/users/{userId}/initiatives/search:
+    get:
+      operationId: CustomerUserSearchController_searchInitiatives_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      - name: query
+        required: true
+        in: query
+        description: the search query
+        schema:
+          minLength: 1
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: 'Optional limit for the number of results returned (non-paginated mode only).
+
+          Cannot be combined with page — when page is provided, use pageSize instead.'
+        schema:
+          minimum: 1
+          maximum: 100
+          format: int64
+          type: number
+      - name: displayClientCallSign
+        required: false
+        in: query
+        description: when true, search by client.callSign instead of initiative callSign
+        schema:
+          type: boolean
+      - name: page
+        required: false
+        in: query
+        description: 'Optional page number for paginated results (1-indexed).
+
+          When omitted, pagination is disabled and results are returned as a flat array
+
+          to preserve backward compatibility with existing consumers.'
+        schema:
+          minimum: 1
+          format: int64
+          type: number
+      - name: pageSize
+        required: false
+        in: query
+        description: 'Optional page size for paginated results. Requires page to be set.
+
+          Defaults to 50 to match the previous maximumSearchLimit, preserving the same
+
+          result count that existing consumers received before pagination was introduced.'
+        schema:
+          minimum: 1
+          maximum: 50
+          format: int64
+          type: number
+      - name: workDate
+        required: false
+        in: query
+        description: When set (and restrictions are enabled), excludes initiatives restricted on this date.
+        schema:
+          format: iso-date
+          nullable: true
+          example: '2022-08-12'
+          type: string
+      responses:
+        '200':
+          description: Returns a flat array without pagination params, or an OffsetResponseDto when page is provided.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - items:
+                    $ref: '#/components/schemas/InitiativeSearchResultDto'
+                  type: array
+                - items:
+                    $ref: '#/components/schemas/InitiativePropsSearchResultDto'
+                  type: array
+                - properties:
+                    items:
+                      items:
+                        oneOf:
+                        - $ref: '#/components/schemas/InitiativeSearchResultDto'
+                        - $ref: '#/components/schemas/InitiativePropsSearchResultDto'
+                      type: array
+                    nextPage:
+                      type: number
+                    totalItems:
+                      type: number
+                    totalPages:
+                      type: number
+                  type: object
+      tags:
+      - Search
+  /api/v2/customers/{customerId}/users/{userId}/initiatives/search:
+    get:
+      operationId: CustomerUserSearchController_searchInitiativeDtos_v2
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      - name: query
+        required: true
+        in: query
+        description: the search query
+        schema:
+          minLength: 1
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: 'Optional limit for the number of results returned (non-paginated mode only).
+
+          Cannot be combined with page — when page is provided, use pageSize instead.'
+        schema:
+          minimum: 1
+          maximum: 100
+          format: int64
+          type: number
+      - name: displayClientCallSign
+        required: false
+        in: query
+        description: when true, search by client.callSign instead of initiative callSign
+        schema:
+          type: boolean
+      - name: page
+        required: false
+        in: query
+        description: 'Optional page number for paginated results (1-indexed).
+
+          When omitted, pagination is disabled and results are returned as a flat array
+
+          to preserve backward compatibility with existing consumers.'
+        schema:
+          minimum: 1
+          format: int64
+          type: number
+      - name: pageSize
+        required: false
+        in: query
+        description: 'Optional page size for paginated results. Requires page to be set.
+
+          Defaults to 50 to match the previous maximumSearchLimit, preserving the same
+
+          result count that existing consumers received before pagination was introduced.'
+        schema:
+          minimum: 1
+          maximum: 50
+          format: int64
+          type: number
+      - name: workDate
+        required: false
+        in: query
+        description: When set (and restrictions are enabled), excludes initiatives restricted on this date.
+        schema:
+          format: iso-date
+          nullable: true
+          example: '2022-08-12'
+          type: string
+      responses:
+        '200':
+          description: Returns a flat array without pagination params, or an OffsetResponseDto when page is provided.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - items:
+                    $ref: '#/components/schemas/InitiativeDtoSearchResultDto'
+                  type: array
+                - properties:
+                    items:
+                      items:
+                        $ref: '#/components/schemas/InitiativeDtoSearchResultDto'
+                      type: array
+                    nextPage:
+                      type: number
+                    totalItems:
+                      type: number
+                    totalPages:
+                      type: number
+                  type: object
+      tags:
+      - Search
+components:
+  schemas:
+    InitiativeSearchResultDto:
+      type: object
+      properties:
+        type:
+          description: the type of search result
+          enum:
+          - initiative
+          - initiative-props
+          - initiative-dto
+          type: string
+        score:
+          type: number
+          description: the normalized search score
+          format: double
+        initiative:
+          description: the initiative that is the result of search
+          oneOf:
+          - $ref: '#/components/schemas/PmsInitiativeResponseDto'
+          - $ref: '#/components/schemas/UserInitiativeResponseDto'
+        absoluteScore:
+          type: number
+          description: the raw Atlas Search score - internal use only, excluded from API response
+      required:
+      - type
+      - score
+      - initiative
+    UserInitiativePropsResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        customerId:
+          type: string
+          description: identifier of the customer who owns the initiative props
+          format: objectid
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        type:
+          description: type of initiative for this initiative props
+          enum:
+          - user
+          type: string
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+        initiative:
+          description: the initiative for these props
+          allOf:
+          - $ref: '#/components/schemas/UserInitiativeDigest'
+      required:
+      - _id
+      - colorHex
+      - customerId
+      - tags
+      - type
+      - userId
+      - initiative
+    UserInitiativeDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this initiative
+        createdAt:
+          type: string
+          description: date and time this initiative was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        locale:
+          type: string
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+          nullable: true
+        status:
+          description: initiative's status
+          enum:
+          - active
+          - inactive
+          type: string
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        updatedAt:
+          type: string
+          description: date and time this initiative was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        name:
+          type: string
+          description: a name that identifies this initiative for the user
+        type:
+          type: string
+          enum:
+          - user
+        props:
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/UserInitiativePropsDto'
+      required:
+      - _id
+      - billingType
+      - callSign
+      - createdAt
+      - status
+      - unitIncrements
+      - updatedAt
+      - name
+      - type
+    InitiativePropsSearchResultDto:
+      type: object
+      properties:
+        type:
+          description: the type of search result
+          enum:
+          - initiative
+          - initiative-props
+          - initiative-dto
+          type: string
+        score:
+          type: number
+          description: the normalized search score
+          format: double
+        initiativeProps:
+          description: the initiative props that is the result of search
+          oneOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsResponseDto'
+          - $ref: '#/components/schemas/UserInitiativePropsResponseDto'
+        absoluteScore:
+          type: number
+          description: the raw Atlas Search score - internal use only, excluded from API response
+      required:
+      - type
+      - score
+      - initiativeProps
+    UserInitiativeDigest:
+      type: object
+      properties:
+        type:
+          description: initiative's type
+          enum:
+          - user
+          type: string
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this pms initiative
+          nullable: true
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        status:
+          type: string
+          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
+
+            with entries whose denormalized digest predates this field — those entries
+
+            gain status on the next initiative update via natural digest propagation.'
+          enum:
+          - active
+          - inactive
+          nullable: true
+        locale:
+          type: string
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+          nullable: true
+        name:
+          type: string
+          description: the name user has given this initiative
+      required:
+      - type
+      - _id
+      - billingType
+      - unitIncrements
+      - name
+    UserInitiativeResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this initiative
+        createdAt:
+          type: string
+          description: date and time this initiative was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        customerId:
+          type: string
+          description: id of customer who owns this initiative
+          format: objectid
+        groupIds:
+          description: list of group ids that have access to this initiative
+          nullable: true
+          type: array
+          items:
+            type: string
+            format: objectid
+        locale:
+          type: string
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+          nullable: true
+        status:
+          description: initiative's status
+          enum:
+          - active
+          - inactive
+          type: string
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        updatedAt:
+          type: string
+          description: date and time this initiative was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        type:
+          description: initiative's type
+          enum:
+          - user
+          type: string
+        name:
+          type: string
+          description: a name that identifies this initiative for the user
+        userId:
+          type: string
+          description: the userId of the user to whom this initiative belongs
+          format: objectid
+        isLaurelCreatedNotModifiable:
+          type: boolean
+          description: indicates this initiative was created by Laurel and cannot be modified or deleted except for unitIncrements
+          nullable: true
+      required:
+      - _id
+      - billingType
+      - callSign
+      - createdAt
+      - customerId
+      - status
+      - unitIncrements
+      - updatedAt
+      - type
+      - name
+      - userId
+    PmsInitiativeDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this initiative
+        createdAt:
+          type: string
+          description: date and time this initiative was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        locale:
+          type: string
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+          nullable: true
+        status:
+          description: initiative's status
+          enum:
+          - active
+          - inactive
+          type: string
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        updatedAt:
+          type: string
+          description: date and time this initiative was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        description:
+          type: string
+          description: the full long name of the initiative
+        externalId:
+          type: string
+          description: initiative's external id
+        name:
+          type: string
+          description: a short name or code that identifies this initiative
+        allowFrom:
+          type: string
+          description: earliest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+          nullable: true
+        allowTo:
+          type: string
+          description: latest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+          nullable: true
+        client:
+          description: the client this initiative belongs to
+          allOf:
+          - $ref: '#/components/schemas/ClientDigest'
+        type:
+          type: string
+          enum:
+          - pms
+        props:
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsDto'
+      required:
+      - _id
+      - billingType
+      - callSign
+      - createdAt
+      - status
+      - unitIncrements
+      - updatedAt
+      - description
+      - externalId
+      - name
+      - client
+      - type
+    UserInitiativePropsDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+      required:
+      - _id
+      - colorHex
+      - tags
+      - userId
+    PmsInitiativePropsResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        customerId:
+          type: string
+          description: identifier of the customer who owns the initiative props
+          format: objectid
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        type:
+          description: type of initiative for this initiative props
+          enum:
+          - pms
+          type: string
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+        nickname:
+          type: string
+          description: the nickname assigned to this initiative by the user
+          nullable: true
+        initiative:
+          description: the initiative for these props
+          allOf:
+          - $ref: '#/components/schemas/PmsInitiativeDigest'
+      required:
+      - _id
+      - colorHex
+      - customerId
+      - tags
+      - type
+      - userId
+      - initiative
+    PmsInitiativeDigest:
+      type: object
+      properties:
+        type:
+          description: initiative's type
+          enum:
+          - pms
+          - user
+          type: string
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this pms initiative
+          nullable: true
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        status:
+          type: string
+          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
+
+            with entries whose denormalized digest predates this field — those entries
+
+            gain status on the next initiative update via natural digest propagation.'
+          enum:
+          - active
+          - inactive
+          nullable: true
+        locale:
+          type: string
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+          nullable: true
+        externalId:
+          type: string
+          description: initiative's external id
+        name:
+          type: string
+          description: a short name or code that identifies this initiative
+        description:
+          type: string
+          description: the full name of the initiative
+        client:
+          description: the client this initiative belongs to
+          allOf:
+          - $ref: '#/components/schemas/ClientDigest'
+      required:
+      - type
+      - _id
+      - billingType
+      - unitIncrements
+      - externalId
+      - name
+      - description
+      - client
+    PmsInitiativePropsDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+        nickname:
+          type: string
+          description: the nickname assigned to this initiative by the user
+          nullable: true
+      required:
+      - _id
+      - colorHex
+      - tags
+      - userId
+    PmsInitiativeResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this initiative
+        createdAt:
+          type: string
+          description: date and time this initiative was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        customerId:
+          type: string
+          description: id of customer who owns this initiative
+          format: objectid
+        groupIds:
+          description: list of group ids that have access to this initiative
+          nullable: true
+          type: array
+          items:
+            type: string
+            format: objectid
+        locale:
+          type: string
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+          nullable: true
+        status:
+          description: initiative's status
+          enum:
+          - active
+          - inactive
+          type: string
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        updatedAt:
+          type: string
+          description: date and time this initiative was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        type:
+          description: initiative's type
+          enum:
+          - pms
+          type: string
+        description:
+          type: string
+          description: the full long name of the initiative
+        externalId:
+          type: string
+          description: initiative's external id
+        name:
+          type: string
+          description: a short name or code that identifies this initiative
+        allowFrom:
+          type: string
+          description: earliest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+          nullable: true
+        allowTo:
+          type: string
+          description: latest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+          nullable: true
+        client:
+          description: the client this initiative belongs to
+          allOf:
+          - $ref: '#/components/schemas/ClientDigest'
+      required:
+      - _id
+      - billingType
+      - callSign
+      - createdAt
+      - customerId
+      - status
+      - unitIncrements
+      - updatedAt
+      - type
+      - description
+      - externalId
+      - name
+      - client
+    ClientDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: client's id
+          format: objectid
+        externalId:
+          type: string
+          description: client's external id
+        name:
+          type: string
+          description: a name that identifies this client
+        description:
+          type: string
+          description: client's description
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        type:
+          type: string
+          description: client's type, default is client
+          enum:
+          - client
+          - parent
+          nullable: true
+        parentClientId:
+          type: string
+          description: id of the parent client
+          format: objectid
+          nullable: true
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - callSign
+    InitiativeDtoSearchResultDto:
+      type: object
+      properties:
+        type:
+          description: the type of search result
+          enum:
+          - initiative-dto
+          type: string
+        score:
+          type: number
+          description: the normalized search score
+          format: double
+        initiative:
+          description: the initiative that is the result of search
+          oneOf:
+          - $ref: '#/components/schemas/UserInitiativeDto'
+          - $ref: '#/components/schemas/PmsInitiativeDto'
+        absoluteScore:
+          type: number
+          description: the raw Atlas Search score - internal use only, excluded from API response
+      required:
+      - type
+      - score
+      - initiative
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

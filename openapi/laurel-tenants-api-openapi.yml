@@ -1,0 +1,286 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Tenants API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Tenants
+paths:
+  /api/v1/tenants:
+    post:
+      operationId: TenantController_create_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+      tags:
+      - Tenants
+    get:
+      operationId: TenantController_getAll_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tenant'
+      summary: List all tenants
+      tags:
+      - Tenants
+  /api/v1/tenants/{tenantId}:
+    get:
+      operationId: TenantController_get_v1
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        description: tenant's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+      summary: Get a specific tenant
+      tags:
+      - Tenants
+    patch:
+      operationId: TenantController_updateOneById_v1
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        description: tenant's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+      summary: Updates an existing Tenant
+      tags:
+      - Tenants
+components:
+  schemas:
+    UpdateTenantDto:
+      type: object
+      properties:
+        description:
+          type: string
+          description: if set, will update tenant's description
+        env:
+          type: string
+          description: if set, will update tenant's execution environment
+          enum:
+          - dev
+          - stg
+          - prd
+        name:
+          type: string
+          description: if set, will update tenant's name in kebab case
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+        regions:
+          description: tenant's regions
+          type: array
+          items:
+            type: string
+            enum:
+            - me-south-1
+            - af-south-1
+            - eu-central-1
+            - ap-east-1
+            - eu-west-1
+            - ap-southeast-3
+            - eu-west-2
+            - eu-south-1
+            - ca-central-1
+            - ap-south-1
+            - us-west-1
+            - us-east-1
+            - us-east-2
+            - us-west-2
+            - ap-northeast-3
+            - ap-northeast-2
+            - eu-west-3
+            - sa-east-1
+            - ap-southeast-1
+            - eu-north-1
+            - ap-southeast-2
+            - ap-northeast-1
+            - me-central-1
+      required:
+      - regions
+    CreateTenantDto:
+      type: object
+      properties:
+        description:
+          type: string
+          description: tenant's description, can be empty
+        env:
+          description: tenant's execution environment
+          enum:
+          - dev
+          - stg
+          - prd
+          type: string
+        name:
+          description: tenant's name in kebab case
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+          type: string
+        regions:
+          description: tenant's regions
+          type: array
+          items:
+            type: string
+            enum:
+            - me-south-1
+            - af-south-1
+            - eu-central-1
+            - ap-east-1
+            - eu-west-1
+            - ap-southeast-3
+            - eu-west-2
+            - eu-south-1
+            - ca-central-1
+            - ap-south-1
+            - us-west-1
+            - us-east-1
+            - us-east-2
+            - us-west-2
+            - ap-northeast-3
+            - ap-northeast-2
+            - eu-west-3
+            - sa-east-1
+            - ap-southeast-1
+            - eu-north-1
+            - ap-southeast-2
+            - ap-northeast-1
+            - me-central-1
+      required:
+      - description
+      - env
+      - name
+      - regions
+    Tenant:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: tenant's id
+          format: objectid
+        createdAt:
+          type: string
+          description: the date and time this tenant was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        description:
+          type: string
+          description: tenant's description, can be empty
+        env:
+          description: tenant's execution environment
+          enum:
+          - dev
+          - stg
+          - prd
+          type: string
+        name:
+          description: tenant's name in
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+          type: string
+        regions:
+          description: tenant's regions
+          type: array
+          items:
+            type: string
+            enum:
+            - me-south-1
+            - af-south-1
+            - eu-central-1
+            - ap-east-1
+            - eu-west-1
+            - ap-southeast-3
+            - eu-west-2
+            - eu-south-1
+            - ca-central-1
+            - ap-south-1
+            - us-west-1
+            - us-east-1
+            - us-east-2
+            - us-west-2
+            - ap-northeast-3
+            - ap-northeast-2
+            - eu-west-3
+            - sa-east-1
+            - ap-southeast-1
+            - eu-north-1
+            - ap-southeast-2
+            - ap-northeast-1
+            - me-central-1
+        updatedAt:
+          type: string
+          description: the date and time this tenant was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - createdAt
+      - description
+      - env
+      - name
+      - regions
+      - updatedAt
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

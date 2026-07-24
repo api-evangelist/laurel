@@ -1,0 +1,306 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Data Retention Audits API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Data Retention Audits
+paths:
+  /api/v1/data-retention-audits:
+    post:
+      operationId: DataRetentionAuditController_create_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDataRetentionAuditDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataRetentionAudit'
+      summary: 'Create a new data retention audit log entry
+
+        This endpoint receives audit data and enqueues it for processing'
+      tags:
+      - Data Retention Audits
+    get:
+      operationId: DataRetentionAuditController_getAll_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: query
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataRetentionAudit'
+      summary: List data retention audits for a specific customer
+      tags:
+      - Data Retention Audits
+  /api/v1/data-retention-audits/{auditId}:
+    get:
+      operationId: DataRetentionAuditController_getOne_v1
+      parameters:
+      - name: auditId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataRetentionAudit'
+      summary: Return a specific data retention audit by ID
+      tags:
+      - Data Retention Audits
+components:
+  schemas:
+    DataRetentionErrorDto:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error message
+        failedIds:
+          type: object
+          description: Failed IDs that encountered this error (optional)
+      required:
+      - code
+      - message
+    DataRetentionSummaryDto:
+      type: object
+      properties:
+        store:
+          description: Storage type (e.g., "mongodb", "postgres")
+          enum:
+          - mongodb
+          - postgres
+          type: string
+        namespace:
+          type: string
+          description: Database/collection or schema.table identifier
+        recordsAffected:
+          type: number
+          description: Number of records affected in this store
+          format: double
+        fields:
+          description: Field paths that were deleted
+          type: array
+          items:
+            type: string
+        successfulIds:
+          type: object
+          description: Successfully processed record IDs for this store (optional)
+      required:
+      - store
+      - namespace
+      - recordsAffected
+      - fields
+    DataRetentionSummary:
+      type: object
+      properties:
+        store:
+          description: Storage type (e.g., "mongodb", "postgres")
+          enum:
+          - mongodb
+          - postgres
+          type: string
+        namespace:
+          type: string
+          description: Database/collection or schema.table identifier
+        recordsAffected:
+          type: number
+          description: Number of records affected in this store
+          format: double
+        fields:
+          description: Field paths that were deleted
+          type: array
+          items:
+            type: string
+        successfulIds:
+          type: object
+          description: Successfully processed record IDs for this store (optional)
+      required:
+      - store
+      - namespace
+      - recordsAffected
+      - fields
+    CreateDataRetentionAuditDto:
+      type: object
+      properties:
+        region:
+          description: Region where the retention was executed
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+          type: string
+        customerId:
+          type: string
+          description: Customer ID whose data was processed
+          format: objectid
+        service:
+          description: Service that initiated the retention
+          enum:
+          - enrichment-service
+          - time-service
+          - assistant-service
+          type: string
+        retentionPeriodInDays:
+          type: number
+          description: Retention period in days applied
+          format: double
+        cutoffAt:
+          type: string
+          description: Cutoff date for data retention
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        durationMs:
+          type: number
+          description: Duration of the retention operation in milliseconds
+          format: double
+        runId:
+          type: object
+          description: Unique identifier for this retention run (optional)
+        summary:
+          description: Summary of data retention operations per store/database
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/DataRetentionSummaryDto'
+        errors:
+          description: Errors encountered during processing (optional)
+          type: array
+          items:
+            $ref: '#/components/schemas/DataRetentionErrorDto'
+      required:
+      - region
+      - customerId
+      - service
+      - retentionPeriodInDays
+      - cutoffAt
+      - durationMs
+      - summary
+    DataRetentionAudit:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: data retention audit's id
+          format: objectid
+        region:
+          description: Region where the retention was executed
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+          type: string
+        customerId:
+          type: string
+          description: Customer ID whose data was processed
+          format: objectid
+        service:
+          description: Service that initiated the retention
+          enum:
+          - enrichment-service
+          - time-service
+          - assistant-service
+          type: string
+        retentionPeriodInDays:
+          type: number
+          description: Retention period in days applied
+          format: double
+        cutoffAt:
+          type: string
+          description: Cutoff date for data retention
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        durationMs:
+          type: number
+          description: Duration of the retention operation in milliseconds
+          format: double
+        createdAt:
+          type: string
+          description: the date and time this audit was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: the date and time this audit was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        runId:
+          type: object
+          description: Unique identifier for this retention run (optional)
+        summary:
+          description: Summary of data retention operations per store/database
+          type: array
+          items:
+            $ref: '#/components/schemas/DataRetentionSummary'
+        errors:
+          description: Errors encountered during processing (optional)
+          type: array
+          items:
+            $ref: '#/components/schemas/DataRetentionError'
+      required:
+      - _id
+      - region
+      - customerId
+      - service
+      - retentionPeriodInDays
+      - cutoffAt
+      - durationMs
+      - createdAt
+      - updatedAt
+      - summary
+    DataRetentionError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error message
+        failedIds:
+          type: object
+          description: Failed IDs that encountered this error (optional)
+      required:
+      - code
+      - message
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

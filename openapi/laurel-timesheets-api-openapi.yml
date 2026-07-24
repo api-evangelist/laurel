@@ -1,0 +1,1627 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Timesheets API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Timesheets
+paths:
+  /api/v1/timesheets:
+    patch:
+      operationId: TimesheetController_updateTimesheet_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTimesheetRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/TimesheetInitialDto'
+                - $ref: '#/components/schemas/TimesheetProcessingSuggestedInitiativesDto'
+                - $ref: '#/components/schemas/TimesheetSuccessfulSuggestedInitiativesDto'
+                - $ref: '#/components/schemas/TimesheetFailedSuggestedInitiativesDto'
+                - $ref: '#/components/schemas/TimesheetProcessingInitiativeCategorizationDto'
+                - $ref: '#/components/schemas/TimesheetSuccessfulInitiativeCategorizationDto'
+                - $ref: '#/components/schemas/TimesheetFailedInitiativeCategorizationDto'
+      tags:
+      - Timesheets
+    delete:
+      operationId: TimesheetController_deleteTimesheet_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteTimesheetRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Timesheets
+  /api/v1/timesheets/initiatives/suggest:
+    post:
+      operationId: TimesheetController_suggestInitiatives_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuggestInitiativesRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimesheetProcessingSuggestedInitiativesDto'
+      tags:
+      - Timesheets
+  /api/v1/timesheets/initiatives/predict:
+    post:
+      operationId: TimesheetController_predictInitiatives_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PredictInitiativesRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimesheetProcessingInitiativeCategorizationDto'
+      tags:
+      - Timesheets
+  /api/v1/timesheets/initiatives/dismiss:
+    post:
+      operationId: TimesheetController_dismissInitiatives_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DismissInitiativesRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimesheetSuccessfulSuggestedInitiativesDto'
+      tags:
+      - Timesheets
+  /api/v1/timesheets/predictions/dismiss:
+    post:
+      operationId: TimesheetController_dismissPredictions_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DismissPredictionRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimesheetInitialDto'
+      tags:
+      - Timesheets
+components:
+  schemas:
+    TimesheetSuccessfulSuggestedInitiativesDto:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        status:
+          description: Current workflow status
+          enum:
+          - successful-suggested-initiatives
+          type: string
+        statusCreatedAt:
+          type: string
+          description: Timestamp the status was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        suggestedInitiativeIds:
+          description: Suggested initiatives
+          type: array
+          items:
+            type: string
+            format: objectid
+        dismissedInitiativeIds:
+          description: Dismissed initiatives
+          type: array
+          items:
+            type: string
+            format: objectid
+      required:
+      - date
+      - userId
+      - customerId
+      - status
+      - statusCreatedAt
+      - suggestedInitiativeIds
+      - dismissedInitiativeIds
+    DismissPredictionRequestDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        activityId:
+          type: string
+          description: Activity identifier
+          format: objectid
+        initiativeId:
+          type: string
+          description: Initiative identifier to dismiss for this activity
+          format: objectid
+      required:
+      - userId
+      - customerId
+      - date
+      - activityId
+      - initiativeId
+    ReleaseSuccessInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-success
+          type: string
+        releasedAt:
+          type: string
+          description: date and time entry was released
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releasedBy:
+          type: string
+          description: the identifier of the user who released the entry
+          format: objectid
+        reReleaseFailedMessages:
+          type: array
+          description: entry's re-release failed messages
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ReleaseFailedError'
+          nullable: true
+      required:
+      - status
+      - releasedAt
+      - releasedBy
+    ReleaseSuccessLockedInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-success-locked
+          type: string
+        releasedAt:
+          type: string
+          description: date and time entry was originally released to PMS
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releasedBy:
+          type: string
+          description: the identifier of the user who released the entry
+          format: objectid
+        lockedAt:
+          type: string
+          description: date the entry became locked in the PMS billing system
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+          nullable: true
+        lastLockCheckAt:
+          type: string
+          description: date lock status was last checked by the Boomi job
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        reReleaseFailedMessages:
+          type: array
+          description: entry's re-release failed messages (retained from previous release-success state)
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ReleaseFailedError'
+          nullable: true
+      required:
+      - status
+      - releasedAt
+      - releasedBy
+      - lastLockCheckAt
+    UserInitiativeDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this initiative
+        createdAt:
+          type: string
+          description: date and time this initiative was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        locale:
+          type: string
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+          nullable: true
+        status:
+          description: initiative's status
+          enum:
+          - active
+          - inactive
+          type: string
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        updatedAt:
+          type: string
+          description: date and time this initiative was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        name:
+          type: string
+          description: a name that identifies this initiative for the user
+        type:
+          type: string
+          enum:
+          - user
+        props:
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/UserInitiativePropsDto'
+      required:
+      - _id
+      - billingType
+      - callSign
+      - createdAt
+      - status
+      - unitIncrements
+      - updatedAt
+      - name
+      - type
+    CodeTypeDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: code type's id
+          format: objectid
+        externalId:
+          type: string
+          description: code type's external id
+        name:
+          type: string
+          description: code type's name
+        semanticType:
+          type: string
+          description: code type's semantic type
+          enum:
+          - action
+          - activity
+          - location
+          - phase
+          - task
+          nullable: true
+        orderingSequence:
+          type: string
+          description: ordering sequence for UI sorting (alphanumeric)
+          nullable: true
+      required:
+      - _id
+      - externalId
+      - name
+    ExternalSource:
+      type: object
+      properties:
+        sourceSystem:
+          enum:
+          - 3e
+          - workday
+          type: string
+        externalId:
+          type: string
+        linkedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - sourceSystem
+      - externalId
+      - linkedAt
+    TimesheetFailedSuggestedInitiativesDto:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        status:
+          description: Current workflow status
+          enum:
+          - failed-suggested-initiatives
+          type: string
+        statusCreatedAt:
+          type: string
+          description: Timestamp the status was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        suggestedInitiativeIds:
+          description: Suggested initiatives
+          type: array
+          items:
+            type: string
+            format: objectid
+        dismissedInitiativeIds:
+          description: Dismissed initiatives
+          type: array
+          items:
+            type: string
+            format: objectid
+        errors:
+          description: Failure reasons
+          type: array
+          items:
+            type: string
+      required:
+      - date
+      - userId
+      - customerId
+      - status
+      - statusCreatedAt
+      - suggestedInitiativeIds
+      - dismissedInitiativeIds
+      - errors
+    NestedTimerSource:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: source's id
+          format: objectid
+        type:
+          description: type of entry source
+          enum:
+          - timer
+          type: string
+          default: timer
+        durationInSeconds:
+          type: number
+          description: the duration in seconds that this timer has been active
+          format: double
+        summary:
+          type: string
+          description: the summary assigned to this timer, can be empty
+      required:
+      - _id
+      - type
+      - durationInSeconds
+      - summary
+    TimesheetProcessingSuggestedInitiativesDto:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        status:
+          description: Current workflow status
+          enum:
+          - processing-suggested-initiatives
+          type: string
+        statusCreatedAt:
+          type: string
+          description: Timestamp the status was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - date
+      - userId
+      - customerId
+      - status
+      - statusCreatedAt
+    ReleaseValidationPendingInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-validation-pending
+          type: string
+        releasePendedAt:
+          type: string
+          description: date and time entry was changed to release pending
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releasePendedBy:
+          type: string
+          description: the identifier of the user who change the entry to release pending
+          format: objectid
+      required:
+      - status
+      - releasePendedAt
+      - releasePendedBy
+    NestedActivitySource:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: source's id
+          format: objectid
+        type:
+          description: type of entry source
+          enum:
+          - activity
+          type: string
+          default: activity
+        creationMethod:
+          description: the creation method of the activity
+          enum:
+          - timer
+          - tracked
+          - user
+          type: string
+        category:
+          type: string
+          description: category of this activity, if any
+          nullable: true
+        technology:
+          type: string
+          description: technology of this activity, if any
+          nullable: true
+        source:
+          type: string
+          description: source of this activity (e.g. 'macos', 'windows'), if any
+          nullable: true
+        mechanism:
+          type: string
+          description: mechanism of this activity (e.g. browser used to access web app), if any
+          nullable: true
+        title:
+          type: string
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        clusterId:
+          type: string
+          description: activity's clusterId
+          nullable: true
+        fromSuggestions:
+          type: boolean
+          description: whether this activity source was added from suggestions
+          nullable: true
+        fromThemes:
+          type: boolean
+          description: whether this activity source was added from themes
+          nullable: true
+        hasOverlap:
+          type: boolean
+          description: activity's overlap state
+          nullable: true
+        overlapTimeInSeconds:
+          type: number
+          description: activity's overlap time in seconds
+          format: int64
+          nullable: true
+        threadId:
+          type: string
+          description: activity's thread id
+          nullable: true
+        disableThreading:
+          type: boolean
+          description: if true, disables threading for this activity
+          nullable: true
+        assignedAt:
+          type: string
+          description: 'Datetime this activity was assigned to the entry it currently belongs to.
+
+            Unset on entries that predate the field; never back-filled.'
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+          nullable: true
+      required:
+      - _id
+      - type
+      - creationMethod
+      - title
+      - detail
+      - startedAt
+      - stoppedAt
+    DeleteTimesheetRequestDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+      required:
+      - userId
+      - customerId
+      - date
+    TimesheetInitialDto:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        status:
+          description: Current workflow status
+          enum:
+          - initial
+          type: string
+        statusCreatedAt:
+          type: string
+          description: Timestamp the status was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        dismissedActivityIdToInitiativeIds:
+          type: object
+          description: Map of activity IDs to dismissed initiative IDs
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          nullable: true
+      required:
+      - date
+      - userId
+      - customerId
+      - status
+      - statusCreatedAt
+    SharedFromResponseDto:
+      type: object
+      properties:
+        entryId:
+          type: string
+          description: id of the source entry that was shared
+          format: objectid
+        entryUserId:
+          type: string
+          description: id of the user who owns the source entry
+          format: objectid
+        sharerId:
+          type: string
+          description: id of the principal who performed the share action
+          format: objectid
+        sharerType:
+          description: capacity in which the sharer acted
+          enum:
+          - user
+          - admin
+          - delegate
+          type: string
+        sharedAt:
+          type: string
+          description: date and time the share was initiated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        entryUserName:
+          type: string
+          description: display name of the entry owner; resolved at read-time, absent on failure
+          nullable: true
+        sharerName:
+          type: string
+          description: display name of the principal who performed the share; resolved at read-time, absent on failure
+          nullable: true
+      required:
+      - entryId
+      - entryUserId
+      - sharerId
+      - sharerType
+      - sharedAt
+    PmsInitiativePropsDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+        nickname:
+          type: string
+          description: the nickname assigned to this initiative by the user
+          nullable: true
+      required:
+      - _id
+      - colorHex
+      - tags
+      - userId
+    DismissInitiativesRequestDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        initiativeIds:
+          description: Initiative identifiers to dismiss
+          type: array
+          items:
+            type: string
+            format: objectid
+      required:
+      - userId
+      - customerId
+      - date
+      - initiativeIds
+    TimesheetProcessingInitiativeCategorizationDto:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        status:
+          description: Current workflow status
+          enum:
+          - processing-initiative-categorization
+          type: string
+        statusCreatedAt:
+          type: string
+          description: Timestamp the status was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        activityIds:
+          description: Activities included in categorization
+          type: array
+          items:
+            type: string
+            format: objectid
+        initiativeIds:
+          description: Initiatives included in categorization
+          type: array
+          items:
+            type: string
+            format: objectid
+        model:
+          type: string
+          description: Prediction model identifier
+        parameters:
+          type: object
+          description: Prediction parameters
+          additionalProperties: true
+      required:
+      - date
+      - userId
+      - customerId
+      - status
+      - statusCreatedAt
+      - activityIds
+      - initiativeIds
+      - model
+      - parameters
+    ValidationFailedInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - validation-failed
+          type: string
+        errors:
+          description: list of errors
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/EntryValidationError'
+      required:
+      - status
+      - errors
+    EntryValidationError:
+      type: object
+      properties:
+        errorCode:
+          description: the entry validation error code
+          enum:
+          - cannot-have-running-timer
+          - cannot-release-zero-increment
+          - cannot-release-negative-increment
+          - cannot-release-billable-future-work
+          - cannot-release-non-billable-future-work
+          - cannot-release-with-user-initiative
+          - cannot-release-with-inactive-initiative
+          - code-type-is-required
+          - summary-is-required
+          - cannot-have-blocked-compliance-rule
+          - cannot-exceed-twenty-four-hours
+          - entry-date-restricted-no-release
+          - entry-date-restricted-no-create
+          - timekeeper-not-in-working-list
+          - exceeds-twenty-four-hours-daily-limit
+          type: string
+      required:
+      - errorCode
+    ValidationPendingInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - validation-pending
+          type: string
+      required:
+      - status
+    ReleaseFailedInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-failed
+          type: string
+        releaseFailedErrors:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ReleaseFailedError'
+      required:
+      - status
+      - releaseFailedErrors
+    EntryTimerCarryover:
+      type: object
+      properties:
+        originId:
+          type: string
+          format: objectid
+      required:
+      - originId
+    EntryDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: entry's id
+          format: objectid
+        schemaVersion:
+          type: string
+          description: entry's schemaVersion
+        customerId:
+          type: string
+          description: id of customer who the owner belongs to
+          format: objectid
+        userId:
+          type: string
+          description: if of user who owns the entry
+          format: objectid
+        enrichmentCorrelationId:
+          type: string
+          description: entry's enrichmentCorrelationId to be used by enrichment service
+          nullable: true
+        statusInfo:
+          description: entry's status info
+          oneOf:
+          - $ref: '#/components/schemas/ReleaseFailedInfo'
+          - $ref: '#/components/schemas/ReleaseValidationPendingInfo'
+          - $ref: '#/components/schemas/ReleasePendingInfo'
+          - $ref: '#/components/schemas/ReleaseSuccessInfo'
+          - $ref: '#/components/schemas/ReleaseSuccessLockedInfo'
+          - $ref: '#/components/schemas/ValidationFailedInfo'
+          - $ref: '#/components/schemas/ValidationPendingInfo'
+          - $ref: '#/components/schemas/ValidationSuccessInfo'
+        creationMethod:
+          description: the creation method of the entry
+          enum:
+          - async
+          - user
+          - pms
+          - shared
+          type: string
+        createdAsTimer:
+          type: boolean
+          description: if true, this entry was created by a user for use as a timer
+          nullable: true
+        workDate:
+          type: string
+          description: the date the entry's work was done, this is required for released entries
+          example: '2022-08-12'
+          format: iso-date
+        isLocked:
+          type: boolean
+          description: if true, this entry is locked and cannot be updated
+        summary:
+          type: string
+          description: entry's summary
+        unitIncrementCountFromSources:
+          type: number
+          description: sum of unit increments from this entry's sources
+          format: double
+        unitIncrementCountAdjustments:
+          type: number
+          description: user modified overrides to entry unit increment total
+          format: double
+        sources:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/NestedActivitySource'
+            - $ref: '#/components/schemas/NestedEntrySource'
+            - $ref: '#/components/schemas/NestedTimerSource'
+        externalId:
+          type: string
+          description: entry's external id
+          nullable: true
+        createdAt:
+          type: string
+          description: date and time this entry was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time this entry was updated last
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        overlapTimeInSeconds:
+          type: number
+          description: entry's duration in seconds with overlap
+          format: int64
+          nullable: true
+        isDeleted:
+          type: boolean
+          description: set to true if entry is soft deleted
+          nullable: true
+        notes:
+          type: string
+          description: entry's notes
+          nullable: true
+        splitFromActivityId:
+          type: string
+          description: 'If set, the id of the captured activity this entry was split from.
+
+            Shared across all entries/activities produced by one split (sibling key),
+
+            and the seam for a future undo/merge. The source activity is soft-deleted,
+
+            so its id uniquely identifies the split.'
+          format: objectid
+          nullable: true
+        supersededByEntryId:
+          type: string
+          description: 'Surviving entry this one was merged into. Set so PMS sync-in leaves the
+
+            superseded entry deleted instead of resurrecting it as a duplicate.'
+          format: objectid
+          nullable: true
+        releaseCount:
+          type: number
+          description: entry's release count
+          format: int64
+          minimum: 0
+          nullable: true
+        lastSyncedAt:
+          type: string
+          description: date and time when the entry was last synced with the PMS
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+          nullable: true
+        timerDurationAdjustmentInSeconds:
+          type: number
+          description: adjustment in seconds to be applied to timer duration
+          format: int64
+          nullable: true
+        releasedFrom:
+          type: string
+          description: source of the release request
+          enum:
+          - time-control
+          - timesheet
+          nullable: true
+        complianceRules:
+          description: entry's compliance rules
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ComplianceRule'
+        deletedForRetentionAt:
+          type: string
+          description: date and time entry data was deleted for retention
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+          nullable: true
+        timerCarryover:
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/EntryTimerCarryover'
+        autoStoppedReason:
+          type: string
+          description: 'Indicates the reason this entry''s timer was automatically stopped by the
+
+            system (as opposed to being stopped by the user). `null`/undefined for
+
+            entries whose timers were stopped manually or by the overnight job.'
+          enum:
+          - twelve_hour_limit
+          nullable: true
+        autostopDismissedAt:
+          type: string
+          description: 'Set when the user explicitly dismisses the auto-stop strip via the × button.
+
+            Once set, the strip is never re-shown for this entry.'
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+          nullable: true
+        timezoneAtCreation:
+          type: string
+          description: 'The user''s IANA timezone at the time this entry was created.
+
+            Immutable after creation. Null when the user had no timezone configured.'
+          nullable: true
+        isShared:
+          type: boolean
+          description: 'Set to `true` when the entry has been shared with at least one recipient.
+
+            Written synchronously by the share endpoint; never reset.
+
+            Absent on entries that pre-date the sharing feature or have never been shared.'
+          nullable: true
+        externalSources:
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalSource'
+        workCodes:
+          description: all of the codes assigned to the entry
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeAssignment'
+        initiative:
+          description: entry's initiative information
+          oneOf:
+          - $ref: '#/components/schemas/UserInitiativeDto'
+          - $ref: '#/components/schemas/PmsInitiativeDto'
+        sharedFrom:
+          description: 'Present only on recipient-side copies. Contains the source entry context
+
+            and display names resolved at read-time via identity-service.'
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/SharedFromResponseDto'
+      required:
+      - _id
+      - schemaVersion
+      - customerId
+      - userId
+      - statusInfo
+      - creationMethod
+      - workDate
+      - isLocked
+      - summary
+      - unitIncrementCountFromSources
+      - unitIncrementCountAdjustments
+      - sources
+      - createdAt
+      - updatedAt
+      - workCodes
+      - initiative
+    UserInitiativePropsDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+      required:
+      - _id
+      - colorHex
+      - tags
+      - userId
+    CodeDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: code's id
+          format: objectid
+        externalId:
+          type: string
+          description: code's external id
+        name:
+          type: string
+          description: code's name
+        description:
+          type: string
+          description: code's description, can be empty
+        type:
+          description: code's type
+          allOf:
+          - $ref: '#/components/schemas/CodeTypeDigest'
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - type
+    ComplianceRule:
+      type: object
+      properties:
+        ruleKey:
+          type: string
+          description: rule key
+        description:
+          type: string
+          description: rule description
+          nullable: true
+        enforcementLevel:
+          description: enforcement level
+          enum:
+          - block
+          - acknowledge
+          - warn
+          - 'off'
+          type: string
+      required:
+      - ruleKey
+      - enforcementLevel
+    ClientDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: client's id
+          format: objectid
+        externalId:
+          type: string
+          description: client's external id
+        name:
+          type: string
+          description: a name that identifies this client
+        description:
+          type: string
+          description: client's description
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        type:
+          type: string
+          description: client's type, default is client
+          enum:
+          - client
+          - parent
+          nullable: true
+        parentClientId:
+          type: string
+          description: id of the parent client
+          format: objectid
+          nullable: true
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - callSign
+    NestedEntrySource:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: source's id
+          format: objectid
+        type:
+          description: type of entry source
+          enum:
+          - entry
+          type: string
+          default: entry
+        enrichmentCorrelationId:
+          type: string
+          description: entry's enrichmentCorrelationId to be used by enrichment service
+          nullable: true
+        summary:
+          type: string
+          description: entry's summary
+        unitIncrementCountAdjustments:
+          type: number
+          description: user modified overrides to entry unit increment total
+          format: double
+      required:
+      - _id
+      - type
+      - summary
+      - unitIncrementCountAdjustments
+    PredictInitiativesRequestDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        activityIds:
+          description: Activities to categorize
+          type: array
+          items:
+            type: string
+            format: objectid
+        initiativeIds:
+          description: Initiative candidates
+          type: array
+          items:
+            type: string
+            format: objectid
+        skipEntryCreation:
+          type: boolean
+          description: If true, skip entry creation from predictions
+        highConfidenceMinimumScore:
+          type: number
+          description: Minimum score threshold for high confidence predictions
+          format: double
+      required:
+      - userId
+      - customerId
+      - date
+      - activityIds
+      - initiativeIds
+    TimesheetSuccessfulInitiativeCategorizationDto:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        status:
+          description: Current workflow status
+          enum:
+          - successful-initiative-categorization
+          type: string
+        statusCreatedAt:
+          type: string
+          description: Timestamp the status was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        predictions:
+          type: object
+          description: Prediction results
+          additionalProperties:
+            additionalProperties: true
+            type: object
+        entries:
+          type: array
+          description: Entries created from categorized activities
+          items:
+            $ref: '#/components/schemas/EntryDto'
+        dismissedPredictions:
+          type: object
+          description: Map of activity IDs to dismissed initiative IDs
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          nullable: true
+      required:
+      - date
+      - userId
+      - customerId
+      - status
+      - statusCreatedAt
+      - predictions
+      - entries
+    ReleasePendingInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-pending
+          type: string
+        releasePendedAt:
+          type: string
+          description: date and time entry was changed to release pending
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releasePendedBy:
+          type: string
+          description: the identifier of the user who change the entry to release pending
+          format: objectid
+      required:
+      - status
+      - releasePendedAt
+      - releasePendedBy
+    ValidationSuccessInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - validation-success
+          type: string
+      required:
+      - status
+    PmsInitiativeDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this initiative
+        createdAt:
+          type: string
+          description: date and time this initiative was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        locale:
+          type: string
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+          nullable: true
+        status:
+          description: initiative's status
+          enum:
+          - active
+          - inactive
+          type: string
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        updatedAt:
+          type: string
+          description: date and time this initiative was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        description:
+          type: string
+          description: the full long name of the initiative
+        externalId:
+          type: string
+          description: initiative's external id
+        name:
+          type: string
+          description: a short name or code that identifies this initiative
+        allowFrom:
+          type: string
+          description: earliest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+          nullable: true
+        allowTo:
+          type: string
+          description: latest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+          nullable: true
+        client:
+          description: the client this initiative belongs to
+          allOf:
+          - $ref: '#/components/schemas/ClientDigest'
+        type:
+          type: string
+          enum:
+          - pms
+        props:
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsDto'
+      required:
+      - _id
+      - billingType
+      - callSign
+      - createdAt
+      - status
+      - unitIncrements
+      - updatedAt
+      - description
+      - externalId
+      - name
+      - client
+      - type
+    CodeAssignment:
+      type: object
+      properties:
+        assignedBy:
+          description: entity that assigned the code.
+          enum:
+          - user
+          - laurel
+          type: string
+        code:
+          description: assigned code
+          allOf:
+          - $ref: '#/components/schemas/CodeDigest'
+      required:
+      - assignedBy
+      - code
+    SuggestInitiativesRequestDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+      required:
+      - userId
+      - customerId
+      - date
+    UpdateTimesheetRequestDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+      required:
+      - userId
+      - customerId
+      - date
+    TimesheetFailedInitiativeCategorizationDto:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        status:
+          description: Current workflow status
+          enum:
+          - failed-initiative-categorization
+          type: string
+        statusCreatedAt:
+          type: string
+          description: Timestamp the status was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        errors:
+          description: Failure reasons
+          type: array
+          items:
+            type: string
+      required:
+      - date
+      - userId
+      - customerId
+      - status
+      - statusCreatedAt
+      - errors
+    ReleaseFailedError:
+      type: object
+      properties:
+        originalMessage:
+          type: string
+          description: original error message
+        title:
+          type: string
+          description: mapped title for the original error message
+        description:
+          type: string
+          description: mapped description for the original error message
+      required:
+      - originalMessage
+      - title
+      - description
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

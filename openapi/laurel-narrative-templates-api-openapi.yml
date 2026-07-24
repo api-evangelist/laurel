@@ -1,0 +1,654 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Narrative Templates API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Narrative Templates
+paths:
+  /api/v1/narrative-templates:
+    get:
+      operationId: NarrativeTemplateController_getManyByUserId_v1
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: limit how many narrative templates are returned (up to a max limit)
+        schema:
+          format: double
+          type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NarrativeTemplateResponseDto'
+      summary: returns all narrative templates for the current user in no particular order up to a max limit
+      tags:
+      - Narrative Templates
+    post:
+      operationId: NarrativeTemplateController_createOne_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserNarrativeTemplateRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NarrativeTemplateResponseDto'
+      summary: creates a narrative template for the current user
+      tags:
+      - Narrative Templates
+  /api/v1/narrative-templates/{narrativeTemplateId}:
+    patch:
+      operationId: NarrativeTemplateController_updateOne_v1
+      parameters:
+      - name: narrativeTemplateId
+        required: true
+        in: path
+        description: the narrative template id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateNarrativeTemplateRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NarrativeTemplateResponseDto'
+      tags:
+      - Narrative Templates
+    delete:
+      operationId: NarrativeTemplateController_deleteOneById_v1
+      parameters:
+      - name: narrativeTemplateId
+        required: true
+        in: path
+        description: the narrative template id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NarrativeTemplateResponseDto'
+      summary: deletes a narrative template by id and returns the deleted template
+      tags:
+      - Narrative Templates
+  /api/v1/customers/{customerId}/narrative-templates:
+    get:
+      operationId: CustomerNarrativeTemplateController_getCustomerNarrativeTemplates_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: limit how many narrative templates are returned (up to a max limit)
+        schema:
+          format: double
+          type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NarrativeTemplateResponseDto'
+      summary: 'returns customer-scoped narrative templates (firm-, practice-group-, and user-level PMS templates)
+
+        in no particular order up to a max limit. user-level (`pms-user`) and practice-group templates are
+
+        read-only here — they are managed via the per-user endpoints and PMS sync.'
+      tags:
+      - Narrative Templates
+    post:
+      operationId: CustomerNarrativeTemplateController_createCustomerNarrativeTemplate_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerNarrativeTemplateRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NarrativeTemplateResponseDto'
+      summary: creates a customer-level narrative template
+      tags:
+      - Narrative Templates
+  /api/v1/customers/{customerId}/narrative-templates/{narrativeTemplateId}:
+    get:
+      operationId: CustomerNarrativeTemplateController_getCustomerNarrativeTemplate_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: narrativeTemplateId
+        required: true
+        in: path
+        description: the narrative template id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NarrativeTemplateResponseDto'
+      summary: returns a narrative template for a specified customer by id
+      tags:
+      - Narrative Templates
+    patch:
+      operationId: CustomerNarrativeTemplateController_updateCustomerNarrativeTemplate_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: narrativeTemplateId
+        required: true
+        in: path
+        description: the narrative template id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCustomerNarrativeTemplateRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NarrativeTemplateResponseDto'
+      summary: updates a customer-level narrative template
+      tags:
+      - Narrative Templates
+    delete:
+      operationId: CustomerNarrativeTemplateController_deleteCustomerNarrativeTemplate_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: narrativeTemplateId
+        required: true
+        in: path
+        description: the narrative template id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NarrativeTemplateResponseDto'
+      summary: deletes a customer-level narrative template
+      tags:
+      - Narrative Templates
+  /api/v1/customers/{customerId}/narrative-templates/sync:
+    post:
+      operationId: CustomerNarrativeTemplateController_syncCustomerNarrativeTemplates_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyncCustomerNarrativeTemplatesRequestDto'
+      responses:
+        '202':
+          description: ''
+      summary: syncs narrative templates for all users in a customer
+      tags:
+      - Narrative Templates
+  /api/v1/customers/{customerId}/users/{userId}/narrative-templates:
+    get:
+      operationId: CustomerNarrativeTemplateController_getUserNarrativeTemplates_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: limit how many narrative templates are returned (up to a max limit)
+        schema:
+          format: double
+          type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NarrativeTemplateResponseDto'
+      summary: returns all narrative templates for a specified user in no particular order up to a max limit
+      tags:
+      - Narrative Templates
+    post:
+      operationId: CustomerNarrativeTemplateController_createUserNarrativeTemplate_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserNarrativeTemplateRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NarrativeTemplateResponseDto'
+      summary: creates a narrative template for a specified user
+      tags:
+      - Narrative Templates
+  /api/v1/customers/{customerId}/users/{userId}/narrative-templates/{narrativeTemplateId}:
+    patch:
+      operationId: CustomerNarrativeTemplateController_updateUserNarrativeTemplate_v1
+      parameters:
+      - name: narrativeTemplateId
+        required: true
+        in: path
+        description: the narrative template id
+        schema:
+          format: objectid
+          type: string
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateNarrativeTemplateRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NarrativeTemplateResponseDto'
+      summary: updates a narrative template for a specified user
+      tags:
+      - Narrative Templates
+    delete:
+      operationId: CustomerNarrativeTemplateController_deleteUserNarrativeTemplate_v1
+      parameters:
+      - name: narrativeTemplateId
+        required: true
+        in: path
+        description: the narrative template id
+        schema:
+          format: objectid
+          type: string
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NarrativeTemplateResponseDto'
+      summary: deletes a narrative template for a specified user by id and returns the deleted template
+      tags:
+      - Narrative Templates
+  /api/v1/customers/{customerId}/users/{userId}/narrative-templates/sync:
+    post:
+      operationId: CustomerNarrativeTemplateController_syncUserNarrativeTemplates_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyncUserNarrativeTemplatesRequestDto'
+      responses:
+        '202':
+          description: ''
+      summary: syncs narrative templates for a specific user in a customer
+      tags:
+      - Narrative Templates
+components:
+  schemas:
+    UpdateCustomerNarrativeTemplateRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: narrative template's name
+          maxLength: 50
+        shortcut:
+          type: string
+          description: narrative template's shortcut
+          maxLength: 50
+        narrative:
+          type: string
+          description: narrative template's narrative
+          maxLength: 5000
+    SyncUserNarrativeTemplatesRequestDto:
+      type: object
+      properties:
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/SyncUserNarrativeTemplateItemDto'
+      required:
+      - templates
+    SyncUserNarrativeTemplateItemDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: narrative template's name
+          maxLength: 50
+        shortcut:
+          type: string
+          description: narrative template's shortcut
+          maxLength: 50
+        narrative:
+          type: string
+          description: narrative template's narrative
+          maxLength: 5000
+        source:
+          type: string
+          description: 'source of the narrative template (default: "user"). Cannot be "pms-firm" for user templates.'
+          default: user
+          enum:
+          - user
+          - pms-user
+          - pms-practice-group
+          example: user
+          nullable: false
+        externalId:
+          type: string
+          description: narrative template's externalId for Pms Sync
+      required:
+      - name
+      - shortcut
+      - narrative
+      - source
+      - externalId
+    NarrativeTemplateResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: narrative template's id
+          format: objectid
+        name:
+          type: string
+          description: narrative template's name
+        shortcut:
+          type: string
+          description: narrative template's shortcut
+        narrative:
+          type: string
+          description: narrative template's narrative
+        source:
+          description: source of the narrative template
+          enum:
+          - user
+          - pms-user
+          - pms-practice-group
+          - pms-firm
+          type: string
+        userId:
+          type: string
+          description: id of the user who owns this template; absent for firm-level templates
+          format: objectid
+          nullable: true
+      required:
+      - _id
+      - name
+      - shortcut
+      - narrative
+      - source
+    CreateCustomerNarrativeTemplateRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: narrative template's name
+          maxLength: 50
+        shortcut:
+          type: string
+          description: narrative template's shortcut
+          maxLength: 50
+        narrative:
+          type: string
+          description: narrative template's narrative
+          maxLength: 5000
+      required:
+      - name
+      - shortcut
+      - narrative
+    CreateUserNarrativeTemplateRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: narrative template's name
+          maxLength: 50
+        shortcut:
+          type: string
+          description: narrative template's shortcut
+          maxLength: 50
+        narrative:
+          type: string
+          description: narrative template's narrative
+          maxLength: 5000
+        source:
+          type: string
+          description: 'source of the narrative template (default: "user"). Cannot be "pms-firm" for user templates.'
+          default: user
+          enum:
+          - user
+          - pms-user
+          - pms-practice-group
+          example: user
+          nullable: false
+      required:
+      - name
+      - shortcut
+      - narrative
+      - source
+    SyncCustomerNarrativeTemplatesRequestDto:
+      type: object
+      properties:
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/SyncCustomerNarrativeTemplateItemDto'
+      required:
+      - templates
+    SyncCustomerNarrativeTemplateItemDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: narrative template's name
+          maxLength: 50
+        shortcut:
+          type: string
+          description: narrative template's shortcut
+          maxLength: 50
+        narrative:
+          type: string
+          description: narrative template's narrative
+          maxLength: 5000
+        externalId:
+          type: string
+          description: narrative template's externalId for Pms Sync
+      required:
+      - name
+      - shortcut
+      - narrative
+      - externalId
+    UpdateNarrativeTemplateRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: narrative template's name
+          maxLength: 50
+        shortcut:
+          type: string
+          description: narrative template's shortcut
+          maxLength: 50
+        narrative:
+          type: string
+          description: narrative template's narrative
+          maxLength: 5000
+        source:
+          type: string
+          description: source of the narrative template. Cannot be "pms-firm" for user templates.
+          enum:
+          - user
+          - pms-user
+          - pms-practice-group
+          nullable: false
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

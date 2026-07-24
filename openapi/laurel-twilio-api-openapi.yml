@@ -1,0 +1,95 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Twilio API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Twilio
+paths:
+  /api/v1/twilio/phone-lookups:
+    get:
+      description: Retrieves phone number caller name information from Twilio API. Results are cached in the database. Use the force parameter to bypass cache and fetch fresh data.
+      operationId: TwilioController_getPhoneDetails_v1
+      parameters:
+      - name: phoneNumber
+        required: true
+        in: query
+        description: The phone number to lookup (E.164 format, e.g., +1234567890)
+        schema:
+          example: '+1234567890'
+          type: string
+      - name: force
+        required: false
+        in: query
+        description: Force a fresh lookup from Twilio API even if cached data exists
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          description: Phone lookup details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwilioPhoneLookup'
+      summary: Get phone number details from Twilio
+      tags:
+      - Twilio
+components:
+  schemas:
+    TwilioPhoneLookup:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: phone lookup's id
+          format: objectid
+        phoneNumber:
+          type: string
+          description: phone lookup's phone number in E.164 format (e.g., +14158270961)
+        callerName:
+          type: string
+          description: caller name information from Twilio
+        callerType:
+          type: string
+          description: caller type from Twilio (e.g., CONSUMER, BUSINESS)
+        countryCode:
+          type: string
+          description: country code from Twilio (e.g., US)
+        callingCountryCode:
+          type: string
+          description: calling country code from Twilio (e.g., 1)
+        nationalFormat:
+          type: string
+          description: national format of the phone number from Twilio (e.g., (415) 827-0961)
+        valid:
+          type: boolean
+          description: Whether the phone number is valid
+        retrievedAt:
+          type: string
+          description: The date and time this lookup was retrieved from Twilio
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        createdAt:
+          type: string
+          description: The date and time this record was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: The date and time this record was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

@@ -1,0 +1,260 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Timekeeper Goals API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Timekeeper Goals
+paths:
+  /api/v1/timekeeper-goals:
+    put:
+      operationId: TimekeeperGoalController_updateGoals_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertTimekeeperGoalRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimekeeperGoalResponseDto'
+      tags:
+      - Timekeeper Goals
+    get:
+      operationId: TimekeeperGoalController_getTimekeeperGoal_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimekeeperGoalResponseDto'
+      tags:
+      - Timekeeper Goals
+  /api/v1/customers/{customerId}/timekeeper-goals:
+    put:
+      operationId: CustomerTimekeeperGoalController_upsertCustomerGoal_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertCustomerTimekeeperGoalRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerTimekeeperGoalResponseDto'
+      tags:
+      - Timekeeper Goals
+    get:
+      operationId: CustomerTimekeeperGoalController_getCustomerTimekeeperGoal_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerTimekeeperGoalResponseDto'
+      tags:
+      - Timekeeper Goals
+components:
+  schemas:
+    AnnualGoalRequestDto:
+      type: object
+      properties:
+        annualInSeconds:
+          type: number
+          description: Annual target in seconds
+          format: double
+        notInLaurelInSeconds:
+          type: number
+          description: Time not counted in Laurel in seconds
+          format: double
+      required:
+      - annualInSeconds
+      - notInLaurelInSeconds
+    UpsertCustomerTimekeeperGoalRequestDto:
+      type: object
+      properties:
+        startDate:
+          type: string
+          description: start day and month of the goal - year part will be ignored
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        allowUserOverrideAnnualGoalSeconds:
+          type: boolean
+          description: whether users can override this customer goal
+        allowUserOverrideGoalYearStart:
+          type: boolean
+          description: whether users can override the goal year start date
+        hideYearlyGoals:
+          type: boolean
+          description: whether to hide yearly goals from users
+        hideMonthlyGoals:
+          type: boolean
+          description: whether to hide monthly goals from users
+        hideWeeklyGoals:
+          type: boolean
+          description: whether to hide weekly goals from users
+        hideDailyGoals:
+          type: boolean
+          description: whether to hide daily goals from users
+        billable:
+          description: billable goal
+          allOf:
+          - $ref: '#/components/schemas/AnnualGoalRequestDto'
+      required:
+      - startDate
+      - allowUserOverrideAnnualGoalSeconds
+      - allowUserOverrideGoalYearStart
+      - hideYearlyGoals
+      - hideMonthlyGoals
+      - hideWeeklyGoals
+      - hideDailyGoals
+      - billable
+    UpsertTimekeeperGoalRequestDto:
+      type: object
+      properties:
+        startDate:
+          type: string
+          description: start day and month of the goal - year part will be ignored
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        billable:
+          description: billable goal
+          allOf:
+          - $ref: '#/components/schemas/AnnualGoalRequestDto'
+      required:
+      - startDate
+      - billable
+    AnnualGoalResponseDto:
+      type: object
+      properties:
+        annualInSeconds:
+          type: number
+          description: Annual goal in seconds
+          format: double
+        notInLaurelInSeconds:
+          type: number
+          description: Not in laurel goal in seconds
+          format: double
+      required:
+      - annualInSeconds
+      - notInLaurelInSeconds
+    CustomerTimekeeperGoalResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: unique identifier for the goal
+          format: objectid
+        customerId:
+          type: string
+          description: id of the customer associated with this goal
+          format: objectid
+        startDate:
+          type: string
+          description: start date of the goal
+          example: '2022-08-12'
+          format: iso-date
+        allowUserOverrideAnnualGoalSeconds:
+          type: boolean
+          description: whether users can override this customer goal
+        allowUserOverrideGoalYearStart:
+          type: boolean
+          description: whether users can override the goal year start date
+        hideYearlyGoals:
+          type: boolean
+          description: whether to hide yearly goals from users
+        hideMonthlyGoals:
+          type: boolean
+          description: whether to hide monthly goals from users
+        hideWeeklyGoals:
+          type: boolean
+          description: whether to hide weekly goals from users
+        hideDailyGoals:
+          type: boolean
+          description: whether to hide daily goals from users
+        billable:
+          description: billable goal
+          allOf:
+          - $ref: '#/components/schemas/AnnualGoalResponseDto'
+      required:
+      - _id
+      - customerId
+      - startDate
+      - allowUserOverrideAnnualGoalSeconds
+      - allowUserOverrideGoalYearStart
+      - hideYearlyGoals
+      - hideMonthlyGoals
+      - hideWeeklyGoals
+      - hideDailyGoals
+      - billable
+    TimekeeperGoalResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: unique identifier for the goal
+          format: objectid
+        customerId:
+          type: string
+          description: id of the customer associated with this goal
+          format: objectid
+        userId:
+          type: string
+          description: id of the user associated with this goal
+          format: objectid
+        startDate:
+          type: string
+          description: start date of the goal
+          example: '2022-08-12'
+          format: iso-date
+        billable:
+          description: billable goal
+          allOf:
+          - $ref: '#/components/schemas/AnnualGoalResponseDto'
+      required:
+      - _id
+      - customerId
+      - userId
+      - startDate
+      - billable
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

@@ -1,0 +1,1197 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Customers API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Customers
+paths:
+  /api/v1/customers:
+    post:
+      operationId: CustomerController_create_v1
+      parameters:
+      - name: disableIdValidation
+        required: false
+        in: query
+        schema:
+          nullable: true
+          type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+      tags:
+      - Customers
+    get:
+      operationId: CustomerController_getAll_v1
+      parameters:
+      - name: tenantName
+        required: false
+        in: query
+        description: region code name
+        schema:
+          nullable: true
+          type: string
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+      summary: List all customers
+      tags:
+      - Customers
+  /api/v1/customers/lookup:
+    get:
+      operationId: CustomerController_lookup_v1
+      parameters:
+      - name: type
+        required: true
+        in: query
+        description: type of the external identity
+        schema:
+          type: string
+          enum:
+          - aderant
+          - auth0
+          - azure
+          - email
+          - external-billing-system
+          - elite
+          - intercom
+          - juris
+          - cisco-cdr
+          - mixpanel
+          - phone
+          - phone-extension
+          - salesforce
+          - segment
+          - vitally
+          - walls
+          - zendesk
+          - zoom
+          - exchange
+          - user-principal-name
+          - cisco-webex
+          - ringcentral
+          - google
+      - name: value
+        required: true
+        in: query
+        description: external identifier
+        schema:
+          type: string
+      - name: customerId
+        required: false
+        in: query
+        description: optional customer id to bind the identity to
+        schema:
+          format: objectid
+          nullable: true
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+      tags:
+      - Customers
+  /api/v1/customers/{customerId}:
+    get:
+      operationId: CustomerController_get_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+      summary: Get a specific customer
+      tags:
+      - Customers
+    patch:
+      operationId: CustomerController_update_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCustomerDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+      summary: Update a specific customer
+      tags:
+      - Customers
+  /api/v1/customers/{customerId}/tenant:
+    get:
+      operationId: CustomerController_getTenant_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerTenantResponse'
+      tags:
+      - Customers
+  /api/v1/customers/{customerId}/identities:
+    post:
+      operationId: CustomerController_createNewCustomerIdentity_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Identity'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Customers
+  /api/v1/customers/{customerId}/connections:
+    post:
+      operationId: CustomerController_createConnection_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateConnectionDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+      tags:
+      - Customers
+  /api/v1/customers/{customerId}/connections/{connectionId}:
+    patch:
+      operationId: CustomerController_updateConnection_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: connectionId
+        required: true
+        in: path
+        description: connection's externalId
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateConnectionDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+      tags:
+      - Customers
+    delete:
+      operationId: CustomerController_deleteConnection_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: connectionId
+        required: true
+        in: path
+        description: connection's externalId
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+      tags:
+      - Customers
+  /api/v1/customers/{customerId}/connections/{connectionId}/scim:
+    patch:
+      operationId: CustomerController_updateConnectionScim_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: connectionId
+        required: true
+        in: path
+        description: connection's externalId
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateConnectionScimDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionScimSetupResponseDto'
+      summary: Enable or disable SCIM provisioning on a connection
+      tags:
+      - Customers
+  /api/v1/customers/{customerId}/connections/{connectionId}/domains:
+    put:
+      operationId: CustomerController_updateConnectionDomains_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: connectionId
+        required: true
+        in: path
+        description: connection's externalId
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateConnectionDomainsDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+      summary: Update the domains (FQDNs) for a connection, propagating to Auth0 HRD
+      tags:
+      - Customers
+  /api/v1/customers/{customerId}/region:
+    get:
+      deprecated: true
+      operationId: CustomerController_getCustomerRegion_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerRegionResponseDto'
+      summary: ''
+      tags:
+      - Customers
+  /api/v1/customers/{customerId}/clients:
+    get:
+      operationId: CustomerClientController_getCustomerClients_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientResponseDto'
+      tags:
+      - Customers
+    post:
+      operationId: CustomerClientController_create_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientResponseDto'
+      summary: creates a new client for the given customer
+      tags:
+      - Customers
+  /api/v1/customers/{customerId}/clients/{clientId}:
+    get:
+      operationId: CustomerClientController_getCustomerClientById_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: clientId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientResponseDto'
+      tags:
+      - Customers
+    delete:
+      operationId: CustomerClientController_deleteCustomerClientById_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: clientId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Customers
+  /api/v1/customers/{customerId}/managed-clients:
+    get:
+      operationId: CustomerManagedClientController_getCustomerManagedClients_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerManagedClientResponseDto'
+      summary: Lists all customer-managed clients for the given customer
+      tags:
+      - Customers
+    post:
+      operationId: CustomerManagedClientController_create_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerManagedClientDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerManagedClientResponseDto'
+      summary: Creates a new customer-managed client for the given customer
+      tags:
+      - Customers
+  /api/v1/customers/{customerId}/managed-clients/{clientId}:
+    delete:
+      operationId: CustomerManagedClientController_deleteCustomerManagedClientById_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: clientId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Deletes a customer-managed client by ID
+      tags:
+      - Customers
+components:
+  schemas:
+    MicrosoftIdentityApi:
+      type: object
+      properties:
+        type:
+          description: type of the identity api
+          enum:
+          - microsoft-identity-platform-v2.0
+          - azure-active-directory-v1.0
+          type: string
+      required:
+      - type
+    TenantDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: tenant's id
+          format: objectid
+        description:
+          type: string
+          description: tenant's description, can be empty
+        name:
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+          type: string
+      required:
+      - _id
+      - description
+      - name
+    UpdateConnectionDto:
+      type: object
+      properties:
+        strategy:
+          description: connection's strategy
+          oneOf:
+          - $ref: '#/components/schemas/AdfsStrategy'
+          - $ref: '#/components/schemas/AzureStrategy'
+          - $ref: '#/components/schemas/DatabaseStrategy'
+          - $ref: '#/components/schemas/SamlStrategy'
+        scim:
+          type: boolean
+          description: whether this connection is used for SCIM provisioning
+        fqdns:
+          description: fully qualified domain names that will use this sso connection
+          type: array
+          items:
+            type: string
+    UpdateConnectionDomainsDto:
+      type: object
+      properties:
+        fqdns:
+          minItems: 1
+          description: Fully qualified domain names for home-realm discovery. At least one domain is required.
+          example:
+          - example.com
+          - sso.example.com
+          type: array
+          items:
+            type: string
+      required:
+      - fqdns
+    AzureStrategy:
+      type: object
+      properties:
+        type:
+          description: type of sso strategy
+          enum:
+          - waad
+          type: string
+          default: waad
+        clientId:
+          type: string
+          description: client id for accessing azure
+        clientSecret:
+          type: string
+          description: client secret for accessing azure
+        identityApi:
+          description: identity api used by the sso strategy
+          oneOf:
+          - $ref: '#/components/schemas/MicrosoftIdentityApi'
+          - $ref: '#/components/schemas/AzureIdentityApi'
+        azureTenantId:
+          type: string
+          description: AAD tenant GUID from the tid claim in MS tokens
+          format: uuid
+        tenantDomain:
+          type: string
+          description: azure tenant domain
+      required:
+      - type
+      - clientId
+      - clientSecret
+      - identityApi
+      - tenantDomain
+    Connection:
+      type: object
+      properties:
+        name:
+          type: string
+          description: connection's name
+          example: DEV-samlp-timebyping-com
+        createdAt:
+          type: string
+          description: date and time this connection was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        externalId:
+          type: string
+          description: connection's id in auth0
+        scim:
+          type: boolean
+          description: whether this connection is used for SCIM provisioning; false by default
+          nullable: true
+        strategy:
+          description: connection's strategy
+          oneOf:
+          - $ref: '#/components/schemas/AdfsStrategy'
+          - $ref: '#/components/schemas/AzureStrategy'
+          - $ref: '#/components/schemas/DatabaseStrategy'
+          - $ref: '#/components/schemas/SamlStrategy'
+        updatedAt:
+          type: string
+          description: date and time this connection was updated last
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        fqdns:
+          description: fully qualified domain names that will use this connection
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - createdAt
+      - externalId
+      - strategy
+      - updatedAt
+      - fqdns
+    Customer:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: customer's id
+          format: objectid
+        code:
+          type: string
+          description: the 3 letter upper case customer code
+          example: TBP
+          maxLength: 3
+          minLength: 3
+        createdAt:
+          type: string
+          description: the date and time this customer was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        fullName:
+          type: string
+          description: customer's full name
+        name:
+          type: string
+          description: customer's name in kebab case
+          example: ping
+          format: kebab-case
+        updatedAt:
+          type: string
+          description: the date and time this customer was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        pmsVendor:
+          type: string
+          description: customer's PMS vendor
+          nullable: true
+        salesforceAccountId:
+          type: string
+          description: customer's Salesforce account ID
+          nullable: true
+        isTestCustomer:
+          type: boolean
+          description: whether this is a test customer
+          nullable: true
+        connections:
+          description: a list of customer's sso connections
+          type: array
+          items:
+            $ref: '#/components/schemas/Connection'
+        identities:
+          description: a list of customer's external identities
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        tenant:
+          description: the tenant that this customer belongs to
+          allOf:
+          - $ref: '#/components/schemas/TenantDigest'
+        segment:
+          description: 'customer''s segment
+
+            @optional for backwards compatibility'
+          enum:
+          - strategic
+          - enterprise
+          - mid-market
+          - smb
+          type: string
+        vertical:
+          description: 'customer''s vertical
+
+            @optional for backwards compatibility'
+          enum:
+          - legal
+          - accounting
+          type: string
+      required:
+      - _id
+      - code
+      - createdAt
+      - fullName
+      - name
+      - updatedAt
+      - connections
+      - identities
+      - tenant
+    UpdateCustomerDto:
+      type: object
+      properties:
+        code:
+          type: string
+          description: if set, updates customer's code
+          maxLength: 3
+          minLength: 3
+          nullable: true
+        fullName:
+          type: string
+          description: if set updates customer's full name
+          nullable: true
+        identities:
+          description: if set, updates customer's identities
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        name:
+          type: string
+          description: if set, updates customer's name
+          format: kebab-case
+          nullable: true
+        tenantId:
+          type: string
+          description: if set, updates customer's tenant
+          format: objectid
+          nullable: true
+        segment:
+          description: if set, updates customer's segment
+          allOf:
+          - $ref: '#/components/schemas/CustomerSegment'
+        vertical:
+          description: if set, updates customer's vertical
+          allOf:
+          - $ref: '#/components/schemas/CustomerVertical'
+        pmsVendor:
+          type: string
+          description: if set, updates customer's PMS vendor
+          nullable: true
+        salesforceAccountId:
+          type: string
+          description: if set, updates customer's Salesforce account ID
+          nullable: true
+    ConnectionScimSetupResponseDto:
+      type: object
+      properties:
+        scimEndpointUrl:
+          type: string
+          description: SCIM endpoint URL to configure in Entra; present only when enabling
+          nullable: true
+        scimBearerToken:
+          type: string
+          description: SCIM bearer token to configure in Entra; present only when enabling
+          nullable: true
+    ClientResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: client's id
+          format: objectid
+        clientId:
+          type: string
+        name:
+          type: string
+          description: client's name
+        secret:
+          type: string
+          description: client's secret
+      required:
+      - _id
+      - clientId
+      - name
+      - secret
+    UpdateConnectionScimDto:
+      type: object
+      properties:
+        scimEnabled:
+          type: boolean
+          description: whether SCIM provisioning should be enabled on this connection
+      required:
+      - scimEnabled
+    CustomerVertical:
+      type: string
+      enum:
+      - legal
+      - accounting
+      description: if set, updates customer's vertical
+    DatabaseStrategy:
+      type: object
+      properties:
+        type:
+          description: type of sso strategy
+          enum:
+          - db
+          type: string
+          default: db
+      required:
+      - type
+    CustomerSegment:
+      type: string
+      enum:
+      - strategic
+      - enterprise
+      - mid-market
+      - smb
+      description: if set, updates customer's segment
+    AzureIdentityApi:
+      type: object
+      properties:
+        type:
+          description: type of the identity api
+          enum:
+          - microsoft-identity-platform-v2.0
+          - azure-active-directory-v1.0
+          type: string
+        protocol:
+          enum:
+          - openid-connect
+          - ws-federation
+          type: string
+      required:
+      - type
+      - protocol
+    SamlStrategy:
+      type: object
+      properties:
+        type:
+          description: type of sso strategy
+          enum:
+          - samlp
+          type: string
+          default: samlp
+        digestAlgorithm:
+          description: saml digest algorithm
+          enum:
+          - sha256
+          - sha1
+          type: string
+        fieldsMap:
+          type: object
+          description: optional map of saml response to auth0 fields
+          additionalProperties:
+            oneOf:
+            - type: string
+            - items:
+                type: string
+              type: array
+            - type: number
+            - type: boolean
+            - additionalProperties: true
+              type: object
+          nullable: true
+        signatureAlgorithm:
+          description: saml signature algorithm
+          enum:
+          - rsa-sha256
+          - rsa-sha1
+          type: string
+        signInEndpoint:
+          type: string
+          description: saml sign in endpoint
+        signingCert:
+          type: string
+          description: the certificate used for saml signature validation
+        signSamlRequest:
+          type: boolean
+          description: whether if saml request is signed
+        tenantDomain:
+          type: string
+          description: home realm domain
+      required:
+      - type
+      - digestAlgorithm
+      - signatureAlgorithm
+      - signInEndpoint
+      - signingCert
+      - signSamlRequest
+      - tenantDomain
+    AdfsStrategy:
+      type: object
+      properties:
+        type:
+          description: type of sso strategy
+          enum:
+          - adfs
+          type: string
+          default: adfs
+        apiEnableUsers:
+          type: boolean
+          description: whether if saml request is signed
+        adfsServer:
+          type: string
+          description: ADFS server endpoint
+          format: uri
+        tenantDomain:
+          type: string
+          description: home realm domain
+      required:
+      - type
+      - apiEnableUsers
+      - adfsServer
+      - tenantDomain
+    CustomerRegionResponseDto:
+      type: object
+      properties:
+        region:
+          type: string
+          description: Customer's tenant region
+      required:
+      - region
+    CreateConnectionDto:
+      type: object
+      properties:
+        scim:
+          type: boolean
+          description: whether this connection is used for SCIM provisioning; defaults to false
+        strategy:
+          description: connection's strategy
+          oneOf:
+          - $ref: '#/components/schemas/AdfsStrategy'
+          - $ref: '#/components/schemas/AzureStrategy'
+          - $ref: '#/components/schemas/DatabaseStrategy'
+          - $ref: '#/components/schemas/SamlStrategy'
+        fqdns:
+          description: fully qualified domain names that will use this sso connection
+          type: array
+          items:
+            type: string
+      required:
+      - strategy
+      - fqdns
+    CustomerManagedClientResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: client's internal id
+          format: objectid
+        externalClientId:
+          type: string
+          description: client's Auth0 id
+        externalClientSecret:
+          type: string
+          description: client's Auth0 secret (only returned on creation, never on GET)
+        name:
+          type: string
+          description: client's name
+        description:
+          type: string
+          description: client's description
+        externalSecretExpiresAt:
+          type: string
+          description: expiration date for the client secret
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+          nullable: true
+        createdByUserId:
+          type: string
+          description: user who created this client (for customer-managed clients)
+          format: objectid
+          nullable: true
+        permissionTier:
+          type: string
+          description: permission tier for this client
+          nullable: true
+        createdAt:
+          type: string
+          description: date and time client was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - externalClientId
+      - name
+      - description
+      - createdAt
+    Identity:
+      type: object
+      properties:
+        type:
+          description: type of the external identity
+          enum:
+          - aderant
+          - auth0
+          - azure
+          - email
+          - external-billing-system
+          - elite
+          - intercom
+          - juris
+          - cisco-cdr
+          - mixpanel
+          - phone
+          - phone-extension
+          - salesforce
+          - segment
+          - vitally
+          - walls
+          - zendesk
+          - zoom
+          - exchange
+          - user-principal-name
+          - cisco-webex
+          - ringcentral
+          - google
+          type: string
+        value:
+          type: string
+          description: external identifier
+        customerId:
+          type: string
+          description: optional customer id to bind the identity to
+          format: objectid
+          nullable: true
+      required:
+      - type
+      - value
+    CreateCustomerDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: customer id; if omitted a new one is generated
+          nullable: true
+        code:
+          type: string
+          description: customer's 3 letter code in upper case
+          maxLength: 3
+          minLength: 3
+        fullName:
+          type: string
+          description: customer's full name
+        name:
+          type: string
+          description: customer's name in kebab case
+          format: kebab-case
+        tenantId:
+          type: string
+          description: customer's tenant id
+          format: objectid
+        pmsVendor:
+          type: string
+          description: customer's PMS vendor
+          nullable: true
+        salesforceAccountId:
+          type: string
+          description: customer's Salesforce account ID
+          nullable: true
+        identities:
+          description: customer's external identities
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        segment:
+          description: customer's segment
+          enum:
+          - strategic
+          - enterprise
+          - mid-market
+          - smb
+          type: string
+        vertical:
+          description: customer's vertical
+          enum:
+          - legal
+          - accounting
+          type: string
+      required:
+      - code
+      - fullName
+      - name
+      - tenantId
+      - identities
+      - segment
+      - vertical
+    CustomerTenantResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+      required:
+      - name
+    CreateCustomerManagedClientDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'Client name (will be prefixed with customer code in backend)
+
+            Must be kebab-case (lowercase, start with letter, hyphens allowed)
+
+            Examples: "my-api-client", "production-service", "test-client-1"'
+          minLength: 3
+          maxLength: 50
+          format: kebab-case
+        description:
+          type: string
+          description: client description
+          maxLength: 500
+        permissionTier:
+          description: permission tier - determines which permissions the client will have
+          enum:
+          - read
+          - readwrite
+          type: string
+      required:
+      - name
+      - description
+      - permissionTier
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

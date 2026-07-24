@@ -1,0 +1,804 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Codes API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Codes
+paths:
+  /api/v1/customers/{customerId}/codes/import:
+    post:
+      operationId: CodesController_importCodeV1_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportCustomerCodeDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Codes
+  /api/v1/customers/{customerId}/codes/batch:
+    post:
+      operationId: CodesController_importCodeBatchV1_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      - name: isInitial
+        required: false
+        in: query
+        schema:
+          type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportCustomerCodesBatchDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Codes
+  /api/v2/customers/{customerId}/users/{userId}/code-types/{codeTypeId}/codes:
+    get:
+      operationId: CodeController_findManyForUserV2_v2
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      - name: initiativeId
+        required: false
+        in: query
+        description: initiative's identifier
+        schema:
+          format: objectid
+          nullable: true
+          type: string
+      - name: search
+        required: false
+        in: query
+        schema:
+          minLength: 1
+          maxLength: 100
+          type: string
+      - name: excludeDisabled
+        required: false
+        in: query
+        description: whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes.
+        schema:
+          type: boolean
+      - name: page
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          format: int64
+          type: number
+      - name: pageSize
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          maximum: 150
+          format: int64
+          type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserCodesOffsetBaseResponseDto'
+      summary: 'Service-level endpoint for enrichment service to get codes for a specific user
+
+        Applies user group filtering based on the userId parameter'
+      tags:
+      - Codes
+  /api/v2/code-types/{codeTypeId}/codes:
+    get:
+      operationId: CodeController_findManyForCurrentUserV2_v2
+      parameters:
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      - name: initiativeId
+        required: false
+        in: query
+        description: initiative's identifier
+        schema:
+          format: objectid
+          nullable: true
+          type: string
+      - name: search
+        required: false
+        in: query
+        schema:
+          minLength: 1
+          maxLength: 100
+          type: string
+      - name: excludeDisabled
+        required: false
+        in: query
+        description: whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes.
+        schema:
+          type: boolean
+      - name: sortBy
+        required: false
+        in: query
+        description: field to sort by - only applies when not searching (defaults to name)
+        schema:
+          type: string
+          enum:
+          - name
+          - externalId
+          - type.name
+          - description
+          - group
+      - name: sortOrder
+        required: false
+        in: query
+        description: sort order - only applies when not searching (defaults to asc)
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+      - name: page
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          format: int64
+          type: number
+      - name: pageSize
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          maximum: 150
+          format: int64
+          type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserCodesOffsetBaseResponseDto'
+      tags:
+      - Codes
+  /api/v2/code-types/{codeTypeId}/validate-code:
+    get:
+      operationId: CodeController_validateCodeInCodeTypeWithInitiative_v2
+      parameters:
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      - name: initiativeId
+        required: true
+        in: query
+        description: Initiative's id
+        schema:
+          format: objectid
+          type: string
+      - name: codeId
+        required: true
+        in: query
+        description: code's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidateCodeInitiativeResponseDto'
+      tags:
+      - Codes
+  /api/v1/customers/{customerId}/users/{userId}/code-types/{codeTypeId}/codes:
+    get:
+      operationId: CodeController_findManyForUser_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      - name: initiativeId
+        required: false
+        in: query
+        description: initiative's identifier
+        schema:
+          format: objectid
+          nullable: true
+          type: string
+      - name: search
+        required: false
+        in: query
+        schema:
+          minLength: 1
+          maxLength: 100
+          type: string
+      - name: excludeDisabled
+        required: false
+        in: query
+        description: whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes.
+        schema:
+          type: boolean
+      - name: pageSize
+        required: false
+        in: query
+        description: max number of item in each page
+        schema:
+          minimum: 1
+          maximum: 100
+          format: int64
+          type: number
+      - name: cursor
+        required: false
+        in: query
+        description: cursor to start from
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserCodesResponseDto'
+      summary: 'Service-level endpoint (v1) for enrichment service to get codes for a specific user
+
+        Applies user group filtering based on the userId parameter'
+      tags:
+      - Codes
+  /api/v1/code-types/{codeTypeId}/codes:
+    get:
+      operationId: CodeController_findManyForCurrentUser_v1
+      parameters:
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      - name: initiativeId
+        required: false
+        in: query
+        description: initiative's identifier
+        schema:
+          format: objectid
+          nullable: true
+          type: string
+      - name: search
+        required: false
+        in: query
+        schema:
+          minLength: 1
+          maxLength: 100
+          type: string
+      - name: excludeDisabled
+        required: false
+        in: query
+        description: whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes.
+        schema:
+          type: boolean
+      - name: pageSize
+        required: false
+        in: query
+        description: max number of item in each page
+        schema:
+          minimum: 1
+          maximum: 100
+          format: int64
+          type: number
+      - name: cursor
+        required: false
+        in: query
+        description: cursor to start from
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserCodesResponseDto'
+      tags:
+      - Codes
+  /api/v1/codes/{codeId}:
+    get:
+      operationId: CodeController_findOneById_v1
+      parameters:
+      - name: codeId
+        required: true
+        in: path
+        description: code's id
+        schema:
+          format: objectid
+          type: string
+      - name: initiativeId
+        required: false
+        in: query
+        description: for usage to determine if this code is a default in this initiative's context
+        schema:
+          format: objectid
+          type: string
+      - name: includeDefault
+        required: false
+        in: query
+        description: if true will determine if the code is a default in the context provided to this endpoint
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Code'
+      summary: returns one code by its id
+      tags:
+      - Codes
+  /api/v1/customers/{customerId}/code-types/{codeTypeId}/codes:
+    get:
+      operationId: CustomerCodeController_findManyForCustomerWithPagination_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      - name: initiativeId
+        required: false
+        in: query
+        description: initiative's identifier
+        schema:
+          format: objectid
+          nullable: true
+          type: string
+      - name: search
+        required: false
+        in: query
+        schema:
+          minLength: 1
+          maxLength: 100
+          type: string
+      - name: excludeDisabled
+        required: false
+        in: query
+        description: whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes.
+        schema:
+          type: boolean
+      - name: pageSize
+        required: false
+        in: query
+        description: max number of item in each page
+        schema:
+          minimum: 1
+          maximum: 100
+          format: int64
+          type: number
+      - name: cursor
+        required: false
+        in: query
+        description: cursor to start from
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  items:
+                    items:
+                      $ref: '#/components/schemas/Code'
+                    type: array
+                  nextCursor:
+                    nullable: true
+                    type: string
+                required:
+                - items
+                type: object
+      tags:
+      - Codes
+  /api/v1/customers/{customerId}/code-types/{codeTypeId}/codes/{codeId}:
+    get:
+      operationId: CustomerCodeController_findOne_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      - name: codeId
+        required: true
+        in: path
+        description: code's id
+        schema:
+          format: objectid
+          type: string
+      - name: initiativeId
+        required: false
+        in: query
+        description: initiative's identifier
+        schema:
+          format: objectid
+          nullable: true
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Code'
+      tags:
+      - Codes
+components:
+  schemas:
+    Code:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: code's id
+          format: objectid
+        schemaVersion:
+          type: string
+          description: code's schemaVersion
+        externalId:
+          type: string
+          description: code's external id
+        customerId:
+          type: string
+          description: id of customer who owns the code
+          format: objectid
+        name:
+          type: string
+          description: code's name
+        description:
+          type: string
+          description: code's description, can be empty
+        orderingSequence:
+          type: string
+          description: ordering sequence for UI sorting (alphanumeric)
+          nullable: true
+        group:
+          type: string
+          description: group identifier for categorizing codes
+          nullable: true
+        userGroupExternalIds:
+          description: user group external ids this code is associated with (from identity service)
+          type: array
+          items:
+            type: string
+        default:
+          type: boolean
+          description: is this code a default in a particular context (ie. customer or initiative)
+          nullable: true
+        isDisabled:
+          type: boolean
+          description: is this code disabled - this property is set during ingestion and can't be synced back to the PMS
+          nullable: true
+        createdAt:
+          type: string
+          description: date and time code was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time code was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        type:
+          description: code's type
+          allOf:
+          - $ref: '#/components/schemas/CodeTypeDigest'
+      required:
+      - _id
+      - schemaVersion
+      - externalId
+      - customerId
+      - name
+      - description
+      - createdAt
+      - updatedAt
+      - type
+    ImportCustomerCodesBatchDto:
+      type: object
+      properties:
+        codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dto'
+      required:
+      - codes
+    Dto:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: code's external id
+        name:
+          type: string
+          description: code's name
+        description:
+          type: string
+          description: code's description, can be empty
+        codeTypeExternalId:
+          type: string
+          description: code's type's external id
+        orderingSequence:
+          type: string
+          description: ordering sequence for UI sorting (alphanumeric)
+          nullable: true
+        group:
+          type: string
+          description: group identifier for categorizing codes
+          nullable: true
+        isDisabled:
+          type: boolean
+          description: whether the code is disabled, added from ingestion process
+          nullable: true
+      required:
+      - externalId
+      - name
+      - description
+      - codeTypeExternalId
+    GetUserCodesOffsetBaseResponseDto:
+      type: object
+      properties:
+        defaultCodeId:
+          type: string
+          description: the Id of the code that should be chosen as a
+          format: objectid
+        items:
+          description: the list of items in the current page
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeResponseDto'
+        nextPage:
+          type: number
+          description: next page number. if it is undefined it means this is the last page
+        totalPages:
+          type: number
+        totalItems:
+          type: number
+      required:
+      - items
+      - totalPages
+      - totalItems
+    ImportCustomerCodeDto:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: code's external id
+        name:
+          type: string
+          description: code's name
+        description:
+          type: string
+          description: code's description, can be empty
+        codeTypeExternalId:
+          type: string
+          description: code's type's external id
+        orderingSequence:
+          type: string
+          description: ordering sequence for UI sorting (alphanumeric)
+          nullable: true
+        group:
+          type: string
+          description: group identifier for categorizing codes
+          nullable: true
+        isDisabled:
+          type: boolean
+          description: whether the code is disabled, added from ingestion process
+          nullable: true
+      required:
+      - externalId
+      - name
+      - description
+      - codeTypeExternalId
+    ValidateCodeInitiativeResponseDto:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+      required:
+      - isValid
+    GetUserCodesResponseDto:
+      type: object
+      properties:
+        defaultCodeId:
+          type: string
+          description: the Id of the code that should be chosen as a
+          format: objectid
+        nextCursor:
+          type: string
+          description: next cursor. if it is undefined it means this is the last page
+          format: objectid
+        codes:
+          description: all of the codes assigned to the entry
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeResponseDto'
+        items:
+          description: all of the codes assigned to the entry
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeResponseDto'
+      required:
+      - codes
+      - items
+    CodeTypeDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: code type's id
+          format: objectid
+        externalId:
+          type: string
+          description: code type's external id
+        name:
+          type: string
+          description: code type's name
+        semanticType:
+          type: string
+          description: code type's semantic type
+          enum:
+          - action
+          - activity
+          - location
+          - phase
+          - task
+          nullable: true
+        orderingSequence:
+          type: string
+          description: ordering sequence for UI sorting (alphanumeric)
+          nullable: true
+      required:
+      - _id
+      - externalId
+      - name
+    CodeResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: code's id
+          format: objectid
+        externalId:
+          type: string
+          description: code's external id
+        name:
+          type: string
+          description: code's name
+        description:
+          type: string
+          description: code's description, can be empty
+        orderingSequence:
+          type: string
+          description: ordering sequence for UI sorting (alphanumeric)
+          nullable: true
+        group:
+          type: string
+          description: group identifier for categorizing codes
+          nullable: true
+        userGroupExternalIds:
+          description: user group external ids this code is associated with (from identity service)
+          type: array
+          items:
+            type: string
+        isDisabled:
+          type: boolean
+          description: is this code disabled - this property is set during ingestion and can't be synced back to the PMS
+          nullable: true
+        type:
+          description: code's type
+          allOf:
+          - $ref: '#/components/schemas/CodeTypeDigest'
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - type
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

@@ -1,0 +1,116 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Roles API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Roles
+paths:
+  /api/v1/roles:
+    get:
+      operationId: RoleController_getAll_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+      summary: List all roles
+      tags:
+      - Roles
+  /api/v1/roles/{roleId}:
+    get:
+      operationId: RoleController_get_v1
+      parameters:
+      - name: roleId
+        required: true
+        in: path
+        description: role's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+      summary: Return a specific role by Id
+      tags:
+      - Roles
+components:
+  schemas:
+    PermissionDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: permission's id
+          format: objectid
+        claim:
+          type: string
+          description: permission's claim, which is service, namespace, action, and scope serialized in a string
+        description:
+          type: string
+          description: permission's description
+      required:
+      - _id
+      - claim
+      - description
+    Role:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: role's id
+          format: objectid
+        name:
+          type: string
+          description: role's name in kebab case
+          format: kebab-case
+        description:
+          type: string
+          description: role's description
+        isDefault:
+          type: boolean
+        createdAt:
+          type: string
+          description: date and time role was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time role was updated last
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        permissions:
+          description: permissions granted to users in this role
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDigest'
+      required:
+      - _id
+      - name
+      - description
+      - isDefault
+      - createdAt
+      - updatedAt
+      - permissions
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

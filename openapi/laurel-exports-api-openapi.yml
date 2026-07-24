@@ -1,0 +1,183 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Exports API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Exports
+paths:
+  /api/v1/customers/{customerId}/time-csv-exports/entries:
+    post:
+      operationId: ExportController_exportEntries_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportEntryRequestDto'
+      responses:
+        '200':
+          description: Export job submitted successfully
+      summary: Request export of time entries
+      tags:
+      - Exports
+  /api/v1/customers/{customerId}/time-csv-exports/entries/download:
+    get:
+      operationId: ExportController_getDownloadUrl_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: fileName
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Fresh presigned download URL
+      summary: Generate a fresh download URL for an exported CSV file
+      tags:
+      - Exports
+components:
+  schemas:
+    ExportEntryRequestDto:
+      type: object
+      properties:
+        search:
+          type: string
+          maxLength: 100
+          minLength: 3
+        userId:
+          type: string
+          format: objectid
+        userIds:
+          type: array
+          items:
+            type: string
+            format: objectid
+        status:
+          type: string
+          enum:
+          - release-failed
+          - release-pending
+          - release-success
+          - release-success-locked
+          - release-validation-pending
+          - validation-failed
+          - validation-pending
+          - validation-success
+        statuses:
+          type: array
+          items:
+            type: string
+            enum:
+            - release-failed
+            - release-pending
+            - release-success
+            - release-success-locked
+            - release-validation-pending
+            - validation-failed
+            - validation-pending
+            - validation-success
+        workDateStart:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        workDateEnd:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAfter:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedOnOrBefore:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        initiativeId:
+          type: string
+          format: objectid
+        clientId:
+          type: string
+          format: objectid
+        isDeleted:
+          type: boolean
+        initiativeType:
+          type: string
+          enum:
+          - pms
+          - user
+        billingType:
+          type: string
+          enum:
+          - billable
+          - non-billable
+          nullable: true
+        notificationEmail:
+          type: string
+          description: Email address to send the export notification to
+          maxLength: 254
+        allowEmptyTimers:
+          type: boolean
+        timezoneNotSet:
+          type: boolean
+          description: 'Union with `timezones[]`: when true, also include entries with `timezoneAtCreation === null`.'
+        columns:
+          description: Optional CSV columns to emit; defaults to the legacy 13-column set when absent.
+          type: array
+          items:
+            type: string
+            enum:
+            - date
+            - userName
+            - userEmail
+            - clientName
+            - clientNumber
+            - initiativeName
+            - initiativeNumber
+            - durationHours
+            - summary
+            - workCodes
+            - status
+            - timezoneAtCreation
+            - createdAt
+            - firstReleaseAttemptedAt
+            - releasedAt
+            - sharedFrom
+            - sharedWith
+        downloadBaseUrl:
+          type: string
+          description: Base URL for the download link in the email. When provided, the email links to the webapp download page instead of a direct S3 presigned URL.
+          maxLength: 256
+        timezones:
+          description: Optional IANA timezone filter (e.g. "America/New_York").
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

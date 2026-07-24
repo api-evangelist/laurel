@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Health Check API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Health Check
+paths:
+  /healthcheck:
+    get:
+      operationId: HealthCheckController_getHeathStatus
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+      tags:
+      - Health Check
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        healthy:
+          type: boolean
+        databaseConnected:
+          type: boolean
+      required:
+      - healthy
+      - databaseConnected
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

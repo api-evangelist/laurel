@@ -1,0 +1,74 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably CodeTypes API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: CodeTypes
+paths:
+  /api/v1/customers/{customerId}/code-types/import:
+    post:
+      operationId: CodeTypesController_importCodeTypeV1_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportCustomerCodeTypeDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - CodeTypes
+components:
+  schemas:
+    ImportCustomerCodeTypeDto:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: code type's external id
+        name:
+          type: string
+          description: code type's name
+        semanticType:
+          type: string
+          description: code type's semantic type
+          enum:
+          - action
+          - activity
+          - location
+          - phase
+          - task
+        customerDefaultable:
+          type: boolean
+          description: can the default CodeType value be set at the customer-level
+        userDefaultable:
+          type: boolean
+          description: can the default CodeType value be set at the user-level
+        orderingSequence:
+          type: string
+          description: ordering sequence for UI sorting (alphanumeric)
+      required:
+      - externalId
+      - name
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

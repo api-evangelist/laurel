@@ -1,0 +1,461 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably DailySelectedInitiatives API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: DailySelectedInitiatives
+paths:
+  /api/v1/daily-selected-initiatives:
+    get:
+      operationId: DailySelectedInitiativeController_findManyByDate_v1
+      parameters:
+      - name: minDate
+        required: true
+        in: query
+        description: min bound for the date to get daily selected initiatives
+        schema:
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+          type: string
+      - name: maxDate
+        required: true
+        in: query
+        description: max bound for the date to get daily selected initiatives
+        schema:
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+          type: string
+      - name: customerId
+        required: true
+        in: query
+        description: customer id to filter by
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: query
+        description: user id to filter by
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DailySelectedInitiativeResponseDto'
+      summary: returns all daily selected initiatives for the current user and a given date
+      tags:
+      - DailySelectedInitiatives
+    post:
+      operationId: DailySelectedInitiativeController_createOne_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDailySelectedInitiativeRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailySelectedInitiativeResponseDto'
+      summary: creates a daily selected initiative
+      tags:
+      - DailySelectedInitiatives
+    delete:
+      operationId: DailySelectedInitiativeController_deleteOne_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: query
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: query
+        schema:
+          format: objectid
+          type: string
+      - name: date
+        required: true
+        in: query
+        schema:
+          format: iso-date
+          example: '2022-08-12'
+          type: string
+      - name: initiativeId
+        required: true
+        in: query
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: deletes a daily selected initiative by id
+      tags:
+      - DailySelectedInitiatives
+components:
+  schemas:
+    CreateDailySelectedInitiativeRequestDto:
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: id of customer who the owner belongs to
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns the daily selected initiative
+          format: objectid
+        date:
+          type: string
+          description: target date
+          example: '2022-08-12'
+          format: iso-date
+        initiativeId:
+          type: string
+          description: initiative id
+          format: objectid
+      required:
+      - customerId
+      - userId
+      - date
+      - initiativeId
+    UserInitiativeDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this initiative
+        createdAt:
+          type: string
+          description: date and time this initiative was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        locale:
+          type: string
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+          nullable: true
+        status:
+          description: initiative's status
+          enum:
+          - active
+          - inactive
+          type: string
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        updatedAt:
+          type: string
+          description: date and time this initiative was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        name:
+          type: string
+          description: a name that identifies this initiative for the user
+        type:
+          type: string
+          enum:
+          - user
+        props:
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/UserInitiativePropsDto'
+      required:
+      - _id
+      - billingType
+      - callSign
+      - createdAt
+      - status
+      - unitIncrements
+      - updatedAt
+      - name
+      - type
+    DailySelectedInitiativeResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: objectid
+        userId:
+          type: string
+          format: objectid
+        customerId:
+          type: string
+          format: objectid
+        date:
+          type: string
+          example: '2022-08-12'
+          format: iso-date
+        createdAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        initiative:
+          oneOf:
+          - $ref: '#/components/schemas/UserInitiativeDto'
+          - $ref: '#/components/schemas/PmsInitiativeDto'
+      required:
+      - _id
+      - userId
+      - customerId
+      - date
+      - createdAt
+      - updatedAt
+      - initiative
+    PmsInitiativeDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this initiative
+        createdAt:
+          type: string
+          description: date and time this initiative was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        locale:
+          type: string
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+          nullable: true
+        status:
+          description: initiative's status
+          enum:
+          - active
+          - inactive
+          type: string
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        updatedAt:
+          type: string
+          description: date and time this initiative was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        description:
+          type: string
+          description: the full long name of the initiative
+        externalId:
+          type: string
+          description: initiative's external id
+        name:
+          type: string
+          description: a short name or code that identifies this initiative
+        allowFrom:
+          type: string
+          description: earliest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+          nullable: true
+        allowTo:
+          type: string
+          description: latest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+          nullable: true
+        client:
+          description: the client this initiative belongs to
+          allOf:
+          - $ref: '#/components/schemas/ClientDigest'
+        type:
+          type: string
+          enum:
+          - pms
+        props:
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsDto'
+      required:
+      - _id
+      - billingType
+      - callSign
+      - createdAt
+      - status
+      - unitIncrements
+      - updatedAt
+      - description
+      - externalId
+      - name
+      - client
+      - type
+    UserInitiativePropsDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+      required:
+      - _id
+      - colorHex
+      - tags
+      - userId
+    PmsInitiativePropsDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+        nickname:
+          type: string
+          description: the nickname assigned to this initiative by the user
+          nullable: true
+      required:
+      - _id
+      - colorHex
+      - tags
+      - userId
+    ClientDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: client's id
+          format: objectid
+        externalId:
+          type: string
+          description: client's external id
+        name:
+          type: string
+          description: a name that identifies this client
+        description:
+          type: string
+          description: client's description
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        type:
+          type: string
+          description: client's type, default is client
+          enum:
+          - client
+          - parent
+          nullable: true
+        parentClientId:
+          type: string
+          description: id of the parent client
+          format: objectid
+          nullable: true
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - callSign
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

@@ -1,0 +1,1025 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Clients API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Clients
+paths:
+  /api/v1/clients/on-credentials-exchange:
+    post:
+      operationId: ClientController_onCredentialsExchange_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OnCredentialsExchangeRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnCredentialsExchangeResponseDto'
+      tags:
+      - Clients
+  /api/v1/clients:
+    post:
+      deprecated: true
+      operationId: ClientController_create_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClientDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+      summary: creates a new client
+      tags:
+      - Clients
+    get:
+      deprecated: true
+      operationId: ClientController_getAll_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+      summary: lists all existing clients
+      tags:
+      - Clients
+  /api/v1/clients/{clientId}:
+    get:
+      deprecated: true
+      operationId: ClientController_get_v1
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: client's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+      summary: returns a specific client
+      tags:
+      - Clients
+    patch:
+      operationId: ClientController_update_v1
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: client's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateClientDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+      summary: updates an existing client
+      tags:
+      - Clients
+    delete:
+      deprecated: true
+      operationId: ClientController_delete_v1
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: client's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+      summary: deletes an existing client
+      tags:
+      - Clients
+  /api/v1/customers/{customerId}/clients/import:
+    post:
+      operationId: ClientsController_importClientV1_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportCustomerClientDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Clients
+  /api/v1/customers/{customerId}/clients/batch:
+    post:
+      operationId: ClientsController_importClientBatchV1_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      - name: isInitial
+        required: false
+        in: query
+        schema:
+          type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportCustomerClientsBatchDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Clients
+  /api/v1/customers/{customerId}/clients:
+    get:
+      operationId: CustomerClientController_search_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: page
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          format: int64
+          type: number
+      - name: pageSize
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          maximum: 150
+          format: int64
+          type: number
+      - name: search
+        required: false
+        in: query
+        schema:
+          minLength: 2
+          maxLength: 100
+          type: string
+      - name: type
+        required: false
+        in: query
+        schema:
+          type: string
+          enum:
+          - client
+          - parent
+      - name: sortBy
+        required: false
+        in: query
+        schema:
+          type: string
+          enum:
+          - name
+          - callSign
+          - createdAt
+          - updatedAt
+      - name: sortOrder
+        required: false
+        in: query
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+      - name: clientIds
+        required: false
+        in: query
+        description: Comma-separated client IDs or array (max 50)
+        schema:
+          minItems: 1
+          maxItems: 50
+          allOf:
+          - $ref: '#/components/schemas/Object'
+      - name: parentClientIds
+        required: false
+        in: query
+        description: Comma-separated parent client IDs or array (max 50)
+        schema:
+          minItems: 1
+          maxItems: 50
+          allOf:
+          - $ref: '#/components/schemas/Object'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Clients
+  /api/v1/customers/{customerId}/clients/external-id/{externalId}:
+    get:
+      operationId: CustomerClientController_getByExternalId_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: externalId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Clients
+  /api/v1/customers/{customerId}/clients/{clientId}:
+    get:
+      operationId: CustomerClientController_getClient_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: clientId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      - name: populate
+        required: false
+        in: query
+        schema: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientDto'
+      tags:
+      - Clients
+  /api/v1/customers/{customerId}/clients/override-compliance-rules/affected-count:
+    post:
+      operationId: CustomerClientController_getAffectedCount_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverrideComplianceRulesDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AffectedCountResponseDto'
+      tags:
+      - Clients
+  /api/v1/customers/{customerId}/clients/override-compliance-rules:
+    post:
+      operationId: CustomerClientController_overrideComplianceRules_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverrideComplianceRulesDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Clients
+components:
+  schemas:
+    PermissionDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: permission's id
+          format: objectid
+        claim:
+          type: string
+          description: permission's claim, which is service, namespace, action, and scope serialized in a string
+        description:
+          type: string
+          description: permission's description
+      required:
+      - _id
+      - claim
+      - description
+    AffectedCountResponseDto:
+      type: object
+      properties:
+        affectedClientCount:
+          type: number
+          format: double
+        affectedInitiativeCount:
+          type: number
+          format: double
+        totalAffectedCount:
+          type: number
+          format: double
+      required:
+      - affectedClientCount
+      - affectedInitiativeCount
+      - totalAffectedCount
+    Object:
+      type: object
+      properties: {}
+    OverrideComplianceRulesDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: DEPRECATED — use clientIds + entityType. Single source client ID.
+          deprecated: true
+          format: objectid
+        clientIds:
+          description: Source client IDs whose children will have rules reset.
+          type: array
+          items:
+            type: string
+            format: objectid
+        entityType:
+          type: string
+          description: Entity type of the source clientIds. Initiative is not valid for Apply & Override.
+          enum:
+          - parent
+          - client
+      required:
+      - clientId
+      - clientIds
+    OnCredentialsExchangeResponseDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: id of client used for logging in
+          format: objectid
+        permissions:
+          description: permissions granted to current client
+          type: array
+          items:
+            type: string
+        encodedPermissions:
+          type: string
+        tenantId:
+          type: string
+          description: client's tenant id
+          format: objectid
+          nullable: true
+        customerId:
+          type: string
+          description: id of the customer the client belongs to
+          format: objectid
+      required:
+      - clientId
+      - permissions
+      - encodedPermissions
+    ClientDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: objectid
+        externalId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        callSign:
+          type: string
+        type:
+          type: string
+          description: if null or undefined, semantic default is ClientType.Client
+          enum:
+          - client
+          - parent
+          nullable: true
+        parentClientId:
+          type: string
+          format: objectid
+          nullable: true
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - callSign
+    Client:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: client's id
+          format: objectid
+        customerId:
+          type: string
+          description: id of the customer the client belongs to
+          format: objectid
+          nullable: true
+        allowedCallbackUrls:
+          description: list of URLs that can be call back after user authentication
+          default: []
+          type: array
+          items:
+            type: string
+        allowedCorsOrigins:
+          description: list of URLs that are allowed to make requests
+          default: []
+          type: array
+          items:
+            type: string
+        allowedLogoutUrls:
+          description: list of URLs that are valid to redirect to after logout
+          default: []
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          description: date and time client was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        description:
+          type: string
+          description: client's description
+        externalId:
+          type: string
+          description: client's id in Auth0
+        externalSecret:
+          type: string
+          description: client's secret in Auth0
+        name:
+          type: string
+          description: client's name displayed in user authentication flow
+        service:
+          description: indicates which service this client is for
+          enum:
+          - webapp-admin
+          - android
+          - assistant
+          - bc
+          - tbp-brain
+          - boomi
+          - boomi-adapter
+          - cloud-assistant-cdr
+          - cloud-assistant-outlook
+          - cloud-assistant-microsoft-exchange
+          - cloud-assistant-microsoft-teams
+          - cloud-assistant-zoom
+          - cloud-assistant-google
+          - cloud-assistant-webex
+          - cloud-assistant-ringcentral
+          - cloud-onboarding
+          - compliance
+          - config
+          - continuous-integration
+          - data
+          - eyt-connector
+          - flat-file-egress-connector
+          - flat-file-ingress-connector
+          - identity
+          - ingestion
+          - ios
+          - jobs
+          - laurel-billing-data-generator
+          - laurel-resource-operator
+          - egress
+          - ingress
+          - lip-egress
+          - lip-ingress
+          - mac
+          - management-api
+          - mco
+          - mc
+          - metrics
+          - notification
+          - ptc
+          - pms-egress-connector
+          - pms-ingress-connector
+          - product-event-notification
+          - product-email-notification-service
+          - signal
+          - ssl-check
+          - router
+          - time
+          - tbp-to-lrl-migration
+          - tbp-to-lrl-migration-website
+          - ThoughtSpot
+          - time-service-connector
+          - tracking
+          - web
+          - win
+          - enrichment
+          - customer-connector
+          - customer-managed-client
+          - time-service-perf-test-app
+          - time-service-perf-test-m2m
+          - cloud-assistants
+          - salesforce-sync
+          - slo-sync
+          - updater
+          - laurel-mobile
+          - laurel-mcp
+          - activity-enrichment
+          - ask
+          - capture-settings
+          - assistant-windows
+          - directory
+          - audit
+          - test-user-creation
+          - agent
+          - siem-forwarder
+          type: string
+        tenant:
+          description: client's tenant
+          allOf:
+          - $ref: '#/components/schemas/TenantDigest'
+        type:
+          description: which type of client this is - corresponds to Auth0 application type
+          enum:
+          - regular_web
+          - spa
+          - native
+          - non_interactive
+          type: string
+        updatedAt:
+          type: string
+          description: date and time client was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        externalSecretExpiresAt:
+          type: string
+          description: expiration date for customer-managed client secrets (90 days from creation)
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+          nullable: true
+        createdByUserId:
+          type: string
+          description: user who created this customer-managed client (only set for customer-managed clients)
+          format: objectid
+          nullable: true
+        permissionTier:
+          type: string
+          description: permission tier for customer-managed clients ("read" or "readwrite")
+          nullable: true
+        permissions:
+          description: permissions granted to service tokens from this client
+          default: []
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDigest'
+        userPermissionBoundaries:
+          description: limits permissions that are granted in user tokens from this client
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDigest'
+      required:
+      - _id
+      - allowedCallbackUrls
+      - allowedCorsOrigins
+      - allowedLogoutUrls
+      - createdAt
+      - description
+      - externalId
+      - externalSecret
+      - name
+      - service
+      - type
+      - updatedAt
+      - permissions
+      - userPermissionBoundaries
+    ImportCustomerClientsBatchDto:
+      type: object
+      properties:
+        clients:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportCustomerClientDto'
+      required:
+      - clients
+    TenantDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: tenant's id
+          format: objectid
+        description:
+          type: string
+          description: tenant's description, can be empty
+        name:
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+          type: string
+      required:
+      - _id
+      - description
+      - name
+    ImportCustomerClientDto:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: client's external id
+        name:
+          type: string
+          description: client's name
+        callSign:
+          type: string
+          description: client's call sign
+        description:
+          type: string
+          description: client's description
+        type:
+          type: string
+          description: 'client''s type (optional): if not provided semantic default is client, parent client must have type parent'
+          enum:
+          - client
+          - parent
+          nullable: true
+        parentClientExternalId:
+          type: string
+          description: parent client's external id (optional)
+          nullable: true
+      required:
+      - externalId
+      - name
+      - callSign
+      - description
+    CreateClientDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: client's name displayed in user authentication flow
+        description:
+          type: string
+          description: client's description
+        service:
+          description: indicates which service this client is for
+          enum:
+          - webapp-admin
+          - android
+          - assistant
+          - bc
+          - tbp-brain
+          - boomi
+          - boomi-adapter
+          - cloud-assistant-cdr
+          - cloud-assistant-outlook
+          - cloud-assistant-microsoft-exchange
+          - cloud-assistant-microsoft-teams
+          - cloud-assistant-zoom
+          - cloud-assistant-google
+          - cloud-assistant-webex
+          - cloud-assistant-ringcentral
+          - cloud-onboarding
+          - compliance
+          - config
+          - continuous-integration
+          - data
+          - eyt-connector
+          - flat-file-egress-connector
+          - flat-file-ingress-connector
+          - identity
+          - ingestion
+          - ios
+          - jobs
+          - laurel-billing-data-generator
+          - laurel-resource-operator
+          - egress
+          - ingress
+          - lip-egress
+          - lip-ingress
+          - mac
+          - management-api
+          - mco
+          - mc
+          - metrics
+          - notification
+          - ptc
+          - pms-egress-connector
+          - pms-ingress-connector
+          - product-event-notification
+          - product-email-notification-service
+          - signal
+          - ssl-check
+          - router
+          - time
+          - tbp-to-lrl-migration
+          - tbp-to-lrl-migration-website
+          - ThoughtSpot
+          - time-service-connector
+          - tracking
+          - web
+          - win
+          - enrichment
+          - customer-connector
+          - customer-managed-client
+          - time-service-perf-test-app
+          - time-service-perf-test-m2m
+          - cloud-assistants
+          - salesforce-sync
+          - slo-sync
+          - updater
+          - laurel-mobile
+          - laurel-mcp
+          - activity-enrichment
+          - ask
+          - capture-settings
+          - assistant-windows
+          - directory
+          - audit
+          - test-user-creation
+          - agent
+          - siem-forwarder
+          type: string
+        type:
+          description: which type of client this is - corresponds to Auth0 application type
+          enum:
+          - regular_web
+          - spa
+          - native
+          - non_interactive
+          type: string
+        customerId:
+          type: string
+          description: id of the customer the client belongs to
+          format: objectid
+          nullable: true
+        tenantId:
+          type: string
+          description: client's tenant
+          format: objectid
+          nullable: true
+        permissionIds:
+          description: ids of permissions granted to service tokens from this client
+          type: array
+          items:
+            type: string
+            format: objectid
+        userPermissionBoundaryIds:
+          description: ids of permissions that limit what's granted in user tokens from this client
+          type: array
+          items:
+            type: string
+            format: objectid
+        allowedCallbackUrls:
+          description: list of URLs that can be call back after user authentication
+          default: []
+          type: array
+          items:
+            type: string
+        allowedLogoutUrls:
+          description: list of URLs that are valid to redirect to after logout
+          default: []
+          type: array
+          items:
+            type: string
+        allowedCorsOrigins:
+          description: list of URLs that are allowed to make requests
+          default: []
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - description
+      - service
+      - type
+      - permissionIds
+      - allowedCallbackUrls
+      - allowedLogoutUrls
+      - allowedCorsOrigins
+    OnCredentialsExchangeRequestDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: id of client used for logging in
+          format: objectid
+        externalClientId:
+          type: string
+          description: id of the auth0 client that's generating a service token
+        customerId:
+          type: string
+          description: id of the customer the client belongs to
+          format: objectid
+          nullable: true
+      required:
+      - clientId
+      - externalClientId
+    UpdateClientDto:
+      type: object
+      properties:
+        allowedCallbackUrls:
+          description: list of URLs that can be call back after user authentication
+          type: array
+          items:
+            type: string
+        allowedCorsOrigins:
+          description: list of URLs that are allowed to make requests
+          type: array
+          items:
+            type: string
+        allowedLogoutUrls:
+          description: list of URLs that are valid to redirect to after logout
+          type: array
+          items:
+            type: string
+        clientSecret:
+          type: string
+          description: client's secret in Auth0
+          maxLength: 64
+          minLength: 64
+        permissionIds:
+          description: if set, updates permissions granted to service tokens from this client
+          type: array
+          items:
+            type: string
+            format: objectid
+        service:
+          type: string
+          description: if set, updates the service this client is for
+          enum:
+          - webapp-admin
+          - android
+          - assistant
+          - bc
+          - tbp-brain
+          - boomi
+          - boomi-adapter
+          - cloud-assistant-cdr
+          - cloud-assistant-outlook
+          - cloud-assistant-microsoft-exchange
+          - cloud-assistant-microsoft-teams
+          - cloud-assistant-zoom
+          - cloud-assistant-google
+          - cloud-assistant-webex
+          - cloud-assistant-ringcentral
+          - cloud-onboarding
+          - compliance
+          - config
+          - continuous-integration
+          - data
+          - eyt-connector
+          - flat-file-egress-connector
+          - flat-file-ingress-connector
+          - identity
+          - ingestion
+          - ios
+          - jobs
+          - laurel-billing-data-generator
+          - laurel-resource-operator
+          - egress
+          - ingress
+          - lip-egress
+          - lip-ingress
+          - mac
+          - management-api
+          - mco
+          - mc
+          - metrics
+          - notification
+          - ptc
+          - pms-egress-connector
+          - pms-ingress-connector
+          - product-event-notification
+          - product-email-notification-service
+          - signal
+          - ssl-check
+          - router
+          - time
+          - tbp-to-lrl-migration
+          - tbp-to-lrl-migration-website
+          - ThoughtSpot
+          - time-service-connector
+          - tracking
+          - web
+          - win
+          - enrichment
+          - customer-connector
+          - customer-managed-client
+          - time-service-perf-test-app
+          - time-service-perf-test-m2m
+          - cloud-assistants
+          - salesforce-sync
+          - slo-sync
+          - updater
+          - laurel-mobile
+          - laurel-mcp
+          - activity-enrichment
+          - ask
+          - capture-settings
+          - assistant-windows
+          - directory
+          - audit
+          - test-user-creation
+          - agent
+          - siem-forwarder
+        customerId:
+          type: string
+          description: if set, updates the id the customer the client belongs to
+          format: objectid
+          nullable: true
+        tenantId:
+          type: string
+          description: if set, updates client's tenant
+          format: objectid
+        userPermissionBoundaryIds:
+          description: if set, updates permissions that limit what's granted in user tokens from this client
+          type: array
+          items:
+            type: string
+            format: objectid
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

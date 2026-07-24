@@ -1,0 +1,441 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Onboarding Profiles API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Onboarding Profiles
+paths:
+  /api/v1/onboarding-profiles:
+    post:
+      operationId: OnboardingProfileController_createOnboardingProfile_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOnboardingProfileDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnboardingProfile'
+      summary: Create onboarding profile for current user
+      tags:
+      - Onboarding Profiles
+  /api/v1/onboarding-profiles/{userId}:
+    get:
+      operationId: OnboardingProfileController_getOnboardingProfile_v1
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnboardingProfile'
+      summary: Get onboarding profile by user id
+      tags:
+      - Onboarding Profiles
+    patch:
+      operationId: OnboardingProfileController_updateOnboardingProfile_v1
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOnboardingProfileDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnboardingProfile'
+      summary: Update onboarding profile
+      tags:
+      - Onboarding Profiles
+    delete:
+      operationId: OnboardingProfileController_deleteOnboardingProfile_v1
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnboardingProfile'
+      summary: Delete onboarding profile by user id
+      tags:
+      - Onboarding Profiles
+  /api/v1/onboarding-profiles/{userId}/steps/{stepId}:
+    patch:
+      operationId: OnboardingProfileController_updateOnboardingStep_v1
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      - name: stepId
+        required: true
+        in: path
+        description: onboarding step id
+        schema:
+          type: string
+          enum:
+          - LANGUAGE
+          - TIMEKEEPING_PREFERENCE
+          - WELCOME_VIDEO
+          - PRIVACY
+          - WALKTHROUGH
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOnboardingStepDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnboardingProfile'
+      summary: Update individual onboarding step
+      tags:
+      - Onboarding Profiles
+components:
+  schemas:
+    UpdateBaseStepDto:
+      type: object
+      properties:
+        stepType:
+          type: string
+          description: step identifier
+          enum:
+          - LANGUAGE
+          - TIMEKEEPING_PREFERENCE
+          - WELCOME_VIDEO
+          - WALKTHROUGH
+        completedAt:
+          type: string
+          description: if set, marks step as completed at this time
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+          nullable: true
+        skippedAt:
+          type: string
+          description: if set, marks step as skipped at this time
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+          nullable: true
+      required:
+      - stepType
+    PrivacyStepRecord:
+      type: object
+      properties:
+        acceptedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        docId:
+          type: string
+          format: objectid
+        language:
+          type: string
+        versionId:
+          type: string
+          format: objectid
+      required:
+      - acceptedAt
+      - docId
+      - language
+      - versionId
+    UpdateOnboardingProfileDto:
+      type: object
+      properties:
+        timekeepingSinceYear:
+          type: number
+          description: if set, updates year since user has been timekeeping
+          format: double
+          nullable: true
+        timekeepingFrequency:
+          description: if set, updates how frequently user does timekeeping
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/TimekeepingFrequency'
+        usesTimers:
+          type: boolean
+          deprecated: true
+          nullable: true
+        timerFrequency:
+          description: if set, updates how frequently user uses timers
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/TimerFrequency'
+        avgInitiativesPerDay:
+          type: number
+          description: if set, updates average number of initiatives user works on per day
+          format: double
+          nullable: true
+    UpdatePrivacyStepDto:
+      type: object
+      properties:
+        stepType:
+          type: string
+          description: step identifier
+          enum:
+          - PRIVACY
+        acceptedAt:
+          type: string
+          description: privacy acceptance timestamp
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        docId:
+          type: string
+          description: privacy document id
+          format: objectid
+        language:
+          type: string
+          description: language of privacy document
+        versionId:
+          type: string
+          description: version of privacy document
+          format: objectid
+      required:
+      - stepType
+      - acceptedAt
+      - docId
+      - language
+      - versionId
+    TimerFrequency:
+      type: string
+      enum:
+      - ALWAYS
+      - SOMETIMES
+      - NEVER
+      description: if set, updates how frequently user uses timers
+    OnboardingSteps:
+      type: object
+      properties:
+        LANGUAGE:
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/StepRecordBase'
+        TIMEKEEPING_PREFERENCE:
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/StepRecordBase'
+        WELCOME_VIDEO:
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/StepRecordBase'
+        PRIVACY:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/PrivacyStepRecord'
+          - $ref: '#/components/schemas/PrivacyStepSkippedRecord'
+        WALKTHROUGH:
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/StepRecordBase'
+    UpdatePrivacyStepSkippedDto:
+      type: object
+      properties:
+        stepType:
+          type: string
+          enum:
+          - PRIVACY
+        skippedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - stepType
+      - skippedAt
+    OnboardingProfile:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: objectid
+        userId:
+          type: string
+          format: objectid
+        customerId:
+          type: string
+          format: objectid
+        timekeepingSinceYear:
+          type: number
+          format: double
+          nullable: true
+        timekeepingFrequency:
+          type: string
+          enum:
+          - DAILY
+          - FEW_PER_WEEK
+          - WEEKLY
+          - MONTHLY
+          - OTHER
+          nullable: true
+        usesTimers:
+          type: boolean
+          deprecated: true
+          nullable: true
+        timerFrequency:
+          type: string
+          enum:
+          - ALWAYS
+          - SOMETIMES
+          - NEVER
+          nullable: true
+        avgInitiativesPerDay:
+          type: number
+          format: double
+          nullable: true
+        steps:
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/OnboardingSteps'
+        completedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+          nullable: true
+        createdAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - userId
+      - customerId
+      - createdAt
+      - updatedAt
+    UpdateOnboardingStepDto:
+      type: object
+      properties:
+        step:
+          description: step update data
+          oneOf:
+          - $ref: '#/components/schemas/UpdateBaseStepDto'
+          - $ref: '#/components/schemas/UpdatePrivacyStepDto'
+          - $ref: '#/components/schemas/UpdatePrivacyStepSkippedDto'
+      required:
+      - step
+    StepRecordBase:
+      type: object
+      properties:
+        completedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+          nullable: true
+        skippedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+          nullable: true
+    TimekeepingFrequency:
+      type: string
+      enum:
+      - DAILY
+      - FEW_PER_WEEK
+      - WEEKLY
+      - MONTHLY
+      - OTHER
+      description: if set, updates how frequently user does timekeeping
+    CreateOnboardingProfileDto:
+      type: object
+      properties:
+        timekeepingSinceYear:
+          type: number
+          description: year since user has been timekeeping
+          format: double
+          nullable: true
+        timekeepingFrequency:
+          type: string
+          description: how frequently user does timekeeping
+          enum:
+          - DAILY
+          - FEW_PER_WEEK
+          - WEEKLY
+          - MONTHLY
+          - OTHER
+          nullable: true
+        usesTimers:
+          type: boolean
+          deprecated: true
+          nullable: true
+        timerFrequency:
+          type: string
+          description: how frequently user uses timers
+          enum:
+          - ALWAYS
+          - SOMETIMES
+          - NEVER
+          nullable: true
+        avgInitiativesPerDay:
+          type: number
+          description: average number of initiatives user works on per day
+          format: double
+          nullable: true
+    PrivacyStepSkippedRecord:
+      type: object
+      properties:
+        skippedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - skippedAt
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

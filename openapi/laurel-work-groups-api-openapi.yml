@@ -1,0 +1,727 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Work Groups API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Work Groups
+paths:
+  /api/v1/customers/{customerId}/users/{userId}/work-groups:
+    post:
+      operationId: CustomerWorkGroupController_createOne_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkGroupRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkGroup'
+      tags:
+      - Work Groups
+    get:
+      operationId: CustomerWorkGroupController_findManyForUserByRange_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      - name: startedBefore
+        required: true
+        in: query
+        schema:
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+          type: string
+      - name: stoppedAfter
+        required: true
+        in: query
+        schema:
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkGroup'
+      tags:
+      - Work Groups
+  /api/v1/customers/{customerId}/users/{userId}/work-groups/{workGroupId}:
+    get:
+      operationId: CustomerWorkGroupController_findOne_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      - name: workGroupId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkGroup'
+      tags:
+      - Work Groups
+    patch:
+      operationId: CustomerWorkGroupController_updateOne_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      - name: workGroupId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkGroupRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkGroup'
+      tags:
+      - Work Groups
+    delete:
+      operationId: CustomerWorkGroupController_deleteOne_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      - name: workGroupId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Work Groups
+  /api/v1/work-groups:
+    get:
+      operationId: WorkGroupController_findManyForUserByRange_v1
+      parameters:
+      - name: startedBefore
+        required: true
+        in: query
+        schema:
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+          type: string
+      - name: stoppedAfter
+        required: true
+        in: query
+        schema:
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkGroup'
+      tags:
+      - Work Groups
+  /api/v1/work-groups/{workGroupId}:
+    delete:
+      operationId: WorkGroupController_deleteOne_v1
+      parameters:
+      - name: workGroupId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Work Groups
+  /api/v1/work-groups/{workGroupId}/activities/{activityId}:
+    delete:
+      operationId: WorkGroupController_deleteActivity_v1
+      parameters:
+      - name: workGroupId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      - name: activityId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Work Groups
+  /api/v1/work-groups/{workGroupId}/initiatives/{initiativeId}:
+    delete:
+      operationId: WorkGroupController_deleteInitiative_v1
+      parameters:
+      - name: workGroupId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      - name: initiativeId
+        required: true
+        in: path
+        description: Initiative's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Work Groups
+components:
+  schemas:
+    CreateWorkGroupRequestDto:
+      type: object
+      properties:
+        activityIds:
+          description: activities belong to this work group
+          minItems: 1
+          maxItems: 100
+          type: array
+          items:
+            type: string
+            format: objectid
+        description:
+          type: string
+          description: work group's description
+        priority:
+          type: number
+          description: work group's priority
+          format: double
+        initiativeId:
+          type: string
+          description: suggested initiative
+          format: objectid
+      required:
+      - activityIds
+      - description
+    UserInitiativeDigest:
+      type: object
+      properties:
+        type:
+          description: initiative's type
+          enum:
+          - user
+          type: string
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this pms initiative
+          nullable: true
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        status:
+          type: string
+          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
+
+            with entries whose denormalized digest predates this field — those entries
+
+            gain status on the next initiative update via natural digest propagation.'
+          enum:
+          - active
+          - inactive
+          nullable: true
+        locale:
+          type: string
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+          nullable: true
+        name:
+          type: string
+          description: the name user has given this initiative
+      required:
+      - type
+      - _id
+      - billingType
+      - unitIncrements
+      - name
+    ActivityDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: activity's id
+          format: objectid
+        creationMethod:
+          description: the creation method of the activity
+          enum:
+          - timer
+          - tracked
+          - user
+          type: string
+        initiativeProps:
+          description: if set, is activity's initiative, otherwise activity is unassigned
+          oneOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsDigest'
+          - $ref: '#/components/schemas/UserInitiativePropsDigest'
+        category:
+          type: string
+          description: category of this activity, if any
+        technology:
+          type: string
+          description: technology of this activity, if any
+        source:
+          type: string
+          description: source of this activity (e.g. 'macos', 'windows'), if any
+        mechanism:
+          type: string
+          description: mechanism of this activity (e.g. browser used to access web app), if any
+        title:
+          type: string
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - creationMethod
+      - title
+      - detail
+      - startedAt
+      - stoppedAt
+    UpdateWorkGroupRequestDto:
+      type: object
+      properties:
+        activityIds:
+          minItems: 1
+          maxItems: 100
+          type: array
+          items:
+            type: string
+            format: objectid
+        description:
+          type: string
+        priority:
+          type: number
+          description: work group's priority
+          format: double
+        initiativeId:
+          type: string
+          format: objectid
+    PmsInitiativeDigest:
+      type: object
+      properties:
+        type:
+          description: initiative's type
+          enum:
+          - pms
+          - user
+          type: string
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this pms initiative
+          nullable: true
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        status:
+          type: string
+          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
+
+            with entries whose denormalized digest predates this field — those entries
+
+            gain status on the next initiative update via natural digest propagation.'
+          enum:
+          - active
+          - inactive
+          nullable: true
+        locale:
+          type: string
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+          nullable: true
+        externalId:
+          type: string
+          description: initiative's external id
+        name:
+          type: string
+          description: a short name or code that identifies this initiative
+        description:
+          type: string
+          description: the full name of the initiative
+        client:
+          description: the client this initiative belongs to
+          allOf:
+          - $ref: '#/components/schemas/ClientDigest'
+      required:
+      - type
+      - _id
+      - billingType
+      - unitIncrements
+      - externalId
+      - name
+      - description
+      - client
+    WorkGroup:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: work group's id
+          format: objectid
+        schemaVersion:
+          type: string
+          description: work group's schemaVersion
+        customerId:
+          type: string
+          description: id of customer who owns this work group
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns this work group
+          format: objectid
+        earliestStartedAt:
+          type: string
+          description: date and time of the earliest activity
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        latestStoppedAt:
+          type: string
+          description: date and time of the latests activity
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        durationInSeconds:
+          type: number
+          description: the duration in seconds of this work group
+          format: int64
+          minimum: 0
+        assignmentStatus:
+          description: assignment status of this work group
+          enum:
+          - unassigned
+          - partially-assigned
+          - fully-assigned
+          type: string
+        description:
+          type: string
+          description: work group's description
+        priority:
+          type: number
+          description: work group's priority
+          format: double
+        initiativeProps:
+          description: suggested initiative
+          oneOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsDigest'
+          - $ref: '#/components/schemas/UserInitiativePropsDigest'
+        createdAt:
+          type: string
+          description: date and time work group was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time work group was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        hasOverlap:
+          type: boolean
+          description: work group's overlap state
+        overlapTimeInSeconds:
+          type: number
+          description: work group's duration in seconds with overlap
+          format: int64
+        activities:
+          description: activities belong to this work group
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityDigest'
+      required:
+      - _id
+      - schemaVersion
+      - customerId
+      - userId
+      - earliestStartedAt
+      - latestStoppedAt
+      - durationInSeconds
+      - assignmentStatus
+      - description
+      - createdAt
+      - updatedAt
+      - activities
+    UserInitiativePropsDigest:
+      type: object
+      properties:
+        type:
+          description: type of the initiative for these props
+          enum:
+          - user
+          type: string
+        colorHex:
+          type: string
+          description: the hex color code for this initiative's display to the user
+          example: fec828
+          format: color-hex
+        tags:
+          type: array
+          description: initiative prop's tags
+          items:
+            type: string
+            enum:
+            - pinned
+        initiative:
+          description: the user initiative that is represented by these initiative props
+          allOf:
+          - $ref: '#/components/schemas/UserInitiativeDigest'
+      required:
+      - type
+      - colorHex
+      - tags
+      - initiative
+    PmsInitiativePropsDigest:
+      type: object
+      properties:
+        type:
+          description: type of the initiative for these props
+          enum:
+          - pms
+          type: string
+        colorHex:
+          type: string
+          description: the hex color code for this initiative's display to the user
+          example: fec828
+          format: color-hex
+        tags:
+          type: array
+          description: initiative prop's tags
+          items:
+            type: string
+            enum:
+            - pinned
+        nickname:
+          type: string
+          description: if set, is the nickname user has set for this initiative
+          nullable: true
+        initiative:
+          description: the pms initiative that is represented by these initiative props
+          allOf:
+          - $ref: '#/components/schemas/PmsInitiativeDigest'
+      required:
+      - type
+      - colorHex
+      - tags
+      - initiative
+    ClientDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: client's id
+          format: objectid
+        externalId:
+          type: string
+          description: client's external id
+        name:
+          type: string
+          description: a name that identifies this client
+        description:
+          type: string
+          description: client's description
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        type:
+          type: string
+          description: client's type, default is client
+          enum:
+          - client
+          - parent
+          nullable: true
+        parentClientId:
+          type: string
+          description: id of the parent client
+          format: objectid
+          nullable: true
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - callSign
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

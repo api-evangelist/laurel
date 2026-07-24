@@ -1,0 +1,125 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Settings API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Settings
+paths:
+  /api/v1/customers/{customerId}/settings:
+    get:
+      operationId: SettingsController_getCustomerSettings_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Settings'
+      tags:
+      - Settings
+    patch:
+      operationId: SettingsController_updateCustomerSettings_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSettingsRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Settings'
+      tags:
+      - Settings
+components:
+  schemas:
+    UpdateSettingsRequestDto:
+      type: object
+      properties:
+        isReleasePaused:
+          type: boolean
+          description: pause release
+        useEntryNote:
+          type: boolean
+        startOfTheWeek:
+          type: string
+          description: define the start of the week
+          enum:
+          - monday
+          - tuesday
+          - wednesday
+          - thursday
+          - friday
+          - saturday
+          - sunday
+        enableOptionalCodes:
+          type: boolean
+          description: enable optional codes on the entry form
+    Settings:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: settings's id
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer that this settings is applied to
+          format: objectid
+        userId:
+          type: string
+          description: id of user that this settings is applied to
+          format: objectid
+          nullable: true
+        createdAt:
+          type: string
+          description: date and time this entity was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time this entity was updated last
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        items:
+          type: object
+          description: settings items
+      required:
+      - _id
+      - customerId
+      - createdAt
+      - updatedAt
+      - items
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

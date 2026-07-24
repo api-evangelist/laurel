@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably OAuth API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: OAuth
+paths:
+  /api/v1/oauth/token:
+    post:
+      operationId: OauthController_createServiceToken_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateServiceTokenRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceTokenResponseDto'
+      tags:
+      - OAuth
+components:
+  schemas:
+    ServiceTokenResponseDto:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: access token
+        expires_in:
+          type: number
+          description: time to live of token in second
+          format: double
+        token_type:
+          type: string
+          description: token type
+      required:
+      - access_token
+      - expires_in
+      - token_type
+    CreateServiceTokenRequestDto:
+      type: object
+      properties:
+        client_id:
+          type: string
+        client_secret:
+          type: string
+          description: client's Auth0 secret
+        audience:
+          type: string
+        grant_type:
+          type: string
+      required:
+      - client_id
+      - client_secret
+      - audience
+      - grant_type
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

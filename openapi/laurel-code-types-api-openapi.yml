@@ -1,0 +1,578 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Code Types API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Code Types
+paths:
+  /api/v1/code-types:
+    get:
+      operationId: CodeTypeController_findMany_v1
+      parameters:
+      - name: customerDefaultable
+        required: false
+        in: query
+        description: return codes that are defaultable at the customer-level
+        schema:
+          type: boolean
+      - name: userDefaultable
+        required: false
+        in: query
+        description: return codes that are defaultable at the user-level
+        schema:
+          type: boolean
+      - name: orderingSequence
+        required: false
+        in: query
+        description: ordering sequence for UI sorting (alphanumeric)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CodeType'
+      tags:
+      - Code Types
+  /api/v1/code-types/{codeTypeId}:
+    get:
+      operationId: CodeTypeController_findOneById_v1
+      parameters:
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CodeType'
+      tags:
+      - Code Types
+  /api/v1/customers/{customerId}/code-types/import:
+    post:
+      operationId: CustomerCodeTypeController_import_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportCustomerCodeTypeDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Code Types
+  /api/v1/customers/{customerId}/code-types:
+    get:
+      operationId: CustomerCodeTypeController_findManyForCurrentCustomer_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: customerDefaultable
+        required: false
+        in: query
+        description: return codes that are defaultable at the customer-level
+        schema:
+          type: boolean
+      - name: userDefaultable
+        required: false
+        in: query
+        description: return codes that are defaultable at the user-level
+        schema:
+          type: boolean
+      - name: orderingSequence
+        required: false
+        in: query
+        description: ordering sequence for UI sorting (alphanumeric)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CodeType'
+      tags:
+      - Code Types
+  /api/v1/code-types/{codeTypeId}/default-code:
+    get:
+      operationId: DefaultCodeController_findManyByCodeTypeId_v1
+      parameters:
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DefaultCode'
+      tags:
+      - Code Types
+    post:
+      operationId: DefaultCodeController_createOne_v1
+      parameters:
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDefaultCodeDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultCode'
+      tags:
+      - Code Types
+  /api/v1/code-types/{codeTypeId}/default-codes/{codeId}:
+    delete:
+      operationId: DefaultCodeController_deleteOne_v1
+      parameters:
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      - name: codeId
+        required: true
+        in: path
+        description: id of the "code" that is specified in a DefaultCode
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultCode'
+      tags:
+      - Code Types
+  /api/v1/customers/{customerId}/code-types/{codeTypeId}/default-code:
+    get:
+      operationId: CustomerDefaultCodeController_findManyByCodeTypeId_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DefaultCode'
+      tags:
+      - Code Types
+    post:
+      operationId: CustomerDefaultCodeController_createOne_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDefaultCodeDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultCode'
+      tags:
+      - Code Types
+  /api/v1/customers/{customerId}/code-types/{codeTypeId}/default-codes/{codeId}:
+    delete:
+      operationId: CustomerDefaultCodeController_deleteOne_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      - name: codeId
+        required: true
+        in: path
+        description: id of the "code" that is specified in a DefaultCode
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultCode'
+      tags:
+      - Code Types
+  /api/v1/customers/{customerId}/users/{userId}/code-types/{codeTypeId}/default-code:
+    get:
+      operationId: CustomerDefaultCodeController_findManyByCodeTypeIdForUser_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DefaultCode'
+      tags:
+      - Code Types
+    post:
+      operationId: CustomerDefaultCodeController_createOneForUser_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDefaultCodeDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultCode'
+      tags:
+      - Code Types
+  /api/v1/customers/{customerId}/users/{userId}/code-types/{codeTypeId}/default-codes/{codeId}:
+    delete:
+      operationId: CustomerDefaultCodeController_deleteOneForUser_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: userId
+        required: true
+        in: path
+        description: user's id
+        schema:
+          format: objectid
+          type: string
+      - name: codeTypeId
+        required: true
+        in: path
+        description: code type's id
+        schema:
+          format: objectid
+          type: string
+      - name: codeId
+        required: true
+        in: path
+        description: id of the "code" that is specified in a DefaultCode
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultCode'
+      tags:
+      - Code Types
+components:
+  schemas:
+    CodeType:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: code type's id
+          format: objectid
+        schemaVersion:
+          type: string
+          description: code type's schemaVersion
+        customerId:
+          type: string
+          description: id of customer who owns this code type
+          format: objectid
+        customerDefaultable:
+          type: boolean
+          description: can the default CodeType value be set at the customer-level
+          nullable: true
+        externalId:
+          type: string
+          description: code type's external id
+        name:
+          type: string
+          description: code type's name
+        semanticType:
+          type: string
+          description: code type's semantic type
+          enum:
+          - action
+          - activity
+          - location
+          - phase
+          - task
+          nullable: true
+        createdAt:
+          type: string
+          description: date and time this code type was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time this code type was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        userDefaultable:
+          type: boolean
+          description: can the default CodeType value be set at the user-level
+          nullable: true
+        orderingSequence:
+          type: string
+          description: ordering sequence for UI sorting (alphanumeric)
+          nullable: true
+      required:
+      - _id
+      - schemaVersion
+      - customerId
+      - externalId
+      - name
+      - createdAt
+      - updatedAt
+    ImportCustomerCodeTypeDto:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: code type's external id
+        name:
+          type: string
+          description: code type's name
+        semanticType:
+          type: string
+          description: code type's semantic type
+          enum:
+          - action
+          - activity
+          - location
+          - phase
+          - task
+        customerDefaultable:
+          type: boolean
+          description: can the default CodeType value be set at the customer-level
+        userDefaultable:
+          type: boolean
+          description: can the default CodeType value be set at the user-level
+        orderingSequence:
+          type: string
+          description: ordering sequence for UI sorting (alphanumeric)
+      required:
+      - externalId
+      - name
+    DefaultCode:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: id of default code
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer who owns this default code configuration
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns this default, if only the customer id is set it means its a customer wide default code
+          format: objectid
+        codeTypeId:
+          type: string
+          description: code type id for the default code
+          format: objectid
+        codeId:
+          type: string
+          description: code id for the default code
+          format: objectid
+        initiativeBillingType:
+          type: string
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+        schemaVersion:
+          type: string
+          description: schema version
+        createdAt:
+          type: string
+          description: date and time this was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time this was updated last
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - customerId
+      - codeTypeId
+      - codeId
+      - schemaVersion
+      - createdAt
+      - updatedAt
+    CreateDefaultCodeDto:
+      type: object
+      properties:
+        codeId:
+          type: string
+          description: code id for the default code
+          format: objectid
+        initiativeBillingType:
+          type: string
+          description: optionally provide billable or non-billable
+          enum:
+          - billable
+          - non-billable
+      required:
+      - codeId
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

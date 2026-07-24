@@ -1,0 +1,657 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Entry Date Restrictions API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Entry Date Restrictions
+paths:
+  /api/v1/customers/{customerId}/entry-date-restrictions:
+    post:
+      operationId: CustomerEntryDateRestrictionController_create_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEntryDateRestrictionRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryDateRestrictionResponseDto'
+      summary: Create a new entry date restriction for a customer
+      tags:
+      - Entry Date Restrictions
+    get:
+      operationId: CustomerEntryDateRestrictionController_list_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: pageSize
+        required: false
+        in: query
+        description: max number of item in each page
+        schema:
+          minimum: 1
+          maximum: 100
+          format: int64
+          type: number
+      - name: cursor
+        required: false
+        in: query
+        description: cursor to start from
+        schema:
+          format: objectid
+          type: string
+      - name: type
+        required: false
+        in: query
+        schema:
+          nullable: true
+          type: string
+          enum:
+          - no_create
+          - no_release
+      - name: effectiveAt
+        required: false
+        in: query
+        schema:
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+          type: string
+      - name: initiativeId
+        required: false
+        in: query
+        schema:
+          format: objectid
+          nullable: true
+          type: string
+      - name: scope
+        required: false
+        in: query
+        description: Narrows the result to a subset of restrictions. `company-wide` returns only restrictions with no `initiativeDigest` (firm-level); omit (or pass `all`) to keep the legacy behaviour. Incompatible with `initiativeId`.
+        schema:
+          nullable: true
+          type: string
+          enum:
+          - company-wide
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  items:
+                    items:
+                      $ref: '#/components/schemas/EntryDateRestrictionResponseDto'
+                    type: array
+                  nextCursor:
+                    type: string
+                type: object
+      summary: List entry date restrictions for a customer
+      tags:
+      - Entry Date Restrictions
+  /api/v1/customers/{customerId}/entry-date-restrictions/active/now:
+    get:
+      deprecated: true
+      operationId: CustomerEntryDateRestrictionController_checkActive_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: type
+        required: true
+        in: query
+        description: Type of entry-date restriction to check for.
+        schema:
+          type: string
+          enum:
+          - no_create
+          - no_release
+      - name: workDate
+        required: true
+        in: query
+        description: Work date to check. Accepts any ISO 8601 form that resolves to midnight UTC — e.g. `2026-04-22` or `2026-04-22T00:00:00.000Z`.
+        schema:
+          format: iso-date
+          example: '2022-08-12'
+          type: string
+      - name: initiativeId
+        required: false
+        in: query
+        description: Optional initiative ID to filter by
+        schema:
+          format: objectid
+          nullable: true
+          type: string
+      - name: scope
+        required: false
+        in: query
+        description: Narrows the result to a subset of restrictions. `company-wide` returns only restrictions with no `initiativeDigest` (firm-level); omit (or pass `all`) to keep the legacy behaviour. Incompatible with `initiativeId`.
+        schema:
+          nullable: true
+          type: string
+          enum:
+          - company-wide
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryDateRestrictionResponseDto'
+      summary: DEPRECATED — use `active/check-multi-type` instead. Check if an active restriction exists for a given work date and type.
+      tags:
+      - Entry Date Restrictions
+  /api/v1/customers/{customerId}/entry-date-restrictions/active/check:
+    post:
+      deprecated: true
+      operationId: CustomerEntryDateRestrictionController_checkActiveBatch_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckActiveRestrictionsBatchRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckActiveRestrictionsBatchResponseDto'
+      summary: DEPRECATED — use `active/check-multi-type` instead (pass a one-element `types` array). Check which of the provided work dates have an active restriction for the given type.
+      tags:
+      - Entry Date Restrictions
+  /api/v1/customers/{customerId}/entry-date-restrictions/active/check-multi-type:
+    post:
+      operationId: CustomerEntryDateRestrictionController_checkActiveMultiType_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckActiveRestrictionsMultiTypeRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckActiveRestrictionsMultiTypeResponseDto'
+      summary: Check which of the provided work dates have active restrictions across multiple types
+      tags:
+      - Entry Date Restrictions
+  /api/v1/customers/{customerId}/entry-date-restrictions/{id}:
+    get:
+      operationId: CustomerEntryDateRestrictionController_getOne_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: id
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryDateRestrictionResponseDto'
+      summary: Get a single entry date restriction by id
+      tags:
+      - Entry Date Restrictions
+    patch:
+      operationId: CustomerEntryDateRestrictionController_update_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: id
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEntryDateRestrictionRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryDateRestrictionResponseDto'
+      summary: Update an entry date restriction
+      tags:
+      - Entry Date Restrictions
+    delete:
+      operationId: CustomerEntryDateRestrictionController_softDelete_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: id
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryDateRestrictionResponseDto'
+      summary: Delete an entry date restriction
+      tags:
+      - Entry Date Restrictions
+components:
+  schemas:
+    ExactDatesRuleDto:
+      type: object
+      properties:
+        workDateStart:
+          type: string
+          description: First work date the restriction applies to. Represents a calendar day, encoded as an ISO datetime at midnight UTC (00:00:00.000Z).
+          example: '2022-08-12'
+          format: iso-date
+        workDateEnd:
+          type: string
+          description: Last work date the restriction applies to (inclusive). Represents a calendar day, encoded as an ISO datetime at midnight UTC (00:00:00.000Z).
+          example: '2022-08-12'
+          format: iso-date
+      required:
+      - workDateStart
+      - workDateEnd
+    InitiativeDigest:
+      type: object
+      properties:
+        type:
+          description: initiative's type
+          enum:
+          - pms
+          - user
+          type: string
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this pms initiative
+          nullable: true
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        status:
+          type: string
+          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
+
+            with entries whose denormalized digest predates this field — those entries
+
+            gain status on the next initiative update via natural digest propagation.'
+          enum:
+          - active
+          - inactive
+          nullable: true
+        locale:
+          type: string
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+          nullable: true
+      required:
+      - type
+      - _id
+      - billingType
+      - unitIncrements
+    TypeRestrictedDatesDto:
+      type: object
+      properties:
+        type:
+          enum:
+          - no_create
+          - no_release
+          type: string
+          description: The restriction type.
+        restrictedDates:
+          type: array
+          items:
+            $ref: '#/components/schemas/RestrictedDateDto'
+      required:
+      - type
+      - restrictedDates
+    CheckActiveRestrictionsBatchRequestDto:
+      type: object
+      properties:
+        type:
+          enum:
+          - no_create
+          - no_release
+          type: string
+          description: Type of entry-date restriction to check for.
+        workDates:
+          type: array
+          minItems: 1
+          example:
+          - '2026-04-22T00:00:00.000Z'
+          - '2026-05-01T00:00:00.000Z'
+          format: iso-date
+          description: Work dates to check. Each entry accepts any ISO 8601 form that resolves to midnight UTC — e.g. `2026-04-22` or `2026-04-22T00:00:00.000Z`. 1–100 items.
+          items:
+            format: date-time
+            type: string
+          maxItems: 100
+        effectiveAt:
+          type: string
+          description: Moment at which to evaluate whether restrictions are active. Defaults to the current server time.
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+          nullable: true
+        initiativeId:
+          type: string
+          description: Optional initiative ID to filter by
+          format: objectid
+          nullable: true
+        scope:
+          type: string
+          enum:
+          - company-wide
+          description: Narrows the result to a subset of restrictions. `company-wide` returns only restrictions with no `initiativeDigest` (firm-level); omit (or pass `all`) to keep the legacy behaviour. Incompatible with `initiativeId`.
+          nullable: true
+      required:
+      - type
+      - workDates
+    RestrictedDateDto:
+      type: object
+      properties:
+        workDate:
+          type: string
+          example: '2022-08-12'
+          format: iso-date
+        restriction:
+          $ref: '#/components/schemas/EntryDateRestrictionResponseDto'
+      required:
+      - workDate
+      - restriction
+    CreateEntryDateRestrictionRequestDto:
+      type: object
+      properties:
+        type:
+          enum:
+          - no_create
+          - no_release
+          type: string
+        ruleCategory:
+          type: string
+          enum:
+          - exact_dates
+        initiativeId:
+          type: string
+          format: objectid
+        effectiveStart:
+          type: string
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+        effectiveEnd:
+          type: string
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+        rule:
+          $ref: '#/components/schemas/ExactDatesRuleDto'
+      required:
+      - type
+      - ruleCategory
+      - initiativeId
+      - effectiveStart
+      - effectiveEnd
+      - rule
+    EntryDateRestrictionResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: objectid
+        customerId:
+          type: string
+          format: objectid
+        type:
+          enum:
+          - no_create
+          - no_release
+          type: string
+        ruleCategory:
+          type: string
+          enum:
+          - exact_dates
+        effectiveStart:
+          type: string
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+        effectiveEnd:
+          type: string
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+        rule:
+          $ref: '#/components/schemas/ExactDatesRuleDto'
+        initiativeDigest:
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/InitiativeDigest'
+        derivedFrom:
+          type: string
+          enum:
+          - allowFrom
+          - allowTo
+          nullable: true
+        schemaVersion:
+          type: string
+        createdAt:
+          type: string
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+        updatedAt:
+          type: string
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+      required:
+      - _id
+      - customerId
+      - type
+      - ruleCategory
+      - effectiveStart
+      - effectiveEnd
+      - rule
+      - schemaVersion
+      - createdAt
+      - updatedAt
+    CheckActiveRestrictionsMultiTypeResponseDto:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/TypeRestrictedDatesDto'
+      required:
+      - results
+    UpdateEntryDateRestrictionRequestDto:
+      type: object
+      properties:
+        type:
+          enum:
+          - no_create
+          - no_release
+          type: string
+        ruleCategory:
+          type: string
+          enum:
+          - exact_dates
+        effectiveStart:
+          type: string
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+        effectiveEnd:
+          type: string
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+        rule:
+          $ref: '#/components/schemas/ExactDatesRuleDto'
+    CheckActiveRestrictionsBatchResponseDto:
+      type: object
+      properties:
+        restrictedDates:
+          type: array
+          items:
+            $ref: '#/components/schemas/RestrictedDateDto'
+      required:
+      - restrictedDates
+    CheckActiveRestrictionsMultiTypeRequestDto:
+      type: object
+      properties:
+        types:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            enum:
+            - no_create
+            - no_release
+          nullable: false
+          description: Types of entry-date restrictions to check for.
+          example:
+          - no_create
+          - no_release
+        workDates:
+          type: array
+          minItems: 1
+          example:
+          - '2026-04-22T00:00:00.000Z'
+          - '2026-05-01T00:00:00.000Z'
+          format: iso-date
+          description: Work dates to check. Each entry accepts any ISO 8601 form that resolves to midnight UTC — e.g. `2026-04-22` or `2026-04-22T00:00:00.000Z`. 1–100 items.
+          items:
+            format: date-time
+            type: string
+          maxItems: 100
+        effectiveAt:
+          type: string
+          description: Moment at which to evaluate whether restrictions are active. Defaults to the current server time.
+          format: iso-date-time
+          example: '2022-08-12T20:44:48Z'
+          nullable: true
+        initiativeId:
+          type: string
+          description: Optional single initiative ID to filter by. Superseded by `initiativeIds`; pass one or the other, not both.
+          format: objectid
+          nullable: true
+        initiativeIds:
+          description: Initiative IDs whose restrictions to include. The result is **company-wide restrictions ∪ restrictions scoped to any of these initiatives**. 0–100 items. Incompatible with both `scope=company-wide` and the singular `initiativeId`.
+          type: array
+          items:
+            type: string
+            format: objectid
+        scope:
+          type: string
+          enum:
+          - company-wide
+          description: Narrows the result to a subset of restrictions. `company-wide` returns only restrictions with no `initiativeDigest`. Incompatible with `initiativeId`/`initiativeIds`. Exactly one of `scope` or `initiativeIds`/`initiativeId` must be provided — there is no silent default.
+          nullable: true
+      required:
+      - types
+      - workDates
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

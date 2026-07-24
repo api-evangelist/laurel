@@ -1,0 +1,157 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Timer Draft API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Timer Draft
+paths:
+  /api/v1/timer-drafts:
+    get:
+      operationId: TimerDraftController_findManyByDate_v1
+      parameters:
+      - name: date
+        required: true
+        in: query
+        description: the date for which timers will be returned
+        schema:
+          format: iso-date
+          example: '2022-08-12'
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+      tags:
+      - Timer Draft
+    post:
+      operationId: TimerDraftController_createOne_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTimerDraftRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Timer Draft
+  /api/v1/timer-drafts/{timerDraftId}:
+    patch:
+      operationId: TimerDraftController_updateOne_v1
+      parameters:
+      - name: timerDraftId
+        required: true
+        in: path
+        description: timer draft id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTimerDraftRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Timer Draft
+    delete:
+      operationId: TimerDraftController_deleteOne_v1
+      parameters:
+      - name: timerDraftId
+        required: true
+        in: path
+        description: timer draft id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Timer Draft
+components:
+  schemas:
+    UpdateTimerDraftRequestDto:
+      type: object
+      properties:
+        date:
+          type: string
+          description: if set, will update timer draft's date
+          example: '2022-08-12'
+          format: iso-date
+        initiativeId:
+          type: string
+          description: if set, will update timer draft's initiative
+          format: objectid
+        summary:
+          type: string
+          description: if set, will update timer draft's summary
+          maxLength: 1024
+        codeIds:
+          description: timer draft's code ids
+          type: array
+          items:
+            type: string
+            format: objectid
+    CreateTimerDraftRequestDto:
+      type: object
+      properties:
+        date:
+          type: string
+          description: the date associated with this timer
+          example: '2022-08-12'
+          format: iso-date
+        initiativeId:
+          type: string
+          description: timer draft's initiative id
+          format: objectid
+        summary:
+          type: string
+          description: summary of the timer draft
+          maxLength: 1024
+        codeIds:
+          description: timer draft's code ids
+          type: array
+          items:
+            type: string
+            format: objectid
+      required:
+      - date
+      - initiativeId
+      - summary
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

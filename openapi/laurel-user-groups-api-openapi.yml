@@ -1,0 +1,707 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably User Groups API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: User Groups
+paths:
+  /api/v1/user-groups:
+    get:
+      operationId: UserGroupController_list_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: query
+        description: The customer ID who this group belongs to
+        schema:
+          format: objectid
+          type: string
+      - name: ids
+        required: false
+        in: query
+        description: Optional IDs to filter groups (can be user IDs or timekeeper IDs depending on kind parameter)
+        schema:
+          nullable: true
+          type: array
+          items:
+            type: string
+      - name: kind
+        required: true
+        in: query
+        description: The kind of IDs to use for filtering and response format (user-id or timekeeper-id)
+        schema:
+          enum:
+          - timekeeper-id
+          - user-id
+          type: string
+      responses:
+        '200':
+          description: List of user groups
+          content:
+            application/json:
+              schema:
+                items:
+                  oneOf:
+                  - $ref: '#/components/schemas/UserGroupDto'
+                type: array
+      summary: List user groups for a customer
+      tags:
+      - User Groups
+    post:
+      operationId: UserGroupController_create_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserGroupDto'
+      responses:
+        '201':
+          description: The created user group
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/UserGroupDto'
+      summary: Create a user group
+      tags:
+      - User Groups
+  /api/v1/user-groups/by-external-id/{externalId}:
+    put:
+      description: Creates the group if no live group exists for the given (customerId, externalId), otherwise partially updates the existing one. Fields present in the payload overwrite; omitted fields are left unchanged. The externalId is the stable key and is never mutated. Idempotent.
+      operationId: UserGroupController_upsertByExternalId_v1
+      parameters:
+      - name: externalId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: customerId
+        required: true
+        in: query
+        description: The customer ID who this group belongs to
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertUserGroupByExternalIdDto'
+      responses:
+        '200':
+          description: The created or updated user group
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/UserGroupDto'
+      summary: Upsert a user group by its external id
+      tags:
+      - User Groups
+    delete:
+      operationId: UserGroupController_deleteByExternalId_v1
+      parameters:
+      - name: externalId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: customerId
+        required: true
+        in: query
+        description: The customer ID who this group belongs to
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '204':
+          description: User group deleted successfully
+      summary: Delete a user group by its external id
+      tags:
+      - User Groups
+  /api/v1/user-groups/for-user/{userId}:
+    get:
+      description: Returns the user groups the given user is a member of. A user acting as themselves may call this with only `CustomerOwnUserOwnRead`; otherwise requires `CustomerOwnUserAnyRead` or `CustomerAnyUserAnyRead`.
+      operationId: UserGroupController_listForUser_v1
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      - name: customerId
+        required: true
+        in: query
+        description: The customer ID the user belongs to
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: List of user groups the user is a member of
+          content:
+            application/json:
+              schema:
+                items:
+                  oneOf:
+                  - $ref: '#/components/schemas/UserGroupDto'
+                type: array
+      summary: List user groups a specific user is a member of
+      tags:
+      - User Groups
+  /api/v1/user-groups/{userGroupId}:
+    get:
+      operationId: UserGroupController_get_v1
+      parameters:
+      - name: userGroupId
+        required: true
+        in: path
+        description: user group's id
+        schema:
+          format: objectid
+          type: string
+      - name: customerId
+        required: true
+        in: query
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: The user group
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/UserGroupDto'
+      summary: Get a single user group
+      tags:
+      - User Groups
+    patch:
+      operationId: UserGroupController_update_v1
+      parameters:
+      - name: userGroupId
+        required: true
+        in: path
+        description: user group's id
+        schema:
+          format: objectid
+          type: string
+      - name: customerId
+        required: true
+        in: query
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserGroupDto'
+      responses:
+        '200':
+          description: The updated user group
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/UserGroupDto'
+      summary: Update a user group
+      tags:
+      - User Groups
+    delete:
+      operationId: UserGroupController_delete_v1
+      parameters:
+      - name: userGroupId
+        required: true
+        in: path
+        description: user group's id
+        schema:
+          format: objectid
+          type: string
+      - name: customerId
+        required: true
+        in: query
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: The deleted user group, or null if not found
+          content:
+            application/json:
+              schema:
+                nullable: true
+                oneOf:
+                - $ref: '#/components/schemas/UserGroupDto'
+      summary: Delete a user group
+      tags:
+      - User Groups
+  /api/v1/user-groups/{userGroupId}/users:
+    get:
+      operationId: UserGroupController_getUsersInGroup_v1
+      parameters:
+      - name: userGroupId
+        required: true
+        in: path
+        description: user group's id
+        schema:
+          format: objectid
+          type: string
+      - name: customerId
+        required: true
+        in: query
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: List of users in the group
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserGroupUserResponseDto'
+      summary: Get all users in a user group
+      tags:
+      - User Groups
+    post:
+      operationId: UserGroupController_addUsers_v1
+      parameters:
+      - name: userGroupId
+        required: true
+        in: path
+        description: user group's id
+        schema:
+          format: objectid
+          type: string
+      - name: customerId
+        required: true
+        in: query
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/AddUserIdsToGroupDto'
+              - $ref: '#/components/schemas/AddTimekeeperIdsToGroupDto'
+      responses:
+        '201':
+          description: The updated user group
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/UserIdUserGroupDto'
+                - $ref: '#/components/schemas/TimekeeperIdUserGroupDto'
+      summary: Add users to a user group
+      tags:
+      - User Groups
+    delete:
+      operationId: UserGroupController_removeUsers_v1
+      parameters:
+      - name: userGroupId
+        required: true
+        in: path
+        description: user group's id
+        schema:
+          format: objectid
+          type: string
+      - name: customerId
+        required: true
+        in: query
+        description: customer's id
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/RemoveUserIdsFromGroupDto'
+              - $ref: '#/components/schemas/RemoveTimekeeperIdsFromGroupDto'
+      responses:
+        '200':
+          description: The updated user group
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/UserIdUserGroupDto'
+                - $ref: '#/components/schemas/TimekeeperIdUserGroupDto'
+      summary: Remove users from a user group
+      tags:
+      - User Groups
+  /api/v1/user-groups/by-external-id/{externalId}/users:
+    put:
+      description: 'mode is required. set (full-replace): add users in the payload and remove current members not in it (an empty payload clears the group). add: additive only, never removes. Identifiers that resolve to no user are skipped, not errors. Idempotent.'
+      operationId: UserGroupController_syncMembersByExternalId_v1
+      parameters:
+      - name: externalId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: customerId
+        required: true
+        in: query
+        description: The customer ID who this group belongs to
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyncGroupMembershipDto'
+      responses:
+        '200':
+          description: The user IDs added and removed, plus identifiers that could not be resolved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyncGroupMembershipResponseDto'
+      summary: Sync a user group's membership by its external id
+      tags:
+      - User Groups
+components:
+  schemas:
+    RemoveTimekeeperIdsFromGroupDto:
+      type: object
+      properties:
+        kind:
+          description: The kind of IDs being used (timekeeper-id)
+          enum:
+          - timekeeper-id
+          type: string
+        ids:
+          description: Array of timekeeper IDs to remove from the group
+          type: array
+          items:
+            type: string
+      required:
+      - kind
+      - ids
+    RemoveUserIdsFromGroupDto:
+      type: object
+      properties:
+        kind:
+          description: The kind of IDs being used (user-id)
+          enum:
+          - user-id
+          type: string
+        ids:
+          description: Array of user IDs to remove from the group
+          type: array
+          items:
+            type: string
+            format: objectid
+      required:
+      - kind
+      - ids
+    AddTimekeeperIdsToGroupDto:
+      type: object
+      properties:
+        kind:
+          description: The kind of IDs being used (timekeeper-id)
+          enum:
+          - timekeeper-id
+          type: string
+        ids:
+          description: Array of timekeeper IDs to add to the group
+          type: array
+          items:
+            type: string
+      required:
+      - kind
+      - ids
+    TimekeeperIdUserGroupDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: The user group ID
+          format: objectid
+        customerId:
+          type: string
+          description: The customer ID that owns this user group
+          format: objectid
+        externalId:
+          type: string
+          description: The external ID of the user group for external system integration
+        name:
+          type: string
+          description: The name of the user group
+        description:
+          type: string
+          description: The description of the user group
+          nullable: true
+        updatedAt:
+          type: string
+          description: The date and time this user group was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        createdAt:
+          type: string
+          description: The date and time this user group was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - customerId
+      - externalId
+      - name
+      - updatedAt
+      - createdAt
+    AddUserIdsToGroupDto:
+      type: object
+      properties:
+        kind:
+          description: The kind of IDs being used (user-id)
+          enum:
+          - user-id
+          type: string
+        ids:
+          description: Array of user IDs to add to the group
+          type: array
+          items:
+            type: string
+            format: objectid
+      required:
+      - kind
+      - ids
+    UpsertUserGroupByExternalIdDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the user group
+        description:
+          type: string
+          description: The description of the user group
+          nullable: true
+      required:
+      - name
+    UserGroupUserResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: User ID
+        email:
+          type: string
+          description: User email address
+        firstName:
+          type: string
+          description: User first name
+        groupIds:
+          description: User group IDs
+          type: array
+          items:
+            type: string
+        jobTitle:
+          type: string
+          description: User job title
+        lastName:
+          type: string
+          description: User last name
+        nickname:
+          type: string
+          description: User nickname
+      required:
+      - _id
+      - email
+      - firstName
+      - lastName
+    SyncGroupMembershipResponseDto:
+      type: object
+      properties:
+        added:
+          description: user IDs added to the group
+          type: array
+          items:
+            type: string
+        removed:
+          description: user IDs removed from the group
+          type: array
+          items:
+            type: string
+        unresolved:
+          description: identifiers (email/externalId) that resolved to no user
+          type: array
+          items:
+            type: string
+      required:
+      - added
+      - removed
+      - unresolved
+    UserIdUserGroupDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: The user group ID
+          format: objectid
+        customerId:
+          type: string
+          description: The customer ID that owns this user group
+          format: objectid
+        externalId:
+          type: string
+          description: The external ID of the user group for external system integration
+        name:
+          type: string
+          description: The name of the user group
+        description:
+          type: string
+          description: The description of the user group
+          nullable: true
+        updatedAt:
+          type: string
+          description: The date and time this user group was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        createdAt:
+          type: string
+          description: The date and time this user group was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - customerId
+      - externalId
+      - name
+      - updatedAt
+      - createdAt
+    UserGroupDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: The user group ID
+          format: objectid
+        customerId:
+          type: string
+          description: The customer ID that owns this user group
+          format: objectid
+        externalId:
+          type: string
+          description: The external ID of the user group for external system integration
+        name:
+          type: string
+          description: The name of the user group
+        description:
+          type: string
+          description: The description of the user group
+          nullable: true
+        updatedAt:
+          type: string
+          description: The date and time this user group was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        createdAt:
+          type: string
+          description: The date and time this user group was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - customerId
+      - externalId
+      - name
+      - updatedAt
+      - createdAt
+    SyncGroupMembershipDto:
+      type: object
+      properties:
+        mode:
+          enum:
+          - add
+          - set
+          type: string
+          description: set (full-replace) or add (additive)
+        emails:
+          description: user emails to resolve to members
+          type: array
+          items:
+            type: string
+        externalIds:
+          description: user externalIds to resolve to members
+          type: array
+          items:
+            type: string
+        externalBillingSystemIds:
+          description: user external-billing-system identity values to resolve to members
+          type: array
+          items:
+            type: string
+      required:
+      - mode
+    CreateUserGroupDto:
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: The customer's id who this group is associated with
+          format: objectid
+        externalId:
+          type: string
+          description: The external ID for external system integration
+        name:
+          type: string
+          description: The name of the user group
+        description:
+          type: string
+          description: The description of the user group
+          nullable: true
+      required:
+      - customerId
+      - externalId
+      - name
+    UpdateUserGroupDto:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: The external ID for external system integration
+          nullable: true
+        name:
+          type: string
+          description: The name of the user group
+          nullable: true
+        description:
+          type: string
+          description: The description of the user group
+          nullable: true
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

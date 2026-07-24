@@ -1,0 +1,177 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Permissions API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Permissions
+paths:
+  /api/v1/permissions:
+    get:
+      operationId: PermissionController_getAll_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Permission'
+      summary: List all permissions
+      tags:
+      - Permissions
+  /api/v1/permissions/{permissionId}:
+    get:
+      operationId: PermissionController_getOne_v1
+      parameters:
+      - name: permissionId
+        required: true
+        in: path
+        description: permission's id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Permission'
+      summary: Return a specific permission by Id
+      tags:
+      - Permissions
+components:
+  schemas:
+    Permission:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: permission's id
+          format: objectid
+        service:
+          description: the service that owns the action
+          enum:
+          - webapp-admin
+          - android
+          - assistant
+          - bc
+          - tbp-brain
+          - boomi
+          - boomi-adapter
+          - cloud-assistant-cdr
+          - cloud-assistant-outlook
+          - cloud-assistant-microsoft-exchange
+          - cloud-assistant-microsoft-teams
+          - cloud-assistant-zoom
+          - cloud-assistant-google
+          - cloud-assistant-webex
+          - cloud-assistant-ringcentral
+          - cloud-onboarding
+          - compliance
+          - config
+          - continuous-integration
+          - data
+          - eyt-connector
+          - flat-file-egress-connector
+          - flat-file-ingress-connector
+          - identity
+          - ingestion
+          - ios
+          - jobs
+          - laurel-billing-data-generator
+          - laurel-resource-operator
+          - egress
+          - ingress
+          - lip-egress
+          - lip-ingress
+          - mac
+          - management-api
+          - mco
+          - mc
+          - metrics
+          - notification
+          - ptc
+          - pms-egress-connector
+          - pms-ingress-connector
+          - product-event-notification
+          - product-email-notification-service
+          - signal
+          - ssl-check
+          - router
+          - time
+          - tbp-to-lrl-migration
+          - tbp-to-lrl-migration-website
+          - ThoughtSpot
+          - time-service-connector
+          - tracking
+          - web
+          - win
+          - enrichment
+          - customer-connector
+          - customer-managed-client
+          - time-service-perf-test-app
+          - time-service-perf-test-m2m
+          - cloud-assistants
+          - salesforce-sync
+          - slo-sync
+          - updater
+          - laurel-mobile
+          - laurel-mcp
+          - activity-enrichment
+          - ask
+          - capture-settings
+          - assistant-windows
+          - directory
+          - audit
+          - test-user-creation
+          - agent
+          - siem-forwarder
+          type: string
+        namespace:
+          type: string
+          description: the namespace used to categorize actions
+        action:
+          description: the name of the action
+          enum:
+          - read
+          - write
+          - impersonate
+          type: string
+        description:
+          type: string
+          description: permission's description
+        createdAt:
+          type: string
+          description: the date and time this permission was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: the date and time this permission was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - service
+      - namespace
+      - action
+      - description
+      - createdAt
+      - updatedAt
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

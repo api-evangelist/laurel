@@ -1,0 +1,141 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Working Timekeepers API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Working Timekeepers
+paths:
+  /api/v1/customers/{customerId}/working-timekeepers/sync:
+    post:
+      operationId: WorkingTimekeepersController_sync_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        schema:
+          format: objectid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyncCustomerWorkingTimekeepersBatchDto'
+      responses:
+        '202':
+          description: ''
+      summary: Syncs working timekeepers for a customer's initiatives
+      tags:
+      - Working Timekeepers
+  /api/v1/customers/{customerId}/working-timekeepers/my-restrictions:
+    get:
+      operationId: WorkingTimekeeperController_getMyRestrictions_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Working Timekeepers
+  /api/v1/customers/{customerId}/working-timekeepers/initiatives/{initiativeId}:
+    get:
+      operationId: WorkingTimekeeperController_getForInitiative_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: customer id
+        schema:
+          format: objectid
+          type: string
+      - name: initiativeId
+        required: true
+        in: path
+        description: Initiative's id
+        schema:
+          format: objectid
+          type: string
+      - name: page
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          format: int64
+          type: number
+      - name: pageSize
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          maximum: 150
+          format: int64
+          type: number
+      - name: search
+        required: false
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Working Timekeepers
+components:
+  schemas:
+    SyncCustomerWorkingTimekeepersItemDto:
+      type: object
+      properties:
+        initiativeExternalId:
+          type: string
+          description: External ID of the initiative
+        type:
+          type: string
+          description: Access type for the initiative (allow/deny)
+          enum:
+          - allow
+          - deny
+        timekeeperExternalIds:
+          description: External IDs of the timekeepers to sync
+          maxItems: 2500
+          type: array
+          items:
+            type: string
+      required:
+      - initiativeExternalId
+      - timekeeperExternalIds
+    SyncCustomerWorkingTimekeepersBatchDto:
+      type: object
+      properties:
+        initiatives:
+          description: List of initiatives to sync working timekeepers for
+          minItems: 1
+          maxItems: 500
+          type: array
+          items:
+            $ref: '#/components/schemas/SyncCustomerWorkingTimekeepersItemDto'
+      required:
+      - initiatives
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

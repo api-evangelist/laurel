@@ -1,0 +1,130 @@
+openapi: 3.0.0
+info:
+  title: Identity Service Ably Delegators API
+  description: ''
+  version: '1'
+  contact: {}
+servers: []
+security:
+- ApiBearerAuth: []
+tags:
+- name: Delegators
+paths:
+  /api/v1/delegators:
+    get:
+      operationId: DelegatorController_search_v1
+      parameters:
+      - name: page
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          format: int64
+          type: number
+      - name: pageSize
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          maximum: 150
+          format: int64
+          type: number
+      - name: search
+        required: false
+        in: query
+        schema:
+          minLength: 2
+          maxLength: 100
+          nullable: true
+          type: string
+      - name: includeRoles
+        required: false
+        in: query
+        schema:
+          nullable: true
+          type: array
+          items:
+            type: string
+      - name: excludeRoles
+        required: false
+        in: query
+        schema:
+          nullable: true
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchDelegatorsResponse'
+      tags:
+      - Delegators
+components:
+  schemas:
+    SearchDelegatorsResponse:
+      type: object
+      properties:
+        nextPage:
+          type: number
+          description: next page number. if it is undefined it means this is the last page
+          format: double
+        items:
+          description: the list of items in the current page
+          type: array
+          items:
+            $ref: '#/components/schemas/UserLite'
+        totalPages:
+          type: number
+        totalItems:
+          type: number
+      required:
+      - items
+      - totalPages
+      - totalItems
+    UserLite:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: user's id
+          format: objectid
+        email:
+          type: string
+          description: user's email address used for login
+          example: user@example.com
+          format: email
+        firstName:
+          type: string
+          description: user's first name
+        lastName:
+          type: string
+          description: user's last name
+        isTimekeeperIdSet:
+          type: boolean
+          description: if the user has a billing system identity
+        status:
+          type: string
+          description: user's status
+          enum:
+          - active
+          - adminDisabled
+          - firmDisabled
+          nullable: true
+      required:
+      - _id
+      - email
+      - firstName
+      - lastName
+      - isTimekeeperIdSet
+  securitySchemes:
+    ApiBearerAuth:
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter access token
+      type: http
+externalDocs:
+  description: Laurel API Documentation
+  url: https://developer.laurel.ai/

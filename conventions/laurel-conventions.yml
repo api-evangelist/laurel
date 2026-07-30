@@ -1,0 +1,87 @@
+generated: '2026-07-19'
+method: searched
+source: https://developer.laurel.ai/guides/authentication, https://developer.laurel.ai/guides/public-api-endpoints
+derived_from:
+- openapi/laurel-time-openapi-original.json
+- openapi/laurel-identity-openapi-original.json
+- openapi/laurel-ingestion-openapi-original.json
+authentication:
+  style: OAuth 2.0 client_credentials (machine-to-machine) -> Bearer JWT
+  token_endpoint: https://identity.laurel.ai/api/v1/oauth/token
+  token_operation: OauthController_createServiceToken_v1
+  audience: https://timeautomation.com
+  request_fields:
+  - audience
+  - grant_type
+  - client_id
+  - client_secret
+  token_type: Bearer
+  expires_in_seconds: 86400
+  scheme_in_spec: ApiBearerAuth (http bearer, bearerFormat JWT)
+  credential_provisioning: customerId, clientId and clientSecret plus the regional Time Service endpoint
+    are issued by the Laurel solutions delivery team; there is no public self-service signup for API credentials.
+  docs: https://developer.laurel.ai/guides/authentication
+  artifact: authentication/laurel-authentication.yml
+tenancy:
+  model: customer-scoped
+  primary_path_parameter: customerId
+  note: Most operations are nested under /customers/{customerId}/; the customerId is issued with the API
+    credentials and scopes every call.
+idempotency:
+  supported: true
+  scope: partial
+  mechanism: request-body field
+  field: idempotencyKey
+  schema: ImportUnreleasedEntriesRequestDto
+  operations:
+  - EntriesController_importUnreleasedEntry_v1
+  header: null
+  retention: null
+  note: Idempotency is offered on the unreleased-entry bulk import as an optional idempotencyKey body
+    field rather than as a global Idempotency-Key header. No retention window is documented.
+  source: openapi/laurel-ingestion-openapi-original.json
+pagination:
+  style: page-number
+  params:
+  - page
+  - pageSize
+  - limit
+  - offset
+  sorting_params:
+  - sortBy
+  - sortOrder
+  filter_params:
+  - search
+  - workDate
+  - startedBefore
+  - stoppedAfter
+  - date
+  note: Collection endpoints take page/pageSize; a subset takes limit. Newer versions of the entry and
+    user searches (v2/v3) are the paginated variants.
+  source: openapi/laurel-time-openapi-original.json
+versioning:
+  scheme: uri-path
+  pattern: /api/v{n}/
+  versions_in_use:
+  - v1
+  - v2
+  - v3
+  note: Versions run side by side per resource — v1, v2 and v3 of the same resource are all served concurrently
+    and superseded operations are flagged deprecated in the spec rather than removed.
+  operation_id_suffix: _v1 / _v2 / _v3 mirrors the path version
+  artifact: lifecycle/laurel-lifecycle.yml
+public_surface:
+  note: Operations intended for customer/partner integration are tagged "Public" in the OpenAPI, and some
+    are additionally served under a /api/v1/public/ path prefix.
+  tag: Public
+error_envelope:
+  documented: false
+  note: No 4xx/5xx responses are declared in any of the three published specs and the docs ship no error
+    reference, so the error envelope is undocumented. Not derivable without fabrication.
+rate_limiting:
+  documented: false
+  note: No rate-limit headers, quotas or policy are published.
+request_tracing:
+  documented: false
+  note: No request-id / correlation-id header is documented.
+content_type: application/json

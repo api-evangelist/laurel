@@ -1,0 +1,1433 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/laurel-time-openapi-original.json, openapi/laurel-identity-openapi-original.json, openapi/laurel-ingestion-openapi-original.json
+description: 'Entity-relationship graph derived from OpenAPI component schemas: $ref links and id-reference
+  fields. Laurel models a professional-services timekeeping domain.'
+core_entities:
+- name: Customer
+  service: identity
+  description: The firm/tenant. Scopes nearly every operation via the customerId path parameter.
+- name: User
+  service: identity
+  description: A timekeeper or administrator belonging to a customer; carries identities, roles and delegates.
+- name: Client
+  service: time
+  description: The firm's billing client, imported from the practice-management/billing system.
+- name: Initiative
+  service: time
+  description: The matter/engagement/project time is booked against; carries access restrictions and permitted
+    codes.
+- name: CodeType
+  service: time
+  description: A category of billing code (e.g. task, activity, phase).
+- name: Code
+  service: time
+  description: An individual billing code within a code type, optionally restricted to an initiative.
+- name: Entry
+  service: time
+  description: A unit of captured/enriched time — the central record; released into the billing system.
+- name: Timer
+  service: time
+  description: A running or adjusted timer that produces entries (v2/v3 supersede v1).
+key_relationships:
+- from: Customer
+  type: has_many
+  to: User
+  via: customerId
+- from: Customer
+  type: has_many
+  to: Client
+  via: customerId
+- from: Client
+  type: has_many
+  to: Initiative
+  via: clientId
+- from: Initiative
+  type: has_many
+  to: Code
+  via: initiativeId
+- from: CodeType
+  type: has_many
+  to: Code
+  via: codeTypeId
+- from: Entry
+  type: belongs_to
+  to: Initiative
+  via: initiativeId
+- from: Entry
+  type: belongs_to
+  to: User
+  via: userId
+- from: Entry
+  type: belongs_to
+  to: Code
+  via: codeId
+- from: Timer
+  type: has_many
+  to: Entry
+  via: timerId
+- from: User
+  type: has_many
+  to: Initiative
+  via: user-initiatives
+identifier_conventions:
+  internal: UUID-style {resource}Id path parameters
+  external: '{resource}ExternalId carries the id from the customer''s source system (practice management
+    / billing), used by the Ingestion Service on import'
+entity_count: 164
+entities:
+- name: ActivityMetadataRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ImageMetadata
+    via: images
+- name: ActivityMetadataResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Activity
+    via: activityId
+  - type: has_many
+    target: ImageMetadata
+    via: images
+- name: ActivitySourceRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Activity
+    via: activityId
+- name: ActivitySourceV2RequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Activity
+    via: activityId
+- name: ApplicableEntryValidationRules
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: CodeTypeDigest
+    via: requiredCodeTypes
+- name: AssignCodeByLaurelRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Code
+    via: codeId
+- name: BatchActivityErrorDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Activity
+    via: activityId
+- name: BatchActivityResultResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: BatchActivitySuccessDto
+    via: successes
+  - type: has_many
+    target: BatchActivityErrorDto
+    via: errors
+- name: BatchActivitySuccessDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Activity
+    via: activityId
+- name: BatchReleaseSucceededRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ReleaseUpdate
+    via: request
+- name: BatchReleaseSucceededResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: SingleEntryResponse
+    via: response
+- name: BulkCreateEntryRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: CreateEntryDto
+    via: entries
+- name: BulkCreateEntryResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: BulkCreateEntryErrorDto
+    via: errors
+- name: BulkReleaseEntryDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Client
+    via: clientId
+- name: CallMetadata
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: CallParticipant
+    via: participants
+- name: CheckActiveRestrictionsBatchResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: RestrictedDateDto
+    via: restrictedDates
+- name: CheckActiveRestrictionsMultiTypeResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: TypeRestrictedDatesDto
+    via: results
+- name: CodeAndCodeTypeExternalIdDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Code
+    via: codeExternalId
+  - type: belongs_to
+    target: CodeType
+    via: codeTypeExternalId
+- name: CreateDefaultCodeDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Code
+    via: codeId
+- name: CreateEntryDateRestrictionRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_one
+    target: ExactDatesRuleDto
+    via: rule
+- name: CreateEntryDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ActivitySourceV2RequestDto
+    via: activitySources
+  - type: has_many
+    target: ComplianceRule
+    via: complianceRules
+- name: CreateEntryForUserRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ActivitySourceV2RequestDto
+    via: activitySources
+  - type: has_many
+    target: ComplianceRule
+    via: complianceRules
+  - type: has_many
+    target: ExternalSource
+    via: externalSources
+- name: CreateEntryOldDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ActivitySourceRequestDto
+    via: sources
+  - type: has_many
+    target: CreateNestedActivityRequestDto
+    via: createNestedActivities
+  - type: has_many
+    target: ComplianceRule
+    via: complianceRules
+- name: CreateEntryRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ActivitySourceV2RequestDto
+    via: activitySources
+  - type: has_many
+    target: ComplianceRule
+    via: complianceRules
+  - type: has_many
+    target: ExternalSource
+    via: externalSources
+- name: CreateTimerActivityDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: EntryDto
+    via: entryId
+- name: CustomerEntryResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: EntryDto
+    via: entryId
+  - type: belongs_to
+    target: Client
+    via: clientExternalId
+  - type: has_many
+    target: GetCustomerEntriesCodeResponseDto
+    via: codes
+- name: DefaultCode
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: CodeType
+    via: codeTypeId
+  - type: belongs_to
+    target: Code
+    via: codeId
+- name: DismissPredictionRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Activity
+    via: activityId
+- name: EmailMetadata
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: EmailAttachmentMetadata
+    via: attachments
+  - type: has_many
+    target: EmailRecipientMetadata
+    via: recipients
+- name: EntryDateRestrictionResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_one
+    target: ExactDatesRuleDto
+    via: rule
+- name: EntryDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ComplianceRule
+    via: complianceRules
+  - type: has_many
+    target: ExternalSource
+    via: externalSources
+  - type: has_many
+    target: CodeAssignment
+    via: workCodes
+- name: EntryResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: CodeAssignment
+    via: workCodes
+  - type: has_many
+    target: ComplianceRule
+    via: complianceRules
+- name: EntryShareRecipientDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: EntryDto
+    via: entryId
+  - type: has_one
+    target: SharedFromResponseDto
+    via: sharedFrom
+- name: EntryValidationRules
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: CodeTypeDigest
+    via: requiredCodeTypes
+- name: EntryWithUserResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: CodeAssignment
+    via: workCodes
+  - type: has_many
+    target: ComplianceRule
+    via: complianceRules
+- name: ExportEntryRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Client
+    via: clientId
+- name: ExportEntryResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: CodeDigest
+    via: codes
+- name: GetCustomerEntriesCodeResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Code
+    via: codeExternalId
+  - type: belongs_to
+    target: CodeType
+    via: codeTypeExternalId
+- name: GetEntrySharesResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: EntryShareRecipientDto
+    via: items
+- name: GetUserCodesOffsetBaseResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: DefaultCode
+    via: defaultCodeId
+  - type: has_many
+    target: CodeResponseDto
+    via: items
+- name: GetUserCodesResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: DefaultCode
+    via: defaultCodeId
+  - type: has_many
+    target: CodeResponseDto
+    via: codes
+  - type: has_many
+    target: CodeResponseDto
+    via: items
+- name: ImportCustomerCodeDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: CodeType
+    via: codeTypeExternalId
+- name: ImportCustomerInitiativeDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Client
+    via: clientExternalId
+- name: ImportPmsEntryRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: CodeAndCodeTypeExternalIdDto
+    via: codes
+- name: ImportUnreleasedEntryRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: CodeAndCodeTypeExternalIdDto
+    via: codes
+- name: InitiativeAccessResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: UserAccessDto
+    via: users
+- name: InitiativeAccessRestrictionsUserResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: GroupMembershipDto
+    via: groupMembership
+- name: InitiativeInternalGroupRestrictionsResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: GroupDetailsResponseDto
+    via: groups
+- name: MeetingMetadata
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: MeetingParticipant
+    via: participants
+- name: OverrideComplianceRulesDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Client
+    via: clientId
+- name: OverrideOneEntryRequestV2Dto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: CodeAndCodeTypeExternalIdDto
+    via: codes
+- name: PaginatedEntryWithUserResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: EntryWithUserResponseDto
+    via: items
+- name: ReleaseFailedInfo
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ReleaseFailedError
+    via: releaseFailedErrors
+- name: ReleaseSuccessInfo
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ReleaseFailedError
+    via: reReleaseFailedMessages
+- name: ReleaseSuccessLockedInfo
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ReleaseFailedError
+    via: reReleaseFailedMessages
+- name: ReleaseUpdate
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: EntryDto
+    via: entryId
+- name: RestrictedDateDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_one
+    target: EntryDateRestrictionResponseDto
+    via: restriction
+- name: ShareEligibilityResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ShareEligibilityResultDto
+    via: results
+- name: ShareEntryResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ShareEntryCreatedItemDto
+    via: created
+  - type: has_many
+    target: ShareEntryBlockedItemDto
+    via: blocked
+  - type: has_many
+    target: ShareEntryFailedItemDto
+    via: failed
+- name: SharedFromResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: EntryDto
+    via: entryId
+- name: SingleEntryResponse
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: EntryDto
+    via: entryId
+- name: SplitEntryRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Activity
+    via: activityId
+- name: SyncCustomerNarrativeTemplatesRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: SyncCustomerNarrativeTemplateItemDto
+    via: templates
+- name: SyncUserNarrativeTemplatesRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: SyncUserNarrativeTemplateItemDto
+    via: templates
+- name: Timer
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: CodeDigest
+    via: codes
+- name: TimesheetSuccessfulInitiativeCategorizationDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: EntryDto
+    via: entries
+- name: TrackOneActivityDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: CaptureSourceDto
+    via: captureSourceId
+- name: TrackOneUserActivityDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: CaptureSourceDto
+    via: captureSourceId
+- name: TypeRestrictedDatesDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: RestrictedDateDto
+    via: restrictedDates
+- name: UpdateEntriesLockStatusRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: UpdateEntryLockStatusItemDto
+    via: entries
+- name: UpdateEntryDateRestrictionRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_one
+    target: ExactDatesRuleDto
+    via: rule
+- name: UpdateEntryLockStatusItemDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: EntryDto
+    via: entryExternalId
+- name: UpdateEntryRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ActivitySourceV2RequestDto
+    via: activitySources
+  - type: has_many
+    target: ComplianceRule
+    via: complianceRules
+- name: UpdateOneEntryDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ActivitySourceRequestDto
+    via: sources
+  - type: has_many
+    target: CreateNestedActivityRequestDto
+    via: createNestedActivities
+  - type: has_many
+    target: ComplianceRule
+    via: complianceRules
+- name: V2StartTimerDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: EntryDto
+    via: entryId
+- name: V2TimerResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: EntryDto
+    via: entryId
+- name: V3AdjustRunningTimerRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Timer
+    via: timerId
+- name: V3StartTimerNotFoundResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: V3StoppedTimerInfo
+    via: stopped
+- name: V3StartTimerSuccessResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_one
+    target: V3RunningTimerResponseDto
+    via: started
+  - type: has_many
+    target: V3StoppedTimerInfo
+    via: stopped
+- name: V3StartTimerWithEntryIdRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: EntryDto
+    via: entryId
+- name: V3StopTimerNotFoundResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: V3StoppedTimerInfo
+    via: othersStopped
+- name: V3StopTimerRequestDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Timer
+    via: timerId
+- name: V3StopTimerSuccessResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_one
+    target: V3StoppedTimerResponseDto
+    via: stopped
+  - type: has_one
+    target: TimerActivityDto
+    via: activity
+  - type: has_many
+    target: V3StoppedTimerInfo
+    via: othersStopped
+- name: V3StoppedTimerInfo
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_one
+    target: V3StoppedTimerResponseDto
+    via: timer
+  - type: has_one
+    target: TimerActivityDto
+    via: activity
+- name: V3StoppedTimerResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Activity
+    via: activityId
+  - type: belongs_to
+    target: EntryDto
+    via: entryId
+- name: V3TimerDraftResponseDto
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: EntryDto
+    via: entryId
+  - type: has_many
+    target: CodeDigest
+    via: codes
+- name: ValidationFailedInfo
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: EntryValidationError
+    via: errors
+- name: WorkGroup
+  service: time
+  source: openapi/laurel-time-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ActivityDigest
+    via: activities
+- name: AddUserIdentitiesBulkDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: AddUserIdentityDto
+    via: identities
+- name: AzureStrategy
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Client
+    via: clientId
+- name: Client
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+  - type: has_many
+    target: PermissionDigest
+    via: permissions
+  - type: has_many
+    target: PermissionDigest
+    via: userPermissionBoundaries
+- name: ClientResponseDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Client
+    via: clientId
+- name: CreateClientDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+  - type: belongs_to
+    target: Tenant
+    via: tenantId
+- name: CreateCustomerDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Tenant
+    via: tenantId
+  - type: has_many
+    target: Identity
+    via: identities
+- name: CreateDataRetentionAuditDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+  - type: has_many
+    target: DataRetentionSummaryDto
+    via: summary
+  - type: has_many
+    target: DataRetentionErrorDto
+    via: errors
+- name: CreateUserGroupDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+- name: CreateUserV1Dto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+  - type: has_many
+    target: Identity
+    via: identities
+- name: Customer
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: Connection
+    via: connections
+  - type: has_many
+    target: Identity
+    via: identities
+- name: CustomerIdDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+- name: CustomerIdUserGroupIdKindDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+- name: DataRetentionAudit
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+  - type: has_many
+    target: DataRetentionSummary
+    via: summary
+  - type: has_many
+    target: DataRetentionError
+    via: errors
+- name: DelegateUserDigest
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: PermissionDigest
+    via: permissions
+- name: DelegatorUserDigest
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: Identity
+    via: identities
+- name: GetUserGroupsQueryDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+- name: GetUserParamsDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: User
+    via: userId
+- name: Identity
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+- name: ImportManyUserDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ImportOneUserDto
+    via: users
+- name: ImportOneUserDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: Identity
+    via: identities
+- name: ImportUserV2Dto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: Identity
+    via: identities
+- name: LookupUsersBatchRequestDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: IdentityLookupParamDto
+    via: identities
+- name: OnAuthRequestDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Client
+    via: clientId
+  - type: belongs_to
+    target: Connection
+    via: connectionId
+  - type: belongs_to
+    target: User
+    via: userId
+- name: OnAuthResponseDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Client
+    via: clientId
+  - type: belongs_to
+    target: Customer
+    via: customerId
+  - type: belongs_to
+    target: Tenant
+    via: tenantId
+  - type: belongs_to
+    target: User
+    via: userId
+- name: OnBrokerAuthRequestDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Client
+    via: clientId
+- name: OnCredentialsExchangeRequestDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Client
+    via: clientId
+  - type: belongs_to
+    target: Customer
+    via: customerId
+- name: OnCredentialsExchangeResponseDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Client
+    via: clientId
+  - type: belongs_to
+    target: Tenant
+    via: tenantId
+  - type: belongs_to
+    target: Customer
+    via: customerId
+- name: OnboardingProfile
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: User
+    via: userId
+  - type: belongs_to
+    target: Customer
+    via: customerId
+- name: Role
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: PermissionDigest
+    via: permissions
+- name: RoleDigest
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: PermissionDigest
+    via: permissions
+- name: SearchDelegatorsResponse
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: UserLite
+    via: items
+- name: SearchUsersResponseDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: User
+    via: items
+- name: SetSuperDelegateDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: DelegatePermissionDto
+    via: superDelegatePermissions
+- name: TimekeeperIdUserGroupDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+- name: UpdateClientDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+  - type: belongs_to
+    target: Tenant
+    via: tenantId
+- name: UpdateCustomerDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: Identity
+    via: identities
+  - type: belongs_to
+    target: Tenant
+    via: tenantId
+- name: UpdateUserDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: Identity
+    via: identities
+- name: UpdateUserV2Dto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: UserDelegateDto
+    via: delegates
+  - type: has_many
+    target: Identity
+    via: identities
+- name: User
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: DelegatorUserDigest
+    via: delegators
+  - type: has_many
+    target: DelegateUserDigest
+    via: delegates
+  - type: has_many
+    target: Identity
+    via: identities
+  - type: has_many
+    target: RoleDigest
+    via: roles
+  - type: has_many
+    target: PermissionDigest
+    via: superDelegatePermissions
+- name: UserDelegateDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: User
+    via: userId
+  - type: has_many
+    target: DelegatePermissionDto
+    via: permissions
+- name: UserGroupDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+- name: UserGroupIdDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: UserGroupDto
+    via: userGroupId
+- name: UserIdUserGroupDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customerId
+- name: UserIntegrationProjection
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: Identity
+    via: relevantIdentities
+- name: UserResponseDto
+  service: identity
+  source: openapi/laurel-identity-openapi-original.json
+  relationships:
+  - type: has_many
+    target: DelegatorUserDigest
+    via: delegators
+  - type: has_many
+    target: DelegateUserDigest
+    via: delegates
+  - type: has_many
+    target: Identity
+    via: identities
+  - type: has_many
+    target: RoleDigest
+    via: roles
+  - type: has_many
+    target: PermissionDigest
+    via: superDelegatePermissions
+- name: BulkDeleteUnreleasedEntriesRequestDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: BulkDeleteUnreleasedEntryItemDto
+    via: entries
+- name: BulkUpdateUnreleasedEntriesRequestDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: BulkUpdateUnreleasedEntryItemDto
+    via: entries
+- name: CodeAndCodeTypeExternalIdDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: CodeDto
+    via: codeExternalId
+  - type: belongs_to
+    target: CodeTypeDto
+    via: codeTypeExternalId
+- name: CodeDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_one
+    target: CodeTypeDto
+    via: type
+- name: ConsolidatedCodesSubDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ImportCodeDto
+    via: codes
+- name: ConsolidatedInitiativeSubDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: ClientDto
+    via: clientExternalId
+- name: Dto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: CodeTypeDto
+    via: codeTypeExternalId
+- name: ImportCodeDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: CodeDto
+    via: codeExternalId
+  - type: belongs_to
+    target: CodeTypeDto
+    via: codeTypeExternalId
+- name: ImportCustomerClientsBatchDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ImportCustomerClientDto
+    via: clients
+- name: ImportCustomerCodeDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: CodeTypeDto
+    via: codeTypeExternalId
+- name: ImportCustomerCodesBatchDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: Dto
+    via: codes
+- name: ImportCustomerInitiativeConsolidatedDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_one
+    target: ConsolidatedInitiativeSubDto
+    via: initiative
+  - type: has_one
+    target: ConsolidatedCodesSubDto
+    via: codes
+  - type: has_one
+    target: ConsolidatedValidationSubDto
+    via: entryValidationRules
+- name: ImportCustomerInitiativeDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: belongs_to
+    target: ClientDto
+    via: clientExternalId
+- name: ImportCustomerInitiativesBatchDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: Dto
+    via: initiatives
+- name: ImportCustomerInitiativesConsolidatedBatchDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ImportCustomerInitiativeConsolidatedDto
+    via: initiatives
+- name: ImportPmsEntryRequestDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: CodeAndCodeTypeExternalIdDto
+    via: codes
+- name: ImportUnreleasedEntriesRequestDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: ImportUnreleasedEntryDto
+    via: entries
+- name: InitiativeAccessDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_one
+    target: Dto
+    via: access
+- name: InitiativeAccessWithWallsDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_one
+    target: SetCustomerInitiativeAccessWallsDto
+    via: access
+- name: InitiativeCodesDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_one
+    target: Dto
+    via: codes
+- name: InitiativeDigestDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_one
+    target: ClientDto
+    via: client
+- name: InitiativePropsDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_one
+    target: InitiativeDigestDto
+    via: initiative
+- name: OverrideOneEntryRequestV2Dto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: CodeAndCodeTypeExternalIdDto
+    via: codes
+- name: ReleasePendingTimekeeperIdDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: CodeDto
+    via: codes
+- name: SetCustomerInitiativeAccessBatchDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: InitiativeAccessDto
+    via: initiatives
+- name: SetCustomerInitiativeAccessWallsBatchDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: InitiativeAccessWithWallsDto
+    via: initiatives
+- name: SetCustomerInitiativeCodesBatchDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: InitiativeCodesDto
+    via: initiatives
+- name: SyncCustomerWorkingTimekeepersBatchDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: SyncCustomerWorkingTimekeepersItemDto
+    via: initiatives
+- name: UpdateEntriesLockStatusRequestDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: UpdateEntryLockStatusItemDto
+    via: entries
+- name: UpdateUserDelegatesBatchDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: UpdateUserDelegatesDto
+    via: users
+- name: UpdateUserDelegatesDto
+  service: ingestion
+  source: openapi/laurel-ingestion-openapi-original.json
+  relationships:
+  - type: has_many
+    target: UserDelegateInfoDto
+    via: delegates

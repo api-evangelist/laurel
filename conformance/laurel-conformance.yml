@@ -1,0 +1,56 @@
+generated: '2026-07-19'
+method: searched
+source: https://trust.laurel.ai/, https://www.laurel.ai/security
+standards:
+- id: oauth2-client-credentials
+  conforms: true
+  evidence: documented client_credentials token exchange at identity.laurel.ai/api/v1/oauth/token
+- id: jwt-bearer-token
+  conforms: true
+  evidence: openapi securityScheme ApiBearerAuth, http bearer, bearerFormat JWT
+- id: openapi-3.0
+  conforms: true
+  evidence: three published OpenAPI 3.0.0 documents (time, identity, ingestion)
+- id: scim2
+  conforms: true
+  evidence: 'Identity Service exposes SCIM provisioning toggle per connection: CustomerController_updateConnectionScim_v1'
+- id: soc2-type-2
+  conforms: true
+  evidence: SOC 2 Type 2 listed on https://trust.laurel.ai/ (SOC 2 report available under NDA)
+- id: iso-iec-42001-2023
+  conforms: true
+  evidence: ISO/IEC 42001:2023 (AI management system) listed on https://trust.laurel.ai/
+- id: hipaa
+  conforms: true
+  evidence: HIPAA listed on https://trust.laurel.ai/
+- id: gdpr
+  conforms: true
+  evidence: GDPR listed on https://trust.laurel.ai/
+- id: ccpa
+  conforms: true
+  evidence: CCPA listed on https://trust.laurel.ai/
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: no application/problem+json responses; no 4xx/5xx declared in the specs
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on all Laurel hosts
+- id: oidc-discovery
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on identity.laurel.ai
+- id: asyncapi
+  conforms: false
+  evidence: no published event/webhook surface found
+compliance_program:
+  trust_center: https://trust.laurel.ai/
+  certifications:
+  - SOC 2 Type 2
+  - ISO/IEC 42001:2023
+  - HIPAA
+  - GDPR
+  - CCPA
+  documents_under_nda:
+  - SOC 2 Report
+  - Pentest Report
+  - Security Whitepaper
+  - Data Flow Diagram (DFD)

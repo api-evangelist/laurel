@@ -1,0 +1,165 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/laurel-time-openapi-original.json, openapi/laurel-identity-openapi-original.json, openapi/laurel-ingestion-openapi-original.json
+note: Laurel publishes no official MCP server. This is a candidate tool surface derived from the operations
+  Laurel tags "Public" in its OpenAPI — the subset intended for customer and partner integration — so
+  an MCP server would expose the supported surface rather than internal service endpoints.
+server:
+  name: laurel
+  transport: http
+  url: null
+auth:
+  type: oauth2-client-credentials
+  token_endpoint: https://identity.laurel.ai/api/v1/oauth/token
+  note: M2M credentials are issued by Laurel; tokens are Bearer JWT, 86400s TTL.
+tool_count: 37
+tools:
+- name: customer_client_import
+  description: POST /api/v1/customers/{customerId}/clients/import
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerClientController_import_v1
+  service: time
+- name: customer_code_type_import
+  description: POST /api/v1/customers/{customerId}/code-types/import
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerCodeTypeController_import_v1
+  service: time
+- name: customer_initiative_import
+  description: POST /api/v1/customers/{customerId}/initiatives/import
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerInitiativeController_import_v1
+  service: time
+- name: customer_initiative_set_initiative_access
+  description: POST /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/access
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerInitiativeController_setInitiativeAccess_v1
+  service: time
+- name: customer_code_import
+  description: POST /api/v1/customers/{customerId}/codes/import
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerCodeController_import_v1
+  service: time
+- name: initiative_codes_add_initiative_codes_by_code_type
+  description: POST /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/code-types/{codeTypeExternalId}/codes
+  source_operation: openapi/laurel-time-openapi-original.json#InitiativeCodesController_addInitiativeCodesByCodeType_v1
+  service: time
+- name: initiative_codes_remove_initiative_codes_by_code_type
+  description: DELETE /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/code-types/{codeTypeExternalId}/codes
+  source_operation: openapi/laurel-time-openapi-original.json#InitiativeCodesController_removeInitiativeCodesByCodeType_v1
+  service: time
+- name: customer_default_code_find_many_by_code_type_id_for_user
+  description: GET /api/v1/customers/{customerId}/users/{userId}/code-types/{codeTypeId}/default-code
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerDefaultCodeController_findManyByCodeTypeIdForUser_v1
+  service: time
+- name: customer_default_code_create_one_for_user
+  description: POST /api/v1/customers/{customerId}/users/{userId}/code-types/{codeTypeId}/default-code
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerDefaultCodeController_createOneForUser_v1
+  service: time
+- name: customer_entry_public_bulk_release
+  description: POST /api/v1/public/customers/{customerId}/entries/bulk-release
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerEntryPublicController_bulkRelease_v1
+  service: time
+- name: customer_entry_public_unrelease
+  description: POST /api/v1/public/customers/{customerId}/users/{userId}/entries/{entryId}/unrelease
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerEntryPublicController_unrelease_v1
+  service: time
+- name: customer_entry_public_override_one_entry
+  description: PATCH /api/v1/public/customers/{customerId}/users/{userId}/entries/{entryId}/override
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerEntryPublicController_overrideOneEntry_v1
+  service: time
+- name: customer_entry_public_delete_one_entry
+  description: DELETE /api/v1/public/customers/{customerId}/users/{userId}/entries/{entryId}
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerEntryPublicController_deleteOneEntry_v1
+  service: time
+- name: entry_validation_rules_set_one_for_initiative
+  description: POST /api/v1/validations/customers/{customerId}/initiatives/{initiativeExternalId}/rules
+  source_operation: openapi/laurel-time-openapi-original.json#EntryValidationRulesController_setOneForInitiative_v1
+  service: time
+- name: customer_entry_find_many_with_pagination
+  description: GET /api/v2/customers/{customerId}/entries
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerEntryController_findManyWithPagination_v2
+  service: time
+- name: customer_entry_export
+  description: GET /api/v1/customers/{customerId}/entries/export
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerEntryController_export_v1
+  service: time
+- name: customer_entry_export_v2
+  description: GET /api/v2/customers/{customerId}/entries/export
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerEntryController_exportV2_v2
+  service: time
+- name: customer_entry_batch_release_success
+  description: POST /api/v1/customers/{customerId}/entries/release-succeeded/batch
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerEntryController_batchReleaseSuccess_v1
+  service: time
+- name: customer_entry_release_success
+  description: POST /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}/release-succeeded
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerEntryController_releaseSuccess_v1
+  service: time
+- name: customer_entry_release_failed
+  description: POST /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}/release-failed
+  source_operation: openapi/laurel-time-openapi-original.json#CustomerEntryController_releaseFailed_v1
+  service: time
+- name: customer_user_search
+  description: returns all users for a customer, filtered by optional search parameter
+  source_operation: openapi/laurel-identity-openapi-original.json#CustomerUserController_search_v1
+  service: identity
+- name: customer_user_lookup_user
+  description: GET /api/v1/customers/{customerId}/users/lookup
+  source_operation: openapi/laurel-identity-openapi-original.json#CustomerUserController_lookupUser_v1
+  service: identity
+- name: customer_user_lookup_users_batch
+  description: Look up multiple users by identities
+  source_operation: openapi/laurel-identity-openapi-original.json#CustomerUserController_lookupUsersBatch_v1
+  service: identity
+- name: customer_user_get
+  description: returns a user by its id
+  source_operation: openapi/laurel-identity-openapi-original.json#CustomerUserController_get_v1
+  service: identity
+- name: customer_user_update_v2
+  description: PATCH /api/v2/customers/{customerId}/users/{userId}
+  source_operation: openapi/laurel-identity-openapi-original.json#CustomerUserController_updateV2_v2
+  service: identity
+- name: oauth_create_service_token
+  description: POST /api/v1/oauth/token
+  source_operation: openapi/laurel-identity-openapi-original.json#OauthController_createServiceToken_v1
+  service: identity
+- name: clients_import_client_v1
+  description: POST /api/v1/customers/{customerId}/clients/import
+  source_operation: openapi/laurel-ingestion-openapi-original.json#ClientsController_importClientV1_v1
+  service: ingestion
+- name: clients_import_client_batch_v1
+  description: POST /api/v1/customers/{customerId}/clients/batch
+  source_operation: openapi/laurel-ingestion-openapi-original.json#ClientsController_importClientBatchV1_v1
+  service: ingestion
+- name: codes_import_code_v1
+  description: POST /api/v1/customers/{customerId}/codes/import
+  source_operation: openapi/laurel-ingestion-openapi-original.json#CodesController_importCodeV1_v1
+  service: ingestion
+- name: codes_import_code_batch_v1
+  description: POST /api/v1/customers/{customerId}/codes/batch
+  source_operation: openapi/laurel-ingestion-openapi-original.json#CodesController_importCodeBatchV1_v1
+  service: ingestion
+- name: initiatives_import_initiatives_consolidated_batch_v2
+  description: POST /api/v2/customers/{customerId}/initiatives/consolidated-batch
+  source_operation: openapi/laurel-ingestion-openapi-original.json#InitiativesController_importInitiativesConsolidatedBatchV2_v2
+  service: ingestion
+- name: initiatives_set_initiative_access_v1
+  description: POST /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/access
+  source_operation: openapi/laurel-ingestion-openapi-original.json#InitiativesController_setInitiativeAccessV1_v1
+  service: ingestion
+- name: initiatives_set_initiative_codes_v1
+  description: POST /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/codes
+  source_operation: openapi/laurel-ingestion-openapi-original.json#InitiativesController_setInitiativeCodesV1_v1
+  service: ingestion
+- name: initiatives_delete_initiative_codes_v1
+  description: DELETE /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/codes
+  source_operation: openapi/laurel-ingestion-openapi-original.json#InitiativesController_deleteInitiativeCodesV1_v1
+  service: ingestion
+- name: entry_validation_rules_set_one_for_initiative
+  description: POST /api/v1/validations/customers/{customerId}/initiatives/{initiativeExternalId}/rules
+  source_operation: openapi/laurel-ingestion-openapi-original.json#EntryValidationRulesController_setOneForInitiative_v1
+  service: ingestion
+- name: users_update_user_delegates
+  description: POST /api/v1/customers/{customerId}/users/delegates
+  source_operation: openapi/laurel-ingestion-openapi-original.json#UsersController_updateUserDelegates_v1
+  service: ingestion
+- name: users_update_user_delegates_batch
+  description: POST /api/v1/customers/{customerId}/users/delegates/batch
+  source_operation: openapi/laurel-ingestion-openapi-original.json#UsersController_updateUserDelegatesBatch_v1
+  service: ingestion

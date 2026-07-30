@@ -1,0 +1,131 @@
+generated: '2026-07-19'
+method: searched
+source: https://developer.laurel.ai/guides/public-api-endpoints, https://status.laurel.ai/
+versioning:
+  scheme: uri-path
+  pattern: /api/v{n}/
+  current:
+    time: v3
+    identity: v2
+    ingestion: v2
+  concurrent_versions:
+  - v1
+  - v2
+  - v3
+  docs: https://developer.laurel.ai/guides/public-api-endpoints
+deprecation:
+  policy_url: null
+  sunset_header: false
+  signalled_in_spec: true
+  note: 'Laurel marks superseded operations with OpenAPI `deprecated: true` and keeps the older version
+    serving alongside the replacement. No written deprecation/sunset policy or RFC 8594 Sunset/Deprecation
+    header support is published.'
+  deprecated_operation_count: 30
+status_page: https://status.laurel.ai/
+status_page_detail:
+  provider: self-hosted status page
+  components:
+  - Web Application
+  - Activity Ingestion
+  publishes_uptime: true
+  subscribe: true
+sla:
+  url: null
+  uptime_target: null
+  note: No public SLA; enterprise terms are contracted directly.
+regions:
+  model: regional deployment
+  note: Customers are issued a regional Time Service endpoint and data is held in the customer jurisdictional
+    region; the Identity Service exposes CustomerController_getCustomerRegion_v1 to resolve a customer
+    region.
+deprecated_operations:
+- operation: openapi/laurel-time-openapi-original.json#InitiativeController_searchMany_v1
+  method: GET
+  path: /api/v1/initiatives
+- operation: openapi/laurel-time-openapi-original.json#InitiativeController_createUserInitiative_v1
+  method: POST
+  path: /api/v1/initiatives
+- operation: openapi/laurel-time-openapi-original.json#InitiativeCodesController_removeInitiativeCodes_v1
+  method: DELETE
+  path: /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/codes
+- operation: openapi/laurel-time-openapi-original.json#InitiativeCodesController_addInitiativeCodes_v1
+  method: POST
+  path: /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/codes
+- operation: openapi/laurel-time-openapi-original.json#InitiativeCodesController_addInitiativeCodesV2_v2
+  method: POST
+  path: /api/v2/customers/{customerId}/initiatives/{initiativeExternalId}/codes
+- operation: openapi/laurel-time-openapi-original.json#CustomerEntryDateRestrictionController_checkActive_v1
+  method: GET
+  path: /api/v1/customers/{customerId}/entry-date-restrictions/active/now
+- operation: openapi/laurel-time-openapi-original.json#CustomerEntryDateRestrictionController_checkActiveBatch_v1
+  method: POST
+  path: /api/v1/customers/{customerId}/entry-date-restrictions/active/check
+- operation: openapi/laurel-time-openapi-original.json#EntryController_createOneOld_v1
+  method: POST
+  path: /api/v1/entries
+- operation: openapi/laurel-time-openapi-original.json#EntryController_updateOneById_v1
+  method: PATCH
+  path: /api/v1/entries/{entryId}
+- operation: openapi/laurel-time-openapi-original.json#TimerController_findMany_v1
+  method: GET
+  path: /api/v1/timers
+- operation: openapi/laurel-time-openapi-original.json#TimerController_createOne_v1
+  method: POST
+  path: /api/v1/timers
+- operation: openapi/laurel-time-openapi-original.json#TimerController_findOne_v1
+  method: GET
+  path: /api/v1/timers/{timerId}
+- operation: openapi/laurel-time-openapi-original.json#TimerController_updateOne_v1
+  method: PATCH
+  path: /api/v1/timers/{timerId}
+- operation: openapi/laurel-time-openapi-original.json#TimerController_deleteTimerById_v1
+  method: DELETE
+  path: /api/v1/timers/{timerId}
+- operation: openapi/laurel-time-openapi-original.json#CustomerEntryController_findManyWithUpdatedAt_v1
+  method: GET
+  path: /api/v1/customers/{customerId}/entries
+- operation: openapi/laurel-time-openapi-original.json#CustomerEntryController_assignCodeByLaurel_v1
+  method: POST
+  path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}/codes/assign-by-laurel
+- operation: openapi/laurel-identity-openapi-original.json#ClientController_create_v1
+  method: POST
+  path: /api/v1/clients
+- operation: openapi/laurel-identity-openapi-original.json#ClientController_getAll_v1
+  method: GET
+  path: /api/v1/clients
+- operation: openapi/laurel-identity-openapi-original.json#ClientController_get_v1
+  method: GET
+  path: /api/v1/clients/{clientId}
+- operation: openapi/laurel-identity-openapi-original.json#ClientController_delete_v1
+  method: DELETE
+  path: /api/v1/clients/{clientId}
+- operation: openapi/laurel-identity-openapi-original.json#CustomerController_getCustomerRegion_v1
+  method: GET
+  path: /api/v1/customers/{customerId}/region
+- operation: openapi/laurel-identity-openapi-original.json#CustomerUserController_lookupUserIdentityType_v1
+  method: POST
+  path: /api/v1/customers/{customerId}/users/lookup/identity
+- operation: openapi/laurel-identity-openapi-original.json#CustomerUserController_deprecatedImport_v1
+  method: POST
+  path: /api/v1/customers/{customerId}/users/import
+- operation: openapi/laurel-identity-openapi-original.json#CustomerUserController_postUserData_v1
+  method: POST
+  path: /api/v1/customers/{customerId}/users/batch/import
+- operation: openapi/laurel-identity-openapi-original.json#CustomerUserController_postUserDataV2_v2
+  method: POST
+  path: /api/v2/customers/{customerId}/users/batch/import
+- operation: openapi/laurel-identity-openapi-original.json#UserController_lookup_v1
+  method: GET
+  path: /api/v1/users/lookup
+- operation: openapi/laurel-ingestion-openapi-original.json#InitiativesController_importInitiativesBatchV1_v1
+  method: POST
+  path: /api/v1/customers/{customerId}/initiatives/batch
+- operation: openapi/laurel-ingestion-openapi-original.json#InitiativesController_importInitiativesConsolidatedBatchV1_v1
+  method: POST
+  path: /api/v1/customers/{customerId}/initiatives/consolidated-batch
+- operation: openapi/laurel-ingestion-openapi-original.json#InitiativesController_setInitiativeAccessBatchV1_v1
+  method: POST
+  path: /api/v1/customers/{customerId}/initiatives/batch/access
+- operation: openapi/laurel-ingestion-openapi-original.json#InitiativesController_setInitiativeCodesBatchV1_v1
+  method: POST
+  path: /api/v1/customers/{customerId}/initiatives/batch/codes

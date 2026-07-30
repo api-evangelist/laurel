@@ -1,0 +1,5374 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/laurel-identity-openapi-original.json, openapi/laurel-ingestion-openapi-original.json,
+  openapi/laurel-time-openapi-original.json
+description: Recommended x-agentic-access execution contracts, classified heuristically from the OpenAPI.
+  A governance starting point for exposing this API to AI agents — review and bind audience per deployment.
+  See research/curity/agentic-governance/.
+notes: Classified with word-boundary matching after stripping the NestJS "Controller" token from operationIds;
+  plain substring matching mis-reads "...Controller_create" as the safety keyword "control".
+summary:
+  operations: 364
+  by_action_class:
+    acting: 225
+    connected: 139
+  by_consequence:
+    read: 139
+    safety-critical: 9
+    write: 216
+  human_in_the_loop_required: 9
+operations:
+- path: /api/v1/tenants
+  method: post
+  operationId: TenantController_create_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/tenants
+  method: get
+  operationId: TenantController_getAll_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/tenants/{tenantId}
+  method: get
+  operationId: TenantController_get_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/tenants/{tenantId}
+  method: patch
+  operationId: TenantController_updateOneById_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/permissions
+  method: get
+  operationId: PermissionController_getAll_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/permissions/{permissionId}
+  method: get
+  operationId: PermissionController_getOne_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/ably/auth
+  method: get
+  operationId: AblyController_auth_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/clients/on-credentials-exchange
+  method: post
+  operationId: ClientController_onCredentialsExchange_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/clients
+  method: post
+  operationId: ClientController_create_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/clients
+  method: get
+  operationId: ClientController_getAll_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/clients/{clientId}
+  method: get
+  operationId: ClientController_get_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/clients/{clientId}
+  method: patch
+  operationId: ClientController_update_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/clients/{clientId}
+  method: delete
+  operationId: ClientController_delete_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers
+  method: post
+  operationId: CustomerController_create_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers
+  method: get
+  operationId: CustomerController_getAll_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/lookup
+  method: get
+  operationId: CustomerController_lookup_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}
+  method: get
+  operationId: CustomerController_get_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}
+  method: patch
+  operationId: CustomerController_update_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/tenant
+  method: get
+  operationId: CustomerController_getTenant_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/identities
+  method: post
+  operationId: CustomerController_createNewCustomerIdentity_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/connections
+  method: post
+  operationId: CustomerController_createConnection_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/connections/{connectionId}
+  method: patch
+  operationId: CustomerController_updateConnection_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/connections/{connectionId}
+  method: delete
+  operationId: CustomerController_deleteConnection_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/connections/{connectionId}/scim
+  method: patch
+  operationId: CustomerController_updateConnectionScim_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v1/customers/{customerId}/connections/{connectionId}/domains
+  method: put
+  operationId: CustomerController_updateConnectionDomains_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/region
+  method: get
+  operationId: CustomerController_getCustomerRegion_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/clients
+  method: get
+  operationId: CustomerClientController_getCustomerClients_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/clients
+  method: post
+  operationId: CustomerClientController_create_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/clients/{clientId}
+  method: get
+  operationId: CustomerClientController_getCustomerClientById_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/clients/{clientId}
+  method: delete
+  operationId: CustomerClientController_deleteCustomerClientById_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/managed-clients
+  method: get
+  operationId: CustomerManagedClientController_getCustomerManagedClients_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/managed-clients
+  method: post
+  operationId: CustomerManagedClientController_create_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/managed-clients/{clientId}
+  method: delete
+  operationId: CustomerManagedClientController_deleteCustomerManagedClientById_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/data-retention-audits
+  method: post
+  operationId: DataRetentionAuditController_create_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/data-retention-audits
+  method: get
+  operationId: DataRetentionAuditController_getAll_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/data-retention-audits/{auditId}
+  method: get
+  operationId: DataRetentionAuditController_getOne_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /healthcheck
+  method: get
+  operationId: HealthCheckController_getHeathStatus
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/impersonation-events
+  method: post
+  operationId: ImpersonationEventController_create_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/impersonation-events
+  method: get
+  operationId: ImpersonationEventController_getAll_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/impersonation-events/{eventId}
+  method: get
+  operationId: ImpersonationEventController_getOne_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/twilio/phone-lookups
+  method: get
+  operationId: TwilioController_getPhoneDetails_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/roles
+  method: get
+  operationId: RoleController_getAll_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/roles/{roleId}
+  method: get
+  operationId: RoleController_get_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users
+  method: get
+  operationId: CustomerUserController_search_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/customers/{customerId}/users
+  method: get
+  operationId: CustomerUserController_searchV2_v2
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users-lite
+  method: get
+  operationId: CustomerUserController_searchLite_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/by-ids
+  method: get
+  operationId: CustomerUserController_getUsersByIds_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/lookup
+  method: get
+  operationId: CustomerUserController_lookupUser_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/batch/lookup
+  method: post
+  operationId: CustomerUserController_lookupUsersBatch_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/translate-timekeeper-ids
+  method: post
+  operationId: CustomerUserController_translateTimekeeperIdsToUserIds_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/lookup/identity
+  method: post
+  operationId: CustomerUserController_lookupUserIdentityType_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/customers/{customerId}/users/lookup/identity
+  method: get
+  operationId: CustomerUserController_lookupUserByIdentity_v2
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/identities
+  method: get
+  operationId: CustomerUserController_lookupUserIdentity_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/identities
+  method: post
+  operationId: CustomerUserController_createNewUserIdentity_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/identities
+  method: put
+  operationId: CustomerUserController_updateUserIdentity_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/super-delegate
+  method: patch
+  operationId: CustomerUserController_setUserSuperDelegateStatus_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}
+  method: get
+  operationId: CustomerUserController_get_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}
+  method: patch
+  operationId: CustomerUserController_update_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}
+  method: delete
+  operationId: CustomerUserController_delete_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/customers/{customerId}/users/{userId}
+  method: patch
+  operationId: CustomerUserController_updateV2_v2
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/status
+  method: patch
+  operationId: CustomerUserController_updateStatus_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/identities/bulk
+  method: post
+  operationId: CustomerUserController_createBulkUserIdentities_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/email-aliases
+  method: post
+  operationId: CustomerUserController_createEmailAliases_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/email-aliases
+  method: delete
+  operationId: CustomerUserController_deleteEmailAlias_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/email-aliases
+  method: get
+  operationId: CustomerUserController_getEmailAliases_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/import
+  method: post
+  operationId: CustomerUserController_deprecatedImport_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/customers/{customerId}/users/import
+  method: post
+  operationId: CustomerUserController_importV2_v2
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/batch/import
+  method: post
+  operationId: CustomerUserController_postUserData_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/customers/{customerId}/users/batch/import
+  method: post
+  operationId: CustomerUserController_postUserDataV2_v2
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/delegators
+  method: get
+  operationId: DelegatorController_search_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/users
+  method: post
+  operationId: UserController_create_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/users/lookup
+  method: get
+  operationId: UserController_lookup_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/users/on-auth
+  method: post
+  operationId: UserController_onAuth_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/users/on-broker-auth
+  method: post
+  operationId: UserController_onBrokerAuth_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/users/current
+  method: get
+  operationId: UserController_findCurrentUser_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/users/current
+  method: patch
+  operationId: UserController_updateCurrent_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/users/{userId}
+  method: get
+  operationId: UserController_get_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/user-groups
+  method: get
+  operationId: UserGroupController_list_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/user-groups
+  method: post
+  operationId: UserGroupController_create_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/user-groups/by-external-id/{externalId}
+  method: put
+  operationId: UserGroupController_upsertByExternalId_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/user-groups/by-external-id/{externalId}
+  method: delete
+  operationId: UserGroupController_deleteByExternalId_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/user-groups/for-user/{userId}
+  method: get
+  operationId: UserGroupController_listForUser_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/user-groups/{userGroupId}
+  method: get
+  operationId: UserGroupController_get_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/user-groups/{userGroupId}
+  method: patch
+  operationId: UserGroupController_update_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/user-groups/{userGroupId}
+  method: delete
+  operationId: UserGroupController_delete_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/user-groups/{userGroupId}/users
+  method: get
+  operationId: UserGroupController_getUsersInGroup_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/user-groups/{userGroupId}/users
+  method: post
+  operationId: UserGroupController_addUsers_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/user-groups/{userGroupId}/users
+  method: delete
+  operationId: UserGroupController_removeUsers_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/user-groups/by-external-id/{externalId}/users
+  method: put
+  operationId: UserGroupController_syncMembersByExternalId_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/onboarding-profiles
+  method: post
+  operationId: OnboardingProfileController_createOnboardingProfile_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/onboarding-profiles/{userId}
+  method: get
+  operationId: OnboardingProfileController_getOnboardingProfile_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/onboarding-profiles/{userId}
+  method: patch
+  operationId: OnboardingProfileController_updateOnboardingProfile_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/onboarding-profiles/{userId}
+  method: delete
+  operationId: OnboardingProfileController_deleteOnboardingProfile_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/onboarding-profiles/{userId}/steps/{stepId}
+  method: patch
+  operationId: OnboardingProfileController_updateOnboardingStep_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/oauth/token
+  method: post
+  operationId: OauthController_createServiceToken_v1
+  source: openapi/laurel-identity-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /healthcheck
+  method: get
+  operationId: HealthCheckController_getHeathCheck
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/entries/release-pending
+  method: get
+  operationId: EntriesController_getAllReleasePendingEntries_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/lock-status
+  method: patch
+  operationId: EntriesController_updateEntriesLockStatus_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryExternalId}
+  method: patch
+  operationId: EntriesController_updateReleasedEntry_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryExternalId}
+  method: delete
+  operationId: EntriesController_deleteReleasedEntry_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/import-released
+  method: post
+  operationId: EntriesController_createReleasedEntry_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/entries/import-unreleased
+  method: post
+  operationId: EntriesController_importUnreleasedEntry_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/entries/external/{sourceSystem}
+  method: patch
+  operationId: EntriesController_updateUnreleasedEntriesBulk_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/entries/external/{sourceSystem}
+  method: delete
+  operationId: EntriesController_deleteUnreleasedEntriesBulk_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/clients/import
+  method: post
+  operationId: ClientsController_importClientV1_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/clients/batch
+  method: post
+  operationId: ClientsController_importClientBatchV1_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/codes/import
+  method: post
+  operationId: CodesController_importCodeV1_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/codes/batch
+  method: post
+  operationId: CodesController_importCodeBatchV1_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/code-types/import
+  method: post
+  operationId: CodeTypesController_importCodeTypeV1_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/import
+  method: post
+  operationId: InitiativesController_importInitiativeV1_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/batch
+  method: post
+  operationId: InitiativesController_importInitiativesBatchV1_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/consolidated-batch
+  method: post
+  operationId: InitiativesController_importInitiativesConsolidatedBatchV1_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/customers/{customerId}/initiatives/consolidated-batch
+  method: post
+  operationId: InitiativesController_importInitiativesConsolidatedBatchV2_v2
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/batch/access
+  method: post
+  operationId: InitiativesController_setInitiativeAccessBatchV1_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/batch/walls-access
+  method: post
+  operationId: InitiativesController_setInitiativeAccessBatchWithWallsV1_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/batch/codes
+  method: post
+  operationId: InitiativesController_setInitiativeCodesBatchV1_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/access
+  method: post
+  operationId: InitiativesController_setInitiativeAccessV1_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/codes
+  method: post
+  operationId: InitiativesController_setInitiativeCodesV1_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/codes
+  method: delete
+  operationId: InitiativesController_deleteInitiativeCodesV1_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/validations/customers/{customerId}/initiatives/{initiativeExternalId}/rules
+  method: post
+  operationId: EntryValidationRulesController_setOneForInitiative_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/delegates
+  method: post
+  operationId: UsersController_updateUserDelegates_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/delegates/batch
+  method: post
+  operationId: UsersController_updateUserDelegatesBatch_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/working-timekeepers/sync
+  method: post
+  operationId: WorkingTimekeepersController_sync_v1
+  source: openapi/laurel-ingestion-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/initiative-props/recent
+  method: get
+  operationId: InitiativeUsageController_findManyByRange_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/initiative-props/recent
+  method: get
+  operationId: InitiativeUsageController_findManyByRangeV2_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/initiative-props/{initiativeId}/recent
+  method: delete
+  operationId: InitiativeUsageController_deleteManyByInitiativeId_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/clients/{clientId}
+  method: get
+  operationId: ClientController_findOneById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/clients
+  method: get
+  operationId: CustomerClientController_search_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/clients/external-id/{externalId}
+  method: get
+  operationId: CustomerClientController_getByExternalId_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/clients/import
+  method: post
+  operationId: CustomerClientController_import_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/clients/{clientId}
+  method: get
+  operationId: CustomerClientController_getClient_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/clients/override-compliance-rules/affected-count
+  method: post
+  operationId: CustomerClientController_getAffectedCount_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v1/customers/{customerId}/clients/override-compliance-rules
+  method: post
+  operationId: CustomerClientController_overrideComplianceRules_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v1/code-types
+  method: get
+  operationId: CodeTypeController_findMany_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/code-types/{codeTypeId}
+  method: get
+  operationId: CodeTypeController_findOneById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/code-types/import
+  method: post
+  operationId: CustomerCodeTypeController_import_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/code-types
+  method: get
+  operationId: CustomerCodeTypeController_findManyForCurrentCustomer_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/initiatives
+  method: get
+  operationId: CustomerInitiativeController_search_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/initiatives
+  method: post
+  operationId: CustomerInitiativeDtoController_createPmsInitiativeWithLaurelUser_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}
+  method: get
+  operationId: CustomerInitiativeController_findOneById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/initiatives/import
+  method: post
+  operationId: CustomerInitiativeController_import_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/access
+  method: post
+  operationId: CustomerInitiativeController_setInitiativeAccess_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/internal-access
+  method: post
+  operationId: CustomerInitiativeController_setInitiativeInternalAccess_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/internal-access
+  method: get
+  operationId: CustomerInitiativeController_getInitiativeInternalAccess_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/internal-access
+  method: delete
+  operationId: CustomerInitiativeController_deleteInitiativeInternalAccess_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/internal-access/users
+  method: post
+  operationId: CustomerInitiativeController_addInternalAccessUsers_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/internal-access/users
+  method: delete
+  operationId: CustomerInitiativeController_removeInternalAccessUsers_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/internal-groups
+  method: post
+  operationId: CustomerInitiativeController_setInitiativeInternalGroupRestrictions_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/internal-groups
+  method: get
+  operationId: CustomerInitiativeController_getInitiativeInternalGroupRestrictions_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/internal-groups
+  method: delete
+  operationId: CustomerInitiativeController_deleteInitiativeInternalGroupRestrictions_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/internal-groups/groups
+  method: post
+  operationId: CustomerInitiativeController_addInternalGroupRestrictionsGroups_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/internal-groups/groups
+  method: delete
+  operationId: CustomerInitiativeController_removeInternalGroupRestrictionsGroups_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/access-restrictions
+  method: get
+  operationId: CustomerInitiativeController_getInitiativeAccessSummary_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/access-restrictions/users
+  method: get
+  operationId: CustomerInitiativeController_getInitiativeRestrictedUsers_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/access-restrictions/users/lookup
+  method: post
+  operationId: CustomerInitiativeController_checkInitiativeUsers_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/access-restrictions/groups
+  method: get
+  operationId: CustomerInitiativeController_getInitiativeGroups_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeId}/access/{accessProviderName}
+  method: get
+  operationId: CustomerInitiativeController_getInitiativeAccess_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/initiatives
+  method: get
+  operationId: InitiativeController_searchMany_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/initiatives
+  method: post
+  operationId: InitiativeController_createUserInitiative_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/initiatives/{initiativeId}
+  method: get
+  operationId: InitiativeController_findOneById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/clients/{clientId}/initiatives/{initiativeId}
+  method: get
+  operationId: CustomerClientInitiativeController_getClientPmsInitiative_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/user-initiatives
+  method: get
+  operationId: CustomerUserInitiativeController_getUserInitiatives_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/user-initiatives/{initiativeId}
+  method: patch
+  operationId: CustomerUserInitiativeController_updateUserInitiative_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/user-initiatives/{initiativeId}
+  method: delete
+  operationId: CustomerUserInitiativeController_deleteUserInitiative_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/user-initiatives
+  method: post
+  operationId: UserInitiativeController_createUserInitiative_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/user-initiatives
+  method: get
+  operationId: UserInitiativeController_getUserInitiatives_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/user-initiatives/{initiativeId}
+  method: patch
+  operationId: UserInitiativeController_findOneById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/user-initiatives/{initiativeId}
+  method: delete
+  operationId: UserInitiativeController_deleteUserInitiative_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/customers/{customerId}/users/{userId}/code-types/{codeTypeId}/codes
+  method: get
+  operationId: CodeController_findManyForUserV2_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/code-types/{codeTypeId}/codes
+  method: get
+  operationId: CodeController_findManyForCurrentUserV2_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/code-types/{codeTypeId}/validate-code
+  method: get
+  operationId: CodeController_validateCodeInCodeTypeWithInitiative_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/code-types/{codeTypeId}/codes
+  method: get
+  operationId: CodeController_findManyForUser_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/code-types/{codeTypeId}/codes
+  method: get
+  operationId: CodeController_findManyForCurrentUser_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/codes/{codeId}
+  method: get
+  operationId: CodeController_findOneById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/codes/import
+  method: post
+  operationId: CustomerCodeController_import_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/code-types/{codeTypeId}/codes
+  method: get
+  operationId: CustomerCodeController_findManyForCustomerWithPagination_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/code-types/{codeTypeId}/codes/{codeId}
+  method: get
+  operationId: CustomerCodeController_findOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/codes
+  method: delete
+  operationId: InitiativeCodesController_removeInitiativeCodes_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/codes
+  method: post
+  operationId: InitiativeCodesController_addInitiativeCodes_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/customers/{customerId}/initiatives/{initiativeExternalId}/codes
+  method: post
+  operationId: InitiativeCodesController_addInitiativeCodesV2_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/code-types/{codeTypeExternalId}/codes
+  method: post
+  operationId: InitiativeCodesController_addInitiativeCodesByCodeType_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/code-types/{codeTypeExternalId}/codes
+  method: delete
+  operationId: InitiativeCodesController_removeInitiativeCodesByCodeType_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/code-types/{codeTypeId}/default-code
+  method: get
+  operationId: DefaultCodeController_findManyByCodeTypeId_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/code-types/{codeTypeId}/default-code
+  method: post
+  operationId: DefaultCodeController_createOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/code-types/{codeTypeId}/default-codes/{codeId}
+  method: delete
+  operationId: DefaultCodeController_deleteOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/code-types/{codeTypeId}/default-code
+  method: get
+  operationId: CustomerDefaultCodeController_findManyByCodeTypeId_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/code-types/{codeTypeId}/default-code
+  method: post
+  operationId: CustomerDefaultCodeController_createOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/code-types/{codeTypeId}/default-codes/{codeId}
+  method: delete
+  operationId: CustomerDefaultCodeController_deleteOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/code-types/{codeTypeId}/default-code
+  method: get
+  operationId: CustomerDefaultCodeController_findManyByCodeTypeIdForUser_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/code-types/{codeTypeId}/default-code
+  method: post
+  operationId: CustomerDefaultCodeController_createOneForUser_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/code-types/{codeTypeId}/default-codes/{codeId}
+  method: delete
+  operationId: CustomerDefaultCodeController_deleteOneForUser_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/entry-date-restrictions
+  method: post
+  operationId: CustomerEntryDateRestrictionController_create_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/entry-date-restrictions
+  method: get
+  operationId: CustomerEntryDateRestrictionController_list_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/entry-date-restrictions/active/now
+  method: get
+  operationId: CustomerEntryDateRestrictionController_checkActive_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/entry-date-restrictions/active/check
+  method: post
+  operationId: CustomerEntryDateRestrictionController_checkActiveBatch_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/entry-date-restrictions/active/check-multi-type
+  method: post
+  operationId: CustomerEntryDateRestrictionController_checkActiveMultiType_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/entry-date-restrictions/{id}
+  method: get
+  operationId: CustomerEntryDateRestrictionController_getOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/entry-date-restrictions/{id}
+  method: patch
+  operationId: CustomerEntryDateRestrictionController_update_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/entry-date-restrictions/{id}
+  method: delete
+  operationId: CustomerEntryDateRestrictionController_softDelete_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /healthcheck
+  method: get
+  operationId: HealthCheckController_getHeathCheck
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/initiative-props
+  method: get
+  operationId: InitiativePropsController_findManyByTag_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/initiative-props
+  method: get
+  operationId: InitiativePropsController_findManyByTagAsDto_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/initiatives/{initiativeId}/props
+  method: get
+  operationId: InitiativePropsController_findOrCreateOneProps_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/initiatives/{initiativeId}/props
+  method: patch
+  operationId: InitiativePropsController_updateOrCreateOneProps_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/initiatives
+  method: get
+  operationId: SearchController_searchInitiatives_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/initiatives/search
+  method: get
+  operationId: CustomerUserSearchController_searchInitiatives_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/customers/{customerId}/users/{userId}/initiatives/search
+  method: get
+  operationId: CustomerUserSearchController_searchInitiativeDtos_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/initiatives/{initiativeId}
+  method: get
+  operationId: CustomerUserInitiativeDtoController_getInitiativeV2_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/daily-selected-initiatives
+  method: get
+  operationId: DailySelectedInitiativeController_findManyByDate_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/daily-selected-initiatives
+  method: post
+  operationId: DailySelectedInitiativeController_createOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/daily-selected-initiatives
+  method: delete
+  operationId: DailySelectedInitiativeController_deleteOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/narrative-templates
+  method: get
+  operationId: NarrativeTemplateController_getManyByUserId_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/narrative-templates
+  method: post
+  operationId: NarrativeTemplateController_createOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/narrative-templates/{narrativeTemplateId}
+  method: patch
+  operationId: NarrativeTemplateController_updateOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/narrative-templates/{narrativeTemplateId}
+  method: delete
+  operationId: NarrativeTemplateController_deleteOneById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/narrative-templates
+  method: get
+  operationId: CustomerNarrativeTemplateController_getCustomerNarrativeTemplates_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/narrative-templates
+  method: post
+  operationId: CustomerNarrativeTemplateController_createCustomerNarrativeTemplate_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/narrative-templates/{narrativeTemplateId}
+  method: get
+  operationId: CustomerNarrativeTemplateController_getCustomerNarrativeTemplate_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/narrative-templates/{narrativeTemplateId}
+  method: patch
+  operationId: CustomerNarrativeTemplateController_updateCustomerNarrativeTemplate_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/narrative-templates/{narrativeTemplateId}
+  method: delete
+  operationId: CustomerNarrativeTemplateController_deleteCustomerNarrativeTemplate_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/narrative-templates/sync
+  method: post
+  operationId: CustomerNarrativeTemplateController_syncCustomerNarrativeTemplates_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/narrative-templates
+  method: get
+  operationId: CustomerNarrativeTemplateController_getUserNarrativeTemplates_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/narrative-templates
+  method: post
+  operationId: CustomerNarrativeTemplateController_createUserNarrativeTemplate_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/narrative-templates/{narrativeTemplateId}
+  method: patch
+  operationId: CustomerNarrativeTemplateController_updateUserNarrativeTemplate_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/narrative-templates/{narrativeTemplateId}
+  method: delete
+  operationId: CustomerNarrativeTemplateController_deleteUserNarrativeTemplate_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/narrative-templates/sync
+  method: post
+  operationId: CustomerNarrativeTemplateController_syncUserNarrativeTemplates_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/settings
+  method: get
+  operationId: SettingsController_getCustomerSettings_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/settings
+  method: patch
+  operationId: SettingsController_updateCustomerSettings_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/timer-drafts
+  method: get
+  operationId: TimerDraftController_findManyByDate_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/timer-drafts
+  method: post
+  operationId: TimerDraftController_createOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/timer-drafts/{timerDraftId}
+  method: patch
+  operationId: TimerDraftController_updateOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/timer-drafts/{timerDraftId}
+  method: delete
+  operationId: TimerDraftController_deleteOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/working-timekeepers/sync
+  method: post
+  operationId: WorkingTimekeeperController_sync_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/working-timekeepers/my-restrictions
+  method: get
+  operationId: WorkingTimekeeperController_getMyRestrictions_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/working-timekeepers/initiatives/{initiativeId}
+  method: get
+  operationId: WorkingTimekeeperController_getForInitiative_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/activities/track-from-service
+  method: post
+  operationId: ActivityController_trackOneFromService_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/activities/update-from-service
+  method: post
+  operationId: ActivityController_updateOneFromService_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/activities/track-from-agent
+  method: post
+  operationId: ActivityController_trackOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/activities
+  method: post
+  operationId: ActivityController_create_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/activities
+  method: get
+  operationId: ActivityController_findMany_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/activities/dismiss-open-time
+  method: post
+  operationId: ActivityController_dismissOpenTime_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/activities/timer
+  method: post
+  operationId: ActivityController_createTimerActivity_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/activities
+  method: get
+  operationId: ActivityController_findManyActivityDtos_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v3/activities
+  method: get
+  operationId: ActivityController_findManyActivityDtosWithPagination_v3
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/activities/with-metadata
+  method: get
+  operationId: ActivityController_findManyWithMetadata_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/activities/{activityId}
+  method: delete
+  operationId: ActivityController_deleteActivityById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/activities/{activityId}
+  method: patch
+  operationId: ActivityController_updateOneById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/activities/archive
+  method: post
+  operationId: ActivityController_archiveActivities_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/activities/unarchive
+  method: post
+  operationId: ActivityController_unarchiveActivities_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/activities/signal-backfill
+  method: post
+  operationId: ActivityController_enqueueSignalActivityBackfill_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/activities/copy-from/customers/{customerId}/users/{userId}
+  method: post
+  operationId: ActivityController_copyActivities_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v3/public/customers/{customerId}/entries
+  method: get
+  operationId: CustomerEntryPublicController_findManyWithPaginationV3_v3
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/public/customers/{customerId}/entries/bulk-release
+  method: post
+  operationId: CustomerEntryPublicController_bulkRelease_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/public/customers/{customerId}/users/{userId}/entries/{entryId}/unrelease
+  method: post
+  operationId: CustomerEntryPublicController_unrelease_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/public/customers/{customerId}/users/{userId}/entries/{entryId}/override
+  method: patch
+  operationId: CustomerEntryPublicController_overrideOneEntry_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v1/public/customers/{customerId}/users/{userId}/entries/{entryId}
+  method: delete
+  operationId: CustomerEntryPublicController_deleteOneEntry_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/entries
+  method: get
+  operationId: EntryController_findManyByDate_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/entries
+  method: post
+  operationId: EntryController_createOneOld_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/entries
+  method: get
+  operationId: EntryController_findManyWithPagination_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/entries
+  method: post
+  operationId: EntryController_createOne_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v3/entries
+  method: get
+  operationId: EntryController_findManyEntryDtoByDate_v3
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v3/entries
+  method: post
+  operationId: EntryController_createOneEntryDto_v3
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/entries/initiatives
+  method: get
+  operationId: EntryController_getInitiativeIdsByWorkDateRange_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/entries/split
+  method: post
+  operationId: EntryController_splitActivity_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/entries/bulk
+  method: post
+  operationId: EntryController_createManyEntries_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/entries/merge
+  method: post
+  operationId: EntryController_mergeManyEntry_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/entries/merge
+  method: post
+  operationId: EntryController_mergeManyEntryDto_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/entries/{entryId}
+  method: patch
+  operationId: EntryController_updateOneById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/entries/{entryId}
+  method: delete
+  operationId: EntryController_deleteOneById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/entries/{entryId}
+  method: get
+  operationId: EntryController_findOneById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/entries/{entryId}
+  method: patch
+  operationId: EntryController_updateOneByIdV2_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/entries/{entryId}
+  method: delete
+  operationId: EntryController_deleteOneEntryDtoById_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v3/entries/{entryId}
+  method: patch
+  operationId: EntryController_updateOneByIdRespondWithEntryDto_v3
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v3/entries/{entryId}
+  method: get
+  operationId: EntryController_getEntry_v3
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/entries/{entryId}/release
+  method: post
+  operationId: EntryController_releaseOneById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/entries/{entryId}/release
+  method: post
+  operationId: EntryController_releaseEntryDtoById_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/entries/{entryId}/unrelease
+  method: post
+  operationId: EntryController_unreleaseOneById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/entries/{entryId}/unmerge
+  method: post
+  operationId: EntryController_unmergeEntry_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/entries/{entryId}/dismiss-autostop
+  method: post
+  operationId: EntryController_dismissAutostop_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}/shares
+  method: get
+  operationId: CustomerEntryShareController_getEntryShares_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}/share-eligibility
+  method: post
+  operationId: CustomerEntryShareController_getShareEligibility_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}/share
+  method: post
+  operationId: CustomerEntryShareController_shareEntry_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/entries/{entryId}/shares
+  method: get
+  operationId: EntryShareController_getEntryShares_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/entries/{entryId}/share-eligibility
+  method: post
+  operationId: EntryShareController_getShareEligibility_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/entries/{entryId}/share
+  method: post
+  operationId: EntryShareController_shareEntry_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/validations/rules/applicable
+  method: get
+  operationId: EntryValidationRulesController_findApplicable_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/validations/customers/{customerId}/rules
+  method: get
+  operationId: EntryValidationRulesController_findOneForCustomer_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/validations/customers/{customerId}/rules
+  method: post
+  operationId: EntryValidationRulesController_setOneForCustomer_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/validations/customers/{customerId}/initiatives/{initiativeId}/rules
+  method: get
+  operationId: EntryValidationRulesController_findOneForInitiative_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/validations/customers/{customerId}/initiatives/{initiativeExternalId}/rules
+  method: post
+  operationId: EntryValidationRulesController_setOneForInitiative_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/timers
+  method: get
+  operationId: TimerController_findMany_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/timers
+  method: post
+  operationId: TimerController_createOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/timers/{timerId}
+  method: get
+  operationId: TimerController_findOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/timers/{timerId}
+  method: patch
+  operationId: TimerController_updateOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/timers/{timerId}
+  method: delete
+  operationId: TimerController_deleteTimerById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/timers
+  method: post
+  operationId: V2TimerController_startTimer_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/timers
+  method: get
+  operationId: V2TimerController_getTimers_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/timers/{timerId}
+  method: patch
+  operationId: V2TimerController_updateOne_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/timers/{timerId}/stop
+  method: post
+  operationId: V2TimerController_stopTimer_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v3/timers
+  method: post
+  operationId: V3TimerController_initializeTimer_v3
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v3/timers
+  method: get
+  operationId: V3TimerController_getTimers_v3
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v3/timers/start
+  method: post
+  operationId: V3TimerController_startTimer_v3
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v3/timers/stop
+  method: post
+  operationId: V3TimerController_stopTimer_v3
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v3/timers/adjust
+  method: patch
+  operationId: V3TimerController_adjustTimer_v3
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v3/timers/running
+  method: get
+  operationId: V3TimerController_getRunningTimers_v3
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v3/timers/{timerId}
+  method: delete
+  operationId: V3TimerController_deleteTimer_v3
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/activities
+  method: get
+  operationId: CustomerActivityController_findMany_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/activities/{activityId}
+  method: get
+  operationId: CustomerActivityController_getActivity_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/activities/{activityId}
+  method: patch
+  operationId: CustomerActivityController_updateOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}
+  method: get
+  operationId: CustomerEntryController_findOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}
+  method: delete
+  operationId: CustomerEntryController_deleteOneEntry_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}
+  method: patch
+  operationId: CustomerEntryController_updateOneEntry_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/entries
+  method: get
+  operationId: CustomerEntryController_findManyWithUpdatedAt_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/customers/{customerId}/entries
+  method: get
+  operationId: CustomerEntryController_findManyWithPagination_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v3/customers/{customerId}/entries
+  method: get
+  operationId: CustomerEntryController_findManyWithPaginationV3_v3
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v4/customers/{customerId}/entries
+  method: get
+  operationId: CustomerEntryController_findManyWithPaginationV4_v4
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/entries/export
+  method: get
+  operationId: CustomerEntryController_export_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/customers/{customerId}/entries/export
+  method: get
+  operationId: CustomerEntryController_exportV2_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/entries/release-pending
+  method: get
+  operationId: CustomerEntryController_exportReleasePending_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/entries/release-succeeded/batch
+  method: post
+  operationId: CustomerEntryController_batchReleaseSuccess_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}/release
+  method: post
+  operationId: CustomerEntryController_releaseOneById_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/entries/bulk-release
+  method: post
+  operationId: CustomerEntryController_bulkRelease_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}/release-succeeded
+  method: post
+  operationId: CustomerEntryController_releaseSuccess_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}/release-failed
+  method: post
+  operationId: CustomerEntryController_releaseFailed_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/entries/bulk-unrelease
+  method: post
+  operationId: CustomerEntryController_bulkUnrelease_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}/unrelease
+  method: post
+  operationId: CustomerEntryController_unrelease_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/lock-status
+  method: post
+  operationId: CustomerEntryController_updateEntriesLockStatus_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}/codes/assign-by-laurel
+  method: post
+  operationId: CustomerEntryController_assignCodeByLaurel_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/external/{entryExternalId}
+  method: delete
+  operationId: CustomerEntryController_deleteOneEntryByExternalId_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}/undelete
+  method: post
+  operationId: CustomerEntryController_undeleteOneEntry_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/{entryId}/override
+  method: patch
+  operationId: CustomerEntryController_overrideOneEntry_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v2/customers/{customerId}/users/{userId}/entries/{entryExternalId}/override
+  method: patch
+  operationId: CustomerEntryController_overrideOneEntryV2_v2
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/import-released
+  method: post
+  operationId: CustomerEntryController_importReleasedPmsEntry_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/import-unreleased
+  method: post
+  operationId: CustomerEntryController_importUnreleasedEntry_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries
+  method: post
+  operationId: CustomerEntryController_createOneEntryForUser_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/entries/import-temp
+  method: post
+  operationId: CustomerEntryController_importTempEntry_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/entries/external-id/{externalId}
+  method: get
+  operationId: CustomerEntryController_getEntryByExternalId_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/timer-carryovers
+  method: get
+  operationId: TimerCarryoverController_findAllByUser_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/timer-carryovers
+  method: post
+  operationId: TimerCarryoverController_runCarryover_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/timer-carryovers/{date}
+  method: get
+  operationId: TimerCarryoverController_findOneByDate_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/work-groups
+  method: post
+  operationId: CustomerWorkGroupController_createOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/work-groups
+  method: get
+  operationId: CustomerWorkGroupController_findManyForUserByRange_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/work-groups/{workGroupId}
+  method: get
+  operationId: CustomerWorkGroupController_findOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/users/{userId}/work-groups/{workGroupId}
+  method: patch
+  operationId: CustomerWorkGroupController_updateOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/users/{userId}/work-groups/{workGroupId}
+  method: delete
+  operationId: CustomerWorkGroupController_deleteOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/work-groups
+  method: get
+  operationId: WorkGroupController_findManyForUserByRange_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/work-groups/{workGroupId}
+  method: delete
+  operationId: WorkGroupController_deleteOne_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/work-groups/{workGroupId}/activities/{activityId}
+  method: delete
+  operationId: WorkGroupController_deleteActivity_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/work-groups/{workGroupId}/initiatives/{initiativeId}
+  method: delete
+  operationId: WorkGroupController_deleteInitiative_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/timekeeper-goals
+  method: put
+  operationId: TimekeeperGoalController_updateGoals_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/timekeeper-goals
+  method: get
+  operationId: TimekeeperGoalController_getTimekeeperGoal_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/timekeeper-goals
+  method: put
+  operationId: CustomerTimekeeperGoalController_upsertCustomerGoal_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/timekeeper-goals
+  method: get
+  operationId: CustomerTimekeeperGoalController_getCustomerTimekeeperGoal_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/customers/{customerId}/metrics/entry
+  method: get
+  operationId: CustomerMetricsController_getEntryMetrics_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/metrics/entry-release
+  method: get
+  operationId: MetricsController_getEntryReleaseMetrics_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/metrics/entry-work-dates
+  method: get
+  operationId: MetricsController_getEntryWorkDatesByInitiative_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/timesheets
+  method: patch
+  operationId: TimesheetController_updateTimesheet_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/timesheets
+  method: delete
+  operationId: TimesheetController_deleteTimesheet_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/timesheets/initiatives/suggest
+  method: post
+  operationId: TimesheetController_suggestInitiatives_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/timesheets/initiatives/predict
+  method: post
+  operationId: TimesheetController_predictInitiatives_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/timesheets/initiatives/dismiss
+  method: post
+  operationId: TimesheetController_dismissInitiatives_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/timesheets/predictions/dismiss
+  method: post
+  operationId: TimesheetController_dismissPredictions_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/time-csv-exports/entries
+  method: post
+  operationId: ExportController_exportEntries_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/customers/{customerId}/time-csv-exports/entries/download
+  method: get
+  operationId: ExportController_getDownloadUrl_v1
+  source: openapi/laurel-time-openapi-original.json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

@@ -1,0 +1,24 @@
+# Laurel APIs
+
+## Laurel APIs
+
+- [Introduction](https://developer.laurel.ai/readme.md): And how our APIs make it happen.
+- [Authentication](https://developer.laurel.ai/guides/authentication.md)
+- [Building A Connector](https://developer.laurel.ai/guides/building-a-connector.md)
+- [Public Api Endpoints](https://developer.laurel.ai/guides/public-api-endpoints.md)
+- [Identity](https://developer.laurel.ai/services/identity.md)
+- [Oauth](https://developer.laurel.ai/services/identity/oauth.md)
+- [Users](https://developer.laurel.ai/services/identity/users.md)
+- [Ingestion](https://developer.laurel.ai/services/ingestion.md)
+- [Clients](https://developer.laurel.ai/services/ingestion/clients.md)
+- [Codes](https://developer.laurel.ai/services/ingestion/codes.md)
+- [Initiatives](https://developer.laurel.ai/services/ingestion/initiatives.md)
+- [Users](https://developer.laurel.ai/services/ingestion/users.md)
+- [Validation Rules](https://developer.laurel.ai/services/ingestion/validation-rules.md)
+- [Time](https://developer.laurel.ai/services/time.md)
+- [Clients](https://developer.laurel.ai/services/time/clients.md)
+- [Code Types](https://developer.laurel.ai/services/time/code-types.md)
+- [Codes](https://developer.laurel.ai/services/time/codes.md)
+- [Entries](https://developer.laurel.ai/services/time/entries.md)
+- [Initiatives](https://developer.laurel.ai/services/time/initiatives.md)
+- [Validation Rules](https://developer.laurel.ai/services/time/validation-rules.md)

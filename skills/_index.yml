@@ -1,0 +1,58 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/laurel-identity-openapi-original.json, openapi/laurel-ingestion-openapi-original.json,
+  openapi/laurel-time-openapi-original.json
+description: Packaged Agent Skills for the Laurel APIs. Every step is grounded in an operationId
+  verified verbatim against the published OpenAPI documents.
+skills:
+- file: laurel-authenticate.md
+  name: Authenticate to the Laurel APIs
+  description: Exchange machine-to-machine client credentials for a Bearer JWT and call the Laurel
+    Time, Identity and Ingestion services.
+  api: openapi/laurel-identity-openapi-original.json
+  operations:
+  - OauthController_createServiceToken_v1
+  - CustomerController_getCustomerRegion_v1
+- file: laurel-build-a-connector.md
+  name: Build a Laurel connector from a practice-management system
+  description: Seed Laurel with clients, code types, codes and initiatives from a firm's billing or
+    practice-management system using the Ingestion Service batch imports.
+  api: openapi/laurel-ingestion-openapi-original.json
+  operations:
+  - ClientsController_importClientBatchV1_v1
+  - CodeTypesController_importCodeTypeV1_v1
+  - CodesController_importCodeBatchV1_v1
+  - InitiativesController_importInitiativesConsolidatedBatchV2_v2
+  - InitiativesController_setInitiativeAccessV1_v1
+  - InitiativesController_setInitiativeCodesV1_v1
+  - EntryValidationRulesController_setOneForInitiative_v1
+  - UsersController_updateUserDelegatesBatch_v1
+- file: laurel-release-time-to-billing.md
+  name: Release Laurel time entries into a billing system
+  description: Pull review-ready time entries out of Laurel, release them to the firm's billing
+    system, and handle corrections, unrelease and overrides.
+  api: openapi/laurel-time-openapi-original.json
+  operations:
+  - CustomerEntryPublicController_findManyWithPaginationV3_v3
+  - CustomerEntryPublicController_bulkRelease_v1
+  - CustomerEntryPublicController_unrelease_v1
+  - CustomerEntryPublicController_overrideOneEntry_v1
+  - CustomerEntryPublicController_deleteOneEntry_v1
+  - EntriesController_getAllReleasePendingEntries_v1
+  - EntriesController_createReleasedEntry_v1
+  - EntriesController_updateReleasedEntry_v1
+  - EntriesController_deleteReleasedEntry_v1
+- file: laurel-provision-users.md
+  name: Provision and look up Laurel users
+  description: Create, find, update and deactivate timekeepers in the Laurel Identity Service, and
+    reconcile them against a firm's directory or timekeeper ids.
+  api: openapi/laurel-identity-openapi-original.json
+  operations:
+  - CustomerUserController_search_v1
+  - CustomerUserController_lookupUser_v1
+  - CustomerUserController_lookupUsersBatch_v1
+  - CustomerUserController_translateTimekeeperIdsToUserIds_v1
+  - CustomerUserController_get_v1
+  - CustomerUserController_updateV2_v2
+  - CustomerUserController_createNewUserIdentity_v1
+  - CustomerUserController_delete_v1

@@ -1,0 +1,61 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Time Service API
+  version: 1.0.0
+extends: openapi/laurel-time-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: laurel
+    x-apievangelist-service: time
+    x-apievangelist-docs: https://developer.laurel.ai/services/time
+    x-apievangelist-harvested: '2026-07-19'
+    x-apievangelist-source: https://developer.laurel.ai/llms.txt
+    description: Laurel Time Service API. Laurel automatically captures work activity across the applications
+      professionals use, enriches it into review-ready timesheets, and releases it into the firm's billing
+      system. Harvested by API Evangelist; the published document ships an empty description.
+- target: $.servers
+  update:
+  - url: https://api.laurel.ai/time
+    description: Production time Service. Time Service endpoints are region-specific and issued per customer.
+- target: $.components.securitySchemes['ApiBearerAuth']
+  update:
+    description: Bearer JWT obtained from the client_credentials exchange at https://identity.laurel.ai/api/v1/oauth/token
+      with audience https://timeautomation.com. Tokens expire in 86400 seconds.
+    x-token-endpoint: https://identity.laurel.ai/api/v1/oauth/token
+    x-token-ttl-seconds: 86400
+- target: $.info
+  update:
+    x-apievangelist-tags:
+    - Activities
+    - Clients
+    - Code Types
+    - Codes
+    - DailySelectedInitiatives
+    - Entries
+    - Entry Date Restrictions
+    - Exports
+    - HealthCheck
+    - Initiative Props
+    - InitiativeDto
+    - Initiatives
+    - Metrics
+    - Narrative Templates
+    - Public
+    - Search
+    - Settings
+    - Timekeeper Goals
+    - Timer Carryovers
+    - Timer Draft
+    - Timers
+    - Timesheets
+    - Validation Rules
+    - Work Groups
+    - Working Timekeepers
+    x-apievangelist-operation-count: 241
+    x-apievangelist-public-operation-count: 24
+    x-apievangelist-gaps:
+    - no servers[] declared in the published document
+    - no 4xx/5xx responses declared on any operation
+    - majority of operations carry no summary or description
+    - info.description is empty

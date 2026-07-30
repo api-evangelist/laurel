@@ -1,0 +1,34 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+source: https://trust.laurel.ai/
+url: https://trust.laurel.ai/
+platform: SafeBase
+certifications:
+- SOC 2 Type 2
+- ISO/IEC 42001:2023
+- HIPAA
+- GDPR
+- CCPA
+documents:
+- name: SOC 2 Report
+  access: request
+- name: Pentest Report
+  access: request
+- name: Security Whitepaper
+  access: request
+- name: Data Flow Diagram (DFD)
+  access: request
+notes: Documents are gated behind an access request / NDA workflow. ISO/IEC 42001:2023 is the AI
+  management-system standard, notable for an AI-first timekeeping vendor. SOC 2 Type II certification
+  was announced at
+  https://www.laurel.ai/resources-post/laurel-achieves-soc-2-type-ii-certification-building-with-confidence-for-secure-and-efficient-digital-work-management
+evidence:
+- source: https://trust.laurel.ai/
+  keywords:
+  - soc 2 type 2
+  - iso/iec 42001:2023
+  - hipaa
+  - gdpr
+  - ccpa
+  - trust center

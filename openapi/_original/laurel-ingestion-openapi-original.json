@@ -1,0 +1,2507 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/healthcheck": {
+      "get": {
+        "operationId": "HealthCheckController_getHeathCheck",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HealthCheck"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/entries/release-pending": {
+      "get": {
+        "operationId": "EntriesController_getAllReleasePendingEntries_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReleasePendingTimekeeperIdDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Entries"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/users/{userId}/entries/lock-status": {
+      "patch": {
+        "operationId": "EntriesController_updateEntriesLockStatus_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEntriesLockStatusRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Entries"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/users/{userId}/entries/{entryExternalId}": {
+      "patch": {
+        "operationId": "EntriesController_updateReleasedEntry_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "entryExternalId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OverrideOneEntryRequestV2Dto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Entries"
+        ]
+      },
+      "delete": {
+        "operationId": "EntriesController_deleteReleasedEntry_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "entryExternalId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Entries"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/users/{userId}/entries/import-released": {
+      "post": {
+        "operationId": "EntriesController_createReleasedEntry_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportPmsEntryRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Entries"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/entries/import-unreleased": {
+      "post": {
+        "operationId": "EntriesController_importUnreleasedEntry_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportUnreleasedEntriesRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Entries"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/entries/external/{sourceSystem}": {
+      "patch": {
+        "operationId": "EntriesController_updateUnreleasedEntriesBulk_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "sourceSystem",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkUpdateUnreleasedEntriesRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Entries"
+        ]
+      },
+      "delete": {
+        "operationId": "EntriesController_deleteUnreleasedEntriesBulk_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "sourceSystem",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkDeleteUnreleasedEntriesRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Entries"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/clients/import": {
+      "post": {
+        "operationId": "ClientsController_importClientV1_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportCustomerClientDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Clients",
+          "Public"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/clients/batch": {
+      "post": {
+        "operationId": "ClientsController_importClientBatchV1_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "isInitial",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportCustomerClientsBatchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Clients",
+          "Public"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/codes/import": {
+      "post": {
+        "operationId": "CodesController_importCodeV1_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportCustomerCodeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Codes",
+          "Public"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/codes/batch": {
+      "post": {
+        "operationId": "CodesController_importCodeBatchV1_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "isInitial",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportCustomerCodesBatchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Codes",
+          "Public"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/code-types/import": {
+      "post": {
+        "operationId": "CodeTypesController_importCodeTypeV1_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportCustomerCodeTypeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "CodeTypes"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/initiatives/import": {
+      "post": {
+        "operationId": "InitiativesController_importInitiativeV1_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportCustomerInitiativeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Initiatives"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/initiatives/batch": {
+      "post": {
+        "deprecated": true,
+        "operationId": "InitiativesController_importInitiativesBatchV1_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportCustomerInitiativesBatchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Initiatives"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/initiatives/consolidated-batch": {
+      "post": {
+        "deprecated": true,
+        "operationId": "InitiativesController_importInitiativesConsolidatedBatchV1_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "isInitial",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportCustomerInitiativesConsolidatedBatchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Initiatives"
+        ]
+      }
+    },
+    "/api/v2/customers/{customerId}/initiatives/consolidated-batch": {
+      "post": {
+        "operationId": "InitiativesController_importInitiativesConsolidatedBatchV2_v2",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "isInitial",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportCustomerInitiativesConsolidatedBatchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Initiatives",
+          "Public"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/initiatives/batch/access": {
+      "post": {
+        "deprecated": true,
+        "operationId": "InitiativesController_setInitiativeAccessBatchV1_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "isInitial",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetCustomerInitiativeAccessBatchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Initiatives"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/initiatives/batch/walls-access": {
+      "post": {
+        "operationId": "InitiativesController_setInitiativeAccessBatchWithWallsV1_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "isInitial",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetCustomerInitiativeAccessWallsBatchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Initiatives"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/initiatives/batch/codes": {
+      "post": {
+        "deprecated": true,
+        "operationId": "InitiativesController_setInitiativeCodesBatchV1_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetCustomerInitiativeCodesBatchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Initiatives"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/access": {
+      "post": {
+        "operationId": "InitiativesController_setInitiativeAccessV1_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "initiativeExternalId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetCustomerInitiativeAccessDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Initiatives",
+          "Public"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/initiatives/{initiativeExternalId}/codes": {
+      "post": {
+        "operationId": "InitiativesController_setInitiativeCodesV1_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "initiativeExternalId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetCustomerInitiativeCodesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Initiatives",
+          "Public"
+        ]
+      },
+      "delete": {
+        "operationId": "InitiativesController_deleteInitiativeCodesV1_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "initiativeExternalId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Initiatives",
+          "Public"
+        ]
+      }
+    },
+    "/api/v1/validations/customers/{customerId}/initiatives/{initiativeExternalId}/rules": {
+      "post": {
+        "operationId": "EntryValidationRulesController_setOneForInitiative_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "initiativeExternalId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetInitiativeLevelEntryValidationRulesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Validation Rules",
+          "Public"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/users/delegates": {
+      "post": {
+        "description": "Create an async job that will update user delegates",
+        "operationId": "UsersController_updateUserDelegates_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDelegatesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Users",
+          "Public"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/users/delegates/batch": {
+      "post": {
+        "description": "Create an async job that will update delegates for a batch of users.",
+        "operationId": "UsersController_updateUserDelegatesBatch_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "isInitial",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDelegatesBatchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Users",
+          "Public"
+        ]
+      }
+    },
+    "/api/v1/customers/{customerId}/working-timekeepers/sync": {
+      "post": {
+        "operationId": "WorkingTimekeepersController_sync_v1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "format": "objectid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SyncCustomerWorkingTimekeepersBatchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": ""
+          }
+        },
+        "summary": "Syncs working timekeepers for a customer's initiatives",
+        "tags": [
+          "Working Timekeepers"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Ingestion Service API",
+    "description": "",
+    "version": "1",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "ApiBearerAuth": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Enter access token",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "ClientDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "objectid"
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "callSign": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "description": "if null or undefined, semantic default is ClientType.Client",
+            "enum": [
+              "client",
+              "parent"
+            ],
+            "nullable": true
+          },
+          "parentClientId": {
+            "type": "string",
+            "format": "objectid",
+            "nullable": true
+          }
+        },
+        "required": [
+          "_id",
+          "externalId",
+          "name",
+          "description",
+          "callSign"
+        ]
+      },
+      "InitiativeDigestDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "objectid"
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "billingType": {
+            "enum": [
+              "billable",
+              "non-billable"
+            ],
+            "type": "string"
+          },
+          "unitIncrements": {
+            "type": "number",
+            "format": "double"
+          },
+          "locale": {
+            "type": "string",
+            "description": "BCP-47 locale for this initiative (e.g. en-US, fr-CA)",
+            "enum": [
+              "da-DK",
+              "de-DE",
+              "en-CA",
+              "en-GB",
+              "en-US",
+              "es-ES",
+              "es-MX",
+              "fi-FI",
+              "fr-CA",
+              "fr-FR",
+              "is-IS",
+              "it-IT",
+              "ko-KR",
+              "nl-NL",
+              "no-NO",
+              "pt-PT",
+              "sv-SE"
+            ],
+            "nullable": true
+          },
+          "client": {
+            "$ref": "#/components/schemas/ClientDto"
+          }
+        },
+        "required": [
+          "_id",
+          "externalId",
+          "name",
+          "billingType",
+          "unitIncrements",
+          "client"
+        ]
+      },
+      "InitiativePropsDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "pms",
+              "user"
+            ],
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "pinned"
+              ]
+            }
+          },
+          "initiative": {
+            "$ref": "#/components/schemas/InitiativeDigestDto"
+          }
+        },
+        "required": [
+          "type",
+          "tags",
+          "initiative"
+        ]
+      },
+      "CodeTypeDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "objectid"
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "orderingSequence": {
+            "type": "string",
+            "description": "ordering sequence for UI sorting (alphanumeric)",
+            "nullable": true
+          }
+        },
+        "required": [
+          "_id",
+          "externalId"
+        ]
+      },
+      "CodeDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "objectid"
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "orderingSequence": {
+            "type": "string",
+            "description": "ordering sequence for UI sorting (alphanumeric)",
+            "nullable": true
+          },
+          "group": {
+            "type": "string",
+            "description": "group identifier for categorizing codes",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/CodeTypeDto"
+          }
+        },
+        "required": [
+          "_id",
+          "externalId",
+          "type"
+        ]
+      },
+      "ReleasePendingTimekeeperIdDto": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "entry's id",
+            "format": "objectid"
+          },
+          "customerId": {
+            "type": "string",
+            "description": "id of customer who the owner belongs to",
+            "format": "objectid"
+          },
+          "userId": {
+            "type": "string",
+            "description": "if of user who owns the entry",
+            "format": "objectid"
+          },
+          "workDate": {
+            "type": "string",
+            "description": "the date this entry is released to",
+            "example": "2022-08-12",
+            "format": "iso-date"
+          },
+          "summary": {
+            "type": "string",
+            "description": "entry's summary"
+          },
+          "unitIncrementCount": {
+            "type": "number",
+            "description": "sum of unit increments from this entry's sources and adjustments",
+            "format": "double"
+          },
+          "incrementDurationInSeconds": {
+            "type": "number",
+            "description": "entry duration in seconds",
+            "format": "double"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "entry's external id"
+          },
+          "notes": {
+            "type": "string",
+            "description": "entry's notes"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2022-08-12T20:44:48Z",
+            "format": "iso-date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2022-08-12T20:44:48Z",
+            "format": "iso-date-time"
+          },
+          "timekeeperId": {
+            "type": "string"
+          },
+          "initiativeProps": {
+            "description": "entry's initiative",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InitiativePropsDto"
+              }
+            ]
+          },
+          "codes": {
+            "description": "all of the codes assigned to the entry",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeDto"
+            }
+          }
+        },
+        "required": [
+          "_id",
+          "customerId",
+          "userId",
+          "workDate",
+          "summary",
+          "unitIncrementCount",
+          "incrementDurationInSeconds",
+          "timekeeperId",
+          "initiativeProps",
+          "codes"
+        ]
+      },
+      "UpdateEntryLockStatusItemDto": {
+        "type": "object",
+        "properties": {
+          "entryExternalId": {
+            "type": "string",
+            "description": "External identifier for the entry"
+          },
+          "isLocked": {
+            "type": "boolean",
+            "description": "Whether the entry is locked"
+          },
+          "lockedAt": {
+            "type": "string",
+            "description": "When the entry was locked (ISO 8601) — only present when isLocked: true",
+            "example": "2022-08-12T20:44:48Z",
+            "format": "iso-date-time"
+          }
+        },
+        "required": [
+          "entryExternalId",
+          "isLocked"
+        ]
+      },
+      "UpdateEntriesLockStatusRequestDto": {
+        "type": "object",
+        "properties": {
+          "entries": {
+            "description": "List of entries to update lock status for (1–500 items)",
+            "minItems": 1,
+            "maxItems": 500,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdateEntryLockStatusItemDto"
+            }
+          }
+        },
+        "required": [
+          "entries"
+        ]
+      },
+      "OverrideOneEntryRequestV2Dto": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string",
+            "description": "if set, will update entry's summary"
+          },
+          "unitIncrementCountAdjustmentsInSeconds": {
+            "type": "number",
+            "description": "unit increments adjustments in seconds - min/max is 31536000 (1 year)",
+            "format": "double"
+          },
+          "initiativeExternalId": {
+            "type": "string",
+            "description": "if set, will update entry's initiativeId"
+          },
+          "codes": {
+            "type": "array",
+            "description": "if set, will update entry's codes",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/CodeAndCodeTypeExternalIdDto"
+            }
+          },
+          "workDate": {
+            "type": "string",
+            "description": "the date this entry is released to",
+            "example": "2022-08-12",
+            "format": "iso-date"
+          },
+          "notes": {
+            "type": "string",
+            "description": "if set, will update entry's notes"
+          }
+        }
+      },
+      "ImportPmsEntryRequestDto": {
+        "type": "object",
+        "properties": {
+          "workDate": {
+            "type": "string",
+            "description": "the date this entry is released to",
+            "example": "2022-08-12",
+            "format": "iso-date"
+          },
+          "initiativeExternalId": {
+            "type": "string",
+            "description": "entry's initiative external id"
+          },
+          "codes": {
+            "type": "array",
+            "description": "entry's code types",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/CodeAndCodeTypeExternalIdDto"
+            }
+          },
+          "incrementDurationInSeconds": {
+            "type": "number",
+            "description": "entry unit increment total",
+            "format": "int64",
+            "maximum": 31536000,
+            "minimum": -31536000
+          },
+          "summary": {
+            "type": "string",
+            "description": "entry's summary"
+          },
+          "releasedAt": {
+            "type": "string",
+            "description": "date and time entry was released",
+            "example": "2022-08-12T20:44:48Z",
+            "format": "iso-date-time"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "an id unique to this customer and entry that is being imported"
+          },
+          "notes": {
+            "type": "string",
+            "description": "entry's notes"
+          }
+        },
+        "required": [
+          "workDate",
+          "initiativeExternalId",
+          "incrementDurationInSeconds",
+          "summary",
+          "externalId"
+        ]
+      },
+      "ImportUnreleasedEntryDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "workDate": {
+            "type": "string",
+            "example": "2022-08-12",
+            "format": "iso-date"
+          },
+          "durationInSeconds": {
+            "type": "number",
+            "format": "int64",
+            "maximum": 86400,
+            "minimum": 0
+          },
+          "initiativeExternalId": {
+            "type": "string"
+          },
+          "codeExternalIds": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "narrative": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "userId",
+          "externalId",
+          "workDate",
+          "durationInSeconds"
+        ]
+      },
+      "ImportUnreleasedEntriesRequestDto": {
+        "type": "object",
+        "properties": {
+          "sourceSystem": {
+            "enum": [
+              "3e",
+              "workday"
+            ],
+            "type": "string"
+          },
+          "idempotencyKey": {
+            "type": "string"
+          },
+          "entries": {
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportUnreleasedEntryDto"
+            }
+          }
+        },
+        "required": [
+          "sourceSystem",
+          "entries"
+        ]
+      },
+      "BulkUpdateUnreleasedEntryItemDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "workDate": {
+            "type": "string",
+            "example": "2022-08-12",
+            "format": "iso-date"
+          },
+          "durationInSeconds": {
+            "type": "number",
+            "format": "int64",
+            "maximum": 86400,
+            "minimum": 0
+          },
+          "initiativeExternalId": {
+            "type": "string"
+          },
+          "codeExternalIds": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "narrative": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "allowReleasedOverride": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "userId",
+          "externalId"
+        ]
+      },
+      "BulkUpdateUnreleasedEntriesRequestDto": {
+        "type": "object",
+        "properties": {
+          "entries": {
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BulkUpdateUnreleasedEntryItemDto"
+            }
+          }
+        },
+        "required": [
+          "entries"
+        ]
+      },
+      "BulkDeleteUnreleasedEntryItemDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "allowReleasedOverride": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "userId",
+          "externalId"
+        ]
+      },
+      "BulkDeleteUnreleasedEntriesRequestDto": {
+        "type": "object",
+        "properties": {
+          "entries": {
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BulkDeleteUnreleasedEntryItemDto"
+            }
+          }
+        },
+        "required": [
+          "entries"
+        ]
+      },
+      "ImportCustomerClientDto": {
+        "type": "object",
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "description": "client's external id"
+          },
+          "name": {
+            "type": "string",
+            "description": "client's name"
+          },
+          "callSign": {
+            "type": "string",
+            "description": "client's call sign"
+          },
+          "description": {
+            "type": "string",
+            "description": "client's description"
+          },
+          "type": {
+            "type": "string",
+            "description": "client's type (optional): if not provided semantic default is client, parent client must have type parent",
+            "enum": [
+              "client",
+              "parent"
+            ],
+            "nullable": true
+          },
+          "parentClientExternalId": {
+            "type": "string",
+            "description": "parent client's external id (optional)",
+            "nullable": true
+          }
+        },
+        "required": [
+          "externalId",
+          "name",
+          "callSign",
+          "description"
+        ]
+      },
+      "ImportCustomerClientsBatchDto": {
+        "type": "object",
+        "properties": {
+          "clients": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportCustomerClientDto"
+            }
+          }
+        },
+        "required": [
+          "clients"
+        ]
+      },
+      "ImportCustomerCodeDto": {
+        "type": "object",
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "description": "code's external id"
+          },
+          "name": {
+            "type": "string",
+            "description": "code's name"
+          },
+          "description": {
+            "type": "string",
+            "description": "code's description, can be empty"
+          },
+          "codeTypeExternalId": {
+            "type": "string",
+            "description": "code's type's external id"
+          },
+          "orderingSequence": {
+            "type": "string",
+            "description": "ordering sequence for UI sorting (alphanumeric)",
+            "nullable": true
+          },
+          "group": {
+            "type": "string",
+            "description": "group identifier for categorizing codes",
+            "nullable": true
+          },
+          "isDisabled": {
+            "type": "boolean",
+            "description": "whether the code is disabled, added from ingestion process",
+            "nullable": true
+          }
+        },
+        "required": [
+          "externalId",
+          "name",
+          "description",
+          "codeTypeExternalId"
+        ]
+      },
+      "Dto": {
+        "type": "object",
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "description": "code's external id"
+          },
+          "name": {
+            "type": "string",
+            "description": "code's name"
+          },
+          "description": {
+            "type": "string",
+            "description": "code's description, can be empty"
+          },
+          "codeTypeExternalId": {
+            "type": "string",
+            "description": "code's type's external id"
+          },
+          "orderingSequence": {
+            "type": "string",
+            "description": "ordering sequence for UI sorting (alphanumeric)",
+            "nullable": true
+          },
+          "group": {
+            "type": "string",
+            "description": "group identifier for categorizing codes",
+            "nullable": true
+          },
+          "isDisabled": {
+            "type": "boolean",
+            "description": "whether the code is disabled, added from ingestion process",
+            "nullable": true
+          }
+        },
+        "required": [
+          "externalId",
+          "name",
+          "description",
+          "codeTypeExternalId"
+        ]
+      },
+      "ImportCustomerCodesBatchDto": {
+        "type": "object",
+        "properties": {
+          "codes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Dto"
+            }
+          }
+        },
+        "required": [
+          "codes"
+        ]
+      },
+      "ImportCustomerCodeTypeDto": {
+        "type": "object",
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "description": "code type's external id"
+          },
+          "name": {
+            "type": "string",
+            "description": "code type's name"
+          },
+          "semanticType": {
+            "type": "string",
+            "description": "code type's semantic type",
+            "enum": [
+              "action",
+              "activity",
+              "location",
+              "phase",
+              "task"
+            ]
+          },
+          "customerDefaultable": {
+            "type": "boolean",
+            "description": "can the default CodeType value be set at the customer-level"
+          },
+          "userDefaultable": {
+            "type": "boolean",
+            "description": "can the default CodeType value be set at the user-level"
+          },
+          "orderingSequence": {
+            "type": "string",
+            "description": "ordering sequence for UI sorting (alphanumeric)"
+          }
+        },
+        "required": [
+          "externalId",
+          "name"
+        ]
+      },
+      "ImportCustomerInitiativeDto": {
+        "type": "object",
+        "properties": {
+          "billingType": {
+            "description": "the billing type for this initiative",
+            "enum": [
+              "billable",
+              "non-billable"
+            ],
+            "type": "string"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "initiative's external id"
+          },
+          "name": {
+            "type": "string",
+            "description": "a name that identifies this initiative"
+          },
+          "description": {
+            "type": "string",
+            "description": "the description of the initiative"
+          },
+          "callSign": {
+            "type": "string",
+            "description": "a short name or abbreviation that identifies this initiative"
+          },
+          "clientExternalId": {
+            "type": "string",
+            "description": "external id of client this initiative belongs to"
+          },
+          "externalGroupIds": {
+            "description": "list of external group ids that have access to this initiative",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "unitIncrements": {
+            "type": "number",
+            "description": "unit of billing increments for this initiative in seconds (36=0.01, 360=0.1, 900=0.25)",
+            "format": "double"
+          },
+          "status": {
+            "type": "string",
+            "description": "initiative's status",
+            "enum": [
+              "active",
+              "inactive"
+            ]
+          },
+          "locale": {
+            "type": "string",
+            "description": "BCP-47 locale for this initiative (e.g. en-US, fr-CA)",
+            "enum": [
+              "da-DK",
+              "de-DE",
+              "en-CA",
+              "en-GB",
+              "en-US",
+              "es-ES",
+              "es-MX",
+              "fi-FI",
+              "fr-CA",
+              "fr-FR",
+              "is-IS",
+              "it-IT",
+              "ko-KR",
+              "nl-NL",
+              "no-NO",
+              "pt-PT",
+              "sv-SE"
+            ],
+            "nullable": true
+          },
+          "allowFrom": {
+            "type": "string",
+            "description": "earliest calendar date on which this initiative is valid for use (date-only, midnight UTC)",
+            "example": "2022-08-12",
+            "format": "iso-date",
+            "nullable": true
+          },
+          "allowTo": {
+            "type": "string",
+            "description": "latest calendar date on which this initiative is valid for use, inclusive (date-only, midnight UTC)",
+            "example": "2022-08-12",
+            "format": "iso-date",
+            "nullable": true
+          }
+        },
+        "required": [
+          "billingType",
+          "externalId",
+          "name",
+          "description",
+          "callSign",
+          "clientExternalId",
+          "unitIncrements"
+        ]
+      },
+      "ImportCustomerInitiativesBatchDto": {
+        "type": "object",
+        "properties": {
+          "initiatives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Dto"
+            }
+          }
+        },
+        "required": [
+          "initiatives"
+        ]
+      },
+      "ConsolidatedInitiativeSubDto": {
+        "type": "object",
+        "properties": {
+          "billingType": {
+            "description": "the billing type for this initiative",
+            "enum": [
+              "billable",
+              "non-billable"
+            ],
+            "type": "string"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "initiative's external id"
+          },
+          "name": {
+            "type": "string",
+            "description": "a name that identifies this initiative"
+          },
+          "description": {
+            "type": "string",
+            "description": "the description of the initiative"
+          },
+          "callSign": {
+            "type": "string",
+            "description": "a short name or abbreviation that identifies this initiative"
+          },
+          "clientExternalId": {
+            "type": "string",
+            "description": "external id of client this initiative belongs to"
+          },
+          "externalGroupIds": {
+            "description": "list of external group ids that have access to this initiative",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "unitIncrements": {
+            "type": "number",
+            "description": "unit of billing increments for this initiative in seconds (36=0.01, 360=0.1, 900=0.25)",
+            "format": "double"
+          },
+          "status": {
+            "type": "string",
+            "description": "initiative's status",
+            "enum": [
+              "active",
+              "inactive"
+            ]
+          },
+          "locale": {
+            "type": "string",
+            "description": "BCP-47 locale for this initiative (e.g. en-US, fr-CA)",
+            "enum": [
+              "da-DK",
+              "de-DE",
+              "en-CA",
+              "en-GB",
+              "en-US",
+              "es-ES",
+              "es-MX",
+              "fi-FI",
+              "fr-CA",
+              "fr-FR",
+              "is-IS",
+              "it-IT",
+              "ko-KR",
+              "nl-NL",
+              "no-NO",
+              "pt-PT",
+              "sv-SE"
+            ],
+            "nullable": true
+          },
+          "allowFrom": {
+            "type": "string",
+            "description": "earliest calendar date on which this initiative is valid for use (date-only, midnight UTC)",
+            "example": "2022-08-12",
+            "format": "iso-date",
+            "nullable": true
+          },
+          "allowTo": {
+            "type": "string",
+            "description": "latest calendar date on which this initiative is valid for use, inclusive (date-only, midnight UTC)",
+            "example": "2022-08-12",
+            "format": "iso-date",
+            "nullable": true
+          }
+        },
+        "required": [
+          "billingType",
+          "externalId",
+          "name",
+          "description",
+          "callSign",
+          "clientExternalId",
+          "unitIncrements"
+        ]
+      },
+      "ImportCodeDto": {
+        "type": "object",
+        "properties": {
+          "codeExternalId": {
+            "type": "string"
+          },
+          "codeTypeExternalId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "codeExternalId",
+          "codeTypeExternalId"
+        ]
+      },
+      "ConsolidatedCodesSubDto": {
+        "type": "object",
+        "properties": {
+          "isCodesEmpty": {
+            "type": "boolean"
+          },
+          "codes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportCodeDto"
+            }
+          }
+        }
+      },
+      "ConsolidatedValidationSubDto": {
+        "type": "object",
+        "properties": {
+          "isRequiredCodeTypeExternalIdsEmpty": {
+            "type": "boolean"
+          },
+          "requiredCodeTypeExternalIds": {
+            "nullable": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ImportCustomerInitiativeConsolidatedDto": {
+        "type": "object",
+        "properties": {
+          "initiative": {
+            "$ref": "#/components/schemas/ConsolidatedInitiativeSubDto"
+          },
+          "codes": {
+            "$ref": "#/components/schemas/ConsolidatedCodesSubDto"
+          },
+          "entryValidationRules": {
+            "$ref": "#/components/schemas/ConsolidatedValidationSubDto"
+          }
+        },
+        "required": [
+          "initiative",
+          "codes",
+          "entryValidationRules"
+        ]
+      },
+      "ImportCustomerInitiativesConsolidatedBatchDto": {
+        "type": "object",
+        "properties": {
+          "initiatives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportCustomerInitiativeConsolidatedDto"
+            }
+          }
+        },
+        "required": [
+          "initiatives"
+        ]
+      },
+      "InitiativeAccessDto": {
+        "type": "object",
+        "properties": {
+          "initiativeExternalId": {
+            "type": "string"
+          },
+          "access": {
+            "$ref": "#/components/schemas/Dto"
+          }
+        },
+        "required": [
+          "initiativeExternalId",
+          "access"
+        ]
+      },
+      "SetCustomerInitiativeAccessBatchDto": {
+        "type": "object",
+        "properties": {
+          "initiatives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InitiativeAccessDto"
+            }
+          }
+        },
+        "required": [
+          "initiatives"
+        ]
+      },
+      "SetCustomerInitiativeAccessWallsDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "description": "type of access.",
+            "enum": [
+              "allow",
+              "deny"
+            ],
+            "type": "string"
+          },
+          "wallIds": {
+            "description": "list of users whose access is either allowed or denied for an initiative by walls ID.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "wallIds"
+        ]
+      },
+      "InitiativeAccessWithWallsDto": {
+        "type": "object",
+        "properties": {
+          "initiativeExternalId": {
+            "type": "string"
+          },
+          "access": {
+            "$ref": "#/components/schemas/SetCustomerInitiativeAccessWallsDto"
+          }
+        },
+        "required": [
+          "initiativeExternalId",
+          "access"
+        ]
+      },
+      "SetCustomerInitiativeAccessWallsBatchDto": {
+        "type": "object",
+        "properties": {
+          "initiatives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InitiativeAccessWithWallsDto"
+            }
+          }
+        },
+        "required": [
+          "initiatives"
+        ]
+      },
+      "InitiativeCodesDto": {
+        "type": "object",
+        "properties": {
+          "initiativeExternalId": {
+            "type": "string"
+          },
+          "codes": {
+            "$ref": "#/components/schemas/Dto"
+          }
+        },
+        "required": [
+          "initiativeExternalId",
+          "codes"
+        ]
+      },
+      "SetCustomerInitiativeCodesBatchDto": {
+        "type": "object",
+        "properties": {
+          "initiatives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InitiativeCodesDto"
+            }
+          }
+        },
+        "required": [
+          "initiatives"
+        ]
+      },
+      "SetCustomerInitiativeAccessDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "description": "type of access.",
+            "enum": [
+              "allow",
+              "deny"
+            ],
+            "type": "string"
+          },
+          "userIds": {
+            "description": "list of users whose access is either allowed or denied for an initiative.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "objectid"
+            }
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "SetCustomerInitiativeCodesDto": {
+        "type": "object",
+        "properties": {
+          "codeExternalIds": {
+            "minItems": 1,
+            "maxItems": 2500,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "codeExternalIds"
+        ]
+      },
+      "SetInitiativeLevelEntryValidationRulesDto": {
+        "type": "object",
+        "properties": {
+          "requiredCodeTypeExternalIds": {
+            "description": "code type external identifiers that are required for an entry",
+            "nullable": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "IdentityDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "aderant",
+              "auth0",
+              "azure",
+              "email",
+              "external-billing-system",
+              "elite",
+              "intercom",
+              "juris",
+              "cisco-cdr",
+              "mixpanel",
+              "phone",
+              "phone-extension",
+              "salesforce",
+              "segment",
+              "vitally",
+              "walls",
+              "zendesk",
+              "zoom",
+              "exchange",
+              "user-principal-name",
+              "cisco-webex",
+              "ringcentral",
+              "google"
+            ],
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "value"
+        ]
+      },
+      "UserDelegateInfoDto": {
+        "type": "object",
+        "properties": {
+          "delegateType": {
+            "description": "Delegate permission type",
+            "enum": [
+              "timesheet_only",
+              "timesheet_and_activities"
+            ],
+            "type": "string"
+          },
+          "identity": {
+            "description": "Identity to match the delegate user",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentityDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "delegateType",
+          "identity"
+        ]
+      },
+      "UpdateUserDelegatesDto": {
+        "type": "object",
+        "properties": {
+          "identity": {
+            "description": "Identity to match the user",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentityDto"
+              }
+            ]
+          },
+          "delegates": {
+            "description": "Array of delegates to set for this user",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserDelegateInfoDto"
+            }
+          }
+        },
+        "required": [
+          "identity",
+          "delegates"
+        ]
+      },
+      "UpdateUserDelegatesBatchDto": {
+        "type": "object",
+        "properties": {
+          "users": {
+            "description": "Array of user delegate updates",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdateUserDelegatesDto"
+            }
+          }
+        },
+        "required": [
+          "users"
+        ]
+      },
+      "SyncCustomerWorkingTimekeepersItemDto": {
+        "type": "object",
+        "properties": {
+          "initiativeExternalId": {
+            "type": "string",
+            "description": "External ID of the initiative"
+          },
+          "type": {
+            "type": "string",
+            "description": "Access type for the initiative (allow/deny)",
+            "enum": [
+              "allow",
+              "deny"
+            ]
+          },
+          "timekeeperExternalIds": {
+            "description": "External IDs of the timekeepers to sync",
+            "maxItems": 2500,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "initiativeExternalId",
+          "timekeeperExternalIds"
+        ]
+      },
+      "SyncCustomerWorkingTimekeepersBatchDto": {
+        "type": "object",
+        "properties": {
+          "initiatives": {
+            "description": "List of initiatives to sync working timekeepers for",
+            "minItems": 1,
+            "maxItems": 500,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SyncCustomerWorkingTimekeepersItemDto"
+            }
+          }
+        },
+        "required": [
+          "initiatives"
+        ]
+      },
+      "CodeAndCodeTypeExternalIdDto": {
+        "type": "object",
+        "properties": {
+          "codeExternalId": {
+            "type": "string",
+            "description": "code's external id"
+          },
+          "codeTypeExternalId": {
+            "type": "string",
+            "description": "code type's external id"
+          }
+        },
+        "required": [
+          "codeExternalId",
+          "codeTypeExternalId"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiBearerAuth": []
+    }
+  ],
+  "externalDocs": {
+    "description": "Laurel API Documentation",
+    "url": "https://developer.laurel.ai/"
+  }
+}

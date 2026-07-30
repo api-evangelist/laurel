@@ -1,8 +1,27 @@
 aid: laurel
 name: Laurel
-description: 'Laurel is a company surfaced as a portfolio company of gv, initialized-capital, ivp and
-  added to the API Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: 'Laurel is an AI timekeeping and work-intelligence platform for professional services
+  firms — law, accounting and advisory. Rather than asking timekeepers to record their own time,
+  Laurel passively captures work activity across the applications people already work in, then uses
+  machine learning to enrich each activity with the who, what, when, where and how needed to build a
+  review-ready timesheet. Reviewed time is released into the firm''s existing billing or
+  practice-management system, and Laurel''s Signal product layers operational and profitability
+  analytics on top of the resulting time data. Laurel exposes three public APIs — Identity, Time and
+  Ingestion — authenticated with OAuth 2.0 machine-to-machine client credentials, and documents them
+  at developer.laurel.ai for firms and partners building connectors.'
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/63643fff1bf707ba2678d088/63643fff1bf707cf9178d0f3_Touch%20Icon.jpg
 url: https://raw.githubusercontent.com/api-evangelist/laurel/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,15 +29,827 @@ x-backed-by:
 - gv
 - initialized-capital
 - ivp
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: three published OpenAPI documents harvested from developer.laurel.ai
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Ai
-apis: []
+- Timekeeping
+- Time Tracking
+- Legal
+- Legal Tech
+- Accounting
+- Professional Services
+- Billing
+- Practice Management
+- Work Intelligence
+- Analytics
+apis:
+- aid: laurel:laurel-ably-api
+  name: Laurel Ably API
+  description: The Ably API from Laurel — 1 operation(s) for ably.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Ably
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-ably-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-activities-api
+  name: Laurel Activities API
+  description: The Activities API from Laurel — 16 operation(s) for activities.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Activities
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-activities-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-clients-api
+  name: Laurel Clients API
+  description: The Clients API from Laurel — 10 operation(s) for clients.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Clients
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-clients-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-code-types-api
+  name: Laurel Code Types API
+  description: The Code Types API from Laurel — 10 operation(s) for code types.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Code Types
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-code-types-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-codes-api
+  name: Laurel Codes API
+  description: The Codes API from Laurel — 10 operation(s) for codes.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Codes
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-codes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-codetypes-api
+  name: Laurel CodeTypes API
+  description: The CodeTypes API from Laurel — 1 operation(s) for codetypes.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - CodeTypes
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-codetypes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-customers-api
+  name: Laurel Customers API
+  description: The Customers API from Laurel — 14 operation(s) for customers.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-customers-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-dailyselectedinitiatives-api
+  name: Laurel DailySelectedInitiatives API
+  description: >-
+    The DailySelectedInitiatives API from Laurel — 1 operation(s) for dailyselectedinitiatives.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - DailySelectedInitiatives
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-dailyselectedinitiatives-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-data-retention-audits-api
+  name: Laurel Data Retention Audits API
+  description: The Data Retention Audits API from Laurel — 2 operation(s) for data retention audits.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Data Retention Audits
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-data-retention-audits-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-delegators-api
+  name: Laurel Delegators API
+  description: The Delegators API from Laurel — 1 operation(s) for delegators.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Delegators
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-delegators-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-entries-api
+  name: Laurel Entries API
+  description: The Entries API from Laurel — 56 operation(s) for entries.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Entries
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-entries-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-entry-date-restrictions-api
+  name: Laurel Entry Date Restrictions API
+  description: >-
+    The Entry Date Restrictions API from Laurel — 5 operation(s) for entry date restrictions.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Entry Date Restrictions
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-entry-date-restrictions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-exports-api
+  name: Laurel Exports API
+  description: The Exports API from Laurel — 2 operation(s) for exports.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Exports
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-exports-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-health-check-api
+  name: Laurel Health Check API
+  description: The Health Check API from Laurel — 1 operation(s) for health check.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Health Check
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-health-check-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-healthcheck-api
+  name: Laurel HealthCheck API
+  description: The HealthCheck API from Laurel — 1 operation(s) for healthcheck.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - HealthCheck
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-healthcheck-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-impersonation-events-api
+  name: Laurel Impersonation Events API
+  description: The Impersonation Events API from Laurel — 2 operation(s) for impersonation events.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Impersonation Events
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-impersonation-events-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-initiative-props-api
+  name: Laurel Initiative Props API
+  description: The Initiative Props API from Laurel — 6 operation(s) for initiative props.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Initiative Props
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-initiative-props-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-initiativedto-api
+  name: Laurel InitiativeDto API
+  description: The InitiativeDto API from Laurel — 2 operation(s) for initiativedto.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - InitiativeDto
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-initiativedto-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-initiatives-api
+  name: Laurel Initiatives API
+  description: The Initiatives API from Laurel — 29 operation(s) for initiatives.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Initiatives
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-initiatives-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-metrics-api
+  name: Laurel Metrics API
+  description: The Metrics API from Laurel — 3 operation(s) for metrics.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-narrative-templates-api
+  name: Laurel Narrative Templates API
+  description: The Narrative Templates API from Laurel — 8 operation(s) for narrative templates.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Narrative Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-narrative-templates-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-oauth-api
+  name: Laurel OAuth API
+  description: The OAuth API from Laurel — 1 operation(s) for oauth.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-oauth-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-onboarding-profiles-api
+  name: Laurel Onboarding Profiles API
+  description: The Onboarding Profiles API from Laurel — 3 operation(s) for onboarding profiles.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Onboarding Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-onboarding-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-permissions-api
+  name: Laurel Permissions API
+  description: The Permissions API from Laurel — 2 operation(s) for permissions.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-permissions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-public-api
+  name: Laurel Public API
+  description: The Public API from Laurel — 32 operation(s) for public.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Public
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-public-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-roles-api
+  name: Laurel Roles API
+  description: The Roles API from Laurel — 2 operation(s) for roles.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-roles-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-search-api
+  name: Laurel Search API
+  description: The Search API from Laurel — 3 operation(s) for search.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-search-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-settings-api
+  name: Laurel Settings API
+  description: The Settings API from Laurel — 1 operation(s) for settings.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-settings-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-tenants-api
+  name: Laurel Tenants API
+  description: The Tenants API from Laurel — 2 operation(s) for tenants.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Tenants
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-tenants-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-timekeeper-goals-api
+  name: Laurel Timekeeper Goals API
+  description: The Timekeeper Goals API from Laurel — 2 operation(s) for timekeeper goals.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Timekeeper Goals
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-timekeeper-goals-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-timer-carryovers-api
+  name: Laurel Timer Carryovers API
+  description: The Timer Carryovers API from Laurel — 2 operation(s) for timer carryovers.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Timer Carryovers
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-timer-carryovers-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-timer-draft-api
+  name: Laurel Timer Draft API
+  description: The Timer Draft API from Laurel — 2 operation(s) for timer draft.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Timer Draft
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-timer-draft-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-timers-api
+  name: Laurel Timers API
+  description: The Timers API from Laurel — 11 operation(s) for timers.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Timers
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-timers-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-timesheets-api
+  name: Laurel Timesheets API
+  description: The Timesheets API from Laurel — 5 operation(s) for timesheets.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Timesheets
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-timesheets-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-twilio-api
+  name: Laurel Twilio API
+  description: The Twilio API from Laurel — 1 operation(s) for twilio.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Twilio
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-twilio-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-user-groups-api
+  name: Laurel User Groups API
+  description: The User Groups API from Laurel — 6 operation(s) for user groups.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - User Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-user-groups-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-users-api
+  name: Laurel Users API
+  description: The Users API from Laurel — 28 operation(s) for users.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-users-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-validation-rules-api
+  name: Laurel Validation Rules API
+  description: The Validation Rules API from Laurel — 4 operation(s) for validation rules.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Validation Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-validation-rules-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-work-groups-api
+  name: Laurel Work Groups API
+  description: The Work Groups API from Laurel — 6 operation(s) for work groups.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Work Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-work-groups-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-working-timekeepers-api
+  name: Laurel Working Timekeepers API
+  description: The Working Timekeepers API from Laurel — 3 operation(s) for working timekeepers.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - Working Timekeepers
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-working-timekeepers-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -27,3 +858,62 @@ maintainers:
 common:
 - type: Website
   url: https://www.laurel.ai
+- type: DeveloperPortal
+  url: https://developer.laurel.ai
+- type: Documentation
+  url: https://developer.laurel.ai
+- type: APIReference
+  url: https://developer.laurel.ai/guides/public-api-endpoints
+- type: GettingStarted
+  url: https://developer.laurel.ai/guides/authentication
+- type: Authentication
+  url: authentication/laurel-authentication.yml
+- type: Support
+  url: https://intercom.help/laurel/en/
+- type: Blog
+  url: https://www.laurel.ai/resources?category=Blog
+- type: SignUp
+  url: https://www.laurel.ai/get-a-demo
+- type: Login
+  url: https://app.laurel.ai
+- type: PrivacyPolicy
+  url: https://www.laurel.ai/privacy-policy
+- type: StatusPage
+  url: https://status.laurel.ai/
+- type: Deprecation
+  url: lifecycle/laurel-lifecycle.yml
+- type: Lifecycle
+  url: lifecycle/laurel-lifecycle.yml
+- type: Security
+  url: https://www.laurel.ai/responsible-disclosure-policy
+- type: VulnerabilityDisclosure
+  url: security/laurel-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/laurel-trust-center.yml
+- type: Compliance
+  url: https://trust.laurel.ai/
+- type: DomainSecurity
+  url: security/laurel-domain-security.yml
+- type: Conformance
+  url: conformance/laurel-conformance.yml
+- type: Conventions
+  url: conventions/laurel-conventions.yml
+- type: Idempotency
+  url: conventions/laurel-conventions.yml
+- type: DataModel
+  url: data-model/laurel-data-model.yml
+- type: MCPServer
+  url: mcp/laurel-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/laurel-agentic-access.yml
+- type: LLMsTxt
+  url: llms/laurel-llms.txt
+- type: WellKnown
+  url: well-known/laurel-well-known.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

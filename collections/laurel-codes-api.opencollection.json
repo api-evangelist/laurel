@@ -1,0 +1,443 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Codes API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Codes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CodesController_importCodeV1_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/codes/import",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CodesController_importCodeBatchV1_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/codes/batch",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "isInitial",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Service-level endpoint for enrichment service to get codes for a specific user\nApplies user group filtering based on the userId parameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/customers/:customerId/users/:userId/code-types/:codeTypeId/codes",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query",
+                "description": "initiative's identifier"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "excludeDisabled",
+                "value": "",
+                "type": "query",
+                "description": "whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Service-level endpoint for enrichment service to get codes for a specific user\nApplies user group filtering based on the userId parameter"
+        },
+        {
+          "info": {
+            "name": "CodeController_findManyForCurrentUserV2_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/code-types/:codeTypeId/codes",
+            "params": [
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query",
+                "description": "initiative's identifier"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "excludeDisabled",
+                "value": "",
+                "type": "query",
+                "description": "whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "field to sort by - only applies when not searching (defaults to name)"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "sort order - only applies when not searching (defaults to asc)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CodeController_validateCodeInCodeTypeWithInitiative_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/code-types/:codeTypeId/validate-code",
+            "params": [
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query",
+                "description": "Initiative's id"
+              },
+              {
+                "name": "codeId",
+                "value": "",
+                "type": "query",
+                "description": "code's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Service-level endpoint (v1) for enrichment service to get codes for a specific user\nApplies user group filtering based on the userId parameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/code-types/:codeTypeId/codes",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query",
+                "description": "initiative's identifier"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "excludeDisabled",
+                "value": "",
+                "type": "query",
+                "description": "whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "max number of item in each page"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "cursor to start from"
+              }
+            ]
+          },
+          "docs": "Service-level endpoint (v1) for enrichment service to get codes for a specific user\nApplies user group filtering based on the userId parameter"
+        },
+        {
+          "info": {
+            "name": "CodeController_findManyForCurrentUser_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/code-types/:codeTypeId/codes",
+            "params": [
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query",
+                "description": "initiative's identifier"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "excludeDisabled",
+                "value": "",
+                "type": "query",
+                "description": "whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "max number of item in each page"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "cursor to start from"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "returns one code by its id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/codes/:codeId",
+            "params": [
+              {
+                "name": "codeId",
+                "value": "",
+                "type": "path",
+                "description": "code's id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query",
+                "description": "for usage to determine if this code is a default in this initiative's context"
+              },
+              {
+                "name": "includeDefault",
+                "value": "",
+                "type": "query",
+                "description": "if true will determine if the code is a default in the context provided to this endpoint"
+              }
+            ]
+          },
+          "docs": "returns one code by its id"
+        },
+        {
+          "info": {
+            "name": "CustomerCodeController_findManyForCustomerWithPagination_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/code-types/:codeTypeId/codes",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query",
+                "description": "initiative's identifier"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "excludeDisabled",
+                "value": "",
+                "type": "query",
+                "description": "whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "max number of item in each page"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "cursor to start from"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerCodeController_findOne_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/code-types/:codeTypeId/codes/:codeId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              },
+              {
+                "name": "codeId",
+                "value": "",
+                "type": "path",
+                "description": "code's id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query",
+                "description": "initiative's identifier"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

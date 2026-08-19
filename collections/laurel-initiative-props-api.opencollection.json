@@ -1,0 +1,202 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Initiative Props API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Initiative Props",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "InitiativeUsageController_findManyByRange_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/initiative-props/recent",
+            "params": [
+              {
+                "name": "usedAfter",
+                "value": "",
+                "type": "query",
+                "description": "the date to get initiative props that their used at time is greater than this date"
+              },
+              {
+                "name": "usedOnOrBefore",
+                "value": "",
+                "type": "query",
+                "description": "the date to get initiative props that their used at time is equal or less than this date"
+              },
+              {
+                "name": "workDate",
+                "value": "",
+                "type": "query",
+                "description": "When set (and restrictions are enabled), excludes recent initiatives restricted on this date."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativeUsageController_findManyByRangeV2_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/initiative-props/recent",
+            "params": [
+              {
+                "name": "usedAfter",
+                "value": "",
+                "type": "query",
+                "description": "the date to get initiative props that their used at time is greater than this date"
+              },
+              {
+                "name": "usedOnOrBefore",
+                "value": "",
+                "type": "query",
+                "description": "the date to get initiative props that their used at time is equal or less than this date"
+              },
+              {
+                "name": "workDate",
+                "value": "",
+                "type": "query",
+                "description": "When set (and restrictions are enabled), excludes recent initiatives restricted on this date."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativeUsageController_deleteManyByInitiativeId_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/initiative-props/:initiativeId/recent",
+            "params": [
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativePropsController_findManyByTag_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/initiative-props",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "maximum number of initiatives to return"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "returns only the initiative props that have this tag"
+              },
+              {
+                "name": "workDate",
+                "value": "",
+                "type": "query",
+                "description": "When set (and restrictions are enabled), excludes tagged initiatives restricted on this date."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativePropsController_findManyByTagAsDto_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/initiative-props",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "maximum number of initiatives to return"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "returns only the initiative props that have this tag"
+              },
+              {
+                "name": "workDate",
+                "value": "",
+                "type": "query",
+                "description": "When set (and restrictions are enabled), excludes tagged initiatives restricted on this date."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativePropsController_findOrCreateOneProps_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/initiatives/:initiativeId/props",
+            "params": [
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativePropsController_updateOrCreateOneProps_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/initiatives/:initiativeId/props",
+            "params": [
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1511 @@
+{
+  "item": [
+    {
+      "id": "db438231-ada9-4a89-82f7-e5b9242039c9",
+      "name": "Codes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ca3a65df-51b7-4b62-b378-16a17d743c39",
+          "name": "Codes Controller import Code V1 v1",
+          "request": {
+            "name": "Codes Controller import Code V1 v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "codes",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"externalId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"codeTypeExternalId\": \"<string>\",\n  \"orderingSequence\": \"<string>\",\n  \"group\": \"<string>\",\n  \"isDisabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "effd024b-5e5b-4c9b-80fd-83507037cb84",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "codes",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"codeTypeExternalId\": \"<string>\",\n  \"orderingSequence\": \"<string>\",\n  \"group\": \"<string>\",\n  \"isDisabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09f67876-2f1a-47e3-acc0-9dba813bc0cd",
+          "name": "Codes Controller import Code Batch V1 v1",
+          "request": {
+            "name": "Codes Controller import Code Batch V1 v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "codes",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "isInitial",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codes\": [\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"codeTypeExternalId\": \"<string>\",\n      \"orderingSequence\": \"<string>\",\n      \"group\": \"<string>\",\n      \"isDisabled\": \"<boolean>\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"codeTypeExternalId\": \"<string>\",\n      \"orderingSequence\": \"<string>\",\n      \"group\": \"<string>\",\n      \"isDisabled\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b351bea5-b81b-44d2-be3a-ef6b4cc7a7cc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "codes",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "isInitial",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"codes\": [\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"codeTypeExternalId\": \"<string>\",\n      \"orderingSequence\": \"<string>\",\n      \"group\": \"<string>\",\n      \"isDisabled\": \"<boolean>\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"codeTypeExternalId\": \"<string>\",\n      \"orderingSequence\": \"<string>\",\n      \"group\": \"<string>\",\n      \"isDisabled\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ed8a0ce-f733-406a-b2aa-ef8dc0bf0703",
+          "name": "Service-level endpoint for enrichment service to get codes for a specific user\nApplies user group filtering based on the userId parameter",
+          "request": {
+            "name": "Service-level endpoint for enrichment service to get codes for a specific user\nApplies user group filtering based on the userId parameter",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "code-types",
+                ":codeTypeId",
+                "codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "initiativeId",
+                  "value": "<objectid>",
+                  "description": "initiative's identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeDisabled",
+                  "value": "<boolean>",
+                  "description": "whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<int64>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<int64>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1feaf0d-5110-48b8-a1a3-57dd5dc77e18",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "code-types",
+                    ":codeTypeId",
+                    "codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiativeId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "excludeDisabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<int64>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"action\",\n        \"orderingSequence\": \"string\"\n      },\n      \"orderingSequence\": \"string\",\n      \"group\": \"string\",\n      \"userGroupExternalIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"isDisabled\": false\n    },\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"phase\",\n        \"orderingSequence\": \"string\"\n      },\n      \"orderingSequence\": \"string\",\n      \"group\": \"string\",\n      \"userGroupExternalIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"isDisabled\": true\n    }\n  ],\n  \"totalPages\": 7765.826952288646,\n  \"totalItems\": 951.3856405243271,\n  \"defaultCodeId\": \"string\",\n  \"nextPage\": 2287.224185551309\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0276ce78-6fa3-4284-b126-10f52fcd8088",
+          "name": "Code Controller find Many For Current User V2 v2",
+          "request": {
+            "name": "Code Controller find Many For Current User V2 v2",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "code-types",
+                ":codeTypeId",
+                "codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "initiativeId",
+                  "value": "<objectid>",
+                  "description": "initiative's identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeDisabled",
+                  "value": "<boolean>",
+                  "description": "whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "field to sort by - only applies when not searching (defaults to name)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "sort order - only applies when not searching (defaults to asc)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<int64>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<int64>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d70c447-6129-4540-b72f-ae0ad4188fb7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "code-types",
+                    ":codeTypeId",
+                    "codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiativeId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "excludeDisabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<int64>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"task\",\n        \"orderingSequence\": \"string\"\n      },\n      \"orderingSequence\": \"string\",\n      \"group\": \"string\",\n      \"userGroupExternalIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"isDisabled\": false\n    },\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"action\",\n        \"orderingSequence\": \"string\"\n      },\n      \"orderingSequence\": \"string\",\n      \"group\": \"string\",\n      \"userGroupExternalIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"isDisabled\": false\n    }\n  ],\n  \"totalPages\": 8200.02628554973,\n  \"totalItems\": 2303.219683857669,\n  \"defaultCodeId\": \"string\",\n  \"nextPage\": 4752.646254879352\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d215fafe-4ada-429d-88c0-4ace3f3ed1d4",
+          "name": "Code Controller validate Code In Code Type With Initiative v2",
+          "request": {
+            "name": "Code Controller validate Code In Code Type With Initiative v2",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "code-types",
+                ":codeTypeId",
+                "validate-code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "initiativeId",
+                  "value": "<objectid>",
+                  "description": "(Required) Initiative's id"
+                },
+                {
+                  "disabled": false,
+                  "key": "codeId",
+                  "value": "<objectid>",
+                  "description": "(Required) code's id"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d480ebf-8c78-452a-838d-4e9cc4583c9a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "code-types",
+                    ":codeTypeId",
+                    "validate-code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiativeId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "codeId",
+                      "value": "<objectid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isValid\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40840fce-fa53-4640-ac39-192518b56d6b",
+          "name": "Service-level endpoint (v1) for enrichment service to get codes for a specific user\nApplies user group filtering based on the userId parameter",
+          "request": {
+            "name": "Service-level endpoint (v1) for enrichment service to get codes for a specific user\nApplies user group filtering based on the userId parameter",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "code-types",
+                ":codeTypeId",
+                "codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "initiativeId",
+                  "value": "<objectid>",
+                  "description": "initiative's identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeDisabled",
+                  "value": "<boolean>",
+                  "description": "whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<int64>",
+                  "description": "max number of item in each page"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<objectid>",
+                  "description": "cursor to start from"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5acced2a-4902-4a0f-805a-32bb83e5e689",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "code-types",
+                    ":codeTypeId",
+                    "codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiativeId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "excludeDisabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<objectid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"codes\": [\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"task\",\n        \"orderingSequence\": \"string\"\n      },\n      \"orderingSequence\": \"string\",\n      \"group\": \"string\",\n      \"userGroupExternalIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"isDisabled\": true\n    },\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"phase\",\n        \"orderingSequence\": \"string\"\n      },\n      \"orderingSequence\": \"string\",\n      \"group\": \"string\",\n      \"userGroupExternalIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"isDisabled\": false\n    }\n  ],\n  \"items\": [\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"phase\",\n        \"orderingSequence\": \"string\"\n      },\n      \"orderingSequence\": \"string\",\n      \"group\": \"string\",\n      \"userGroupExternalIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"isDisabled\": false\n    },\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"location\",\n        \"orderingSequence\": \"string\"\n      },\n      \"orderingSequence\": \"string\",\n      \"group\": \"string\",\n      \"userGroupExternalIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"isDisabled\": false\n    }\n  ],\n  \"defaultCodeId\": \"string\",\n  \"nextCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d8c0403-e7ee-4255-9f32-f92390d6ca4b",
+          "name": "Code Controller find Many For Current User v1",
+          "request": {
+            "name": "Code Controller find Many For Current User v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "code-types",
+                ":codeTypeId",
+                "codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "initiativeId",
+                  "value": "<objectid>",
+                  "description": "initiative's identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeDisabled",
+                  "value": "<boolean>",
+                  "description": "whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<int64>",
+                  "description": "max number of item in each page"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<objectid>",
+                  "description": "cursor to start from"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d4c201a7-a44f-4b27-889b-d33e6cef805b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "code-types",
+                    ":codeTypeId",
+                    "codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiativeId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "excludeDisabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<objectid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"codes\": [\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"location\",\n        \"orderingSequence\": \"string\"\n      },\n      \"orderingSequence\": \"string\",\n      \"group\": \"string\",\n      \"userGroupExternalIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"isDisabled\": false\n    },\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"action\",\n        \"orderingSequence\": \"string\"\n      },\n      \"orderingSequence\": \"string\",\n      \"group\": \"string\",\n      \"userGroupExternalIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"isDisabled\": false\n    }\n  ],\n  \"items\": [\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"task\",\n        \"orderingSequence\": \"string\"\n      },\n      \"orderingSequence\": \"string\",\n      \"group\": \"string\",\n      \"userGroupExternalIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"isDisabled\": false\n    },\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"task\",\n        \"orderingSequence\": \"string\"\n      },\n      \"orderingSequence\": \"string\",\n      \"group\": \"string\",\n      \"userGroupExternalIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"isDisabled\": true\n    }\n  ],\n  \"defaultCodeId\": \"string\",\n  \"nextCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ddd8df0a-fe7b-4947-8a35-c7aac393bfce",
+          "name": "returns one code by its id",
+          "request": {
+            "name": "returns one code by its id",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "codes",
+                ":codeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "initiativeId",
+                  "value": "<objectid>",
+                  "description": "for usage to determine if this code is a default in this initiative's context"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeDefault",
+                  "value": "<boolean>",
+                  "description": "if true will determine if the code is a default in the context provided to this endpoint"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeId",
+                  "description": "(Required) code's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d498c5c-6224-462d-9d5a-0892eb9806c9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "codes",
+                    ":codeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiativeId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "includeDefault",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeId",
+                      "description": "(Required) code's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"externalId\": \"string\",\n  \"customerId\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"type\": {\n    \"_id\": \"string\",\n    \"externalId\": \"string\",\n    \"name\": \"string\",\n    \"semanticType\": \"location\",\n    \"orderingSequence\": \"string\"\n  },\n  \"orderingSequence\": \"string\",\n  \"group\": \"string\",\n  \"userGroupExternalIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"default\": true,\n  \"isDisabled\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a9b315d-307a-4b0c-a35c-6f921ce80705",
+          "name": "Customer Code Controller find Many For Customer With Pagination v1",
+          "request": {
+            "name": "Customer Code Controller find Many For Customer With Pagination v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "code-types",
+                ":codeTypeId",
+                "codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "initiativeId",
+                  "value": "<objectid>",
+                  "description": "initiative's identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeDisabled",
+                  "value": "<boolean>",
+                  "description": "whether to exclude disabled codes from results - defaults to false (all codes included). Set to true to exclude disabled codes."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<int64>",
+                  "description": "max number of item in each page"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<objectid>",
+                  "description": "cursor to start from"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce3c78c2-c818-45e7-b503-65eb88e33ea8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "code-types",
+                    ":codeTypeId",
+                    "codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiativeId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "excludeDisabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<objectid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"_id\": \"string\",\n      \"schemaVersion\": \"string\",\n      \"externalId\": \"string\",\n      \"customerId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"action\",\n        \"orderingSequence\": \"string\"\n      },\n      \"orderingSequence\": \"string\",\n      \"group\": \"string\",\n      \"userGroupExternalIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"default\": false,\n      \"isDisabled\": false\n    },\n    {\n      \"_id\": \"string\",\n      \"schemaVersion\": \"string\",\n      \"externalId\": \"string\",\n      \"customerId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"activity\",\n        \"orderingSequence\": \"string\"\n      },\n      \"orderingSequence\": \"string\",\n      \"group\": \"string\",\n      \"userGroupExternalIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"default\": false,\n      \"isDisabled\": false\n    }\n  ],\n  \"nextCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9909956-4570-4675-9916-16854f6e4a45",
+          "name": "Customer Code Controller find One v1",
+          "request": {
+            "name": "Customer Code Controller find One v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "code-types",
+                ":codeTypeId",
+                "codes",
+                ":codeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "initiativeId",
+                  "value": "<objectid>",
+                  "description": "initiative's identifier"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeId",
+                  "description": "(Required) code's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eabd5e24-171c-4876-be90-ed289fb880de",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "code-types",
+                    ":codeTypeId",
+                    "codes",
+                    ":codeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiativeId",
+                      "value": "<objectid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeId",
+                      "description": "(Required) code's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"externalId\": \"string\",\n  \"customerId\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"type\": {\n    \"_id\": \"string\",\n    \"externalId\": \"string\",\n    \"name\": \"string\",\n    \"semanticType\": \"activity\",\n    \"orderingSequence\": \"string\"\n  },\n  \"orderingSequence\": \"string\",\n  \"group\": \"string\",\n  \"userGroupExternalIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"default\": true,\n  \"isDisabled\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2d92a6c8-0c07-4f96-ab31-6db73373fcf2",
+    "name": "Identity Service Ably Codes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

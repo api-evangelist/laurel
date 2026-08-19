@@ -1,0 +1,129 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Onboarding Profiles API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Onboarding Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create onboarding profile for current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/onboarding-profiles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create onboarding profile for current user"
+        },
+        {
+          "info": {
+            "name": "Get onboarding profile by user id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/onboarding-profiles/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ]
+          },
+          "docs": "Get onboarding profile by user id"
+        },
+        {
+          "info": {
+            "name": "Update onboarding profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/onboarding-profiles/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update onboarding profile"
+        },
+        {
+          "info": {
+            "name": "Delete onboarding profile by user id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/onboarding-profiles/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ]
+          },
+          "docs": "Delete onboarding profile by user id"
+        },
+        {
+          "info": {
+            "name": "Update individual onboarding step",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/onboarding-profiles/:userId/steps/:stepId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "stepId",
+                "value": "",
+                "type": "path",
+                "description": "onboarding step id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update individual onboarding step"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

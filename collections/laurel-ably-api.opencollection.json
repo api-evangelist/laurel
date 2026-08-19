@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ably",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a token request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/ably/auth"
+          },
+          "docs": "Generate a token request"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

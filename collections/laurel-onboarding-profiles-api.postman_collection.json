@@ -1,0 +1,584 @@
+{
+  "item": [
+    {
+      "id": "21ae44c9-7952-40e9-8673-129c91b47b02",
+      "name": "Onboarding Profiles",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8c2f98d9-729f-4b41-8495-4515043a778a",
+          "name": "Create onboarding profile for current user",
+          "request": {
+            "name": "Create onboarding profile for current user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "onboarding-profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"timekeepingSinceYear\": \"<double>\",\n  \"timekeepingFrequency\": \"<string>\",\n  \"usesTimers\": \"<boolean>\",\n  \"timerFrequency\": \"<string>\",\n  \"avgInitiativesPerDay\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e1767d9b-34ba-4f6c-940b-8ee7d3e48f71",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "onboarding-profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timekeepingSinceYear\": \"<double>\",\n  \"timekeepingFrequency\": \"<string>\",\n  \"usesTimers\": \"<boolean>\",\n  \"timerFrequency\": \"<string>\",\n  \"avgInitiativesPerDay\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"userId\": \"string\",\n  \"customerId\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"timekeepingSinceYear\": 7444.1792621406075,\n  \"timekeepingFrequency\": \"WEEKLY\",\n  \"usesTimers\": false,\n  \"timerFrequency\": \"SOMETIMES\",\n  \"avgInitiativesPerDay\": 2365.0360282237125,\n  \"steps\": {\n    \"LANGUAGE\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"TIMEKEEPING_PREFERENCE\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"WELCOME_VIDEO\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"PRIVACY\": {\n      \"acceptedAt\": \"2022-08-12T20:44:48Z\",\n      \"docId\": \"string\",\n      \"language\": \"string\",\n      \"versionId\": \"string\"\n    },\n    \"WALKTHROUGH\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    }\n  },\n  \"completedAt\": \"2022-08-12T20:44:48Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e495793-b08e-45b3-b0b3-6ab03175f761",
+          "name": "Get onboarding profile by user id",
+          "request": {
+            "name": "Get onboarding profile by user id",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "onboarding-profiles",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8736578c-08af-4889-a504-3e5f43ad9510",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "onboarding-profiles",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"userId\": \"string\",\n  \"customerId\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"timekeepingSinceYear\": 7444.1792621406075,\n  \"timekeepingFrequency\": \"WEEKLY\",\n  \"usesTimers\": false,\n  \"timerFrequency\": \"SOMETIMES\",\n  \"avgInitiativesPerDay\": 2365.0360282237125,\n  \"steps\": {\n    \"LANGUAGE\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"TIMEKEEPING_PREFERENCE\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"WELCOME_VIDEO\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"PRIVACY\": {\n      \"acceptedAt\": \"2022-08-12T20:44:48Z\",\n      \"docId\": \"string\",\n      \"language\": \"string\",\n      \"versionId\": \"string\"\n    },\n    \"WALKTHROUGH\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    }\n  },\n  \"completedAt\": \"2022-08-12T20:44:48Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e489c50f-a75c-4e7b-8f2b-a3a3d99ebe02",
+          "name": "Update onboarding profile",
+          "request": {
+            "name": "Update onboarding profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "onboarding-profiles",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"timekeepingSinceYear\": \"<double>\",\n  \"timekeepingFrequency\": \"<string>\",\n  \"usesTimers\": \"<boolean>\",\n  \"timerFrequency\": \"<string>\",\n  \"avgInitiativesPerDay\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1fb3bd42-353c-4324-a3f1-82187227334c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "onboarding-profiles",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timekeepingSinceYear\": \"<double>\",\n  \"timekeepingFrequency\": \"<string>\",\n  \"usesTimers\": \"<boolean>\",\n  \"timerFrequency\": \"<string>\",\n  \"avgInitiativesPerDay\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"userId\": \"string\",\n  \"customerId\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"timekeepingSinceYear\": 7444.1792621406075,\n  \"timekeepingFrequency\": \"WEEKLY\",\n  \"usesTimers\": false,\n  \"timerFrequency\": \"SOMETIMES\",\n  \"avgInitiativesPerDay\": 2365.0360282237125,\n  \"steps\": {\n    \"LANGUAGE\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"TIMEKEEPING_PREFERENCE\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"WELCOME_VIDEO\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"PRIVACY\": {\n      \"acceptedAt\": \"2022-08-12T20:44:48Z\",\n      \"docId\": \"string\",\n      \"language\": \"string\",\n      \"versionId\": \"string\"\n    },\n    \"WALKTHROUGH\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    }\n  },\n  \"completedAt\": \"2022-08-12T20:44:48Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef311f18-cc7f-4778-a694-f20c00414fff",
+          "name": "Delete onboarding profile by user id",
+          "request": {
+            "name": "Delete onboarding profile by user id",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "onboarding-profiles",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7454cdef-a9fb-40f9-886d-e5c7aa5b7618",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "onboarding-profiles",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"userId\": \"string\",\n  \"customerId\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"timekeepingSinceYear\": 7444.1792621406075,\n  \"timekeepingFrequency\": \"WEEKLY\",\n  \"usesTimers\": false,\n  \"timerFrequency\": \"SOMETIMES\",\n  \"avgInitiativesPerDay\": 2365.0360282237125,\n  \"steps\": {\n    \"LANGUAGE\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"TIMEKEEPING_PREFERENCE\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"WELCOME_VIDEO\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"PRIVACY\": {\n      \"acceptedAt\": \"2022-08-12T20:44:48Z\",\n      \"docId\": \"string\",\n      \"language\": \"string\",\n      \"versionId\": \"string\"\n    },\n    \"WALKTHROUGH\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    }\n  },\n  \"completedAt\": \"2022-08-12T20:44:48Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b33580c6-451a-4c5d-966c-341194984256",
+          "name": "Update individual onboarding step",
+          "request": {
+            "name": "Update individual onboarding step",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "onboarding-profiles",
+                ":userId",
+                "steps",
+                ":stepId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stepId",
+                  "description": "(Required) onboarding step id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"step\": {\n    \"stepType\": \"<string>\",\n    \"completedAt\": \"<iso-date-time>\",\n    \"skippedAt\": \"<iso-date-time>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e37cbc02-1dcd-4c36-b977-044438a15caf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "onboarding-profiles",
+                    ":userId",
+                    "steps",
+                    ":stepId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stepId",
+                      "description": "(Required) onboarding step id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"step\": {\n    \"stepType\": \"<string>\",\n    \"completedAt\": \"2022-08-12T20:44:48Z\",\n    \"skippedAt\": \"2022-08-12T20:44:48Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"userId\": \"string\",\n  \"customerId\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"timekeepingSinceYear\": 7444.1792621406075,\n  \"timekeepingFrequency\": \"WEEKLY\",\n  \"usesTimers\": false,\n  \"timerFrequency\": \"SOMETIMES\",\n  \"avgInitiativesPerDay\": 2365.0360282237125,\n  \"steps\": {\n    \"LANGUAGE\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"TIMEKEEPING_PREFERENCE\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"WELCOME_VIDEO\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    },\n    \"PRIVACY\": {\n      \"acceptedAt\": \"2022-08-12T20:44:48Z\",\n      \"docId\": \"string\",\n      \"language\": \"string\",\n      \"versionId\": \"string\"\n    },\n    \"WALKTHROUGH\": {\n      \"completedAt\": \"2022-08-12T20:44:48Z\",\n      \"skippedAt\": \"2022-08-12T20:44:48Z\"\n    }\n  },\n  \"completedAt\": \"2022-08-12T20:44:48Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e7f6b977-9de5-4223-8e68-89a44f8cbc47",
+    "name": "Identity Service Ably Onboarding Profiles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

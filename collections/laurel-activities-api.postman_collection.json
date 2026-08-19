@@ -1,0 +1,2271 @@
+{
+  "item": [
+    {
+      "id": "09ad2b6f-3379-4735-80c8-57a6e368edd4",
+      "name": "Activities",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "47da02bb-23a5-4feb-8e9d-6a4d74a95507",
+          "name": "Creates a tracked Activity with customerId and userId returns the new Activity",
+          "request": {
+            "name": "Creates a tracked Activity with customerId and userId returns the new Activity",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "activities",
+                "track-from-service"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startedAt\": \"<iso-date-time>\",\n  \"stoppedAt\": \"<iso-date-time>\",\n  \"customerId\": \"<objectid>\",\n  \"userId\": \"<objectid>\",\n  \"category\": \"<string>\",\n  \"technology\": \"<string>\",\n  \"source\": \"<string>\",\n  \"mechanism\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"captureSourceId\": \"<objectid>\",\n  \"enhancedByAi\": \"<boolean>\",\n  \"isSeeded\": \"<boolean>\",\n  \"sessionIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"threadId\": \"<string>\",\n  \"activityMetadata\": {\n    \"trackingSourceType\": \"<string>\",\n    \"operatingSystem\": \"<string>\",\n    \"operatingSystemVersion\": \"<string>\",\n    \"trackedAppName\": \"<string>\",\n    \"trackedAppTitle\": \"<string>\",\n    \"trackedAppDisplayName\": \"<string>\",\n    \"trackedAppVersion\": \"<string>\",\n    \"trackedAppCommandline\": \"<string>\",\n    \"bodyFirst1000Characters\": \"<string>\",\n    \"bodyFirst1000CharactersEncrypted\": \"<string>\",\n    \"website\": {\n      \"url\": \"<string>\",\n      \"tabTitle\": \"<string>\",\n      \"windowTitle\": \"<string>\",\n      \"browserUser\": \"<string>\",\n      \"clientName\": \"<string>\"\n    },\n    \"document\": {\n      \"path\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    \"email\": {\n      \"id\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"from\": \"<string>\",\n      \"to\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"bcc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"threadId\": \"<string>\",\n      \"threadIndex\": \"<string>\",\n      \"threadIndexList\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": \"<string>\",\n      \"folder\": \"<string>\",\n      \"searchKey\": \"<string>\",\n      \"recordKey\": \"<string>\",\n      \"createdAt\": \"<iso-date-time>\",\n      \"attachments\": [\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"recipients\": [\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"recipient_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"smtp_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"recipient_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"smtp_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"windowsWindow\": {\n      \"hwnd\": \"<string>\",\n      \"processId\": \"<double>\",\n      \"windowClass\": \"<string>\",\n      \"windowType\": \"<string>\",\n      \"isModal\": \"<boolean>\",\n      \"parentHwnd\": \"<string>\",\n      \"ownerHwnd\": \"<string>\",\n      \"monitorIndex\": \"<double>\"\n    },\n    \"images\": [\n      {\n        \"uniqueFileName\": \"<string>\",\n        \"createdAt\": \"<iso-date-time>\"\n      },\n      {\n        \"uniqueFileName\": \"<string>\",\n        \"createdAt\": \"<iso-date-time>\"\n      }\n    ],\n    \"callState\": {\n      \"isCameraActive\": \"<boolean>\",\n      \"isMicActive\": \"<boolean>\",\n      \"isInCall\": \"<boolean>\"\n    },\n    \"meeting\": \"<object>\",\n    \"call\": \"<object>\",\n    \"workContext\": \"<object>\",\n    \"microsoftTeamsChat\": \"<object>\",\n    \"dynamicMetadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e262fd14-0e6b-485e-9bcb-398a42eb0987",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "activities",
+                    "track-from-service"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"customerId\": \"<objectid>\",\n  \"userId\": \"<objectid>\",\n  \"category\": \"<string>\",\n  \"technology\": \"<string>\",\n  \"source\": \"<string>\",\n  \"mechanism\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"captureSourceId\": \"<objectid>\",\n  \"enhancedByAi\": \"<boolean>\",\n  \"isSeeded\": \"<boolean>\",\n  \"sessionIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"threadId\": \"<string>\",\n  \"activityMetadata\": {\n    \"trackingSourceType\": \"<string>\",\n    \"operatingSystem\": \"<string>\",\n    \"operatingSystemVersion\": \"<string>\",\n    \"trackedAppName\": \"<string>\",\n    \"trackedAppTitle\": \"<string>\",\n    \"trackedAppDisplayName\": \"<string>\",\n    \"trackedAppVersion\": \"<string>\",\n    \"trackedAppCommandline\": \"<string>\",\n    \"bodyFirst1000Characters\": \"<string>\",\n    \"bodyFirst1000CharactersEncrypted\": \"<string>\",\n    \"website\": {\n      \"url\": \"<string>\",\n      \"tabTitle\": \"<string>\",\n      \"windowTitle\": \"<string>\",\n      \"browserUser\": \"<string>\",\n      \"clientName\": \"<string>\"\n    },\n    \"document\": {\n      \"path\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    \"email\": {\n      \"id\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"from\": \"<string>\",\n      \"to\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"bcc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"threadId\": \"<string>\",\n      \"threadIndex\": \"<string>\",\n      \"threadIndexList\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": \"<string>\",\n      \"folder\": \"<string>\",\n      \"searchKey\": \"<string>\",\n      \"recordKey\": \"<string>\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"attachments\": [\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"recipients\": [\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"recipient_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"smtp_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"recipient_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"smtp_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"windowsWindow\": {\n      \"hwnd\": \"<string>\",\n      \"processId\": \"<double>\",\n      \"windowClass\": \"<string>\",\n      \"windowType\": \"<string>\",\n      \"isModal\": \"<boolean>\",\n      \"parentHwnd\": \"<string>\",\n      \"ownerHwnd\": \"<string>\",\n      \"monitorIndex\": \"<double>\"\n    },\n    \"images\": [\n      {\n        \"uniqueFileName\": \"<string>\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\"\n      },\n      {\n        \"uniqueFileName\": \"<string>\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\"\n      }\n    ],\n    \"callState\": {\n      \"isCameraActive\": \"<boolean>\",\n      \"isMicActive\": \"<boolean>\",\n      \"isInCall\": \"<boolean>\"\n    },\n    \"meeting\": {\n      \"id\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"iCalUid\": \"<string>\",\n      \"organizer\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"role\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"participants\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"email\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"email\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"call\": {\n      \"direction\": \"<string>\",\n      \"participants\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"workContext\": {\n      \"initiativeName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"clientName\": \"<string>\"\n    },\n    \"microsoftTeamsChat\": {\n      \"chatId\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    \"dynamicMetadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"creationMethod\": \"timer\",\n  \"isLocked\": false,\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"assignedBy\": \"user\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"category\": \"string\",\n  \"technology\": \"string\",\n  \"externalId\": \"string\",\n  \"threadId\": \"string\",\n  \"enhancedByAi\": true,\n  \"isCopiedByAdmin\": false,\n  \"isSeeded\": true,\n  \"disableThreading\": false,\n  \"initiative\": {\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"callSign\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"status\": \"active\",\n    \"unitIncrements\": 1396.4238965938923,\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"name\": \"string\",\n    \"type\": \"user\",\n    \"locale\": \"fr-CA\",\n    \"props\": {\n      \"_id\": \"string\",\n      \"colorHex\": \"string\",\n      \"tags\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"userId\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3c4e9d2-3c41-4e91-bb93-4cabc921e144",
+          "name": "Updates an already-tracked Activity located by (customerId, externalId), for service backfill",
+          "request": {
+            "name": "Updates an already-tracked Activity located by (customerId, externalId), for service backfill",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "activities",
+                "update-from-service"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"<objectid>\",\n  \"externalId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9aa7728b-7391-4963-b46d-837e1eb0ff44",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "activities",
+                    "update-from-service"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"<objectid>\",\n  \"externalId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"creationMethod\": \"timer\",\n  \"isLocked\": false,\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"assignedBy\": \"none\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"category\": \"string\",\n  \"technology\": \"string\",\n  \"externalId\": \"string\",\n  \"threadId\": \"string\",\n  \"enhancedByAi\": false,\n  \"isCopiedByAdmin\": false,\n  \"isSeeded\": true,\n  \"disableThreading\": false,\n  \"initiative\": {\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"callSign\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"status\": \"inactive\",\n    \"unitIncrements\": 921.983673438539,\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"name\": \"string\",\n    \"type\": \"user\",\n    \"locale\": \"fr-FR\",\n    \"props\": {\n      \"_id\": \"string\",\n      \"colorHex\": \"string\",\n      \"tags\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"userId\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "337a3e95-70ec-417b-afb0-96eba0895163",
+          "name": "Creates a tracked Activity for a given user",
+          "request": {
+            "name": "Creates a tracked Activity for a given user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "activities",
+                "track-from-agent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startedAt\": \"<iso-date-time>\",\n  \"stoppedAt\": \"<iso-date-time>\",\n  \"category\": \"<string>\",\n  \"technology\": \"<string>\",\n  \"source\": \"<string>\",\n  \"mechanism\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"captureSourceId\": \"<objectid>\",\n  \"enhancedByAi\": \"<boolean>\",\n  \"isSeeded\": \"<boolean>\",\n  \"sessionIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"threadId\": \"<string>\",\n  \"activityMetadata\": {\n    \"trackingSourceType\": \"<string>\",\n    \"operatingSystem\": \"<string>\",\n    \"operatingSystemVersion\": \"<string>\",\n    \"trackedAppName\": \"<string>\",\n    \"trackedAppTitle\": \"<string>\",\n    \"trackedAppDisplayName\": \"<string>\",\n    \"trackedAppVersion\": \"<string>\",\n    \"trackedAppCommandline\": \"<string>\",\n    \"bodyFirst1000Characters\": \"<string>\",\n    \"bodyFirst1000CharactersEncrypted\": \"<string>\",\n    \"website\": {\n      \"url\": \"<string>\",\n      \"tabTitle\": \"<string>\",\n      \"windowTitle\": \"<string>\",\n      \"browserUser\": \"<string>\",\n      \"clientName\": \"<string>\"\n    },\n    \"document\": {\n      \"path\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    \"email\": {\n      \"id\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"from\": \"<string>\",\n      \"to\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"bcc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"threadId\": \"<string>\",\n      \"threadIndex\": \"<string>\",\n      \"threadIndexList\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": \"<string>\",\n      \"folder\": \"<string>\",\n      \"searchKey\": \"<string>\",\n      \"recordKey\": \"<string>\",\n      \"createdAt\": \"<iso-date-time>\",\n      \"attachments\": [\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"recipients\": [\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"recipient_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"smtp_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"recipient_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"smtp_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"windowsWindow\": {\n      \"hwnd\": \"<string>\",\n      \"processId\": \"<double>\",\n      \"windowClass\": \"<string>\",\n      \"windowType\": \"<string>\",\n      \"isModal\": \"<boolean>\",\n      \"parentHwnd\": \"<string>\",\n      \"ownerHwnd\": \"<string>\",\n      \"monitorIndex\": \"<double>\"\n    },\n    \"images\": [\n      {\n        \"uniqueFileName\": \"<string>\",\n        \"createdAt\": \"<iso-date-time>\"\n      },\n      {\n        \"uniqueFileName\": \"<string>\",\n        \"createdAt\": \"<iso-date-time>\"\n      }\n    ],\n    \"callState\": {\n      \"isCameraActive\": \"<boolean>\",\n      \"isMicActive\": \"<boolean>\",\n      \"isInCall\": \"<boolean>\"\n    },\n    \"meeting\": \"<object>\",\n    \"call\": \"<object>\",\n    \"workContext\": \"<object>\",\n    \"microsoftTeamsChat\": \"<object>\",\n    \"dynamicMetadata\": {\n      \"key_0\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "43854bc4-e8fc-4d34-a1e3-8037f31c26ea",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "activities",
+                    "track-from-agent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"category\": \"<string>\",\n  \"technology\": \"<string>\",\n  \"source\": \"<string>\",\n  \"mechanism\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"captureSourceId\": \"<objectid>\",\n  \"enhancedByAi\": \"<boolean>\",\n  \"isSeeded\": \"<boolean>\",\n  \"sessionIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"threadId\": \"<string>\",\n  \"activityMetadata\": {\n    \"trackingSourceType\": \"<string>\",\n    \"operatingSystem\": \"<string>\",\n    \"operatingSystemVersion\": \"<string>\",\n    \"trackedAppName\": \"<string>\",\n    \"trackedAppTitle\": \"<string>\",\n    \"trackedAppDisplayName\": \"<string>\",\n    \"trackedAppVersion\": \"<string>\",\n    \"trackedAppCommandline\": \"<string>\",\n    \"bodyFirst1000Characters\": \"<string>\",\n    \"bodyFirst1000CharactersEncrypted\": \"<string>\",\n    \"website\": {\n      \"url\": \"<string>\",\n      \"tabTitle\": \"<string>\",\n      \"windowTitle\": \"<string>\",\n      \"browserUser\": \"<string>\",\n      \"clientName\": \"<string>\"\n    },\n    \"document\": {\n      \"path\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    \"email\": {\n      \"id\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"from\": \"<string>\",\n      \"to\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"bcc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"threadId\": \"<string>\",\n      \"threadIndex\": \"<string>\",\n      \"threadIndexList\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": \"<string>\",\n      \"folder\": \"<string>\",\n      \"searchKey\": \"<string>\",\n      \"recordKey\": \"<string>\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"attachments\": [\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"recipients\": [\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"recipient_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"smtp_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"recipient_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"smtp_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"windowsWindow\": {\n      \"hwnd\": \"<string>\",\n      \"processId\": \"<double>\",\n      \"windowClass\": \"<string>\",\n      \"windowType\": \"<string>\",\n      \"isModal\": \"<boolean>\",\n      \"parentHwnd\": \"<string>\",\n      \"ownerHwnd\": \"<string>\",\n      \"monitorIndex\": \"<double>\"\n    },\n    \"images\": [\n      {\n        \"uniqueFileName\": \"<string>\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\"\n      },\n      {\n        \"uniqueFileName\": \"<string>\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\"\n      }\n    ],\n    \"callState\": {\n      \"isCameraActive\": \"<boolean>\",\n      \"isMicActive\": \"<boolean>\",\n      \"isInCall\": \"<boolean>\"\n    },\n    \"meeting\": {\n      \"id\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"iCalUid\": \"<string>\",\n      \"organizer\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"role\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"participants\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"email\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"email\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"call\": {\n      \"direction\": \"<string>\",\n      \"participants\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"workContext\": {\n      \"initiativeName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"clientName\": \"<string>\"\n    },\n    \"microsoftTeamsChat\": {\n      \"chatId\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    \"dynamicMetadata\": {\n      \"key_0\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"creationMethod\": \"timer\",\n  \"isLocked\": false,\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"assignedBy\": \"none\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"category\": \"string\",\n  \"technology\": \"string\",\n  \"externalId\": \"string\",\n  \"threadId\": \"string\",\n  \"enhancedByAi\": false,\n  \"isCopiedByAdmin\": false,\n  \"isSeeded\": true,\n  \"disableThreading\": false,\n  \"initiative\": {\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"callSign\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"status\": \"inactive\",\n    \"unitIncrements\": 921.983673438539,\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"name\": \"string\",\n    \"type\": \"user\",\n    \"locale\": \"fr-FR\",\n    \"props\": {\n      \"_id\": \"string\",\n      \"colorHex\": \"string\",\n      \"tags\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"userId\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b42dddc6-6170-48aa-9c9c-9c3723764f74",
+          "name": "Creates a new Activity for a given user",
+          "request": {
+            "name": "Creates a new Activity for a given user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "activities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startedAt\": \"<iso-date-time>\",\n  \"stoppedAt\": \"<iso-date-time>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"category\": \"<string>\",\n  \"technology\": \"<string>\",\n  \"source\": \"<string>\",\n  \"mechanism\": \"<string>\",\n  \"initiativeId\": \"<objectid>\",\n  \"isSeeded\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3eea1aa3-82ce-4144-9a3b-04c55fd4c770",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"category\": \"<string>\",\n  \"technology\": \"<string>\",\n  \"source\": \"<string>\",\n  \"mechanism\": \"<string>\",\n  \"initiativeId\": \"<objectid>\",\n  \"isSeeded\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"creationMethod\": \"timer\",\n  \"isLocked\": false,\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"assignedBy\": \"none\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"category\": \"string\",\n  \"technology\": \"string\",\n  \"externalId\": \"string\",\n  \"threadId\": \"string\",\n  \"enhancedByAi\": false,\n  \"isCopiedByAdmin\": false,\n  \"isSeeded\": true,\n  \"disableThreading\": false,\n  \"initiative\": {\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"callSign\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"status\": \"inactive\",\n    \"unitIncrements\": 921.983673438539,\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"name\": \"string\",\n    \"type\": \"user\",\n    \"locale\": \"fr-FR\",\n    \"props\": {\n      \"_id\": \"string\",\n      \"colorHex\": \"string\",\n      \"tags\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"userId\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a4a8b89-3322-4053-9925-bb2c543ee4cb",
+          "name": "Returns activities within a specified time range for a given user",
+          "request": {
+            "name": "Returns activities within a specified time range for a given user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "activities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startedBefore",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) the date to get activities that their started at time is less than this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "stoppedAfter",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) the date to get activities that their stopped at time is greater than this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeDeleted",
+                  "value": "<boolean>",
+                  "description": "if true, include soft-deleted activities; defaults to excluding them"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36b42457-e45a-4715-b9ef-c8093f7ae0fd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startedBefore",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "stoppedAfter",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "includeDeleted",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"creationMethod\": \"timer\",\n    \"isLocked\": true,\n    \"title\": \"string\",\n    \"detail\": \"string\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n    \"assignedBy\": \"none\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"schemaVersion\": \"string\",\n    \"initiativeProps\": {\n      \"type\": \"pms\",\n      \"colorHex\": \"fec828\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"initiative\": {\n        \"type\": \"user\",\n        \"_id\": \"string\",\n        \"billingType\": \"non-billable\",\n        \"unitIncrements\": 7375.622760848029,\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"client\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": \"string\",\n        \"status\": \"inactive\",\n        \"locale\": \"en-CA\"\n      },\n      \"nickname\": \"string\"\n    },\n    \"category\": \"string\",\n    \"technology\": \"string\",\n    \"source\": \"string\",\n    \"mechanism\": \"string\",\n    \"externalId\": \"string\",\n    \"threadId\": \"string\",\n    \"enhancedByAi\": true,\n    \"isCopiedByAdmin\": true,\n    \"isSeeded\": false,\n    \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n    \"isDeleted\": false,\n    \"disableThreading\": true,\n    \"sessionIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"splitFromActivityId\": \"string\"\n  },\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"creationMethod\": \"tracked\",\n    \"isLocked\": false,\n    \"title\": \"string\",\n    \"detail\": \"string\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n    \"assignedBy\": \"user\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"schemaVersion\": \"string\",\n    \"initiativeProps\": {\n      \"type\": \"pms\",\n      \"colorHex\": \"fec828\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"initiative\": {\n        \"type\": \"pms\",\n        \"_id\": \"string\",\n        \"billingType\": \"non-billable\",\n        \"unitIncrements\": 7555.674120797522,\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"client\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": \"string\",\n        \"status\": \"inactive\",\n        \"locale\": \"en-US\"\n      },\n      \"nickname\": \"string\"\n    },\n    \"category\": \"string\",\n    \"technology\": \"string\",\n    \"source\": \"string\",\n    \"mechanism\": \"string\",\n    \"externalId\": \"string\",\n    \"threadId\": \"string\",\n    \"enhancedByAi\": false,\n    \"isCopiedByAdmin\": true,\n    \"isSeeded\": true,\n    \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n    \"isDeleted\": false,\n    \"disableThreading\": true,\n    \"sessionIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"splitFromActivityId\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3b5b995-a407-4f48-ad1d-62e71484ae2c",
+          "name": "Dismisses a slice of open time by creating a soft-deleted user activity\nthat fills the gap. Open time is derived from the gaps between activities,\nso filling the gap is what removes it. Emits no events.",
+          "request": {
+            "name": "Dismisses a slice of open time by creating a soft-deleted user activity\nthat fills the gap. Open time is derived from the gaps between activities,\nso filling the gap is what removes it. Emits no events.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "activities",
+                "dismiss-open-time"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startedAt\": \"<iso-date-time>\",\n  \"stoppedAt\": \"<iso-date-time>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0da26826-257b-402b-8c84-ec624b551199",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "activities",
+                    "dismiss-open-time"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"creationMethod\": \"timer\",\n  \"isLocked\": false,\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"assignedBy\": \"none\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"category\": \"string\",\n  \"technology\": \"string\",\n  \"externalId\": \"string\",\n  \"threadId\": \"string\",\n  \"enhancedByAi\": false,\n  \"isCopiedByAdmin\": false,\n  \"isSeeded\": true,\n  \"disableThreading\": false,\n  \"initiative\": {\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"callSign\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"status\": \"inactive\",\n    \"unitIncrements\": 921.983673438539,\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"name\": \"string\",\n    \"type\": \"user\",\n    \"locale\": \"fr-FR\",\n    \"props\": {\n      \"_id\": \"string\",\n      \"colorHex\": \"string\",\n      \"tags\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"userId\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86991c1f-ee26-4374-8d55-9d70bc223de7",
+          "name": "Creates a new Timer Activity, optionally adding it to an existing entry",
+          "request": {
+            "name": "Creates a new Timer Activity, optionally adding it to an existing entry",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "activities",
+                "timer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startedAt\": \"<iso-date-time>\",\n  \"stoppedAt\": \"<iso-date-time>\",\n  \"title\": \"<string>\",\n  \"_id\": \"<objectid>\",\n  \"entryId\": \"<objectid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b64191dc-4f50-4bdf-b5e5-cd5fab4ccf84",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "activities",
+                    "timer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"title\": \"<string>\",\n  \"_id\": \"<objectid>\",\n  \"entryId\": \"<objectid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"creationMethod\": \"timer\",\n  \"isLocked\": false,\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"assignedBy\": \"none\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"category\": \"string\",\n  \"technology\": \"string\",\n  \"externalId\": \"string\",\n  \"threadId\": \"string\",\n  \"enhancedByAi\": false,\n  \"isCopiedByAdmin\": false,\n  \"isSeeded\": true,\n  \"disableThreading\": false,\n  \"initiative\": {\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"callSign\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"status\": \"inactive\",\n    \"unitIncrements\": 921.983673438539,\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"name\": \"string\",\n    \"type\": \"user\",\n    \"locale\": \"fr-FR\",\n    \"props\": {\n      \"_id\": \"string\",\n      \"colorHex\": \"string\",\n      \"tags\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"userId\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c297f641-10a2-45b0-8214-1b3095bfe576",
+          "name": "Returns activities within a specified time range for a given user",
+          "request": {
+            "name": "Returns activities within a specified time range for a given user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "activities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<objectid>",
+                  "description": "(Required) the user whose entries you are searching for"
+                },
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<objectid>",
+                  "description": "(Required) the user's customer"
+                },
+                {
+                  "disabled": false,
+                  "key": "startedBefore",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) the date to get activities that their started at time is less than this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "stoppedAfter",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) the date to get activities that their stopped at time is greater than this date"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc4a011a-174a-485f-8dd7-12b13ff3111b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "startedBefore",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "stoppedAfter",
+                      "value": "2022-08-12T20:44:48Z"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"creationMethod\": \"timer\",\n    \"isLocked\": true,\n    \"title\": \"string\",\n    \"detail\": \"string\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n    \"assignedBy\": \"none\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"category\": \"string\",\n    \"technology\": \"string\",\n    \"externalId\": \"string\",\n    \"threadId\": \"string\",\n    \"enhancedByAi\": false,\n    \"isCopiedByAdmin\": true,\n    \"isSeeded\": true,\n    \"disableThreading\": true,\n    \"initiative\": {\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"callSign\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"status\": \"active\",\n      \"unitIncrements\": 8979.220211413656,\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"name\": \"string\",\n      \"type\": \"user\",\n      \"locale\": \"fi-FI\",\n      \"props\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"colorHex\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"tags\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  },\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"creationMethod\": \"timer\",\n    \"isLocked\": true,\n    \"title\": \"string\",\n    \"detail\": \"string\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n    \"assignedBy\": \"user\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"category\": \"string\",\n    \"technology\": \"string\",\n    \"externalId\": \"string\",\n    \"threadId\": \"string\",\n    \"enhancedByAi\": true,\n    \"isCopiedByAdmin\": true,\n    \"isSeeded\": true,\n    \"disableThreading\": true,\n    \"initiative\": {\n      \"_id\": \"string\",\n      \"billingType\": \"non-billable\",\n      \"callSign\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"status\": \"active\",\n      \"unitIncrements\": 6610.748776751493,\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"name\": \"string\",\n      \"type\": \"user\",\n      \"locale\": \"ko-KR\",\n      \"props\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"colorHex\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"tags\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9436638e-9529-4b80-99c2-64ac6a720cdd",
+          "name": "Returns paginated activities within a specified time range for a given user using cursor-based pagination",
+          "request": {
+            "name": "Returns paginated activities within a specified time range for a given user using cursor-based pagination",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "activities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<int64>",
+                  "description": "max number of item in each page"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<objectid>",
+                  "description": "cursor to start from"
+                },
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<objectid>",
+                  "description": "(Required) the user whose entries you are searching for"
+                },
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<objectid>",
+                  "description": "(Required) the user's customer"
+                },
+                {
+                  "disabled": false,
+                  "key": "startedBefore",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) the date to get activities that their started at time is less than this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "stoppedAfter",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) the date to get activities that their stopped at time is greater than this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<objectid>",
+                  "description": "optional client filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "creationMethod",
+                  "value": "<string>",
+                  "description": "optional activity creation method filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "optional category filter matching activity.category or captureSource.activityCategory"
+                },
+                {
+                  "disabled": false,
+                  "key": "initiativeId",
+                  "value": "<objectid>",
+                  "description": "optional initiative filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "billingType",
+                  "value": "<string>",
+                  "description": "optional initiative billing type filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "isLocked",
+                  "value": "<boolean>",
+                  "description": "optional lock state filter"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce89c823-7ac8-490a-9671-6bcb0a1b4bdd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "startedBefore",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "stoppedAfter",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "creationMethod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "initiativeId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "billingType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isLocked",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"_id\": \"string\",\n      \"customerId\": \"string\",\n      \"userId\": \"string\",\n      \"creationMethod\": \"timer\",\n      \"isLocked\": true,\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"startedAt\": \"2022-08-12T20:44:48Z\",\n      \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n      \"assignedBy\": \"user\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"category\": \"string\",\n      \"technology\": \"string\",\n      \"externalId\": \"string\",\n      \"threadId\": \"string\",\n      \"enhancedByAi\": true,\n      \"isCopiedByAdmin\": true,\n      \"isSeeded\": true,\n      \"disableThreading\": false,\n      \"initiative\": {\n        \"_id\": \"string\",\n        \"billingType\": \"billable\",\n        \"callSign\": \"string\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"status\": \"active\",\n        \"unitIncrements\": 1685.7845697693563,\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"name\": \"string\",\n        \"type\": \"user\",\n        \"locale\": \"is-IS\",\n        \"props\": {}\n      }\n    },\n    {\n      \"_id\": \"string\",\n      \"customerId\": \"string\",\n      \"userId\": \"string\",\n      \"creationMethod\": \"timer\",\n      \"isLocked\": false,\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"startedAt\": \"2022-08-12T20:44:48Z\",\n      \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n      \"assignedBy\": \"user\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"category\": \"string\",\n      \"technology\": \"string\",\n      \"externalId\": \"string\",\n      \"threadId\": \"string\",\n      \"enhancedByAi\": false,\n      \"isCopiedByAdmin\": false,\n      \"isSeeded\": false,\n      \"disableThreading\": false,\n      \"initiative\": {\n        \"_id\": \"string\",\n        \"billingType\": \"non-billable\",\n        \"callSign\": \"string\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"status\": \"active\",\n        \"unitIncrements\": 5566.674808050487,\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"name\": \"string\",\n        \"type\": \"user\",\n        \"locale\": \"pt-PT\",\n        \"props\": {}\n      }\n    }\n  ],\n  \"nextCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf8ca1fa-8e0b-4778-908d-1ab14d218bfb",
+          "name": "Returns activities joined with their capture metadata (incl. workContext) within a time range for a given user",
+          "request": {
+            "name": "Returns activities joined with their capture metadata (incl. workContext) within a time range for a given user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "activities",
+                "with-metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startedBefore",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) the date to get activities that their started at time is less than this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "stoppedAfter",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) the date to get activities that their stopped at time is greater than this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeDeleted",
+                  "value": "<boolean>",
+                  "description": "if true, include soft-deleted activities; defaults to excluding them"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc15b191-e4b8-44c0-87b6-40742f5ffe21",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "activities",
+                    "with-metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startedBefore",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "stoppedAfter",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "includeDeleted",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"creationMethod\": \"tracked\",\n    \"isLocked\": false,\n    \"title\": \"string\",\n    \"detail\": \"string\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n    \"assignedBy\": \"none\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"schemaVersion\": \"string\",\n    \"isSplittable\": false,\n    \"initiativeProps\": {\n      \"type\": \"pms\",\n      \"colorHex\": \"fec828\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"initiative\": {\n        \"type\": \"user\",\n        \"_id\": \"string\",\n        \"billingType\": \"non-billable\",\n        \"unitIncrements\": 1987.517933567462,\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"client\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": \"string\",\n        \"status\": \"active\",\n        \"locale\": \"es-ES\"\n      },\n      \"nickname\": \"string\"\n    },\n    \"category\": \"string\",\n    \"technology\": \"string\",\n    \"source\": \"string\",\n    \"mechanism\": \"string\",\n    \"externalId\": \"string\",\n    \"threadId\": \"string\",\n    \"enhancedByAi\": false,\n    \"isCopiedByAdmin\": true,\n    \"isSeeded\": true,\n    \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n    \"isDeleted\": true,\n    \"disableThreading\": false,\n    \"sessionIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"splitFromActivityId\": \"string\",\n    \"captureSource\": {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"iconId\": \"string\",\n      \"capturingSourceType\": \"application\",\n      \"activityCategory\": \"app\"\n    },\n    \"activityMetadata\": {\n      \"_id\": \"string\",\n      \"activityId\": \"string\",\n      \"userId\": \"string\",\n      \"customerId\": \"string\",\n      \"trackingSourceType\": \"system\",\n      \"operatingSystem\": \"windows\",\n      \"operatingSystemVersion\": \"string\",\n      \"trackedAppName\": \"string\",\n      \"trackedAppTitle\": \"string\",\n      \"trackedAppDisplayName\": \"string\",\n      \"trackedAppVersion\": \"string\",\n      \"trackedAppCommandline\": \"string\",\n      \"bodyFirst1000Characters\": \"string\",\n      \"bodyFirst1000CharactersEncrypted\": \"string\",\n      \"website\": {\n        \"url\": \"<string>\",\n        \"tabTitle\": \"<string>\",\n        \"windowTitle\": \"<string>\",\n        \"browserUser\": \"<string>\",\n        \"clientName\": \"<string>\"\n      },\n      \"document\": {\n        \"path\": \"<string>\",\n        \"title\": \"<string>\"\n      },\n      \"email\": {\n        \"id\": \"<string>\",\n        \"subject\": \"<string>\",\n        \"from\": \"<string>\",\n        \"to\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"cc\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"bcc\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"threadId\": \"<string>\",\n        \"threadIndex\": \"<string>\",\n        \"threadIndexList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"status\": \"<string>\",\n        \"folder\": \"<string>\",\n        \"searchKey\": \"<string>\",\n        \"recordKey\": \"<string>\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"attachments\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"recipients\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"windowsWindow\": {\n        \"hwnd\": \"<string>\",\n        \"processId\": \"<double>\",\n        \"windowClass\": \"<string>\",\n        \"windowType\": \"<string>\",\n        \"isModal\": \"<boolean>\",\n        \"parentHwnd\": \"<string>\",\n        \"ownerHwnd\": \"<string>\",\n        \"monitorIndex\": \"<double>\"\n      },\n      \"images\": [\n        {\n          \"uniqueFileName\": \"<string>\",\n          \"createdAt\": \"2022-08-12T20:44:48Z\"\n        },\n        {\n          \"uniqueFileName\": \"<string>\",\n          \"createdAt\": \"2022-08-12T20:44:48Z\"\n        }\n      ],\n      \"callState\": {\n        \"isCameraActive\": \"<boolean>\",\n        \"isMicActive\": \"<boolean>\",\n        \"isInCall\": \"<boolean>\"\n      },\n      \"meeting\": {\n        \"id\": \"<string>\",\n        \"subject\": \"<string>\",\n        \"iCalUid\": \"<string>\",\n        \"organizer\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"participants\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"call\": {\n        \"direction\": \"<string>\",\n        \"participants\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"dynamicMetadata\": {\n        \"key_0\": \"string\"\n      },\n      \"workContext\": {\n        \"initiativeName\": \"<string>\",\n        \"name\": \"<string>\",\n        \"clientName\": \"<string>\"\n      },\n      \"microsoftTeamsChat\": {\n        \"chatId\": \"<string>\",\n        \"title\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"creationMethod\": \"timer\",\n    \"isLocked\": false,\n    \"title\": \"string\",\n    \"detail\": \"string\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n    \"assignedBy\": \"none\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"schemaVersion\": \"string\",\n    \"isSplittable\": true,\n    \"initiativeProps\": {\n      \"type\": \"pms\",\n      \"colorHex\": \"fec828\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"initiative\": {\n        \"type\": \"pms\",\n        \"_id\": \"string\",\n        \"billingType\": \"billable\",\n        \"unitIncrements\": 6756.947036904828,\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"client\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": \"string\",\n        \"status\": \"active\",\n        \"locale\": \"ko-KR\"\n      },\n      \"nickname\": \"string\"\n    },\n    \"category\": \"string\",\n    \"technology\": \"string\",\n    \"source\": \"string\",\n    \"mechanism\": \"string\",\n    \"externalId\": \"string\",\n    \"threadId\": \"string\",\n    \"enhancedByAi\": false,\n    \"isCopiedByAdmin\": true,\n    \"isSeeded\": true,\n    \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n    \"isDeleted\": true,\n    \"disableThreading\": true,\n    \"sessionIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"splitFromActivityId\": \"string\",\n    \"captureSource\": {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"iconId\": \"stri\",\n      \"capturingSourceType\": \"website\",\n      \"activityCategory\": \"call\"\n    },\n    \"activityMetadata\": {\n      \"_id\": \"string\",\n      \"activityId\": \"string\",\n      \"userId\": \"string\",\n      \"customerId\": \"string\",\n      \"trackingSourceType\": \"application\",\n      \"operatingSystem\": \"unknown\",\n      \"operatingSystemVersion\": \"string\",\n      \"trackedAppName\": \"string\",\n      \"trackedAppTitle\": \"string\",\n      \"trackedAppDisplayName\": \"string\",\n      \"trackedAppVersion\": \"string\",\n      \"trackedAppCommandline\": \"string\",\n      \"bodyFirst1000Characters\": \"string\",\n      \"bodyFirst1000CharactersEncrypted\": \"string\",\n      \"website\": {\n        \"url\": \"<string>\",\n        \"tabTitle\": \"<string>\",\n        \"windowTitle\": \"<string>\",\n        \"browserUser\": \"<string>\",\n        \"clientName\": \"<string>\"\n      },\n      \"document\": {\n        \"path\": \"<string>\",\n        \"title\": \"<string>\"\n      },\n      \"email\": {\n        \"id\": \"<string>\",\n        \"subject\": \"<string>\",\n        \"from\": \"<string>\",\n        \"to\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"cc\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"bcc\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"threadId\": \"<string>\",\n        \"threadIndex\": \"<string>\",\n        \"threadIndexList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"status\": \"<string>\",\n        \"folder\": \"<string>\",\n        \"searchKey\": \"<string>\",\n        \"recordKey\": \"<string>\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"attachments\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"recipients\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"windowsWindow\": {\n        \"hwnd\": \"<string>\",\n        \"processId\": \"<double>\",\n        \"windowClass\": \"<string>\",\n        \"windowType\": \"<string>\",\n        \"isModal\": \"<boolean>\",\n        \"parentHwnd\": \"<string>\",\n        \"ownerHwnd\": \"<string>\",\n        \"monitorIndex\": \"<double>\"\n      },\n      \"images\": [\n        {\n          \"uniqueFileName\": \"<string>\",\n          \"createdAt\": \"2022-08-12T20:44:48Z\"\n        },\n        {\n          \"uniqueFileName\": \"<string>\",\n          \"createdAt\": \"2022-08-12T20:44:48Z\"\n        }\n      ],\n      \"callState\": {\n        \"isCameraActive\": \"<boolean>\",\n        \"isMicActive\": \"<boolean>\",\n        \"isInCall\": \"<boolean>\"\n      },\n      \"meeting\": {\n        \"id\": \"<string>\",\n        \"subject\": \"<string>\",\n        \"iCalUid\": \"<string>\",\n        \"organizer\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"participants\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"call\": {\n        \"direction\": \"<string>\",\n        \"participants\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"dynamicMetadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"workContext\": {\n        \"initiativeName\": \"<string>\",\n        \"name\": \"<string>\",\n        \"clientName\": \"<string>\"\n      },\n      \"microsoftTeamsChat\": {\n        \"chatId\": \"<string>\",\n        \"title\": \"<string>\"\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b6d2fbf-4285-4627-b603-c26732930740",
+          "name": "Deletes an Activity by Id and returns the deleted Activity",
+          "request": {
+            "name": "Deletes an Activity by Id and returns the deleted Activity",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "activities",
+                ":activityId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "activityId",
+                  "description": "(Required) individual activity id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6f31327-06a0-4f3c-85bc-4feee13cb2ea",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "activities",
+                    ":activityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "activityId",
+                      "description": "(Required) individual activity id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d68c305b-7098-4956-b388-374530b34a9c",
+          "name": "Updates an existing Activity for a given user",
+          "request": {
+            "name": "Updates an existing Activity for a given user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "activities",
+                ":activityId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "activityId",
+                  "description": "(Required) individual activity id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"startedAt\": \"<iso-date-time>\",\n  \"stoppedAt\": \"<iso-date-time>\",\n  \"initiativeId\": \"<objectid>\",\n  \"threadId\": \"<string>\",\n  \"disableThreading\": \"<boolean>\",\n  \"deleteEmptyEntry\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "442fb209-70e3-4d3e-a047-da1000b7b35d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "activities",
+                    ":activityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "activityId",
+                      "description": "(Required) individual activity id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"category\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"initiativeId\": \"<objectid>\",\n  \"threadId\": \"<string>\",\n  \"disableThreading\": \"<boolean>\",\n  \"deleteEmptyEntry\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"creationMethod\": \"timer\",\n  \"isLocked\": false,\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"assignedBy\": \"none\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"category\": \"string\",\n  \"technology\": \"string\",\n  \"externalId\": \"string\",\n  \"threadId\": \"string\",\n  \"enhancedByAi\": false,\n  \"isCopiedByAdmin\": false,\n  \"isSeeded\": true,\n  \"disableThreading\": false,\n  \"initiative\": {\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"callSign\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"status\": \"inactive\",\n    \"unitIncrements\": 921.983673438539,\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"name\": \"string\",\n    \"type\": \"user\",\n    \"locale\": \"fr-FR\",\n    \"props\": {\n      \"_id\": \"string\",\n      \"colorHex\": \"string\",\n      \"tags\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"userId\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b5a2571-2b92-4d89-913f-1fced2e1f29a",
+          "name": "Archives (soft-deletes) many Activities by id — sets isDeleted, emits activity-updated, skips locked/missing",
+          "request": {
+            "name": "Archives (soft-deletes) many Activities by id — sets isDeleted, emits activity-updated, skips locked/missing",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "activities",
+                "archive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"activityIds\": [\n    \"<objectid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0814b0ad-b245-4474-ae19-5b283ea09930",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "activities",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activityIds\": [\n    \"<objectid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"successes\": [\n    {\n      \"activityId\": \"string\"\n    },\n    {\n      \"activityId\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"activityId\": \"string\",\n      \"status\": 3025.1238377257528,\n      \"message\": \"string\"\n    },\n    {\n      \"activityId\": \"string\",\n      \"status\": 2234.009921181889,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21fa4bbb-d2bd-4200-b59a-632fccd10172",
+          "name": "Unarchives (revives) many soft-deleted Activities by id — clears isDeleted, emits activity-updated, skips locked/missing",
+          "request": {
+            "name": "Unarchives (revives) many soft-deleted Activities by id — clears isDeleted, emits activity-updated, skips locked/missing",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "activities",
+                "unarchive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"activityIds\": [\n    \"<objectid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "243a3ff5-b6ba-45cd-8aa9-c45b5af3a380",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "activities",
+                    "unarchive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activityIds\": [\n    \"<objectid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"successes\": [\n    {\n      \"activityId\": \"string\"\n    },\n    {\n      \"activityId\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"activityId\": \"string\",\n      \"status\": 6401.460241871798,\n      \"message\": \"string\"\n    },\n    {\n      \"activityId\": \"string\",\n      \"status\": 4149.281262696321,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75e5b3f2-c179-4e12-b6bf-b1964a4581af",
+          "name": "Enqueues a background job that re-emits ActivityCreatedForSignal events for\nevery activity of the given customer started within the date range. Guarded\nby the cross-customer activity read permission held by super-laurel-admins.",
+          "request": {
+            "name": "Enqueues a background job that re-emits ActivityCreatedForSignal events for\nevery activity of the given customer started within the date range. Guarded\nby the cross-customer activity read permission held by super-laurel-admins.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "activities",
+                "signal-backfill"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"<objectid>\",\n  \"startingDate\": \"<iso-date-time>\",\n  \"endingDate\": \"<iso-date-time>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "843fd0dd-53f7-43e5-af75-05846f56fd8d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "activities",
+                    "signal-backfill"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"<objectid>\",\n  \"startingDate\": \"2022-08-12T20:44:48Z\",\n  \"endingDate\": \"2022-08-12T20:44:48Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b64a564-ffd5-4a65-8bd5-5d32773cce1e",
+          "name": "Activity Controller copy Activities v1",
+          "request": {
+            "name": "Activity Controller copy Activities v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "activities",
+                "copy-from",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startedBefore\": \"<iso-date-time>\",\n  \"stoppedAfter\": \"<iso-date-time>\",\n  \"targetDate\": \"<iso-date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "29cae62d-a747-40b3-8986-f7d96820d0fb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "activities",
+                    "copy-from",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startedBefore\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAfter\": \"2022-08-12T20:44:48Z\",\n  \"targetDate\": \"2022-08-12\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7d62cee-1758-4aca-a2c3-534ae95afa02",
+          "name": "Allows a requester with TimeServicePermission.CustomerAnyUserAnyActivityRead (ie. Super Laurel Admin)\nto view activities from other Customer Users. This is used in the admin dashboard context.",
+          "request": {
+            "name": "Allows a requester with TimeServicePermission.CustomerAnyUserAnyActivityRead (ie. Super Laurel Admin)\nto view activities from other Customer Users. This is used in the admin dashboard context.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "activities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startedBefore",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) the date to get activities that their started at time is less than this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "stoppedAfter",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) the date to get activities that their stopped at time is greater than this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeDeleted",
+                  "value": "<boolean>",
+                  "description": "if true, include soft-deleted activities; defaults to excluding them"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ad21ebb-e80b-47e2-ba49-60032e33e68e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startedBefore",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "stoppedAfter",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "includeDeleted",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"creationMethod\": \"timer\",\n    \"isLocked\": false,\n    \"title\": \"string\",\n    \"detail\": \"string\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n    \"assignedBy\": \"ml\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"schemaVersion\": \"string\",\n    \"initiativeProps\": {\n      \"type\": \"pms\",\n      \"colorHex\": \"fec828\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"initiative\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"billingType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unitIncrements\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"client\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"locale\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"nickname\": \"string\"\n    },\n    \"category\": \"string\",\n    \"technology\": \"string\",\n    \"source\": \"string\",\n    \"mechanism\": \"string\",\n    \"externalId\": \"string\",\n    \"threadId\": \"string\",\n    \"enhancedByAi\": true,\n    \"isCopiedByAdmin\": false,\n    \"isSeeded\": true,\n    \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n    \"isDeleted\": false,\n    \"disableThreading\": false,\n    \"sessionIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"splitFromActivityId\": \"string\"\n  },\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"creationMethod\": \"timer\",\n    \"isLocked\": false,\n    \"title\": \"string\",\n    \"detail\": \"string\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n    \"assignedBy\": \"none\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"schemaVersion\": \"string\",\n    \"initiativeProps\": {\n      \"type\": \"pms\",\n      \"colorHex\": \"fec828\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"initiative\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"billingType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unitIncrements\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"client\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"locale\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"nickname\": \"string\"\n    },\n    \"category\": \"string\",\n    \"technology\": \"string\",\n    \"source\": \"string\",\n    \"mechanism\": \"string\",\n    \"externalId\": \"string\",\n    \"threadId\": \"string\",\n    \"enhancedByAi\": true,\n    \"isCopiedByAdmin\": true,\n    \"isSeeded\": false,\n    \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n    \"isDeleted\": true,\n    \"disableThreading\": true,\n    \"sessionIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"splitFromActivityId\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5523131-86a9-4fbf-bcde-6a53039e5a4a",
+          "name": "Returns activity by activityId for a given customer and user",
+          "request": {
+            "name": "Returns activity by activityId for a given customer and user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "activities",
+                ":activityId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeMetadata",
+                  "value": "<boolean>",
+                  "description": "whether to include activity metadata in the response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "activityId",
+                  "description": "(Required) individual activity id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "057e546c-17c4-419d-af59-306f3736a26e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "activities",
+                    ":activityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeMetadata",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "activityId",
+                      "description": "(Required) individual activity id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"creationMethod\": \"user\",\n  \"isLocked\": true,\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"assignedBy\": \"user\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"schemaVersion\": \"string\",\n  \"isSplittable\": true,\n  \"initiativeProps\": {\n    \"type\": \"pms\",\n    \"colorHex\": \"fec828\",\n    \"tags\": [\n      \"pinned\",\n      \"pinned\"\n    ],\n    \"initiative\": {\n      \"type\": \"user\",\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"unitIncrements\": 8111.316509169081,\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"callSign\": \"string\",\n      \"status\": \"active\",\n      \"locale\": \"es-ES\"\n    },\n    \"nickname\": \"string\"\n  },\n  \"category\": \"string\",\n  \"technology\": \"string\",\n  \"source\": \"string\",\n  \"mechanism\": \"string\",\n  \"externalId\": \"string\",\n  \"threadId\": \"string\",\n  \"enhancedByAi\": true,\n  \"isCopiedByAdmin\": false,\n  \"isSeeded\": false,\n  \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n  \"isDeleted\": true,\n  \"disableThreading\": false,\n  \"sessionIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"splitFromActivityId\": \"string\",\n  \"captureSource\": {\n    \"_id\": \"string\",\n    \"name\": \"string\",\n    \"iconId\": \"string\",\n    \"capturingSourceType\": \"application\",\n    \"activityCategory\": \"email\"\n  },\n  \"activityMetadata\": {\n    \"_id\": \"string\",\n    \"activityId\": \"string\",\n    \"userId\": \"string\",\n    \"customerId\": \"string\",\n    \"trackingSourceType\": \"application\",\n    \"operatingSystem\": \"windows\",\n    \"operatingSystemVersion\": \"string\",\n    \"trackedAppName\": \"string\",\n    \"trackedAppTitle\": \"string\",\n    \"trackedAppDisplayName\": \"string\",\n    \"trackedAppVersion\": \"string\",\n    \"trackedAppCommandline\": \"string\",\n    \"bodyFirst1000Characters\": \"string\",\n    \"bodyFirst1000CharactersEncrypted\": \"string\",\n    \"website\": {\n      \"url\": \"<string>\",\n      \"tabTitle\": \"<string>\",\n      \"windowTitle\": \"<string>\",\n      \"browserUser\": \"<string>\",\n      \"clientName\": \"<string>\"\n    },\n    \"document\": {\n      \"path\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    \"email\": {\n      \"id\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"from\": \"<string>\",\n      \"to\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"bcc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"threadId\": \"<string>\",\n      \"threadIndex\": \"<string>\",\n      \"threadIndexList\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": \"<string>\",\n      \"folder\": \"<string>\",\n      \"searchKey\": \"<string>\",\n      \"recordKey\": \"<string>\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"attachments\": [\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"recipients\": [\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"recipient_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"smtp_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"recipient_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"smtp_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"windowsWindow\": {\n      \"hwnd\": \"<string>\",\n      \"processId\": \"<double>\",\n      \"windowClass\": \"<string>\",\n      \"windowType\": \"<string>\",\n      \"isModal\": \"<boolean>\",\n      \"parentHwnd\": \"<string>\",\n      \"ownerHwnd\": \"<string>\",\n      \"monitorIndex\": \"<double>\"\n    },\n    \"images\": [\n      {\n        \"uniqueFileName\": \"<string>\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\"\n      },\n      {\n        \"uniqueFileName\": \"<string>\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\"\n      }\n    ],\n    \"callState\": {\n      \"isCameraActive\": \"<boolean>\",\n      \"isMicActive\": \"<boolean>\",\n      \"isInCall\": \"<boolean>\"\n    },\n    \"meeting\": {\n      \"id\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"iCalUid\": \"<string>\",\n      \"organizer\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"role\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"participants\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"email\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"email\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"call\": {\n      \"direction\": \"<string>\",\n      \"participants\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"role\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"dynamicMetadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    },\n    \"workContext\": {\n      \"initiativeName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"clientName\": \"<string>\"\n    },\n    \"microsoftTeamsChat\": {\n      \"chatId\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d813902-fa87-4bf3-a104-d9c23018ba93",
+          "name": "Customer Activity Controller update One v1",
+          "request": {
+            "name": "Customer Activity Controller update One v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "activities",
+                ":activityId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "activityId",
+                  "description": "(Required) individual activity id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"threadId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"disableThreading\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d9b2b7a2-2e1c-4ae4-8953-357f3868376a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "activities",
+                    ":activityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "activityId",
+                      "description": "(Required) individual activity id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threadId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"disableThreading\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"creationMethod\": \"tracked\",\n  \"isLocked\": true,\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"assignedBy\": \"none\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"schemaVersion\": \"string\",\n  \"initiativeProps\": {\n    \"type\": \"pms\",\n    \"colorHex\": \"fec828\",\n    \"tags\": [\n      \"pinned\",\n      \"pinned\"\n    ],\n    \"initiative\": {\n      \"type\": \"user\",\n      \"_id\": \"string\",\n      \"billingType\": \"non-billable\",\n      \"unitIncrements\": 911.6624856023014,\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"callSign\": \"string\",\n      \"status\": \"active\",\n      \"locale\": \"ko-KR\"\n    },\n    \"nickname\": \"string\"\n  },\n  \"category\": \"string\",\n  \"technology\": \"string\",\n  \"source\": \"string\",\n  \"mechanism\": \"string\",\n  \"externalId\": \"string\",\n  \"threadId\": \"string\",\n  \"enhancedByAi\": true,\n  \"isCopiedByAdmin\": false,\n  \"isSeeded\": true,\n  \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n  \"isDeleted\": false,\n  \"disableThreading\": true,\n  \"sessionIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"splitFromActivityId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "27526ad1-ea8b-4825-9ecd-b23b90ad2c34",
+    "name": "Identity Service Ably Activities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

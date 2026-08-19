@@ -1,0 +1,2250 @@
+{
+  "item": [
+    {
+      "id": "42007207-266d-44f6-b88c-f4ad213f1777",
+      "name": "Customers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3a137a9e-aa1c-4c43-89e0-5c40f87f8315",
+          "name": "Customer Controller create v1",
+          "request": {
+            "name": "Customer Controller create v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "disableIdValidation",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"name\": \"<kebab-case>\",\n  \"tenantId\": \"<objectid>\",\n  \"identities\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    }\n  ],\n  \"segment\": \"<string>\",\n  \"vertical\": \"<string>\",\n  \"_id\": \"<string>\",\n  \"pmsVendor\": \"<string>\",\n  \"salesforceAccountId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "744b685b-cf48-4f00-be71-bafc6052151b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "disableIdValidation",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"name\": \"<kebab-case>\",\n  \"tenantId\": \"<objectid>\",\n  \"identities\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    }\n  ],\n  \"segment\": \"<string>\",\n  \"vertical\": \"<string>\",\n  \"_id\": \"<string>\",\n  \"pmsVendor\": \"<string>\",\n  \"salesforceAccountId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"code\": \"TBP\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"fullName\": \"string\",\n  \"name\": \"ping\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"connections\": [\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": false,\n        \"adfsServer\": \"https://QQBQnwGdyPldHRfXShgYB.igokbfqZa6WiIM.Lkk8YYK1Wgn8IOps.ysGYGMhuIcF6GqfTtkDA\",\n        \"tenantDomain\": \"string\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": false\n    },\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": false,\n        \"adfsServer\": \"https://IaZCaoBIPGnLxEpcYHifQQ.cpGAJ9LrgPxaCgh7dGx20OlnAj7jkcy8fCpR.4vpVTXVpDWxfcnhNn+,VGU4Umqa9ogb.XyvLH,R8h+piV8ROs\",\n        \"tenantDomain\": \"string\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": false\n    }\n  ],\n  \"identities\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    }\n  ],\n  \"tenant\": {\n    \"_id\": \"string\",\n    \"description\": \"string\",\n    \"name\": \"iad\"\n  },\n  \"pmsVendor\": \"string\",\n  \"salesforceAccountId\": \"string\",\n  \"isTestCustomer\": false,\n  \"segment\": \"mid-market\",\n  \"vertical\": \"accounting\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9376ed2c-6e6c-421b-9d95-f14c0a2ec11d",
+          "name": "List all customers",
+          "request": {
+            "name": "List all customers",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenantName",
+                  "value": "<string>",
+                  "description": "region code name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6bd38ff-853b-4118-b478-51e99dc611db",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenantName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"code\": \"TBP\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"fullName\": \"string\",\n    \"name\": \"ping\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"connections\": [\n      {\n        \"name\": \"DEV-samlp-timebyping-com\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"externalId\": \"string\",\n        \"strategy\": {\n          \"type\": \"adfs\",\n          \"apiEnableUsers\": true,\n          \"adfsServer\": \"https://v.mtteplOylMInvtnZ.NtSFm2FwVCE8p2A\",\n          \"tenantDomain\": \"string\"\n        },\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"fqdns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"scim\": true\n      },\n      {\n        \"name\": \"DEV-samlp-timebyping-com\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"externalId\": \"string\",\n        \"strategy\": {\n          \"type\": \"adfs\",\n          \"apiEnableUsers\": true,\n          \"adfsServer\": \"https://rfrkwNMVyYQMxtrGEusMfaVcPsgA.uikP2,q\",\n          \"tenantDomain\": \"string\"\n        },\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"fqdns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"scim\": false\n      }\n    ],\n    \"identities\": [\n      {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\",\n        \"customerId\": \"<objectid>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\",\n        \"customerId\": \"<objectid>\"\n      }\n    ],\n    \"tenant\": {\n      \"_id\": \"string\",\n      \"description\": \"string\",\n      \"name\": \"syd\"\n    },\n    \"pmsVendor\": \"string\",\n    \"salesforceAccountId\": \"string\",\n    \"isTestCustomer\": true,\n    \"segment\": \"mid-market\",\n    \"vertical\": \"accounting\"\n  },\n  {\n    \"_id\": \"string\",\n    \"code\": \"TBP\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"fullName\": \"string\",\n    \"name\": \"ping\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"connections\": [\n      {\n        \"name\": \"DEV-samlp-timebyping-com\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"externalId\": \"string\",\n        \"strategy\": {\n          \"type\": \"adfs\",\n          \"apiEnableUsers\": true,\n          \"adfsServer\": \"https://swuMWJVZZERIoNkVzMhxRktxYgt.vvZOcXsFkcyDACpu3RMmi7HCGKtUbF5c-6.w7oix4unKg.Mtprej\",\n          \"tenantDomain\": \"string\"\n        },\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"fqdns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"scim\": false\n      },\n      {\n        \"name\": \"DEV-samlp-timebyping-com\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"externalId\": \"string\",\n        \"strategy\": {\n          \"type\": \"adfs\",\n          \"apiEnableUsers\": false,\n          \"adfsServer\": \"http://PGSZnQwzlnxNrGIAwdFVo.boCwe6job\",\n          \"tenantDomain\": \"string\"\n        },\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"fqdns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"scim\": false\n      }\n    ],\n    \"identities\": [\n      {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\",\n        \"customerId\": \"<objectid>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\",\n        \"customerId\": \"<objectid>\"\n      }\n    ],\n    \"tenant\": {\n      \"_id\": \"string\",\n      \"description\": \"string\",\n      \"name\": \"pdx\"\n    },\n    \"pmsVendor\": \"string\",\n    \"salesforceAccountId\": \"string\",\n    \"isTestCustomer\": true,\n    \"segment\": \"enterprise\",\n    \"vertical\": \"accounting\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2fc1f0d2-7825-433d-b16d-9d0607ed5d5e",
+          "name": "Customer Controller lookup v1",
+          "request": {
+            "name": "Customer Controller lookup v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) type of the external identity"
+                },
+                {
+                  "disabled": false,
+                  "key": "value",
+                  "value": "<string>",
+                  "description": "(Required) external identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<objectid>",
+                  "description": "optional customer id to bind the identity to"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8319e86-a58e-4cee-9736-e6e449196b76",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<objectid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"code\": \"TBP\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"fullName\": \"string\",\n  \"name\": \"ping\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"connections\": [\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": true,\n        \"adfsServer\": \"http://TAAFrs.kiqs+rHDZkvV5TQ1j3Yt3fT0HzvnEKbsITydZYRH5aJnK7y+2dGQnZgBcmHnIVHZYTfR\",\n        \"tenantDomain\": \"string\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": true\n    },\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": true,\n        \"adfsServer\": \"http://dHUxpyRnXjsxBwVRniZPm.aucpoxwmlGBo6tTSZmRof3P4F4eQJ0yu5Y8wNkdy2gzebcAWF4t6PxVuQax\",\n        \"tenantDomain\": \"string\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": true\n    }\n  ],\n  \"identities\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    }\n  ],\n  \"tenant\": {\n    \"_id\": \"string\",\n    \"description\": \"string\",\n    \"name\": \"iad\"\n  },\n  \"pmsVendor\": \"string\",\n  \"salesforceAccountId\": \"string\",\n  \"isTestCustomer\": true,\n  \"segment\": \"mid-market\",\n  \"vertical\": \"legal\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea75e8d4-8075-42c6-94cf-2a01f97e5e9d",
+          "name": "Get a specific customer",
+          "request": {
+            "name": "Get a specific customer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b71d2a7c-c331-490c-8030-c5be59daaa8b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"code\": \"TBP\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"fullName\": \"string\",\n  \"name\": \"ping\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"connections\": [\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": true,\n        \"adfsServer\": \"http://TAAFrs.kiqs+rHDZkvV5TQ1j3Yt3fT0HzvnEKbsITydZYRH5aJnK7y+2dGQnZgBcmHnIVHZYTfR\",\n        \"tenantDomain\": \"string\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": true\n    },\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": true,\n        \"adfsServer\": \"http://dHUxpyRnXjsxBwVRniZPm.aucpoxwmlGBo6tTSZmRof3P4F4eQJ0yu5Y8wNkdy2gzebcAWF4t6PxVuQax\",\n        \"tenantDomain\": \"string\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": true\n    }\n  ],\n  \"identities\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    }\n  ],\n  \"tenant\": {\n    \"_id\": \"string\",\n    \"description\": \"string\",\n    \"name\": \"iad\"\n  },\n  \"pmsVendor\": \"string\",\n  \"salesforceAccountId\": \"string\",\n  \"isTestCustomer\": true,\n  \"segment\": \"mid-market\",\n  \"vertical\": \"legal\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0a1f4a2-03ac-48a9-9d76-8f83f721631b",
+          "name": "Update a specific customer",
+          "request": {
+            "name": "Update a specific customer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"identities\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    }\n  ],\n  \"name\": \"<kebab-case>\",\n  \"tenantId\": \"<objectid>\",\n  \"segment\": \"<string>\",\n  \"vertical\": \"<string>\",\n  \"pmsVendor\": \"<string>\",\n  \"salesforceAccountId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "546e3752-9580-48f9-8acb-2e3e4e18f97a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"identities\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    }\n  ],\n  \"name\": \"<kebab-case>\",\n  \"tenantId\": \"<objectid>\",\n  \"segment\": \"<string>\",\n  \"vertical\": \"<string>\",\n  \"pmsVendor\": \"<string>\",\n  \"salesforceAccountId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"code\": \"TBP\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"fullName\": \"string\",\n  \"name\": \"ping\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"connections\": [\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": true,\n        \"adfsServer\": \"http://TAAFrs.kiqs+rHDZkvV5TQ1j3Yt3fT0HzvnEKbsITydZYRH5aJnK7y+2dGQnZgBcmHnIVHZYTfR\",\n        \"tenantDomain\": \"string\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": true\n    },\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": true,\n        \"adfsServer\": \"http://dHUxpyRnXjsxBwVRniZPm.aucpoxwmlGBo6tTSZmRof3P4F4eQJ0yu5Y8wNkdy2gzebcAWF4t6PxVuQax\",\n        \"tenantDomain\": \"string\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": true\n    }\n  ],\n  \"identities\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    }\n  ],\n  \"tenant\": {\n    \"_id\": \"string\",\n    \"description\": \"string\",\n    \"name\": \"iad\"\n  },\n  \"pmsVendor\": \"string\",\n  \"salesforceAccountId\": \"string\",\n  \"isTestCustomer\": true,\n  \"segment\": \"mid-market\",\n  \"vertical\": \"legal\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4cd4e40-9dd8-477d-a7dd-62575ced1eba",
+          "name": "Customer Controller get Tenant v1",
+          "request": {
+            "name": "Customer Controller get Tenant v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "tenant"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c62c96a7-cbfc-4795-b563-0892e4846243",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "tenant"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"pdx\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "167815af-5ad4-4550-82b8-cd48c5ad950f",
+          "name": "Customer Controller create New Customer Identity v1",
+          "request": {
+            "name": "Customer Controller create New Customer Identity v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "identities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"value\": \"<string>\",\n  \"customerId\": \"<objectid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e60e5230-f103-4016-8a45-b7e2e9d44ef1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "identities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"value\": \"<string>\",\n  \"customerId\": \"<objectid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8ccf336-602c-4efb-80b8-ae0e47dc5bc5",
+          "name": "Customer Controller create Connection v1",
+          "request": {
+            "name": "Customer Controller create Connection v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "connections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"strategy\": {\n    \"type\": \"adfs\",\n    \"apiEnableUsers\": \"<boolean>\",\n    \"adfsServer\": \"<uri>\",\n    \"tenantDomain\": \"<string>\"\n  },\n  \"fqdns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scim\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0956cb27-f237-4ed3-9b7b-a30a9b3f6744",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy\": {\n    \"type\": \"adfs\",\n    \"apiEnableUsers\": \"<boolean>\",\n    \"adfsServer\": \"<uri>\",\n    \"tenantDomain\": \"<string>\"\n  },\n  \"fqdns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scim\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"code\": \"TBP\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"fullName\": \"string\",\n  \"name\": \"ping\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"connections\": [\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": \"<boolean>\",\n        \"adfsServer\": \"<uri>\",\n        \"tenantDomain\": \"<string>\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": false\n    },\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": \"<boolean>\",\n        \"adfsServer\": \"<uri>\",\n        \"tenantDomain\": \"<string>\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": false\n    }\n  ],\n  \"identities\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    }\n  ],\n  \"tenant\": {\n    \"_id\": \"string\",\n    \"description\": \"string\",\n    \"name\": \"yul\"\n  },\n  \"pmsVendor\": \"string\",\n  \"salesforceAccountId\": \"string\",\n  \"isTestCustomer\": true,\n  \"segment\": \"mid-market\",\n  \"vertical\": \"accounting\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be7d0aac-c1a1-43ad-90a6-d9b2e5fee7bc",
+          "name": "Customer Controller update Connection v1",
+          "request": {
+            "name": "Customer Controller update Connection v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "connections",
+                ":connectionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionId",
+                  "description": "(Required) connection's externalId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"strategy\": {\n    \"type\": \"adfs\",\n    \"apiEnableUsers\": \"<boolean>\",\n    \"adfsServer\": \"<uri>\",\n    \"tenantDomain\": \"<string>\"\n  },\n  \"scim\": \"<boolean>\",\n  \"fqdns\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ef02a33-e041-4d4a-9846-86a91ce8b5e1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "connections",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) connection's externalId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy\": {\n    \"type\": \"adfs\",\n    \"apiEnableUsers\": \"<boolean>\",\n    \"adfsServer\": \"<uri>\",\n    \"tenantDomain\": \"<string>\"\n  },\n  \"scim\": \"<boolean>\",\n  \"fqdns\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"code\": \"TBP\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"fullName\": \"string\",\n  \"name\": \"ping\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"connections\": [\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": \"<boolean>\",\n        \"adfsServer\": \"<uri>\",\n        \"tenantDomain\": \"<string>\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": false\n    },\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": \"<boolean>\",\n        \"adfsServer\": \"<uri>\",\n        \"tenantDomain\": \"<string>\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": false\n    }\n  ],\n  \"identities\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    }\n  ],\n  \"tenant\": {\n    \"_id\": \"string\",\n    \"description\": \"string\",\n    \"name\": \"yul\"\n  },\n  \"pmsVendor\": \"string\",\n  \"salesforceAccountId\": \"string\",\n  \"isTestCustomer\": true,\n  \"segment\": \"mid-market\",\n  \"vertical\": \"accounting\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35e5e6e7-aff0-4162-9a6a-5abc2fce2edc",
+          "name": "Customer Controller delete Connection v1",
+          "request": {
+            "name": "Customer Controller delete Connection v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "connections",
+                ":connectionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionId",
+                  "description": "(Required) connection's externalId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d7c17c7-abed-4181-9607-2b9a51fd1a11",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "connections",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) connection's externalId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"code\": \"TBP\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"fullName\": \"string\",\n  \"name\": \"ping\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"connections\": [\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": \"<boolean>\",\n        \"adfsServer\": \"<uri>\",\n        \"tenantDomain\": \"<string>\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": false\n    },\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": \"<boolean>\",\n        \"adfsServer\": \"<uri>\",\n        \"tenantDomain\": \"<string>\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": false\n    }\n  ],\n  \"identities\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    }\n  ],\n  \"tenant\": {\n    \"_id\": \"string\",\n    \"description\": \"string\",\n    \"name\": \"yul\"\n  },\n  \"pmsVendor\": \"string\",\n  \"salesforceAccountId\": \"string\",\n  \"isTestCustomer\": true,\n  \"segment\": \"mid-market\",\n  \"vertical\": \"accounting\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8fda39a8-a6eb-4e1e-ab84-0b9add31c4ee",
+          "name": "Enable or disable SCIM provisioning on a connection",
+          "request": {
+            "name": "Enable or disable SCIM provisioning on a connection",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "connections",
+                ":connectionId",
+                "scim"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionId",
+                  "description": "(Required) connection's externalId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scimEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d6aca83d-9aec-40d5-bb18-73c30614780f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "connections",
+                    ":connectionId",
+                    "scim"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) connection's externalId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"scimEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"scimEndpointUrl\": \"string\",\n  \"scimBearerToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7367c87c-dea8-424a-9aaa-22a83c910bb0",
+          "name": "Update the domains (FQDNs) for a connection, propagating to Auth0 HRD",
+          "request": {
+            "name": "Update the domains (FQDNs) for a connection, propagating to Auth0 HRD",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "connections",
+                ":connectionId",
+                "domains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionId",
+                  "description": "(Required) connection's externalId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fqdns\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f0f6ca7-3982-4d2f-bc74-d21adef5a901",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "connections",
+                    ":connectionId",
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) connection's externalId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fqdns\": [\n    \"example.com\",\n    \"sso.example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"code\": \"TBP\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"fullName\": \"string\",\n  \"name\": \"ping\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"connections\": [\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": \"<boolean>\",\n        \"adfsServer\": \"<uri>\",\n        \"tenantDomain\": \"<string>\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": false\n    },\n    {\n      \"name\": \"DEV-samlp-timebyping-com\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"externalId\": \"string\",\n      \"strategy\": {\n        \"type\": \"adfs\",\n        \"apiEnableUsers\": \"<boolean>\",\n        \"adfsServer\": \"<uri>\",\n        \"tenantDomain\": \"<string>\"\n      },\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"fqdns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"scim\": false\n    }\n  ],\n  \"identities\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"customerId\": \"<objectid>\"\n    }\n  ],\n  \"tenant\": {\n    \"_id\": \"string\",\n    \"description\": \"string\",\n    \"name\": \"yul\"\n  },\n  \"pmsVendor\": \"string\",\n  \"salesforceAccountId\": \"string\",\n  \"isTestCustomer\": true,\n  \"segment\": \"mid-market\",\n  \"vertical\": \"accounting\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abea0f52-9e67-477e-b315-38d3ad5833c5",
+          "name": "Customer Controller get Customer Region v1",
+          "request": {
+            "name": "Customer Controller get Customer Region v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "region"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "708b02ac-8f44-46bd-b8f6-ef4148a7115b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "region"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"region\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e94f2620-53c7-4ae5-91c2-814fe5f014d0",
+          "name": "Customer Client Controller get Customer Clients v1",
+          "request": {
+            "name": "Customer Client Controller get Customer Clients v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c197180-f45e-404c-bb34-ab74bc7d6603",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"clientId\": \"string\",\n    \"name\": \"string\",\n    \"secret\": \"string\"\n  },\n  {\n    \"_id\": \"string\",\n    \"clientId\": \"string\",\n    \"name\": \"string\",\n    \"secret\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63efcbc5-ebbf-4187-a3d7-b20c84ab147d",
+          "name": "creates a new client for the given customer",
+          "request": {
+            "name": "creates a new client for the given customer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a857d286-c502-404c-bccc-abb93c1b9544",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"clientId\": \"string\",\n  \"name\": \"string\",\n  \"secret\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad47e072-f94b-4cb5-b6b6-1c5acd41b811",
+          "name": "Customer Client Controller get Customer Client By Id v1",
+          "request": {
+            "name": "Customer Client Controller get Customer Client By Id v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "clients",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "clientId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "835ff631-d4c1-4607-a4c4-9211d39cfe8c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "clients",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "clientId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"clientId\": \"string\",\n  \"name\": \"string\",\n  \"secret\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04c6c439-a8b4-4158-9f97-1934709cf531",
+          "name": "Customer Client Controller delete Customer Client By Id v1",
+          "request": {
+            "name": "Customer Client Controller delete Customer Client By Id v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "clients",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "clientId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a1d79fc-7518-4179-b023-404d9c66ff01",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "clients",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "clientId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9eb6e81-9c2b-40c7-9dbc-5d6ba3410896",
+          "name": "Lists all customer-managed clients for the given customer",
+          "request": {
+            "name": "Lists all customer-managed clients for the given customer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "managed-clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ea1cdc0-dcc5-471a-98d6-295101842e53",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "managed-clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"externalClientId\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"externalClientSecret\": \"string\",\n    \"externalSecretExpiresAt\": \"2022-08-12T20:44:48Z\",\n    \"createdByUserId\": \"string\",\n    \"permissionTier\": \"string\"\n  },\n  {\n    \"_id\": \"string\",\n    \"externalClientId\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"externalClientSecret\": \"string\",\n    \"externalSecretExpiresAt\": \"2022-08-12T20:44:48Z\",\n    \"createdByUserId\": \"string\",\n    \"permissionTier\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "087c979e-9d38-4f6b-a960-6f0e3eab24f0",
+          "name": "Creates a new customer-managed client for the given customer",
+          "request": {
+            "name": "Creates a new customer-managed client for the given customer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "managed-clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<kebab-case>\",\n  \"description\": \"<string>\",\n  \"permissionTier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8f160796-33b3-4932-8447-b79b680cabd4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "managed-clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<kebab-case>\",\n  \"description\": \"<string>\",\n  \"permissionTier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"externalClientId\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"externalClientSecret\": \"string\",\n  \"externalSecretExpiresAt\": \"2022-08-12T20:44:48Z\",\n  \"createdByUserId\": \"string\",\n  \"permissionTier\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f92ea774-f866-4265-a249-b3974f29e7a5",
+          "name": "Deletes a customer-managed client by ID",
+          "request": {
+            "name": "Deletes a customer-managed client by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "managed-clients",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "clientId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51b244ce-e1e0-477d-9b0e-ceb96eaf5684",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "managed-clients",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "clientId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c897014c-72b9-4f35-b979-b58380e51066",
+    "name": "Identity Service Ably Customers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

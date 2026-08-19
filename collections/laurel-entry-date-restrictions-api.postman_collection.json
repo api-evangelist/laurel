@@ -1,0 +1,1070 @@
+{
+  "item": [
+    {
+      "id": "c749ccda-b8c8-40b5-a0bd-b9e5c0d33ccd",
+      "name": "Entry Date Restrictions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5e6ea93-3bd6-4b55-a9e8-a57e8bd5a3f9",
+          "name": "Create a new entry date restriction for a customer",
+          "request": {
+            "name": "Create a new entry date restriction for a customer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "entry-date-restrictions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"ruleCategory\": \"<string>\",\n  \"initiativeId\": \"<objectid>\",\n  \"effectiveStart\": \"<iso-date-time>\",\n  \"effectiveEnd\": \"<iso-date-time>\",\n  \"rule\": {\n    \"workDateStart\": \"<iso-date>\",\n    \"workDateEnd\": \"<iso-date>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f43444bf-cc29-461d-b82b-296ceb432a63",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "entry-date-restrictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"ruleCategory\": \"<string>\",\n  \"initiativeId\": \"<objectid>\",\n  \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n  \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n  \"rule\": {\n    \"workDateStart\": \"2022-08-12\",\n    \"workDateEnd\": \"2022-08-12\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"type\": \"no_release\",\n  \"ruleCategory\": \"exact_dates\",\n  \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n  \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n  \"rule\": {\n    \"workDateStart\": \"2022-08-12\",\n    \"workDateEnd\": \"2022-08-12\"\n  },\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"initiativeDigest\": {\n    \"type\": \"user\",\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"unitIncrements\": 6962.299211275808,\n    \"callSign\": \"string\",\n    \"status\": \"inactive\",\n    \"locale\": \"no-NO\"\n  },\n  \"derivedFrom\": \"allowTo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ae4e77a-2a03-4d91-9a83-3df04cf64c11",
+          "name": "List entry date restrictions for a customer",
+          "request": {
+            "name": "List entry date restrictions for a customer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "entry-date-restrictions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<int64>",
+                  "description": "max number of item in each page"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<objectid>",
+                  "description": "cursor to start from"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "effectiveAt",
+                  "value": "<iso-date-time>"
+                },
+                {
+                  "disabled": false,
+                  "key": "initiativeId",
+                  "value": "<objectid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "Narrows the result to a subset of restrictions. `company-wide` returns only restrictions with no `initiativeDigest` (firm-level); omit (or pass `all`) to keep the legacy behaviour. Incompatible with `initiativeId`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e93294a5-f318-4c9e-91d6-2ff065cf37e1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "entry-date-restrictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "effectiveAt",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "initiativeId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"_id\": \"string\",\n      \"customerId\": \"string\",\n      \"type\": \"no_release\",\n      \"ruleCategory\": \"exact_dates\",\n      \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n      \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n      \"rule\": {\n        \"workDateStart\": \"2022-08-12\",\n        \"workDateEnd\": \"2022-08-12\"\n      },\n      \"schemaVersion\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"initiativeDigest\": {\n        \"type\": \"user\",\n        \"_id\": \"string\",\n        \"billingType\": \"billable\",\n        \"unitIncrements\": 5877.640886824364,\n        \"callSign\": \"string\",\n        \"status\": \"active\",\n        \"locale\": \"fr-CA\"\n      },\n      \"derivedFrom\": \"allowFrom\"\n    },\n    {\n      \"_id\": \"string\",\n      \"customerId\": \"string\",\n      \"type\": \"no_release\",\n      \"ruleCategory\": \"exact_dates\",\n      \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n      \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n      \"rule\": {\n        \"workDateStart\": \"2022-08-12\",\n        \"workDateEnd\": \"2022-08-12\"\n      },\n      \"schemaVersion\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"initiativeDigest\": {\n        \"type\": \"user\",\n        \"_id\": \"string\",\n        \"billingType\": \"billable\",\n        \"unitIncrements\": 7956.0493792553425,\n        \"callSign\": \"string\",\n        \"status\": \"inactive\",\n        \"locale\": \"da-DK\"\n      },\n      \"derivedFrom\": \"allowFrom\"\n    }\n  ],\n  \"nextCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5892da90-8f12-4aac-a821-95871a386514",
+          "name": "DEPRECATED — use `active/check-multi-type` instead. Check if an active restriction exists for a given work date and type.",
+          "request": {
+            "name": "DEPRECATED — use `active/check-multi-type` instead. Check if an active restriction exists for a given work date and type.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "entry-date-restrictions",
+                "active",
+                "now"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) Type of entry-date restriction to check for."
+                },
+                {
+                  "disabled": false,
+                  "key": "workDate",
+                  "value": "<iso-date>",
+                  "description": "(Required) Work date to check. Accepts any ISO 8601 form that resolves to midnight UTC — e.g. `2026-04-22` or `2026-04-22T00:00:00.000Z`."
+                },
+                {
+                  "disabled": false,
+                  "key": "initiativeId",
+                  "value": "<objectid>",
+                  "description": "Optional initiative ID to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "Narrows the result to a subset of restrictions. `company-wide` returns only restrictions with no `initiativeDigest` (firm-level); omit (or pass `all`) to keep the legacy behaviour. Incompatible with `initiativeId`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82f9b45e-b76e-4544-b91c-dce5f583bfb8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "entry-date-restrictions",
+                    "active",
+                    "now"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "workDate",
+                      "value": "2022-08-12"
+                    },
+                    {
+                      "key": "initiativeId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"type\": \"no_release\",\n  \"ruleCategory\": \"exact_dates\",\n  \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n  \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n  \"rule\": {\n    \"workDateStart\": \"2022-08-12\",\n    \"workDateEnd\": \"2022-08-12\"\n  },\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"initiativeDigest\": {\n    \"type\": \"user\",\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"unitIncrements\": 6962.299211275808,\n    \"callSign\": \"string\",\n    \"status\": \"inactive\",\n    \"locale\": \"no-NO\"\n  },\n  \"derivedFrom\": \"allowTo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61b7026d-22bf-49ed-ac6a-014210aac5a9",
+          "name": "DEPRECATED — use `active/check-multi-type` instead (pass a one-element `types` array). Check which of the provided work dates have an active restriction for the given type.",
+          "request": {
+            "name": "DEPRECATED — use `active/check-multi-type` instead (pass a one-element `types` array). Check which of the provided work dates have an active restriction for the given type.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "entry-date-restrictions",
+                "active",
+                "check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"workDates\": [\n    \"<dateTime>\"\n  ],\n  \"effectiveAt\": \"<iso-date-time>\",\n  \"initiativeId\": \"<objectid>\",\n  \"scope\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "87fcac5f-6e1c-4e87-8aa8-b36888de3c86",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "entry-date-restrictions",
+                    "active",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"workDates\": [\n    \"2026-04-22T00:00:00.000Z\",\n    \"2026-05-01T00:00:00.000Z\"\n  ],\n  \"effectiveAt\": \"2022-08-12T20:44:48Z\",\n  \"initiativeId\": \"<objectid>\",\n  \"scope\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"restrictedDates\": [\n    {\n      \"workDate\": \"2022-08-12\",\n      \"restriction\": {\n        \"_id\": \"string\",\n        \"customerId\": \"string\",\n        \"type\": \"no_create\",\n        \"ruleCategory\": \"exact_dates\",\n        \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n        \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n        \"rule\": {\n          \"workDateStart\": \"2022-08-12\",\n          \"workDateEnd\": \"2022-08-12\"\n        },\n        \"schemaVersion\": \"string\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"initiativeDigest\": {\n          \"type\": \"pms\",\n          \"_id\": \"string\",\n          \"billingType\": \"billable\",\n          \"unitIncrements\": 2133.9704360127,\n          \"callSign\": \"string\",\n          \"status\": \"inactive\",\n          \"locale\": \"de-DE\"\n        },\n        \"derivedFrom\": \"allowFrom\"\n      }\n    },\n    {\n      \"workDate\": \"2022-08-12\",\n      \"restriction\": {\n        \"_id\": \"string\",\n        \"customerId\": \"string\",\n        \"type\": \"no_release\",\n        \"ruleCategory\": \"exact_dates\",\n        \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n        \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n        \"rule\": {\n          \"workDateStart\": \"2022-08-12\",\n          \"workDateEnd\": \"2022-08-12\"\n        },\n        \"schemaVersion\": \"string\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"initiativeDigest\": {\n          \"type\": \"pms\",\n          \"_id\": \"string\",\n          \"billingType\": \"billable\",\n          \"unitIncrements\": 5231.480723218483,\n          \"callSign\": \"string\",\n          \"status\": \"inactive\",\n          \"locale\": \"fr-FR\"\n        },\n        \"derivedFrom\": \"allowFrom\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9446194f-eb76-4898-86d9-dbdd0be689cf",
+          "name": "Check which of the provided work dates have active restrictions across multiple types",
+          "request": {
+            "name": "Check which of the provided work dates have active restrictions across multiple types",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "entry-date-restrictions",
+                "active",
+                "check-multi-type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"types\": [\n    \"<string>\"\n  ],\n  \"workDates\": [\n    \"<dateTime>\"\n  ],\n  \"effectiveAt\": \"<iso-date-time>\",\n  \"initiativeId\": \"<objectid>\",\n  \"initiativeIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"scope\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4037a19a-867e-4a35-a5ac-b65a114b3a60",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "entry-date-restrictions",
+                    "active",
+                    "check-multi-type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"types\": [\n    \"no_create\",\n    \"no_release\"\n  ],\n  \"workDates\": [\n    \"2026-04-22T00:00:00.000Z\",\n    \"2026-05-01T00:00:00.000Z\"\n  ],\n  \"effectiveAt\": \"2022-08-12T20:44:48Z\",\n  \"initiativeId\": \"<objectid>\",\n  \"initiativeIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"scope\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"type\": \"no_release\",\n      \"restrictedDates\": [\n        {\n          \"workDate\": \"2022-08-12\",\n          \"restriction\": {\n            \"_id\": \"string\",\n            \"customerId\": \"string\",\n            \"type\": \"no_create\",\n            \"ruleCategory\": \"exact_dates\",\n            \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n            \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n            \"rule\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"schemaVersion\": \"string\",\n            \"createdAt\": \"2022-08-12T20:44:48Z\",\n            \"updatedAt\": \"2022-08-12T20:44:48Z\",\n            \"initiativeDigest\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"derivedFrom\": \"allowFrom\"\n          }\n        },\n        {\n          \"workDate\": \"2022-08-12\",\n          \"restriction\": {\n            \"_id\": \"string\",\n            \"customerId\": \"string\",\n            \"type\": \"no_create\",\n            \"ruleCategory\": \"exact_dates\",\n            \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n            \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n            \"rule\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"schemaVersion\": \"string\",\n            \"createdAt\": \"2022-08-12T20:44:48Z\",\n            \"updatedAt\": \"2022-08-12T20:44:48Z\",\n            \"initiativeDigest\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"derivedFrom\": \"allowTo\"\n          }\n        }\n      ]\n    },\n    {\n      \"type\": \"no_release\",\n      \"restrictedDates\": [\n        {\n          \"workDate\": \"2022-08-12\",\n          \"restriction\": {\n            \"_id\": \"string\",\n            \"customerId\": \"string\",\n            \"type\": \"no_release\",\n            \"ruleCategory\": \"exact_dates\",\n            \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n            \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n            \"rule\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"schemaVersion\": \"string\",\n            \"createdAt\": \"2022-08-12T20:44:48Z\",\n            \"updatedAt\": \"2022-08-12T20:44:48Z\",\n            \"initiativeDigest\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"derivedFrom\": \"allowFrom\"\n          }\n        },\n        {\n          \"workDate\": \"2022-08-12\",\n          \"restriction\": {\n            \"_id\": \"string\",\n            \"customerId\": \"string\",\n            \"type\": \"no_create\",\n            \"ruleCategory\": \"exact_dates\",\n            \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n            \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n            \"rule\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"schemaVersion\": \"string\",\n            \"createdAt\": \"2022-08-12T20:44:48Z\",\n            \"updatedAt\": \"2022-08-12T20:44:48Z\",\n            \"initiativeDigest\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"derivedFrom\": \"allowFrom\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30eed435-26d1-4958-8bf3-7c1c0a86cfa8",
+          "name": "Get a single entry date restriction by id",
+          "request": {
+            "name": "Get a single entry date restriction by id",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "entry-date-restrictions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e559555-6904-4411-ab5c-8ed36aef3ebd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "entry-date-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"type\": \"no_release\",\n  \"ruleCategory\": \"exact_dates\",\n  \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n  \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n  \"rule\": {\n    \"workDateStart\": \"2022-08-12\",\n    \"workDateEnd\": \"2022-08-12\"\n  },\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"initiativeDigest\": {\n    \"type\": \"user\",\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"unitIncrements\": 6962.299211275808,\n    \"callSign\": \"string\",\n    \"status\": \"inactive\",\n    \"locale\": \"no-NO\"\n  },\n  \"derivedFrom\": \"allowTo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6297336-93eb-4749-9474-909b647a89b6",
+          "name": "Update an entry date restriction",
+          "request": {
+            "name": "Update an entry date restriction",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "entry-date-restrictions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"ruleCategory\": \"<string>\",\n  \"effectiveStart\": \"<iso-date-time>\",\n  \"effectiveEnd\": \"<iso-date-time>\",\n  \"rule\": {\n    \"workDateStart\": \"<iso-date>\",\n    \"workDateEnd\": \"<iso-date>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bed0752b-c423-426a-b888-6b4ae7a2378d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "entry-date-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"ruleCategory\": \"<string>\",\n  \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n  \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n  \"rule\": {\n    \"workDateStart\": \"2022-08-12\",\n    \"workDateEnd\": \"2022-08-12\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"type\": \"no_release\",\n  \"ruleCategory\": \"exact_dates\",\n  \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n  \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n  \"rule\": {\n    \"workDateStart\": \"2022-08-12\",\n    \"workDateEnd\": \"2022-08-12\"\n  },\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"initiativeDigest\": {\n    \"type\": \"user\",\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"unitIncrements\": 6962.299211275808,\n    \"callSign\": \"string\",\n    \"status\": \"inactive\",\n    \"locale\": \"no-NO\"\n  },\n  \"derivedFrom\": \"allowTo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d813351-5dff-4e16-84a0-738a728f6552",
+          "name": "Delete an entry date restriction",
+          "request": {
+            "name": "Delete an entry date restriction",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "entry-date-restrictions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8e8f37b-e773-4147-8506-ecfb5a70aa90",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "entry-date-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"type\": \"no_release\",\n  \"ruleCategory\": \"exact_dates\",\n  \"effectiveStart\": \"2022-08-12T20:44:48Z\",\n  \"effectiveEnd\": \"2022-08-12T20:44:48Z\",\n  \"rule\": {\n    \"workDateStart\": \"2022-08-12\",\n    \"workDateEnd\": \"2022-08-12\"\n  },\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"initiativeDigest\": {\n    \"type\": \"user\",\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"unitIncrements\": 6962.299211275808,\n    \"callSign\": \"string\",\n    \"status\": \"inactive\",\n    \"locale\": \"no-NO\"\n  },\n  \"derivedFrom\": \"allowTo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a9f73e04-8d64-4faa-aa0d-028464865f52",
+    "name": "Identity Service Ably Entry Date Restrictions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

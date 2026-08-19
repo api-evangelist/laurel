@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably DailySelectedInitiatives API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DailySelectedInitiatives",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "returns all daily selected initiatives for the current user and a given date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/daily-selected-initiatives",
+            "params": [
+              {
+                "name": "minDate",
+                "value": "",
+                "type": "query",
+                "description": "min bound for the date to get daily selected initiatives"
+              },
+              {
+                "name": "maxDate",
+                "value": "",
+                "type": "query",
+                "description": "max bound for the date to get daily selected initiatives"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "customer id to filter by"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "user id to filter by"
+              }
+            ]
+          },
+          "docs": "returns all daily selected initiatives for the current user and a given date"
+        },
+        {
+          "info": {
+            "name": "creates a daily selected initiative",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/daily-selected-initiatives",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "creates a daily selected initiative"
+        },
+        {
+          "info": {
+            "name": "deletes a daily selected initiative by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/daily-selected-initiatives",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "deletes a daily selected initiative by id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

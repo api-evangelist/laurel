@@ -1,0 +1,192 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Search API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "SearchController_searchInitiatives_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/search/initiatives",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "the search query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Optional limit for the number of results returned (non-paginated mode only).\nCannot be combined with page — when page is provided, use pageSize instead."
+              },
+              {
+                "name": "displayClientCallSign",
+                "value": "",
+                "type": "query",
+                "description": "when true, search by client.callSign instead of initiative callSign"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Optional page number for paginated results (1-indexed).\nWhen omitted, pagination is disabled and results are returned as a flat array\nto preserve backward compatibility with existing consumers."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Optional page size for paginated results. Requires page to be set.\nDefaults to 50 to match the previous maximumSearchLimit, preserving the same\nresult count that existing consumers received before pagination was introduced."
+              },
+              {
+                "name": "workDate",
+                "value": "",
+                "type": "query",
+                "description": "When set (and restrictions are enabled), excludes initiatives restricted on this date."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserSearchController_searchInitiatives_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/initiatives/search",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "the search query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Optional limit for the number of results returned (non-paginated mode only).\nCannot be combined with page — when page is provided, use pageSize instead."
+              },
+              {
+                "name": "displayClientCallSign",
+                "value": "",
+                "type": "query",
+                "description": "when true, search by client.callSign instead of initiative callSign"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Optional page number for paginated results (1-indexed).\nWhen omitted, pagination is disabled and results are returned as a flat array\nto preserve backward compatibility with existing consumers."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Optional page size for paginated results. Requires page to be set.\nDefaults to 50 to match the previous maximumSearchLimit, preserving the same\nresult count that existing consumers received before pagination was introduced."
+              },
+              {
+                "name": "workDate",
+                "value": "",
+                "type": "query",
+                "description": "When set (and restrictions are enabled), excludes initiatives restricted on this date."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserSearchController_searchInitiativeDtos_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/customers/:customerId/users/:userId/initiatives/search",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "the search query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Optional limit for the number of results returned (non-paginated mode only).\nCannot be combined with page — when page is provided, use pageSize instead."
+              },
+              {
+                "name": "displayClientCallSign",
+                "value": "",
+                "type": "query",
+                "description": "when true, search by client.callSign instead of initiative callSign"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Optional page number for paginated results (1-indexed).\nWhen omitted, pagination is disabled and results are returned as a flat array\nto preserve backward compatibility with existing consumers."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Optional page size for paginated results. Requires page to be set.\nDefaults to 50 to match the previous maximumSearchLimit, preserving the same\nresult count that existing consumers received before pagination was introduced."
+              },
+              {
+                "name": "workDate",
+                "value": "",
+                "type": "query",
+                "description": "When set (and restrictions are enabled), excludes initiatives restricted on this date."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

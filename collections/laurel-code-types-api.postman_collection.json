@@ -1,0 +1,1645 @@
+{
+  "item": [
+    {
+      "id": "313ecdbe-0f71-474e-81c8-0ae84d4fae82",
+      "name": "Code Types",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "19271ac5-cf33-4472-8673-05eefb5a6b9b",
+          "name": "Code Type Controller find Many v1",
+          "request": {
+            "name": "Code Type Controller find Many v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "code-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "customerDefaultable",
+                  "value": "<boolean>",
+                  "description": "return codes that are defaultable at the customer-level"
+                },
+                {
+                  "disabled": false,
+                  "key": "userDefaultable",
+                  "value": "<boolean>",
+                  "description": "return codes that are defaultable at the user-level"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderingSequence",
+                  "value": "<string>",
+                  "description": "ordering sequence for UI sorting (alphanumeric)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb168c26-f131-4f6c-af55-501ef26fe1ff",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "code-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customerDefaultable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "userDefaultable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "orderingSequence",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"customerId\": \"string\",\n    \"externalId\": \"string\",\n    \"name\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"customerDefaultable\": false,\n    \"semanticType\": \"action\",\n    \"userDefaultable\": true,\n    \"orderingSequence\": \"string\"\n  },\n  {\n    \"_id\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"customerId\": \"string\",\n    \"externalId\": \"string\",\n    \"name\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"customerDefaultable\": true,\n    \"semanticType\": \"action\",\n    \"userDefaultable\": true,\n    \"orderingSequence\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "570fc006-08ce-4727-bd97-38fb3cfd078c",
+          "name": "Code Type Controller find One By Id v1",
+          "request": {
+            "name": "Code Type Controller find One By Id v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "code-types",
+                ":codeTypeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "041165ab-129b-456b-9d8b-74f9be3774e8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "code-types",
+                    ":codeTypeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"customerId\": \"string\",\n  \"externalId\": \"string\",\n  \"name\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"customerDefaultable\": true,\n  \"semanticType\": \"action\",\n  \"userDefaultable\": false,\n  \"orderingSequence\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "546bb1ed-c05b-4041-ad20-2ed4e42d4e7b",
+          "name": "Customer Code Type Controller import v1",
+          "request": {
+            "name": "Customer Code Type Controller import v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "code-types",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"externalId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"semanticType\": \"<string>\",\n  \"customerDefaultable\": \"<boolean>\",\n  \"userDefaultable\": \"<boolean>\",\n  \"orderingSequence\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "36bdab3c-4689-4c39-8dc1-f9046353d280",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "code-types",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"semanticType\": \"<string>\",\n  \"customerDefaultable\": \"<boolean>\",\n  \"userDefaultable\": \"<boolean>\",\n  \"orderingSequence\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9e61262-9ffe-4cd6-9bbb-e35c17468ca6",
+          "name": "Customer Code Type Controller find Many For Current Customer v1",
+          "request": {
+            "name": "Customer Code Type Controller find Many For Current Customer v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "code-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "customerDefaultable",
+                  "value": "<boolean>",
+                  "description": "return codes that are defaultable at the customer-level"
+                },
+                {
+                  "disabled": false,
+                  "key": "userDefaultable",
+                  "value": "<boolean>",
+                  "description": "return codes that are defaultable at the user-level"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderingSequence",
+                  "value": "<string>",
+                  "description": "ordering sequence for UI sorting (alphanumeric)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21c3878c-540d-4a02-bdb2-4973671e3461",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "code-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customerDefaultable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "userDefaultable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "orderingSequence",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"customerId\": \"string\",\n    \"externalId\": \"string\",\n    \"name\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"customerDefaultable\": false,\n    \"semanticType\": \"action\",\n    \"userDefaultable\": true,\n    \"orderingSequence\": \"string\"\n  },\n  {\n    \"_id\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"customerId\": \"string\",\n    \"externalId\": \"string\",\n    \"name\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"customerDefaultable\": true,\n    \"semanticType\": \"action\",\n    \"userDefaultable\": true,\n    \"orderingSequence\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10c2da01-5ebd-481a-9fcf-d4fa8d10ba1a",
+          "name": "Default Code Controller find Many By Code Type Id v1",
+          "request": {
+            "name": "Default Code Controller find Many By Code Type Id v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "code-types",
+                ":codeTypeId",
+                "default-code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b43cff4e-da2e-4b4a-9c00-996912b2f711",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "code-types",
+                    ":codeTypeId",
+                    "default-code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"codeTypeId\": \"string\",\n    \"codeId\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"userId\": \"string\",\n    \"initiativeBillingType\": \"billable\"\n  },\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"codeTypeId\": \"string\",\n    \"codeId\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"userId\": \"string\",\n    \"initiativeBillingType\": \"billable\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bef49f2a-df13-4e74-9a99-87fde7439456",
+          "name": "Default Code Controller create One v1",
+          "request": {
+            "name": "Default Code Controller create One v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "code-types",
+                ":codeTypeId",
+                "default-code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codeId\": \"<objectid>\",\n  \"initiativeBillingType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a9fb846-77ec-4c94-98a9-007732867148",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "code-types",
+                    ":codeTypeId",
+                    "default-code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"codeId\": \"<objectid>\",\n  \"initiativeBillingType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"codeTypeId\": \"string\",\n  \"codeId\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"userId\": \"string\",\n  \"initiativeBillingType\": \"billable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0dcaa76-f5d0-460b-873a-ea033a2dd9cb",
+          "name": "Default Code Controller delete One v1",
+          "request": {
+            "name": "Default Code Controller delete One v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "code-types",
+                ":codeTypeId",
+                "default-codes",
+                ":codeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeId",
+                  "description": "(Required) id of the \"code\" that is specified in a DefaultCode"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2241bcf9-9efe-49d0-a684-2dcf2ba3f7e9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "code-types",
+                    ":codeTypeId",
+                    "default-codes",
+                    ":codeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeId",
+                      "description": "(Required) id of the \"code\" that is specified in a DefaultCode"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"codeTypeId\": \"string\",\n  \"codeId\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"userId\": \"string\",\n  \"initiativeBillingType\": \"billable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "874a0458-7d2e-4ca1-abb3-2343c090a4c5",
+          "name": "Customer Default Code Controller find Many By Code Type Id v1",
+          "request": {
+            "name": "Customer Default Code Controller find Many By Code Type Id v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "code-types",
+                ":codeTypeId",
+                "default-code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "575a6001-93ab-45cb-b9ad-d724dd7c121b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "code-types",
+                    ":codeTypeId",
+                    "default-code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"codeTypeId\": \"string\",\n    \"codeId\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"userId\": \"string\",\n    \"initiativeBillingType\": \"billable\"\n  },\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"codeTypeId\": \"string\",\n    \"codeId\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"userId\": \"string\",\n    \"initiativeBillingType\": \"billable\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d655163c-193c-4cbf-8b3d-d662e2750abe",
+          "name": "Customer Default Code Controller create One v1",
+          "request": {
+            "name": "Customer Default Code Controller create One v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "code-types",
+                ":codeTypeId",
+                "default-code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codeId\": \"<objectid>\",\n  \"initiativeBillingType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "703a4004-5af9-4357-ac01-2647c7ae86e3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "code-types",
+                    ":codeTypeId",
+                    "default-code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"codeId\": \"<objectid>\",\n  \"initiativeBillingType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"codeTypeId\": \"string\",\n  \"codeId\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"userId\": \"string\",\n  \"initiativeBillingType\": \"billable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7538e929-ecf1-4bc8-9e62-8673144c511c",
+          "name": "Customer Default Code Controller delete One v1",
+          "request": {
+            "name": "Customer Default Code Controller delete One v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "code-types",
+                ":codeTypeId",
+                "default-codes",
+                ":codeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeId",
+                  "description": "(Required) id of the \"code\" that is specified in a DefaultCode"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b9af8bb-f27f-49c4-9b13-abbc4cc4057a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "code-types",
+                    ":codeTypeId",
+                    "default-codes",
+                    ":codeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeId",
+                      "description": "(Required) id of the \"code\" that is specified in a DefaultCode"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"codeTypeId\": \"string\",\n  \"codeId\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"userId\": \"string\",\n  \"initiativeBillingType\": \"billable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e315cfe-f349-4355-a089-6f7ceadd083e",
+          "name": "Customer Default Code Controller find Many By Code Type Id For User v1",
+          "request": {
+            "name": "Customer Default Code Controller find Many By Code Type Id For User v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "code-types",
+                ":codeTypeId",
+                "default-code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac4c76ba-db77-43fc-8833-ff90ce729511",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "code-types",
+                    ":codeTypeId",
+                    "default-code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"codeTypeId\": \"string\",\n    \"codeId\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"userId\": \"string\",\n    \"initiativeBillingType\": \"billable\"\n  },\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"codeTypeId\": \"string\",\n    \"codeId\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"userId\": \"string\",\n    \"initiativeBillingType\": \"billable\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4dbfa824-9747-436a-a4b2-096ba9b7ad31",
+          "name": "Customer Default Code Controller create One For User v1",
+          "request": {
+            "name": "Customer Default Code Controller create One For User v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "code-types",
+                ":codeTypeId",
+                "default-code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codeId\": \"<objectid>\",\n  \"initiativeBillingType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e6737647-c3a0-493c-9a89-01eb65a5bd9b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "code-types",
+                    ":codeTypeId",
+                    "default-code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"codeId\": \"<objectid>\",\n  \"initiativeBillingType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"codeTypeId\": \"string\",\n  \"codeId\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"userId\": \"string\",\n  \"initiativeBillingType\": \"billable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61a0d8f5-602e-46ba-91c3-5431345f9d61",
+          "name": "Customer Default Code Controller delete One For User v1",
+          "request": {
+            "name": "Customer Default Code Controller delete One For User v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "code-types",
+                ":codeTypeId",
+                "default-codes",
+                ":codeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeTypeId",
+                  "description": "(Required) code type's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "codeId",
+                  "description": "(Required) id of the \"code\" that is specified in a DefaultCode"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d9ae6b2-3f71-4a60-b765-726265674ac2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "code-types",
+                    ":codeTypeId",
+                    "default-codes",
+                    ":codeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeTypeId",
+                      "description": "(Required) code type's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "codeId",
+                      "description": "(Required) id of the \"code\" that is specified in a DefaultCode"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"codeTypeId\": \"string\",\n  \"codeId\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"userId\": \"string\",\n  \"initiativeBillingType\": \"billable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c493d63f-9ff3-4e5a-b610-e0c726acadbc",
+    "name": "Identity Service Ably Code Types API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

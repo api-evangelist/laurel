@@ -1,0 +1,546 @@
+{
+  "item": [
+    {
+      "id": "7e50bf75-9ea1-4cbc-bbf5-e2b41b167b56",
+      "name": "Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7d58b641-49bb-4b16-99bd-d7fcd2c058b3",
+          "name": "Search Controller search Initiatives v1",
+          "request": {
+            "name": "Search Controller search Initiatives v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "search",
+                "initiatives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) the search query"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<int64>",
+                  "description": "Optional limit for the number of results returned (non-paginated mode only).\nCannot be combined with page — when page is provided, use pageSize instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "displayClientCallSign",
+                  "value": "<boolean>",
+                  "description": "when true, search by client.callSign instead of initiative callSign"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<int64>",
+                  "description": "Optional page number for paginated results (1-indexed).\nWhen omitted, pagination is disabled and results are returned as a flat array\nto preserve backward compatibility with existing consumers."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<int64>",
+                  "description": "Optional page size for paginated results. Requires page to be set.\nDefaults to 50 to match the previous maximumSearchLimit, preserving the same\nresult count that existing consumers received before pagination was introduced."
+                },
+                {
+                  "disabled": false,
+                  "key": "workDate",
+                  "value": "<iso-date>",
+                  "description": "When set (and restrictions are enabled), excludes initiatives restricted on this date."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c29cc842-7429-4ba9-97b2-316d44d06217",
+              "name": "Returns a flat array without pagination params, or an OffsetResponseDto when page is provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "search",
+                    "initiatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "displayClientCallSign",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "workDate",
+                      "value": "2022-08-12"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"type\": \"initiative-dto\",\n    \"score\": 7321.794145584078,\n    \"initiative\": {\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"callSign\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"customerId\": \"string\",\n      \"status\": \"active\",\n      \"unitIncrements\": 7609.689642375464,\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"type\": \"pms\",\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"groupIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"locale\": \"it-IT\",\n      \"allowFrom\": \"2022-08-12\",\n      \"allowTo\": \"2022-08-12\"\n    },\n    \"absoluteScore\": 8285.142765053846\n  },\n  {\n    \"type\": \"initiative-dto\",\n    \"score\": 3395.585970146895,\n    \"initiative\": {\n      \"_id\": \"string\",\n      \"billingType\": \"non-billable\",\n      \"callSign\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"customerId\": \"string\",\n      \"status\": \"inactive\",\n      \"unitIncrements\": 1023.5623287934259,\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"type\": \"pms\",\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"groupIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"locale\": \"is-IS\",\n      \"allowFrom\": \"2022-08-12\",\n      \"allowTo\": \"2022-08-12\"\n    },\n    \"absoluteScore\": 8109.221386594052\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6910a25-5a52-47a9-960a-de22c94a027b",
+          "name": "Customer User Search Controller search Initiatives v1",
+          "request": {
+            "name": "Customer User Search Controller search Initiatives v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "initiatives",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) the search query"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<int64>",
+                  "description": "Optional limit for the number of results returned (non-paginated mode only).\nCannot be combined with page — when page is provided, use pageSize instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "displayClientCallSign",
+                  "value": "<boolean>",
+                  "description": "when true, search by client.callSign instead of initiative callSign"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<int64>",
+                  "description": "Optional page number for paginated results (1-indexed).\nWhen omitted, pagination is disabled and results are returned as a flat array\nto preserve backward compatibility with existing consumers."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<int64>",
+                  "description": "Optional page size for paginated results. Requires page to be set.\nDefaults to 50 to match the previous maximumSearchLimit, preserving the same\nresult count that existing consumers received before pagination was introduced."
+                },
+                {
+                  "disabled": false,
+                  "key": "workDate",
+                  "value": "<iso-date>",
+                  "description": "When set (and restrictions are enabled), excludes initiatives restricted on this date."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4528f8e-f06a-49b0-8c64-e4b437b20915",
+              "name": "Returns a flat array without pagination params, or an OffsetResponseDto when page is provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "initiatives",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "displayClientCallSign",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "workDate",
+                      "value": "2022-08-12"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"type\": \"initiative\",\n    \"score\": 4086.60944222091,\n    \"initiative\": {\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"callSign\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"customerId\": \"string\",\n      \"status\": \"inactive\",\n      \"unitIncrements\": 8821.561357093708,\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"type\": \"pms\",\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"groupIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"locale\": \"en-GB\",\n      \"allowFrom\": \"2022-08-12\",\n      \"allowTo\": \"2022-08-12\"\n    },\n    \"absoluteScore\": 2854.698466604425\n  },\n  {\n    \"type\": \"initiative\",\n    \"score\": 116.16865502040663,\n    \"initiative\": {\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"callSign\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"customerId\": \"string\",\n      \"status\": \"active\",\n      \"unitIncrements\": 5063.095873635789,\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"type\": \"pms\",\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"groupIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"locale\": \"es-MX\",\n      \"allowFrom\": \"2022-08-12\",\n      \"allowTo\": \"2022-08-12\"\n    },\n    \"absoluteScore\": 457.31685572791946\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94c4ddef-5b32-46e1-85ef-184908f750ce",
+          "name": "Customer User Search Controller search Initiative Dtos v2",
+          "request": {
+            "name": "Customer User Search Controller search Initiative Dtos v2",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "initiatives",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) the search query"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<int64>",
+                  "description": "Optional limit for the number of results returned (non-paginated mode only).\nCannot be combined with page — when page is provided, use pageSize instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "displayClientCallSign",
+                  "value": "<boolean>",
+                  "description": "when true, search by client.callSign instead of initiative callSign"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<int64>",
+                  "description": "Optional page number for paginated results (1-indexed).\nWhen omitted, pagination is disabled and results are returned as a flat array\nto preserve backward compatibility with existing consumers."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<int64>",
+                  "description": "Optional page size for paginated results. Requires page to be set.\nDefaults to 50 to match the previous maximumSearchLimit, preserving the same\nresult count that existing consumers received before pagination was introduced."
+                },
+                {
+                  "disabled": false,
+                  "key": "workDate",
+                  "value": "<iso-date>",
+                  "description": "When set (and restrictions are enabled), excludes initiatives restricted on this date."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "551897da-12c2-46ef-ae76-2694d80554b8",
+              "name": "Returns a flat array without pagination params, or an OffsetResponseDto when page is provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "initiatives",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "displayClientCallSign",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "workDate",
+                      "value": "2022-08-12"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"type\": \"initiative-dto\",\n    \"score\": 7501.175704747064,\n    \"initiative\": {\n      \"_id\": \"string\",\n      \"billingType\": \"non-billable\",\n      \"callSign\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"status\": \"active\",\n      \"unitIncrements\": 546.2027048197482,\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"name\": \"string\",\n      \"type\": \"user\",\n      \"locale\": \"is-IS\",\n      \"props\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"colorHex\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"tags\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    \"absoluteScore\": 5770.895790258459\n  },\n  {\n    \"type\": \"initiative-dto\",\n    \"score\": 396.70043898155427,\n    \"initiative\": {\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"callSign\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"status\": \"inactive\",\n      \"unitIncrements\": 5251.561182574499,\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"name\": \"string\",\n      \"type\": \"user\",\n      \"locale\": \"fi-FI\",\n      \"props\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"colorHex\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"tags\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    \"absoluteScore\": 2951.730645233458\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "357e8726-f5fb-4504-a1b1-f4f582c4b5dc",
+    "name": "Identity Service Ably Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

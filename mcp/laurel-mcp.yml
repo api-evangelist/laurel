@@ -163,3 +163,9 @@ tools:
   description: POST /api/v1/customers/{customerId}/users/delegates/batch
   source_operation: openapi/laurel-ingestion-openapi-original.json#UsersController_updateUserDelegatesBatch_v1
   service: ingestion
+deployment:
+  mode: none
+  verified: derived
+  tools: 37
+  checked: '2026-08-12'
+  source: catalog MCP census

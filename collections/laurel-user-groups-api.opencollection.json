@@ -1,0 +1,336 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably User Groups API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List user groups for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/user-groups",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "The customer ID who this group belongs to"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Optional IDs to filter groups (can be user IDs or timekeeper IDs depending on kind parameter)"
+              },
+              {
+                "name": "kind",
+                "value": "",
+                "type": "query",
+                "description": "The kind of IDs to use for filtering and response format (user-id or timekeeper-id)"
+              }
+            ]
+          },
+          "docs": "List user groups for a customer"
+        },
+        {
+          "info": {
+            "name": "Create a user group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/user-groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a user group"
+        },
+        {
+          "info": {
+            "name": "Upsert a user group by its external id",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v1/user-groups/by-external-id/:externalId",
+            "params": [
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "The customer ID who this group belongs to"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates the group if no live group exists for the given (customerId, externalId), otherwise partially updates the existing one. Fields present in the payload overwrite; omitted fields are left unchanged. The externalId is the stable key and is never mutated. Idempotent."
+        },
+        {
+          "info": {
+            "name": "Delete a user group by its external id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/user-groups/by-external-id/:externalId",
+            "params": [
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "The customer ID who this group belongs to"
+              }
+            ]
+          },
+          "docs": "Delete a user group by its external id"
+        },
+        {
+          "info": {
+            "name": "List user groups a specific user is a member of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/user-groups/for-user/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "The customer ID the user belongs to"
+              }
+            ]
+          },
+          "docs": "Returns the user groups the given user is a member of. A user acting as themselves may call this with only `CustomerOwnUserOwnRead`; otherwise requires `CustomerOwnUserAnyRead` or `CustomerAnyUserAnyRead`."
+        },
+        {
+          "info": {
+            "name": "Get a single user group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/user-groups/:userGroupId",
+            "params": [
+              {
+                "name": "userGroupId",
+                "value": "",
+                "type": "path",
+                "description": "user group's id"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "customer's id"
+              }
+            ]
+          },
+          "docs": "Get a single user group"
+        },
+        {
+          "info": {
+            "name": "Update a user group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/user-groups/:userGroupId",
+            "params": [
+              {
+                "name": "userGroupId",
+                "value": "",
+                "type": "path",
+                "description": "user group's id"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "customer's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a user group"
+        },
+        {
+          "info": {
+            "name": "Delete a user group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/user-groups/:userGroupId",
+            "params": [
+              {
+                "name": "userGroupId",
+                "value": "",
+                "type": "path",
+                "description": "user group's id"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "customer's id"
+              }
+            ]
+          },
+          "docs": "Delete a user group"
+        },
+        {
+          "info": {
+            "name": "Get all users in a user group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/user-groups/:userGroupId/users",
+            "params": [
+              {
+                "name": "userGroupId",
+                "value": "",
+                "type": "path",
+                "description": "user group's id"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "customer's id"
+              }
+            ]
+          },
+          "docs": "Get all users in a user group"
+        },
+        {
+          "info": {
+            "name": "Add users to a user group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/user-groups/:userGroupId/users",
+            "params": [
+              {
+                "name": "userGroupId",
+                "value": "",
+                "type": "path",
+                "description": "user group's id"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "customer's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add users to a user group"
+        },
+        {
+          "info": {
+            "name": "Remove users from a user group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/user-groups/:userGroupId/users",
+            "params": [
+              {
+                "name": "userGroupId",
+                "value": "",
+                "type": "path",
+                "description": "user group's id"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "customer's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove users from a user group"
+        },
+        {
+          "info": {
+            "name": "Sync a user group's membership by its external id",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v1/user-groups/by-external-id/:externalId/users",
+            "params": [
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "The customer ID who this group belongs to"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "mode is required. set (full-replace): add users in the payload and remove current members not in it (an empty payload clears the group). add: additive only, never removes. Identifiers that resolve to no user are skipped, not errors. Idempotent."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

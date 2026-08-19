@@ -1,0 +1,404 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Narrative Templates API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Narrative Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "returns all narrative templates for the current user in no particular order up to a max limit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/narrative-templates",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit how many narrative templates are returned (up to a max limit)"
+              }
+            ]
+          },
+          "docs": "returns all narrative templates for the current user in no particular order up to a max limit"
+        },
+        {
+          "info": {
+            "name": "creates a narrative template for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/narrative-templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "creates a narrative template for the current user"
+        },
+        {
+          "info": {
+            "name": "NarrativeTemplateController_updateOne_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/narrative-templates/:narrativeTemplateId",
+            "params": [
+              {
+                "name": "narrativeTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "the narrative template id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deletes a narrative template by id and returns the deleted template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/narrative-templates/:narrativeTemplateId",
+            "params": [
+              {
+                "name": "narrativeTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "the narrative template id"
+              }
+            ]
+          },
+          "docs": "deletes a narrative template by id and returns the deleted template"
+        },
+        {
+          "info": {
+            "name": "returns customer-scoped narrative templates (firm-, practice-group-, and user-level PMS templates)\nin no particular order up to a max limit. user-level (`pms-user`) and practice-group templates are\nread-only here — they are managed via the per-user endpoints and PMS sync.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/narrative-templates",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit how many narrative templates are returned (up to a max limit)"
+              }
+            ]
+          },
+          "docs": "returns customer-scoped narrative templates (firm-, practice-group-, and user-level PMS templates)\nin no particular order up to a max limit. user-level (`pms-user`) and practice-group templates are\nread-only here — they are managed via the per-user endpoints and PMS sync."
+        },
+        {
+          "info": {
+            "name": "creates a customer-level narrative template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/narrative-templates",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "creates a customer-level narrative template"
+        },
+        {
+          "info": {
+            "name": "returns a narrative template for a specified customer by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/narrative-templates/:narrativeTemplateId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "narrativeTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "the narrative template id"
+              }
+            ]
+          },
+          "docs": "returns a narrative template for a specified customer by id"
+        },
+        {
+          "info": {
+            "name": "updates a customer-level narrative template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/narrative-templates/:narrativeTemplateId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "narrativeTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "the narrative template id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "updates a customer-level narrative template"
+        },
+        {
+          "info": {
+            "name": "deletes a customer-level narrative template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/narrative-templates/:narrativeTemplateId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "narrativeTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "the narrative template id"
+              }
+            ]
+          },
+          "docs": "deletes a customer-level narrative template"
+        },
+        {
+          "info": {
+            "name": "syncs narrative templates for all users in a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/narrative-templates/sync",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "syncs narrative templates for all users in a customer"
+        },
+        {
+          "info": {
+            "name": "returns all narrative templates for a specified user in no particular order up to a max limit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/narrative-templates",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit how many narrative templates are returned (up to a max limit)"
+              }
+            ]
+          },
+          "docs": "returns all narrative templates for a specified user in no particular order up to a max limit"
+        },
+        {
+          "info": {
+            "name": "creates a narrative template for a specified user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/narrative-templates",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "creates a narrative template for a specified user"
+        },
+        {
+          "info": {
+            "name": "updates a narrative template for a specified user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/narrative-templates/:narrativeTemplateId",
+            "params": [
+              {
+                "name": "narrativeTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "the narrative template id"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "updates a narrative template for a specified user"
+        },
+        {
+          "info": {
+            "name": "deletes a narrative template for a specified user by id and returns the deleted template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/narrative-templates/:narrativeTemplateId",
+            "params": [
+              {
+                "name": "narrativeTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "the narrative template id"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ]
+          },
+          "docs": "deletes a narrative template for a specified user by id and returns the deleted template"
+        },
+        {
+          "info": {
+            "name": "syncs narrative templates for a specific user in a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/narrative-templates/sync",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "syncs narrative templates for a specific user in a customer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

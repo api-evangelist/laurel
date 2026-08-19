@@ -1,0 +1,906 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Users API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "returns all users for a customer, filtered by optional search parameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "searches first & last names, nickname, & email using a query"
+              },
+              {
+                "name": "integration",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "returns all users for a customer, filtered by optional search parameter"
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_searchV2_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/customers/:customerId/users",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeRoles",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "excludeRoles",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_searchLite_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users-lite",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "searches first & last names, nickname, & email using a query"
+              },
+              {
+                "name": "integration",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Get multiple users by their IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/by-ids",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve multiple users from a customer by providing user IDs as repeated query parameters (userIds=id1&userIds=id2&userIds=id3). Maximum 50 IDs per request."
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_lookupUser_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/lookup",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Look up multiple users by identities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/batch/lookup",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Batch equivalent of GET users/lookup. Returns every distinct user under the customer who matches at least one of the given identities."
+        },
+        {
+          "info": {
+            "name": "Translate timekeeper IDs to user IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/translate-timekeeper-ids",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Translate timekeeper IDs to user IDs"
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_lookupUserIdentityType_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/lookup/identity",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_lookupUserByIdentity_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/customers/:customerId/users/lookup/identity",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "type of the external identity"
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query",
+                "description": "external identifier"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_lookupUserIdentity_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/identities",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_createNewUserIdentity_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/identities",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_updateUserIdentity_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/identities",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_setUserSuperDelegateStatus_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/super-delegate",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "returns a user by its id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ]
+          },
+          "docs": "returns a user by its id"
+        },
+        {
+          "info": {
+            "name": "updates a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "updates a user"
+        },
+        {
+          "info": {
+            "name": "deletes a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "isForwarded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "originalPrincipalClientId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "originalPrincipalCustomerId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "originalPrincipalUserId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "deletes a user"
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_updateV2_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v2/customers/:customerId/users/:userId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_updateStatus_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/status",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Add multiple identities to a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/identities/bulk",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds multiple external identities to a specific user in a single request. Prevents duplicate identities with the same type and value."
+        },
+        {
+          "info": {
+            "name": "Get email aliases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/email-aliases",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ]
+          },
+          "docs": "Returns all email aliases for a user."
+        },
+        {
+          "info": {
+            "name": "Add email aliases",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/email-aliases",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds one or more email aliases to a user. Each alias must be unique within the customer (across both aliases and primary emails)."
+        },
+        {
+          "info": {
+            "name": "Remove an email alias",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/email-aliases",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email alias address to remove"
+              }
+            ]
+          },
+          "docs": "Removes an email alias from a user."
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_deprecatedImport_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/import",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_importV2_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/customers/:customerId/users/import",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_postUserData_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/batch/import",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserController_postUserDataV2_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/customers/:customerId/users/batch/import",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "creates a user for a given customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/users",
+            "params": [
+              {
+                "name": "disableIdValidation",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "creates a user for a given customer"
+        },
+        {
+          "info": {
+            "name": "looks a user up by their external identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/users/lookup",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "type of the external identity"
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query",
+                "description": "external identifier"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "optional customer id to bind the identity to"
+              }
+            ]
+          },
+          "docs": "looks a user up by their external identity"
+        },
+        {
+          "info": {
+            "name": "called by auth0 when tokens are generated",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/users/on-auth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "called by auth0 when tokens are generated"
+        },
+        {
+          "info": {
+            "name": "called by the auth0 token-exchange action during broker-based login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/users/on-broker-auth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "called by the auth0 token-exchange action during broker-based login"
+        },
+        {
+          "info": {
+            "name": "returns the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/users/current"
+          },
+          "docs": "returns the current user"
+        },
+        {
+          "info": {
+            "name": "update current user's name, nickname or phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/users/current",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "update current user's name, nickname or phone number"
+        },
+        {
+          "info": {
+            "name": "UserController_get_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "UsersController_updateUserDelegates_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/delegates",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an async job that will update user delegates"
+        },
+        {
+          "info": {
+            "name": "UsersController_updateUserDelegatesBatch_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/delegates/batch",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "isInitial",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an async job that will update delegates for a batch of users."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

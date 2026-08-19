@@ -1,0 +1,2278 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Entries API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "EntriesController_getAllReleasePendingEntries_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entries/release-pending",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_updateEntriesLockStatus_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/lock-status",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "EntriesController_updateEntriesLockStatus_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/lock-status",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "EntriesController_updateReleasedEntry_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryExternalId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "entryExternalId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "EntriesController_deleteReleasedEntry_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryExternalId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "entryExternalId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "EntriesController_createReleasedEntry_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/import-released",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "EntriesController_importUnreleasedEntry_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entries/import-unreleased",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "EntriesController_updateUnreleasedEntriesBulk_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entries/external/:sourceSystem",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sourceSystem",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "EntriesController_deleteUnreleasedEntriesBulk_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entries/external/:sourceSystem",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sourceSystem",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryPublicController_findManyWithPaginationV3_v3",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v3/public/customers/:customerId/entries",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workDates",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "updatedAfter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "updatedOnOrBefore",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isDeleted",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "initiativeType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billingType",
+                "value": "",
+                "type": "query",
+                "description": "the billing type to filter entries by"
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "the client to filter initiatives by"
+              },
+              {
+                "name": "allowEmptyTimers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isShared",
+                "value": "",
+                "type": "query",
+                "description": "When true, filter to entries shared with at least one recipient."
+              },
+              {
+                "name": "isFromShare",
+                "value": "",
+                "type": "query",
+                "description": "When true, filter to recipient-copy entries. ORs with `isShared`."
+              },
+              {
+                "name": "timezoneNotSet",
+                "value": "",
+                "type": "query",
+                "description": "Union with `timezones[]`: when true, also include entries with `timezoneAtCreation === null`."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "the field to sort entries by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "the sort order"
+              },
+              {
+                "name": "timezones",
+                "value": "",
+                "type": "query",
+                "description": "Optional IANA timezone filter (e.g. \"America/New_York\")."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryPublicController_bulkRelease_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/public/customers/:customerId/entries/bulk-release",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryPublicController_unrelease_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/public/customers/:customerId/users/:userId/entries/:entryId/unrelease",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryPublicController_overrideOneEntry_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/public/customers/:customerId/users/:userId/entries/:entryId/override",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryPublicController_deleteOneEntry_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/public/customers/:customerId/users/:userId/entries/:entryId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "returns all entries for the current user and a given date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/entries",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "the date for which the entries should be returned"
+              },
+              {
+                "name": "startedBefore",
+                "value": "",
+                "type": "query",
+                "description": "the date to get activities that their started at time is less than this date"
+              },
+              {
+                "name": "stoppedAfter",
+                "value": "",
+                "type": "query",
+                "description": "the date to get activities that their stopped at time is greater than this date"
+              }
+            ]
+          },
+          "docs": "returns all entries for the current user and a given date"
+        },
+        {
+          "info": {
+            "name": "creates an entry for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/entries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "creates an entry for the current user"
+        },
+        {
+          "info": {
+            "name": "returns paginated entries for the current user based on provided filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/entries",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workDates",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "updatedAfter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "updatedOnOrBefore",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isDeleted",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "initiativeType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billingType",
+                "value": "",
+                "type": "query",
+                "description": "the billing type to filter entries by"
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "the client to filter initiatives by"
+              },
+              {
+                "name": "allowEmptyTimers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isShared",
+                "value": "",
+                "type": "query",
+                "description": "When true, filter to entries shared with at least one recipient."
+              },
+              {
+                "name": "isFromShare",
+                "value": "",
+                "type": "query",
+                "description": "When true, filter to recipient-copy entries. ORs with `isShared`."
+              },
+              {
+                "name": "timezoneNotSet",
+                "value": "",
+                "type": "query",
+                "description": "Union with `timezones[]`: when true, also include entries with `timezoneAtCreation === null`."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "the field to sort entries by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "the sort order"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "timezones",
+                "value": "",
+                "type": "query",
+                "description": "Optional IANA timezone filter (e.g. \"America/New_York\"). Repeated query params for multi-select."
+              }
+            ]
+          },
+          "docs": "returns paginated entries for the current user based on provided filters"
+        },
+        {
+          "info": {
+            "name": "creates an entry for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/entries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "creates an entry for the current user"
+        },
+        {
+          "info": {
+            "name": "returns paginated entries for the current user based on provided filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v3/entries",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "the user whose entries you are searching for"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "the user's customer"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "the date for which the entries should be returned"
+              },
+              {
+                "name": "startedBefore",
+                "value": "",
+                "type": "query",
+                "description": "the date to get activities that their started at time is less than this date"
+              },
+              {
+                "name": "stoppedAfter",
+                "value": "",
+                "type": "query",
+                "description": "the date to get activities that their stopped at time is greater than this date"
+              }
+            ]
+          },
+          "docs": "returns paginated entries for the current user based on provided filters"
+        },
+        {
+          "info": {
+            "name": "creates an entry for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v3/entries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "creates an entry for the current user"
+        },
+        {
+          "info": {
+            "name": "EntryController_getInitiativeIdsByWorkDateRange_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/entries/initiatives",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "inclusive lower bound for entry work dates"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "inclusive upper bound for entry work dates"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "the customer whose initiative ids we are getting"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "the user whose initiative ids we are getting"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "splits a single source activity or entry into multiple draft entries, one per allocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/entries/split",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "splits a single source activity or entry into multiple draft entries, one per allocation"
+        },
+        {
+          "info": {
+            "name": "Create multiple entries in bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/entries/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create multiple entries in bulk"
+        },
+        {
+          "info": {
+            "name": "merges a list of entries into one",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/entries/merge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "merges a list of entries into one"
+        },
+        {
+          "info": {
+            "name": "EntryController_mergeManyEntryDto_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/entries/merge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Returns the entry that corresponds with the provided id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/entries/:entryId",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ]
+          },
+          "docs": "Returns the entry that corresponds with the provided id"
+        },
+        {
+          "info": {
+            "name": "updates an entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/entries/:entryId",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "updates an entry"
+        },
+        {
+          "info": {
+            "name": "deletes an entry by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/entries/:entryId",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ]
+          },
+          "docs": "deletes an entry by id"
+        },
+        {
+          "info": {
+            "name": "updates an entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v2/entries/:entryId",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "updates an entry"
+        },
+        {
+          "info": {
+            "name": "deletes an entry by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/entries/:entryId",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ]
+          },
+          "docs": "deletes an entry by id"
+        },
+        {
+          "info": {
+            "name": "Returns the entry that corresponds with the provided id as EntryDto",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v3/entries/:entryId",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ]
+          },
+          "docs": "Returns the entry that corresponds with the provided id as EntryDto"
+        },
+        {
+          "info": {
+            "name": "updates an entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v3/entries/:entryId",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "updates an entry"
+        },
+        {
+          "info": {
+            "name": "releases a single entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/entries/:entryId/release",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "releases a single entry"
+        },
+        {
+          "info": {
+            "name": "EntryController_releaseEntryDtoById_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/entries/:entryId/release",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "unrelease a single existing entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/entries/:entryId/unrelease",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ]
+          },
+          "docs": "unrelease a single existing entry"
+        },
+        {
+          "info": {
+            "name": "unmerges nested sources of an entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/entries/:entryId/unmerge",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "unmerges nested sources of an entry"
+        },
+        {
+          "info": {
+            "name": "dismisses the auto-stop strip for a timer entry that was auto-stopped at 12h",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/entries/:entryId/dismiss-autostop",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ]
+          },
+          "docs": "dismisses the auto-stop strip for a timer entry that was auto-stopped at 12h"
+        },
+        {
+          "info": {
+            "name": "CustomerEntryShareController_getEntryShares_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryId/shares",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Admin-scoped share eligibility check. Mirrors the user-scoped endpoint but allows an admin\nto evaluate eligibility on behalf of any user in their customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryId/share-eligibility",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Admin-scoped share eligibility check. Mirrors the user-scoped endpoint but allows an admin\nto evaluate eligibility on behalf of any user in their customer."
+        },
+        {
+          "info": {
+            "name": "Admin-scoped share. Only customer-level admins (UserAdmin, CustomerAdmin) holding\n`CustomerOwnUserAnyEntryWrite` are authorized — Laurel platform admins\n(`CustomerAnyUserAnyEntryWrite`) are intentionally excluded because sharing must be\nscoped to the admin's own customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryId/share",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Admin-scoped share. Only customer-level admins (UserAdmin, CustomerAdmin) holding\n`CustomerOwnUserAnyEntryWrite` are authorized — Laurel platform admins\n(`CustomerAnyUserAnyEntryWrite`) are intentionally excluded because sharing must be\nscoped to the admin's own customer."
+        },
+        {
+          "info": {
+            "name": "EntryShareController_getEntryShares_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/entries/:entryId/shares",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Non-mutating eligibility check for the share modal. POST (not GET) so the recipient list\ntravels in the request body — GET bodies may be stripped by intermediaries.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/entries/:entryId/share-eligibility",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Non-mutating eligibility check for the share modal. POST (not GET) so the recipient list\ntravels in the request body — GET bodies may be stripped by intermediaries."
+        },
+        {
+          "info": {
+            "name": "Shares the source entry with the given recipients. Returns a breakdown of created, blocked,\nand failed recipients. Request-level failures throw 403/404/422.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/entries/:entryId/share",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Shares the source entry with the given recipients. Returns a breakdown of created, blocked,\nand failed recipients. Request-level failures throw 403/404/422."
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_findOne_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryId",
+            "params": [
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_updateOneEntry_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_deleteOneEntry_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_findManyWithUpdatedAt_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entries",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "updatedAfter",
+                "value": "",
+                "type": "query",
+                "description": "the date after which the Entry was updated"
+              },
+              {
+                "name": "updatedOnOrBefore",
+                "value": "",
+                "type": "query",
+                "description": "the date on or before which the Entry was updated"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_findManyWithPagination_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/customers/:customerId/entries",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "updatedAfter",
+                "value": "",
+                "type": "query",
+                "description": "the date after which the Entry was updated"
+              },
+              {
+                "name": "updatedOnOrBefore",
+                "value": "",
+                "type": "query",
+                "description": "the date on or before which the Entry was updated"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "max number of item in each page"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "cursor to start from"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_findManyWithPaginationV3_v3",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v3/customers/:customerId/entries",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workDates",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "updatedAfter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "updatedOnOrBefore",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isDeleted",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "initiativeType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billingType",
+                "value": "",
+                "type": "query",
+                "description": "the billing type to filter entries by"
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "the client to filter initiatives by"
+              },
+              {
+                "name": "allowEmptyTimers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isShared",
+                "value": "",
+                "type": "query",
+                "description": "When true, filter to entries shared with at least one recipient."
+              },
+              {
+                "name": "isFromShare",
+                "value": "",
+                "type": "query",
+                "description": "When true, filter to recipient-copy entries. ORs with `isShared`."
+              },
+              {
+                "name": "timezoneNotSet",
+                "value": "",
+                "type": "query",
+                "description": "Union with `timezones[]`: when true, also include entries with `timezoneAtCreation === null`."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "the field to sort entries by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "the sort order"
+              },
+              {
+                "name": "timezones",
+                "value": "",
+                "type": "query",
+                "description": "Optional IANA timezone filter (e.g. \"America/New_York\")."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_findManyWithPaginationV4_v4",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/customers/:customerId/entries",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workDates",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "updatedAfter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "updatedOnOrBefore",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isDeleted",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "initiativeType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billingType",
+                "value": "",
+                "type": "query",
+                "description": "the billing type to filter entries by"
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "the client to filter initiatives by"
+              },
+              {
+                "name": "allowEmptyTimers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isShared",
+                "value": "",
+                "type": "query",
+                "description": "When true, filter to entries shared with at least one recipient."
+              },
+              {
+                "name": "isFromShare",
+                "value": "",
+                "type": "query",
+                "description": "When true, filter to recipient-copy entries. ORs with `isShared`."
+              },
+              {
+                "name": "timezoneNotSet",
+                "value": "",
+                "type": "query",
+                "description": "When true, also include entries with `timezoneAtCreation === null`. Combines\nwith `timezones[]` as a union — e.g. `timezones=[\"America/New_York\"]` +\n`timezoneNotSet=true` returns entries with NY *or* no timezone set."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "the field to sort entries by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "the sort order"
+              },
+              {
+                "name": "timezones",
+                "value": "",
+                "type": "query",
+                "description": "Optional IANA timezone filter (e.g. \"America/New_York\"). Repeated query params for multi-select."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_export_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entries/export",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "releasedAfter",
+                "value": "",
+                "type": "query",
+                "description": "the date after which the Entry was released"
+              },
+              {
+                "name": "releasedOnOrBefore",
+                "value": "",
+                "type": "query",
+                "description": "the date on or before which the Entry was released"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_exportV2_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/customers/:customerId/entries/export",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "releasedAfter",
+                "value": "",
+                "type": "query",
+                "description": "the date after which the Entry was released"
+              },
+              {
+                "name": "releasedOnOrBefore",
+                "value": "",
+                "type": "query",
+                "description": "the date on or before which the Entry was released"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_batchReleaseSuccess_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entries/release-succeeded/batch",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_releaseOneById_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryId/release",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_bulkRelease_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entries/bulk-release",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_releaseSuccess_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryId/release-succeeded",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_releaseFailed_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryId/release-failed",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_bulkUnrelease_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entries/bulk-unrelease",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_unrelease_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryId/unrelease",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_assignCodeByLaurel_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryId/codes/assign-by-laurel",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_deleteOneEntryByExternalId_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/external/:entryExternalId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryExternalId",
+                "value": "",
+                "type": "path",
+                "description": "entry's external id"
+              },
+              {
+                "name": "isPmsSync",
+                "value": "",
+                "type": "query",
+                "description": "true indicates that we are syncing the \"deleted\" status into Laurel from the PMS"
+              },
+              {
+                "name": "sourceSystem",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_undeleteOneEntry_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryId/undelete",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_overrideOneEntry_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/:entryId/override",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "path",
+                "description": "individual entry id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_overrideOneEntryV2_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v2/customers/:customerId/users/:userId/entries/:entryExternalId/override",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "entryExternalId",
+                "value": "",
+                "type": "path",
+                "description": "entry's external id"
+              },
+              {
+                "name": "sourceSystem",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_importUnreleasedEntry_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/import-unreleased",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_createOneEntryForUser_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerEntryController_importTempEntry_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/entries/import-temp",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Look up a customer's time entry by externalId.\nUseful for diagnosing bi-directional sync issues without needing to know the userId.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entries/external-id/:externalId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Look up a customer's time entry by externalId.\nUseful for diagnosing bi-directional sync issues without needing to know the userId."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

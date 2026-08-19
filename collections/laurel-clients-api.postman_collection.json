@@ -1,0 +1,1465 @@
+{
+  "item": [
+    {
+      "id": "c52ca2a4-dd34-4ea8-a701-c7b40baaf204",
+      "name": "Clients",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6559c578-3379-490f-b0cc-12ef6414d6cd",
+          "name": "Client Controller on Credentials Exchange v1",
+          "request": {
+            "name": "Client Controller on Credentials Exchange v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "clients",
+                "on-credentials-exchange"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": \"<objectid>\",\n  \"externalClientId\": \"<string>\",\n  \"customerId\": \"<objectid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "05a28357-1504-49bd-b6a5-b7ea2441a505",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients",
+                    "on-credentials-exchange"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": \"<objectid>\",\n  \"externalClientId\": \"<string>\",\n  \"customerId\": \"<objectid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"clientId\": \"string\",\n  \"permissions\": [\n    \"string\",\n    \"string\"\n  ],\n  \"encodedPermissions\": \"string\",\n  \"tenantId\": \"string\",\n  \"customerId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c11864a-f2f1-4752-b6c6-2ec261f61a6c",
+          "name": "creates a new client",
+          "request": {
+            "name": "creates a new client",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"service\": \"<string>\",\n  \"type\": \"<string>\",\n  \"permissionIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"allowedCallbackUrls\": [],\n  \"allowedLogoutUrls\": [],\n  \"allowedCorsOrigins\": [],\n  \"customerId\": \"<objectid>\",\n  \"tenantId\": \"<objectid>\",\n  \"userPermissionBoundaryIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ccef2c98-5f78-48cb-b73c-8fea5b8fe8b3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"service\": \"<string>\",\n  \"type\": \"<string>\",\n  \"permissionIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"allowedCallbackUrls\": [],\n  \"allowedLogoutUrls\": [],\n  \"allowedCorsOrigins\": [],\n  \"customerId\": \"<objectid>\",\n  \"tenantId\": \"<objectid>\",\n  \"userPermissionBoundaryIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"allowedCallbackUrls\": [],\n  \"allowedCorsOrigins\": [],\n  \"allowedLogoutUrls\": [],\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"description\": \"string\",\n  \"externalId\": \"string\",\n  \"externalSecret\": \"string\",\n  \"name\": \"string\",\n  \"service\": \"router\",\n  \"type\": \"non_interactive\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"permissions\": [],\n  \"userPermissionBoundaries\": [\n    {\n      \"_id\": \"string\",\n      \"claim\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"_id\": \"string\",\n      \"claim\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"customerId\": \"string\",\n  \"tenant\": {\n    \"_id\": \"string\",\n    \"description\": \"string\",\n    \"name\": \"yul\"\n  },\n  \"externalSecretExpiresAt\": \"2022-08-12T20:44:48Z\",\n  \"createdByUserId\": \"string\",\n  \"permissionTier\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58750124-4211-4877-86b3-7c9050c65778",
+          "name": "lists all existing clients",
+          "request": {
+            "name": "lists all existing clients",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f6b33da-ac9e-482c-9997-027347773d25",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"allowedCallbackUrls\": [],\n    \"allowedCorsOrigins\": [],\n    \"allowedLogoutUrls\": [],\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"description\": \"string\",\n    \"externalId\": \"string\",\n    \"externalSecret\": \"string\",\n    \"name\": \"string\",\n    \"service\": \"mc\",\n    \"type\": \"spa\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"permissions\": [],\n    \"userPermissionBoundaries\": [\n      {\n        \"_id\": \"string\",\n        \"claim\": \"string\",\n        \"description\": \"string\"\n      },\n      {\n        \"_id\": \"string\",\n        \"claim\": \"string\",\n        \"description\": \"string\"\n      }\n    ],\n    \"customerId\": \"string\",\n    \"tenant\": {\n      \"_id\": \"string\",\n      \"description\": \"string\",\n      \"name\": \"pdx\"\n    },\n    \"externalSecretExpiresAt\": \"2022-08-12T20:44:48Z\",\n    \"createdByUserId\": \"string\",\n    \"permissionTier\": \"string\"\n  },\n  {\n    \"_id\": \"string\",\n    \"allowedCallbackUrls\": [],\n    \"allowedCorsOrigins\": [],\n    \"allowedLogoutUrls\": [],\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"description\": \"string\",\n    \"externalId\": \"string\",\n    \"externalSecret\": \"string\",\n    \"name\": \"string\",\n    \"service\": \"updater\",\n    \"type\": \"spa\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"permissions\": [],\n    \"userPermissionBoundaries\": [\n      {\n        \"_id\": \"string\",\n        \"claim\": \"string\",\n        \"description\": \"string\"\n      },\n      {\n        \"_id\": \"string\",\n        \"claim\": \"string\",\n        \"description\": \"string\"\n      }\n    ],\n    \"customerId\": \"string\",\n    \"tenant\": {\n      \"_id\": \"string\",\n      \"description\": \"string\",\n      \"name\": \"pdx\"\n    },\n    \"externalSecretExpiresAt\": \"2022-08-12T20:44:48Z\",\n    \"createdByUserId\": \"string\",\n    \"permissionTier\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b791ff89-3707-40fd-baea-57771c6d3875",
+          "name": "returns a specific client",
+          "request": {
+            "name": "returns a specific client",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "clients",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "clientId",
+                  "description": "(Required) client's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac3bc16e-6a2d-47bb-b3f2-e21b40e1b8d3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "clientId",
+                      "description": "(Required) client's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"allowedCallbackUrls\": [],\n  \"allowedCorsOrigins\": [],\n  \"allowedLogoutUrls\": [],\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"description\": \"string\",\n  \"externalId\": \"string\",\n  \"externalSecret\": \"string\",\n  \"name\": \"string\",\n  \"service\": \"config\",\n  \"type\": \"regular_web\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"permissions\": [],\n  \"userPermissionBoundaries\": [\n    {\n      \"_id\": \"string\",\n      \"claim\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"_id\": \"string\",\n      \"claim\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"customerId\": \"string\",\n  \"tenant\": {\n    \"_id\": \"string\",\n    \"description\": \"string\",\n    \"name\": \"yul\"\n  },\n  \"externalSecretExpiresAt\": \"2022-08-12T20:44:48Z\",\n  \"createdByUserId\": \"string\",\n  \"permissionTier\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa419ade-124c-45d8-9247-fac75ea0705e",
+          "name": "updates an existing client",
+          "request": {
+            "name": "updates an existing client",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "clients",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "clientId",
+                  "description": "(Required) client's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"allowedCallbackUrls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedCorsOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedLogoutUrls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"clientSecret\": \"<string>\",\n  \"permissionIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"service\": \"<string>\",\n  \"customerId\": \"<objectid>\",\n  \"tenantId\": \"<objectid>\",\n  \"userPermissionBoundaryIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0c373bfb-339c-48ea-94dc-ff5b6d762570",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "clientId",
+                      "description": "(Required) client's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowedCallbackUrls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedCorsOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedLogoutUrls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"clientSecret\": \"<string>\",\n  \"permissionIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"service\": \"<string>\",\n  \"customerId\": \"<objectid>\",\n  \"tenantId\": \"<objectid>\",\n  \"userPermissionBoundaryIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"allowedCallbackUrls\": [],\n  \"allowedCorsOrigins\": [],\n  \"allowedLogoutUrls\": [],\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"description\": \"string\",\n  \"externalId\": \"string\",\n  \"externalSecret\": \"string\",\n  \"name\": \"string\",\n  \"service\": \"config\",\n  \"type\": \"regular_web\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"permissions\": [],\n  \"userPermissionBoundaries\": [\n    {\n      \"_id\": \"string\",\n      \"claim\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"_id\": \"string\",\n      \"claim\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"customerId\": \"string\",\n  \"tenant\": {\n    \"_id\": \"string\",\n    \"description\": \"string\",\n    \"name\": \"yul\"\n  },\n  \"externalSecretExpiresAt\": \"2022-08-12T20:44:48Z\",\n  \"createdByUserId\": \"string\",\n  \"permissionTier\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14d6b7cc-a4a3-48a1-9622-c37bba4c151f",
+          "name": "deletes an existing client",
+          "request": {
+            "name": "deletes an existing client",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "clients",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "clientId",
+                  "description": "(Required) client's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12d932db-8948-4e5b-b5c0-5c6c5bf74155",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "clientId",
+                      "description": "(Required) client's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"allowedCallbackUrls\": [],\n  \"allowedCorsOrigins\": [],\n  \"allowedLogoutUrls\": [],\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"description\": \"string\",\n  \"externalId\": \"string\",\n  \"externalSecret\": \"string\",\n  \"name\": \"string\",\n  \"service\": \"config\",\n  \"type\": \"regular_web\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"permissions\": [],\n  \"userPermissionBoundaries\": [\n    {\n      \"_id\": \"string\",\n      \"claim\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"_id\": \"string\",\n      \"claim\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"customerId\": \"string\",\n  \"tenant\": {\n    \"_id\": \"string\",\n    \"description\": \"string\",\n    \"name\": \"yul\"\n  },\n  \"externalSecretExpiresAt\": \"2022-08-12T20:44:48Z\",\n  \"createdByUserId\": \"string\",\n  \"permissionTier\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72964d1a-b266-4afc-9643-5e04093a5d43",
+          "name": "Clients Controller import Client V1 v1",
+          "request": {
+            "name": "Clients Controller import Client V1 v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "clients",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"externalId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"callSign\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"parentClientExternalId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "28743824-2d53-4d98-9a75-588e87e1b8e6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "clients",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"callSign\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"parentClientExternalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bdb5b198-0ac5-4c0d-a980-fff3fee54d04",
+          "name": "Clients Controller import Client Batch V1 v1",
+          "request": {
+            "name": "Clients Controller import Client Batch V1 v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "clients",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "isInitial",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clients\": [\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"callSign\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentClientExternalId\": \"<string>\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"callSign\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentClientExternalId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "158faa9e-0492-4c8a-ac6a-49045e9aa9e3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "clients",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "isInitial",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clients\": [\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"callSign\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentClientExternalId\": \"<string>\"\n    },\n    {\n      \"externalId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"callSign\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentClientExternalId\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df1b5072-49a6-4ac5-aed2-3a5f2edc05b0",
+          "name": "Customer Client Controller search v1",
+          "request": {
+            "name": "Customer Client Controller search v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<int64>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<int64>"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d740cc61-45b2-42e5-b81f-b5ec339ab5a3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<int64>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34ba43cb-3ade-4530-b44e-6caf71ccb53f",
+          "name": "Customer Client Controller get By External Id v1",
+          "request": {
+            "name": "Customer Client Controller get By External Id v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "clients",
+                "external-id",
+                ":externalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1be0021-11e8-425a-873a-1dab849e0bbf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "clients",
+                    "external-id",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8f1e605-b310-4df5-9d50-2c36295ae585",
+          "name": "Customer Client Controller get Client v1",
+          "request": {
+            "name": "Customer Client Controller get Client v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "clients",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "clientId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b6489dce-e9c4-4d4b-8dce-6e90cbab76d0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "clients",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "clientId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"externalId\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"callSign\": \"string\",\n  \"type\": \"parent\",\n  \"parentClientId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6e510e7-57ab-473c-a014-f91a0be6aae8",
+          "name": "Customer Client Controller get Affected Count v1",
+          "request": {
+            "name": "Customer Client Controller get Affected Count v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "clients",
+                "override-compliance-rules",
+                "affected-count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": \"<objectid>\",\n  \"clientIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"entityType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "38402d4a-58d9-42bc-ac3a-dd9e9ebc0f52",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "clients",
+                    "override-compliance-rules",
+                    "affected-count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": \"<objectid>\",\n  \"clientIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"entityType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"affectedClientCount\": 6686.362493203949,\n  \"affectedInitiativeCount\": 3738.0200976656706,\n  \"totalAffectedCount\": 3139.7903024838915\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a959fb8-87f1-4f36-baa9-9c30b364c9a1",
+          "name": "Customer Client Controller override Compliance Rules v1",
+          "request": {
+            "name": "Customer Client Controller override Compliance Rules v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "clients",
+                "override-compliance-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": \"<objectid>\",\n  \"clientIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"entityType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e03df40c-d79c-466d-b68e-d95063793eff",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "clients",
+                    "override-compliance-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": \"<objectid>\",\n  \"clientIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"entityType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ce422276-87fb-407a-986d-cc4be7f88897",
+    "name": "Identity Service Ably Clients API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

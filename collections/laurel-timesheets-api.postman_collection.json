@@ -1,0 +1,643 @@
+{
+  "item": [
+    {
+      "id": "a13305a7-407b-4af5-b7e5-ee005f3ac3bd",
+      "name": "Timesheets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f02e4d57-fe51-4ed3-bf96-78b39eb124eb",
+          "name": "Timesheet Controller update Timesheet v1",
+          "request": {
+            "name": "Timesheet Controller update Timesheet v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "timesheets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"<objectid>\",\n  \"customerId\": \"<objectid>\",\n  \"date\": \"<iso-date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c2e6a7e-fffe-48d3-bece-f80bb5b90baa",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "timesheets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<objectid>\",\n  \"customerId\": \"<objectid>\",\n  \"date\": \"2022-08-12\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date\": \"2022-08-12\",\n  \"userId\": \"string\",\n  \"customerId\": \"string\",\n  \"status\": \"initial\",\n  \"statusCreatedAt\": \"2022-08-12T20:44:48Z\",\n  \"dismissedActivityIdToInitiativeIds\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5007193-e9ef-4e0e-9057-d17a6b81f13d",
+          "name": "Timesheet Controller delete Timesheet v1",
+          "request": {
+            "name": "Timesheet Controller delete Timesheet v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "timesheets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"<objectid>\",\n  \"customerId\": \"<objectid>\",\n  \"date\": \"<iso-date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a9063c56-7d83-4645-9b7f-ded28e01cff9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "timesheets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<objectid>\",\n  \"customerId\": \"<objectid>\",\n  \"date\": \"2022-08-12\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1ed6bcd-6886-468f-9506-0bfd6ea1bd20",
+          "name": "Timesheet Controller suggest Initiatives v1",
+          "request": {
+            "name": "Timesheet Controller suggest Initiatives v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "timesheets",
+                "initiatives",
+                "suggest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"<objectid>\",\n  \"customerId\": \"<objectid>\",\n  \"date\": \"<iso-date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "07f36e75-5063-4722-8860-27b1f9f5656f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "timesheets",
+                    "initiatives",
+                    "suggest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<objectid>\",\n  \"customerId\": \"<objectid>\",\n  \"date\": \"2022-08-12\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date\": \"2022-08-12\",\n  \"userId\": \"string\",\n  \"customerId\": \"string\",\n  \"status\": \"processing-suggested-initiatives\",\n  \"statusCreatedAt\": \"2022-08-12T20:44:48Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "666b356e-e5bc-4675-ad5c-a709a298691e",
+          "name": "Timesheet Controller predict Initiatives v1",
+          "request": {
+            "name": "Timesheet Controller predict Initiatives v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "timesheets",
+                "initiatives",
+                "predict"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"<objectid>\",\n  \"customerId\": \"<objectid>\",\n  \"date\": \"<iso-date>\",\n  \"activityIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"initiativeIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"skipEntryCreation\": \"<boolean>\",\n  \"highConfidenceMinimumScore\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "56c2764e-f0c8-4197-81b2-3f6ced9dc77e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "timesheets",
+                    "initiatives",
+                    "predict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<objectid>\",\n  \"customerId\": \"<objectid>\",\n  \"date\": \"2022-08-12\",\n  \"activityIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"initiativeIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"skipEntryCreation\": \"<boolean>\",\n  \"highConfidenceMinimumScore\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date\": \"2022-08-12\",\n  \"userId\": \"string\",\n  \"customerId\": \"string\",\n  \"status\": \"processing-initiative-categorization\",\n  \"statusCreatedAt\": \"2022-08-12T20:44:48Z\",\n  \"activityIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"initiativeIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"model\": \"string\",\n  \"parameters\": {\n    \"key_0\": 1196\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "893ac199-a363-415a-a34d-96348b26450d",
+          "name": "Timesheet Controller dismiss Initiatives v1",
+          "request": {
+            "name": "Timesheet Controller dismiss Initiatives v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "timesheets",
+                "initiatives",
+                "dismiss"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"<objectid>\",\n  \"customerId\": \"<objectid>\",\n  \"date\": \"<iso-date>\",\n  \"initiativeIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "45267ca6-836e-4830-8835-140f70b0a5a3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "timesheets",
+                    "initiatives",
+                    "dismiss"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<objectid>\",\n  \"customerId\": \"<objectid>\",\n  \"date\": \"2022-08-12\",\n  \"initiativeIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date\": \"2022-08-12\",\n  \"userId\": \"string\",\n  \"customerId\": \"string\",\n  \"status\": \"successful-suggested-initiatives\",\n  \"statusCreatedAt\": \"2022-08-12T20:44:48Z\",\n  \"suggestedInitiativeIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"dismissedInitiativeIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc19b079-c439-4ac0-ba2b-c9a3c8c85dd1",
+          "name": "Timesheet Controller dismiss Predictions v1",
+          "request": {
+            "name": "Timesheet Controller dismiss Predictions v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "timesheets",
+                "predictions",
+                "dismiss"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"<objectid>\",\n  \"customerId\": \"<objectid>\",\n  \"date\": \"<iso-date>\",\n  \"activityId\": \"<objectid>\",\n  \"initiativeId\": \"<objectid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7eb03c24-a08a-408a-9182-58dfb6859955",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "timesheets",
+                    "predictions",
+                    "dismiss"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<objectid>\",\n  \"customerId\": \"<objectid>\",\n  \"date\": \"2022-08-12\",\n  \"activityId\": \"<objectid>\",\n  \"initiativeId\": \"<objectid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date\": \"2022-08-12\",\n  \"userId\": \"string\",\n  \"customerId\": \"string\",\n  \"status\": \"initial\",\n  \"statusCreatedAt\": \"2022-08-12T20:44:48Z\",\n  \"dismissedActivityIdToInitiativeIds\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f04ea59f-26ae-4cd8-b405-fa71f80843d1",
+    "name": "Identity Service Ably Timesheets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

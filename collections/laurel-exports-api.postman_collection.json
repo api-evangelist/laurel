@@ -1,0 +1,260 @@
+{
+  "item": [
+    {
+      "id": "3af5abc6-e0a1-4c96-9b75-b18ca63ffba3",
+      "name": "Exports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d3ca5026-8aa0-47c6-9871-5008c52bd2aa",
+          "name": "Request export of time entries",
+          "request": {
+            "name": "Request export of time entries",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "time-csv-exports",
+                "entries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"search\": \"<string>\",\n  \"userId\": \"<objectid>\",\n  \"userIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"status\": \"<string>\",\n  \"statuses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"workDateStart\": \"<iso-date-time>\",\n  \"workDateEnd\": \"<iso-date-time>\",\n  \"updatedAfter\": \"<iso-date-time>\",\n  \"updatedOnOrBefore\": \"<iso-date-time>\",\n  \"initiativeId\": \"<objectid>\",\n  \"clientId\": \"<objectid>\",\n  \"isDeleted\": \"<boolean>\",\n  \"initiativeType\": \"<string>\",\n  \"billingType\": \"<string>\",\n  \"notificationEmail\": \"<string>\",\n  \"allowEmptyTimers\": \"<boolean>\",\n  \"timezoneNotSet\": \"<boolean>\",\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"downloadBaseUrl\": \"<string>\",\n  \"timezones\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "10559f64-6e1d-4313-9b22-5998bd9ec36f",
+              "name": "Export job submitted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "time-csv-exports",
+                    "entries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"search\": \"<string>\",\n  \"userId\": \"<objectid>\",\n  \"userIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"status\": \"<string>\",\n  \"statuses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"workDateStart\": \"2022-08-12T20:44:48Z\",\n  \"workDateEnd\": \"2022-08-12T20:44:48Z\",\n  \"updatedAfter\": \"2022-08-12T20:44:48Z\",\n  \"updatedOnOrBefore\": \"2022-08-12T20:44:48Z\",\n  \"initiativeId\": \"<objectid>\",\n  \"clientId\": \"<objectid>\",\n  \"isDeleted\": \"<boolean>\",\n  \"initiativeType\": \"<string>\",\n  \"billingType\": \"<string>\",\n  \"notificationEmail\": \"<string>\",\n  \"allowEmptyTimers\": \"<boolean>\",\n  \"timezoneNotSet\": \"<boolean>\",\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"downloadBaseUrl\": \"<string>\",\n  \"timezones\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "623b0dbe-3ef4-4aa9-8e93-3c7bdc5d682e",
+          "name": "Generate a fresh download URL for an exported CSV file",
+          "request": {
+            "name": "Generate a fresh download URL for an exported CSV file",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "time-csv-exports",
+                "entries",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fileName",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b34fadcc-3a00-4f09-99cf-d58cf30a8e53",
+              "name": "Fresh presigned download URL",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "time-csv-exports",
+                    "entries",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fileName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3f03779e-50ff-4729-a830-e6a582258abd",
+    "name": "Identity Service Ably Exports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,790 @@
+{
+  "item": [
+    {
+      "id": "e3326ad9-6e71-4d4d-a5f6-33d6e8b6c6c6",
+      "name": "Initiative Props",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b67b2681-9dd9-46a5-8367-ee09db1efdd3",
+          "name": "Initiative Usage Controller find Many By Range v1",
+          "request": {
+            "name": "Initiative Usage Controller find Many By Range v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "initiative-props",
+                "recent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "usedAfter",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) the date to get initiative props that their used at time is greater than this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "usedOnOrBefore",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) the date to get initiative props that their used at time is equal or less than this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "workDate",
+                  "value": "<iso-date>",
+                  "description": "When set (and restrictions are enabled), excludes recent initiatives restricted on this date."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eda56a93-9849-4ba5-8355-74273a132c84",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "initiative-props",
+                    "recent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "usedAfter",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "usedOnOrBefore",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "workDate",
+                      "value": "2022-08-12"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"colorHex\": \"string\",\n    \"customerId\": \"string\",\n    \"tags\": [\n      \"pinned\",\n      \"pinned\"\n    ],\n    \"type\": \"pms\",\n    \"userId\": \"string\",\n    \"initiative\": {\n      \"type\": \"pms\",\n      \"_id\": \"string\",\n      \"billingType\": \"non-billable\",\n      \"unitIncrements\": 2659.650657876399,\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"callSign\": \"string\",\n      \"status\": \"active\",\n      \"locale\": \"is-IS\"\n    },\n    \"nickname\": \"string\"\n  },\n  {\n    \"_id\": \"string\",\n    \"colorHex\": \"string\",\n    \"customerId\": \"string\",\n    \"tags\": [\n      \"pinned\",\n      \"pinned\"\n    ],\n    \"type\": \"pms\",\n    \"userId\": \"string\",\n    \"initiative\": {\n      \"type\": \"user\",\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"unitIncrements\": 4074.031218322097,\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"callSign\": \"string\",\n      \"status\": \"inactive\",\n      \"locale\": \"de-DE\"\n    },\n    \"nickname\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d023a467-8bb6-4279-9b82-089570b4c8d9",
+          "name": "Initiative Usage Controller find Many By Range V2 v2",
+          "request": {
+            "name": "Initiative Usage Controller find Many By Range V2 v2",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "initiative-props",
+                "recent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "usedAfter",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) the date to get initiative props that their used at time is greater than this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "usedOnOrBefore",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) the date to get initiative props that their used at time is equal or less than this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "workDate",
+                  "value": "<iso-date>",
+                  "description": "When set (and restrictions are enabled), excludes recent initiatives restricted on this date."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "167be396-8f5a-4543-a1e6-5fca1849c379",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "initiative-props",
+                    "recent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "usedAfter",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "usedOnOrBefore",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "workDate",
+                      "value": "2022-08-12"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"billingType\": \"billable\",\n    \"callSign\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"status\": \"inactive\",\n    \"unitIncrements\": 5021.400320364301,\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"name\": \"string\",\n    \"type\": \"user\",\n    \"locale\": \"es-MX\",\n    \"props\": {\n      \"_id\": \"string\",\n      \"colorHex\": \"string\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"userId\": \"string\"\n    }\n  },\n  {\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"callSign\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"status\": \"active\",\n    \"unitIncrements\": 4786.527513260808,\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"name\": \"string\",\n    \"type\": \"user\",\n    \"locale\": \"fr-FR\",\n    \"props\": {\n      \"_id\": \"string\",\n      \"colorHex\": \"string\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"userId\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f844cea-a048-4a1d-8a9d-02dd91f10201",
+          "name": "Initiative Usage Controller delete Many By Initiative Id v1",
+          "request": {
+            "name": "Initiative Usage Controller delete Many By Initiative Id v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "initiative-props",
+                ":initiativeId",
+                "recent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "initiativeId",
+                  "description": "(Required) Initiative's id"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2b37198-70ed-4e62-88c7-97deb68ec95c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "initiative-props",
+                    ":initiativeId",
+                    "recent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "initiativeId",
+                      "description": "(Required) Initiative's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c66ae0bf-827f-4ef7-89ed-7247b2fac2cf",
+          "name": "Initiative Props Controller find Many By Tag v1",
+          "request": {
+            "name": "Initiative Props Controller find Many By Tag v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "initiative-props"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<double>",
+                  "description": "maximum number of initiatives to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>",
+                  "description": "(Required) returns only the initiative props that have this tag"
+                },
+                {
+                  "disabled": false,
+                  "key": "workDate",
+                  "value": "<iso-date>",
+                  "description": "When set (and restrictions are enabled), excludes tagged initiatives restricted on this date."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2d2020e-cecc-4538-9c97-383a3ab3316c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "initiative-props"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "workDate",
+                      "value": "2022-08-12"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"colorHex\": \"string\",\n    \"customerId\": \"string\",\n    \"tags\": [\n      \"pinned\",\n      \"pinned\"\n    ],\n    \"type\": \"pms\",\n    \"userId\": \"string\",\n    \"initiative\": {\n      \"type\": \"user\",\n      \"_id\": \"string\",\n      \"billingType\": \"non-billable\",\n      \"unitIncrements\": 6624.662070697972,\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"callSign\": \"string\",\n      \"status\": \"active\",\n      \"locale\": \"fr-CA\"\n    },\n    \"nickname\": \"string\"\n  },\n  {\n    \"_id\": \"string\",\n    \"colorHex\": \"string\",\n    \"customerId\": \"string\",\n    \"tags\": [\n      \"pinned\",\n      \"pinned\"\n    ],\n    \"type\": \"pms\",\n    \"userId\": \"string\",\n    \"initiative\": {\n      \"type\": \"user\",\n      \"_id\": \"string\",\n      \"billingType\": \"non-billable\",\n      \"unitIncrements\": 509.62567562974345,\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"callSign\": \"string\",\n      \"status\": \"inactive\",\n      \"locale\": \"no-NO\"\n    },\n    \"nickname\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a28118a9-a537-4dc1-b825-aa126cfdbb15",
+          "name": "Initiative Props Controller find Many By Tag As Dto v2",
+          "request": {
+            "name": "Initiative Props Controller find Many By Tag As Dto v2",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "initiative-props"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<double>",
+                  "description": "maximum number of initiatives to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>",
+                  "description": "(Required) returns only the initiative props that have this tag"
+                },
+                {
+                  "disabled": false,
+                  "key": "workDate",
+                  "value": "<iso-date>",
+                  "description": "When set (and restrictions are enabled), excludes tagged initiatives restricted on this date."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cda34eef-e044-4d6f-be6e-9366e9fe5b21",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "initiative-props"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "workDate",
+                      "value": "2022-08-12"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"billingType\": \"billable\",\n    \"callSign\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"status\": \"active\",\n    \"unitIncrements\": 4725.98294097061,\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"name\": \"string\",\n    \"type\": \"user\",\n    \"locale\": \"ko-KR\",\n    \"props\": {\n      \"_id\": \"string\",\n      \"colorHex\": \"string\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"userId\": \"string\"\n    }\n  },\n  {\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"callSign\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"status\": \"active\",\n    \"unitIncrements\": 6013.996284310366,\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"name\": \"string\",\n    \"type\": \"user\",\n    \"locale\": \"en-CA\",\n    \"props\": {\n      \"_id\": \"string\",\n      \"colorHex\": \"string\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"userId\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d8deecb-b519-4e70-9b70-c869489e18ae",
+          "name": "Initiative Props Controller find Or Create One Props v1",
+          "request": {
+            "name": "Initiative Props Controller find Or Create One Props v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "initiatives",
+                ":initiativeId",
+                "props"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "initiativeId",
+                  "description": "(Required) Initiative's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2bf414cd-11e2-46c5-8f7e-d6994c7a9c9c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "initiatives",
+                    ":initiativeId",
+                    "props"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "initiativeId",
+                      "description": "(Required) Initiative's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"colorHex\": \"string\",\n  \"customerId\": \"string\",\n  \"tags\": [\n    \"pinned\",\n    \"pinned\"\n  ],\n  \"type\": \"pms\",\n  \"userId\": \"string\",\n  \"initiative\": {\n    \"type\": \"pms\",\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"unitIncrements\": 9842.961807816288,\n    \"externalId\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"client\": {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"callSign\": \"string\",\n      \"type\": \"parent\",\n      \"parentClientId\": \"string\"\n    },\n    \"callSign\": \"string\",\n    \"status\": \"active\",\n    \"locale\": \"fr-FR\"\n  },\n  \"nickname\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85b1f7d6-6e5d-4b58-8f50-a240ab227b1f",
+          "name": "Initiative Props Controller update Or Create One Props v1",
+          "request": {
+            "name": "Initiative Props Controller update Or Create One Props v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "initiatives",
+                ":initiativeId",
+                "props"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "initiativeId",
+                  "description": "(Required) Initiative's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nickname\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"color\": \"<color-hex>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ba86bd6-ece0-4785-82d1-699c8d79c9b7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "initiatives",
+                    ":initiativeId",
+                    "props"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "initiativeId",
+                      "description": "(Required) Initiative's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nickname\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"color\": \"fec828\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"colorHex\": \"string\",\n  \"customerId\": \"string\",\n  \"tags\": [\n    \"pinned\",\n    \"pinned\"\n  ],\n  \"type\": \"pms\",\n  \"userId\": \"string\",\n  \"initiative\": {\n    \"type\": \"pms\",\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"unitIncrements\": 9842.961807816288,\n    \"externalId\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"client\": {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"callSign\": \"string\",\n      \"type\": \"parent\",\n      \"parentClientId\": \"string\"\n    },\n    \"callSign\": \"string\",\n    \"status\": \"active\",\n    \"locale\": \"fr-FR\"\n  },\n  \"nickname\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5ad0e86d-bdb9-4595-b886-73c6c7196247",
+    "name": "Identity Service Ably Initiative Props API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

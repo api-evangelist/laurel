@@ -1,0 +1,435 @@
+{
+  "item": [
+    {
+      "id": "f94a1038-f8f3-4d3b-b13e-614a99f39a61",
+      "name": "Timekeeper Goals",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d840e016-8df1-4407-b31c-252dbc229b25",
+          "name": "Timekeeper Goal Controller update Goals v1",
+          "request": {
+            "name": "Timekeeper Goal Controller update Goals v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "timekeeper-goals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"<iso-date-time>\",\n  \"billable\": {\n    \"annualInSeconds\": \"<double>\",\n    \"notInLaurelInSeconds\": \"<double>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cbf1ed10-4abd-41df-9eca-6435d838ec90",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "timekeeper-goals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"2022-08-12T20:44:48Z\",\n  \"billable\": {\n    \"annualInSeconds\": \"<double>\",\n    \"notInLaurelInSeconds\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"startDate\": \"2022-08-12\",\n  \"billable\": {\n    \"annualInSeconds\": 6177.768930606799,\n    \"notInLaurelInSeconds\": 7590.716024871117\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d989126b-314a-4906-8b67-0a90109a7b2f",
+          "name": "Timekeeper Goal Controller get Timekeeper Goal v1",
+          "request": {
+            "name": "Timekeeper Goal Controller get Timekeeper Goal v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "timekeeper-goals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2293a59d-5890-4e00-bdfc-764c0827eeb6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "timekeeper-goals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"startDate\": \"2022-08-12\",\n  \"billable\": {\n    \"annualInSeconds\": 6177.768930606799,\n    \"notInLaurelInSeconds\": 7590.716024871117\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90456a97-f718-4953-beb0-ad8c12239732",
+          "name": "Customer Timekeeper Goal Controller upsert Customer Goal v1",
+          "request": {
+            "name": "Customer Timekeeper Goal Controller upsert Customer Goal v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "timekeeper-goals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"<iso-date-time>\",\n  \"allowUserOverrideAnnualGoalSeconds\": \"<boolean>\",\n  \"allowUserOverrideGoalYearStart\": \"<boolean>\",\n  \"hideYearlyGoals\": \"<boolean>\",\n  \"hideMonthlyGoals\": \"<boolean>\",\n  \"hideWeeklyGoals\": \"<boolean>\",\n  \"hideDailyGoals\": \"<boolean>\",\n  \"billable\": {\n    \"annualInSeconds\": \"<double>\",\n    \"notInLaurelInSeconds\": \"<double>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dfaa8dd2-bb7b-44b3-85c2-d27bf6e87dbc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "timekeeper-goals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"2022-08-12T20:44:48Z\",\n  \"allowUserOverrideAnnualGoalSeconds\": \"<boolean>\",\n  \"allowUserOverrideGoalYearStart\": \"<boolean>\",\n  \"hideYearlyGoals\": \"<boolean>\",\n  \"hideMonthlyGoals\": \"<boolean>\",\n  \"hideWeeklyGoals\": \"<boolean>\",\n  \"hideDailyGoals\": \"<boolean>\",\n  \"billable\": {\n    \"annualInSeconds\": \"<double>\",\n    \"notInLaurelInSeconds\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"startDate\": \"2022-08-12\",\n  \"allowUserOverrideAnnualGoalSeconds\": true,\n  \"allowUserOverrideGoalYearStart\": true,\n  \"hideYearlyGoals\": false,\n  \"hideMonthlyGoals\": true,\n  \"hideWeeklyGoals\": false,\n  \"hideDailyGoals\": false,\n  \"billable\": {\n    \"annualInSeconds\": 8976.93293861798,\n    \"notInLaurelInSeconds\": 8526.317683809059\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a4212df-38ec-4e95-adb5-0a05cee859be",
+          "name": "Customer Timekeeper Goal Controller get Customer Timekeeper Goal v1",
+          "request": {
+            "name": "Customer Timekeeper Goal Controller get Customer Timekeeper Goal v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "timekeeper-goals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31cb6f46-d9a0-481a-951d-d894e314d56d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "timekeeper-goals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"startDate\": \"2022-08-12\",\n  \"allowUserOverrideAnnualGoalSeconds\": true,\n  \"allowUserOverrideGoalYearStart\": true,\n  \"hideYearlyGoals\": false,\n  \"hideMonthlyGoals\": true,\n  \"hideWeeklyGoals\": false,\n  \"hideDailyGoals\": false,\n  \"billable\": {\n    \"annualInSeconds\": 8976.93293861798,\n    \"notInLaurelInSeconds\": 8526.317683809059\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a84d981e-664f-41a9-90f8-c796286af52b",
+    "name": "Identity Service Ably Timekeeper Goals API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Twilio API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Twilio",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get phone number details from Twilio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/twilio/phone-lookups",
+            "params": [
+              {
+                "name": "phoneNumber",
+                "value": "",
+                "type": "query",
+                "description": "The phone number to lookup (E.164 format, e.g., +1234567890)"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "Force a fresh lookup from Twilio API even if cached data exists"
+              }
+            ]
+          },
+          "docs": "Retrieves phone number caller name information from Twilio API. Results are cached in the database. Use the force parameter to bypass cache and fetch fresh data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

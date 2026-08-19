@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Impersonation Events API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Impersonation Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all impersonation events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/impersonation-events"
+          },
+          "docs": "List all impersonation events"
+        },
+        {
+          "info": {
+            "name": "Create a new impersonation event record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/impersonation-events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new impersonation event record"
+        },
+        {
+          "info": {
+            "name": "Return a specific impersonation event by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/impersonation-events/:eventId",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Return a specific impersonation event by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

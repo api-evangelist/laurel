@@ -1,0 +1,1137 @@
+{
+  "item": [
+    {
+      "id": "e7e5b5e4-8d13-4926-b8d7-d425352fab8a",
+      "name": "Work Groups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "98b2fa67-669d-4dea-8256-55c8cc37e6d4",
+          "name": "Customer Work Group Controller create One v1",
+          "request": {
+            "name": "Customer Work Group Controller create One v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "work-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"activityIds\": [\n    \"<objectid>\"\n  ],\n  \"description\": \"<string>\",\n  \"priority\": \"<double>\",\n  \"initiativeId\": \"<objectid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "75b8cb5b-6aee-4634-a889-1ab8a5e43092",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "work-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activityIds\": [\n    \"<objectid>\"\n  ],\n  \"description\": \"<string>\",\n  \"priority\": \"<double>\",\n  \"initiativeId\": \"<objectid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"earliestStartedAt\": \"2022-08-12T20:44:48Z\",\n  \"latestStoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"durationInSeconds\": 6397.963125253783,\n  \"assignmentStatus\": \"fully-assigned\",\n  \"description\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"activities\": [\n    {\n      \"_id\": \"string\",\n      \"creationMethod\": \"user\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"startedAt\": \"2022-08-12T20:44:48Z\",\n      \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n      \"initiativeProps\": {\n        \"type\": \"pms\",\n        \"colorHex\": \"fec828\",\n        \"tags\": [\n          \"pinned\",\n          \"pinned\"\n        ],\n        \"initiative\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"billingType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unitIncrements\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"externalId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"client\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"callSign\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"locale\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"nickname\": \"string\"\n      },\n      \"category\": \"string\",\n      \"technology\": \"string\",\n      \"source\": \"string\",\n      \"mechanism\": \"string\"\n    }\n  ],\n  \"priority\": 9134.92002852853,\n  \"initiativeProps\": {\n    \"type\": \"pms\",\n    \"colorHex\": \"fec828\",\n    \"tags\": [\n      \"pinned\",\n      \"pinned\"\n    ],\n    \"initiative\": {\n      \"type\": \"user\",\n      \"_id\": \"string\",\n      \"billingType\": \"non-billable\",\n      \"unitIncrements\": 251.48321013092055,\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"callSign\": \"string\",\n      \"status\": \"inactive\",\n      \"locale\": \"pt-PT\"\n    },\n    \"nickname\": \"string\"\n  },\n  \"hasOverlap\": true,\n  \"overlapTimeInSeconds\": 3284.8302546965656\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0062e5cd-e329-4e6c-aa97-7790c5387f5d",
+          "name": "Customer Work Group Controller find Many For User By Range v1",
+          "request": {
+            "name": "Customer Work Group Controller find Many For User By Range v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "work-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startedBefore",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "stoppedAfter",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e477042-dc99-4672-95fb-b55341f4c31d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "work-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startedBefore",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "stoppedAfter",
+                      "value": "2022-08-12T20:44:48Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"earliestStartedAt\": \"2022-08-12T20:44:48Z\",\n    \"latestStoppedAt\": \"2022-08-12T20:44:48Z\",\n    \"durationInSeconds\": 2157.442427894214,\n    \"assignmentStatus\": \"fully-assigned\",\n    \"description\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"activities\": [\n      {\n        \"_id\": \"string\",\n        \"creationMethod\": \"user\",\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"startedAt\": \"2022-08-12T20:44:48Z\",\n        \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n        \"initiativeProps\": {\n          \"type\": \"pms\",\n          \"colorHex\": \"fec828\",\n          \"tags\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"initiative\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nickname\": \"string\"\n        },\n        \"category\": \"string\",\n        \"technology\": \"string\",\n        \"source\": \"string\",\n        \"mechanism\": \"string\"\n      }\n    ],\n    \"priority\": 2731.180932294711,\n    \"initiativeProps\": {\n      \"type\": \"pms\",\n      \"colorHex\": \"fec828\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"initiative\": {\n        \"type\": \"user\",\n        \"_id\": \"string\",\n        \"billingType\": \"billable\",\n        \"unitIncrements\": 7885.051052418636,\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"client\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": \"string\",\n        \"status\": \"inactive\",\n        \"locale\": \"es-MX\"\n      },\n      \"nickname\": \"string\"\n    },\n    \"hasOverlap\": true,\n    \"overlapTimeInSeconds\": 6689.327364932208\n  },\n  {\n    \"_id\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"earliestStartedAt\": \"2022-08-12T20:44:48Z\",\n    \"latestStoppedAt\": \"2022-08-12T20:44:48Z\",\n    \"durationInSeconds\": 4653.4278287847865,\n    \"assignmentStatus\": \"partially-assigned\",\n    \"description\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"activities\": [\n      {\n        \"_id\": \"string\",\n        \"creationMethod\": \"user\",\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"startedAt\": \"2022-08-12T20:44:48Z\",\n        \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n        \"initiativeProps\": {\n          \"type\": \"pms\",\n          \"colorHex\": \"fec828\",\n          \"tags\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"initiative\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nickname\": \"string\"\n        },\n        \"category\": \"string\",\n        \"technology\": \"string\",\n        \"source\": \"string\",\n        \"mechanism\": \"string\"\n      }\n    ],\n    \"priority\": 3607.408350519712,\n    \"initiativeProps\": {\n      \"type\": \"pms\",\n      \"colorHex\": \"fec828\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"initiative\": {\n        \"type\": \"pms\",\n        \"_id\": \"string\",\n        \"billingType\": \"billable\",\n        \"unitIncrements\": 9025.615534218501,\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"client\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": \"string\",\n        \"status\": \"inactive\",\n        \"locale\": \"sv-SE\"\n      },\n      \"nickname\": \"string\"\n    },\n    \"hasOverlap\": true,\n    \"overlapTimeInSeconds\": 5544.944956799594\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "999857c5-681c-464b-9e9e-e6f702ea0927",
+          "name": "Customer Work Group Controller find One v1",
+          "request": {
+            "name": "Customer Work Group Controller find One v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "work-groups",
+                ":workGroupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "workGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94ab1c72-1afe-4753-b8b5-63492d49df4d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "work-groups",
+                    ":workGroupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "workGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"earliestStartedAt\": \"2022-08-12T20:44:48Z\",\n  \"latestStoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"durationInSeconds\": 9624.224681126123,\n  \"assignmentStatus\": \"fully-assigned\",\n  \"description\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"activities\": [\n    {\n      \"_id\": \"string\",\n      \"creationMethod\": \"user\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"startedAt\": \"2022-08-12T20:44:48Z\",\n      \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n      \"initiativeProps\": {\n        \"type\": \"pms\",\n        \"colorHex\": \"fec828\",\n        \"tags\": [\n          \"pinned\",\n          \"pinned\"\n        ],\n        \"initiative\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"billingType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unitIncrements\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"externalId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"client\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"callSign\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"locale\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"nickname\": \"string\"\n      },\n      \"category\": \"string\",\n      \"technology\": \"string\",\n      \"source\": \"string\",\n      \"mechanism\": \"string\"\n    }\n  ],\n  \"priority\": 2610.0172661271336,\n  \"initiativeProps\": {\n    \"type\": \"pms\",\n    \"colorHex\": \"fec828\",\n    \"tags\": [\n      \"pinned\",\n      \"pinned\"\n    ],\n    \"initiative\": {\n      \"type\": \"user\",\n      \"_id\": \"string\",\n      \"billingType\": \"non-billable\",\n      \"unitIncrements\": 8745.881936205164,\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"callSign\": \"string\",\n      \"status\": \"active\",\n      \"locale\": \"es-MX\"\n    },\n    \"nickname\": \"string\"\n  },\n  \"hasOverlap\": true,\n  \"overlapTimeInSeconds\": 4288.686306675913\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0769d4be-477d-4531-85a9-ee73a791527e",
+          "name": "Customer Work Group Controller update One v1",
+          "request": {
+            "name": "Customer Work Group Controller update One v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "work-groups",
+                ":workGroupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "workGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"activityIds\": [\n    \"<objectid>\"\n  ],\n  \"description\": \"<string>\",\n  \"priority\": \"<double>\",\n  \"initiativeId\": \"<objectid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "01a43516-9705-436c-a4b9-ac9ba3699e0d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "work-groups",
+                    ":workGroupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "workGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activityIds\": [\n    \"<objectid>\"\n  ],\n  \"description\": \"<string>\",\n  \"priority\": \"<double>\",\n  \"initiativeId\": \"<objectid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"earliestStartedAt\": \"2022-08-12T20:44:48Z\",\n  \"latestStoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"durationInSeconds\": 9624.224681126123,\n  \"assignmentStatus\": \"fully-assigned\",\n  \"description\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"activities\": [\n    {\n      \"_id\": \"string\",\n      \"creationMethod\": \"user\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"startedAt\": \"2022-08-12T20:44:48Z\",\n      \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n      \"initiativeProps\": {\n        \"type\": \"pms\",\n        \"colorHex\": \"fec828\",\n        \"tags\": [\n          \"pinned\",\n          \"pinned\"\n        ],\n        \"initiative\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"billingType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unitIncrements\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"externalId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"client\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"callSign\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"locale\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"nickname\": \"string\"\n      },\n      \"category\": \"string\",\n      \"technology\": \"string\",\n      \"source\": \"string\",\n      \"mechanism\": \"string\"\n    }\n  ],\n  \"priority\": 2610.0172661271336,\n  \"initiativeProps\": {\n    \"type\": \"pms\",\n    \"colorHex\": \"fec828\",\n    \"tags\": [\n      \"pinned\",\n      \"pinned\"\n    ],\n    \"initiative\": {\n      \"type\": \"user\",\n      \"_id\": \"string\",\n      \"billingType\": \"non-billable\",\n      \"unitIncrements\": 8745.881936205164,\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"callSign\": \"string\",\n      \"status\": \"active\",\n      \"locale\": \"es-MX\"\n    },\n    \"nickname\": \"string\"\n  },\n  \"hasOverlap\": true,\n  \"overlapTimeInSeconds\": 4288.686306675913\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85b4139a-e815-4b00-bda5-6588d771a3ab",
+          "name": "Customer Work Group Controller delete One v1",
+          "request": {
+            "name": "Customer Work Group Controller delete One v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "users",
+                ":userId",
+                "work-groups",
+                ":workGroupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "userId",
+                  "description": "(Required) user's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "workGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ab4a777-9fbe-4858-aaef-eb4b5a826456",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "users",
+                    ":userId",
+                    "work-groups",
+                    ":workGroupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "userId",
+                      "description": "(Required) user's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "workGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6bd2838-b6d5-4adf-bfe5-3281fd74a7fb",
+          "name": "Work Group Controller find Many For User By Range v1",
+          "request": {
+            "name": "Work Group Controller find Many For User By Range v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "work-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startedBefore",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "stoppedAfter",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a237108-f9c4-4ad1-bacb-23a63089232b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "work-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startedBefore",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "stoppedAfter",
+                      "value": "2022-08-12T20:44:48Z"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"earliestStartedAt\": \"2022-08-12T20:44:48Z\",\n    \"latestStoppedAt\": \"2022-08-12T20:44:48Z\",\n    \"durationInSeconds\": 2157.442427894214,\n    \"assignmentStatus\": \"fully-assigned\",\n    \"description\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"activities\": [\n      {\n        \"_id\": \"string\",\n        \"creationMethod\": \"user\",\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"startedAt\": \"2022-08-12T20:44:48Z\",\n        \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n        \"initiativeProps\": {\n          \"type\": \"pms\",\n          \"colorHex\": \"fec828\",\n          \"tags\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"initiative\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nickname\": \"string\"\n        },\n        \"category\": \"string\",\n        \"technology\": \"string\",\n        \"source\": \"string\",\n        \"mechanism\": \"string\"\n      }\n    ],\n    \"priority\": 2731.180932294711,\n    \"initiativeProps\": {\n      \"type\": \"pms\",\n      \"colorHex\": \"fec828\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"initiative\": {\n        \"type\": \"user\",\n        \"_id\": \"string\",\n        \"billingType\": \"billable\",\n        \"unitIncrements\": 7885.051052418636,\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"client\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": \"string\",\n        \"status\": \"inactive\",\n        \"locale\": \"es-MX\"\n      },\n      \"nickname\": \"string\"\n    },\n    \"hasOverlap\": true,\n    \"overlapTimeInSeconds\": 6689.327364932208\n  },\n  {\n    \"_id\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"earliestStartedAt\": \"2022-08-12T20:44:48Z\",\n    \"latestStoppedAt\": \"2022-08-12T20:44:48Z\",\n    \"durationInSeconds\": 4653.4278287847865,\n    \"assignmentStatus\": \"partially-assigned\",\n    \"description\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"activities\": [\n      {\n        \"_id\": \"string\",\n        \"creationMethod\": \"user\",\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"startedAt\": \"2022-08-12T20:44:48Z\",\n        \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n        \"initiativeProps\": {\n          \"type\": \"pms\",\n          \"colorHex\": \"fec828\",\n          \"tags\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"initiative\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nickname\": \"string\"\n        },\n        \"category\": \"string\",\n        \"technology\": \"string\",\n        \"source\": \"string\",\n        \"mechanism\": \"string\"\n      }\n    ],\n    \"priority\": 3607.408350519712,\n    \"initiativeProps\": {\n      \"type\": \"pms\",\n      \"colorHex\": \"fec828\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"initiative\": {\n        \"type\": \"pms\",\n        \"_id\": \"string\",\n        \"billingType\": \"billable\",\n        \"unitIncrements\": 9025.615534218501,\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"client\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": \"string\",\n        \"status\": \"inactive\",\n        \"locale\": \"sv-SE\"\n      },\n      \"nickname\": \"string\"\n    },\n    \"hasOverlap\": true,\n    \"overlapTimeInSeconds\": 5544.944956799594\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35f1a779-5e7e-41b5-8542-2f07f48d11fd",
+          "name": "Work Group Controller delete One v1",
+          "request": {
+            "name": "Work Group Controller delete One v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "work-groups",
+                ":workGroupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "workGroupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5ef5737-bc3f-46c4-a5e1-ab0e094108d9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "work-groups",
+                    ":workGroupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "workGroupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0742d72f-9285-4b1a-9b00-5d015c669a23",
+          "name": "Work Group Controller delete Activity v1",
+          "request": {
+            "name": "Work Group Controller delete Activity v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "work-groups",
+                ":workGroupId",
+                "activities",
+                ":activityId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "workGroupId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "activityId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "009bc411-1f08-4ed3-ae2f-cb943c111aea",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "work-groups",
+                    ":workGroupId",
+                    "activities",
+                    ":activityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "workGroupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "activityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "550209b6-a25c-4e6c-87eb-e52dd1f36ac3",
+          "name": "Work Group Controller delete Initiative v1",
+          "request": {
+            "name": "Work Group Controller delete Initiative v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "work-groups",
+                ":workGroupId",
+                "initiatives",
+                ":initiativeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "workGroupId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "initiativeId",
+                  "description": "(Required) Initiative's id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "88ecb455-5318-4cd3-a2d3-f7dc1dfcaf10",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "work-groups",
+                    ":workGroupId",
+                    "initiatives",
+                    ":initiativeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "workGroupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "initiativeId",
+                      "description": "(Required) Initiative's id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "230cf4b7-f0b7-4d24-871c-36fd9dd1e124",
+    "name": "Identity Service Ably Work Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

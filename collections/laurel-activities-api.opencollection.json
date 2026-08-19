@@ -1,0 +1,527 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Activities API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Activities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a tracked Activity with customerId and userId returns the new Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/activities/track-from-service",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a tracked Activity with customerId and userId returns the new Activity"
+        },
+        {
+          "info": {
+            "name": "Updates an already-tracked Activity located by (customerId, externalId), for service backfill",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/activities/update-from-service",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an already-tracked Activity located by (customerId, externalId), for service backfill"
+        },
+        {
+          "info": {
+            "name": "Creates a tracked Activity for a given user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/activities/track-from-agent",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a tracked Activity for a given user"
+        },
+        {
+          "info": {
+            "name": "Returns activities within a specified time range for a given user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/activities",
+            "params": [
+              {
+                "name": "startedBefore",
+                "value": "",
+                "type": "query",
+                "description": "the date to get activities that their started at time is less than this date"
+              },
+              {
+                "name": "stoppedAfter",
+                "value": "",
+                "type": "query",
+                "description": "the date to get activities that their stopped at time is greater than this date"
+              },
+              {
+                "name": "includeDeleted",
+                "value": "",
+                "type": "query",
+                "description": "if true, include soft-deleted activities; defaults to excluding them"
+              }
+            ]
+          },
+          "docs": "Returns activities within a specified time range for a given user"
+        },
+        {
+          "info": {
+            "name": "Creates a new Activity for a given user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/activities",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Activity for a given user"
+        },
+        {
+          "info": {
+            "name": "Dismisses a slice of open time by creating a soft-deleted user activity\nthat fills the gap. Open time is derived from the gaps between activities,\nso filling the gap is what removes it. Emits no events.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/activities/dismiss-open-time",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Dismisses a slice of open time by creating a soft-deleted user activity\nthat fills the gap. Open time is derived from the gaps between activities,\nso filling the gap is what removes it. Emits no events."
+        },
+        {
+          "info": {
+            "name": "Creates a new Timer Activity, optionally adding it to an existing entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/activities/timer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Timer Activity, optionally adding it to an existing entry"
+        },
+        {
+          "info": {
+            "name": "Returns activities within a specified time range for a given user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/activities",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "the user whose entries you are searching for"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "the user's customer"
+              },
+              {
+                "name": "startedBefore",
+                "value": "",
+                "type": "query",
+                "description": "the date to get activities that their started at time is less than this date"
+              },
+              {
+                "name": "stoppedAfter",
+                "value": "",
+                "type": "query",
+                "description": "the date to get activities that their stopped at time is greater than this date"
+              }
+            ]
+          },
+          "docs": "Returns activities within a specified time range for a given user"
+        },
+        {
+          "info": {
+            "name": "Returns paginated activities within a specified time range for a given user using cursor-based pagination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v3/activities",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "max number of item in each page"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "cursor to start from"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "the user whose entries you are searching for"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "the user's customer"
+              },
+              {
+                "name": "startedBefore",
+                "value": "",
+                "type": "query",
+                "description": "the date to get activities that their started at time is less than this date"
+              },
+              {
+                "name": "stoppedAfter",
+                "value": "",
+                "type": "query",
+                "description": "the date to get activities that their stopped at time is greater than this date"
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "optional client filter"
+              },
+              {
+                "name": "creationMethod",
+                "value": "",
+                "type": "query",
+                "description": "optional activity creation method filter"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "optional category filter matching activity.category or captureSource.activityCategory"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query",
+                "description": "optional initiative filter"
+              },
+              {
+                "name": "billingType",
+                "value": "",
+                "type": "query",
+                "description": "optional initiative billing type filter"
+              },
+              {
+                "name": "isLocked",
+                "value": "",
+                "type": "query",
+                "description": "optional lock state filter"
+              }
+            ]
+          },
+          "docs": "Returns paginated activities within a specified time range for a given user using cursor-based pagination"
+        },
+        {
+          "info": {
+            "name": "Returns activities joined with their capture metadata (incl. workContext) within a time range for a given user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/activities/with-metadata",
+            "params": [
+              {
+                "name": "startedBefore",
+                "value": "",
+                "type": "query",
+                "description": "the date to get activities that their started at time is less than this date"
+              },
+              {
+                "name": "stoppedAfter",
+                "value": "",
+                "type": "query",
+                "description": "the date to get activities that their stopped at time is greater than this date"
+              },
+              {
+                "name": "includeDeleted",
+                "value": "",
+                "type": "query",
+                "description": "if true, include soft-deleted activities; defaults to excluding them"
+              }
+            ]
+          },
+          "docs": "Returns activities joined with their capture metadata (incl. workContext) within a time range for a given user"
+        },
+        {
+          "info": {
+            "name": "Updates an existing Activity for a given user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/activities/:activityId",
+            "params": [
+              {
+                "name": "activityId",
+                "value": "",
+                "type": "path",
+                "description": "individual activity id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing Activity for a given user"
+        },
+        {
+          "info": {
+            "name": "Deletes an Activity by Id and returns the deleted Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/activities/:activityId",
+            "params": [
+              {
+                "name": "activityId",
+                "value": "",
+                "type": "path",
+                "description": "individual activity id"
+              }
+            ]
+          },
+          "docs": "Deletes an Activity by Id and returns the deleted Activity"
+        },
+        {
+          "info": {
+            "name": "Archives (soft-deletes) many Activities by id — sets isDeleted, emits activity-updated, skips locked/missing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/activities/archive",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Archives (soft-deletes) many Activities by id — sets isDeleted, emits activity-updated, skips locked/missing"
+        },
+        {
+          "info": {
+            "name": "Unarchives (revives) many soft-deleted Activities by id — clears isDeleted, emits activity-updated, skips locked/missing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/activities/unarchive",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unarchives (revives) many soft-deleted Activities by id — clears isDeleted, emits activity-updated, skips locked/missing"
+        },
+        {
+          "info": {
+            "name": "Enqueues a background job that re-emits ActivityCreatedForSignal events for\nevery activity of the given customer started within the date range. Guarded\nby the cross-customer activity read permission held by super-laurel-admins.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/activities/signal-backfill",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enqueues a background job that re-emits ActivityCreatedForSignal events for\nevery activity of the given customer started within the date range. Guarded\nby the cross-customer activity read permission held by super-laurel-admins."
+        },
+        {
+          "info": {
+            "name": "ActivityController_copyActivities_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/activities/copy-from/customers/:customerId/users/:userId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Allows a requester with TimeServicePermission.CustomerAnyUserAnyActivityRead (ie. Super Laurel Admin)\nto view activities from other Customer Users. This is used in the admin dashboard context.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/activities",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "startedBefore",
+                "value": "",
+                "type": "query",
+                "description": "the date to get activities that their started at time is less than this date"
+              },
+              {
+                "name": "stoppedAfter",
+                "value": "",
+                "type": "query",
+                "description": "the date to get activities that their stopped at time is greater than this date"
+              },
+              {
+                "name": "includeDeleted",
+                "value": "",
+                "type": "query",
+                "description": "if true, include soft-deleted activities; defaults to excluding them"
+              }
+            ]
+          },
+          "docs": "Allows a requester with TimeServicePermission.CustomerAnyUserAnyActivityRead (ie. Super Laurel Admin)\nto view activities from other Customer Users. This is used in the admin dashboard context."
+        },
+        {
+          "info": {
+            "name": "Returns activity by activityId for a given customer and user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/activities/:activityId",
+            "params": [
+              {
+                "name": "activityId",
+                "value": "",
+                "type": "path",
+                "description": "individual activity id"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "includeMetadata",
+                "value": "",
+                "type": "query",
+                "description": "whether to include activity metadata in the response"
+              }
+            ]
+          },
+          "docs": "Returns activity by activityId for a given customer and user"
+        },
+        {
+          "info": {
+            "name": "CustomerActivityController_updateOne_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/activities/:activityId",
+            "params": [
+              {
+                "name": "activityId",
+                "value": "",
+                "type": "path",
+                "description": "individual activity id"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

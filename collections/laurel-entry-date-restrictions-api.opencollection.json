@@ -1,0 +1,264 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Entry Date Restrictions API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entry Date Restrictions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List entry date restrictions for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entry-date-restrictions",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "max number of item in each page"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "cursor to start from"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "effectiveAt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Narrows the result to a subset of restrictions. `company-wide` returns only restrictions with no `initiativeDigest` (firm-level); omit (or pass `all`) to keep the legacy behaviour. Incompatible with `initiativeId`."
+              }
+            ]
+          },
+          "docs": "List entry date restrictions for a customer"
+        },
+        {
+          "info": {
+            "name": "Create a new entry date restriction for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entry-date-restrictions",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new entry date restriction for a customer"
+        },
+        {
+          "info": {
+            "name": "DEPRECATED — use `active/check-multi-type` instead. Check if an active restriction exists for a given work date and type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entry-date-restrictions/active/now",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of entry-date restriction to check for."
+              },
+              {
+                "name": "workDate",
+                "value": "",
+                "type": "query",
+                "description": "Work date to check. Accepts any ISO 8601 form that resolves to midnight UTC — e.g. `2026-04-22` or `2026-04-22T00:00:00.000Z`."
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query",
+                "description": "Optional initiative ID to filter by"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Narrows the result to a subset of restrictions. `company-wide` returns only restrictions with no `initiativeDigest` (firm-level); omit (or pass `all`) to keep the legacy behaviour. Incompatible with `initiativeId`."
+              }
+            ]
+          },
+          "docs": "DEPRECATED — use `active/check-multi-type` instead. Check if an active restriction exists for a given work date and type."
+        },
+        {
+          "info": {
+            "name": "DEPRECATED — use `active/check-multi-type` instead (pass a one-element `types` array). Check which of the provided work dates have an active restriction for the given type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entry-date-restrictions/active/check",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "DEPRECATED — use `active/check-multi-type` instead (pass a one-element `types` array). Check which of the provided work dates have an active restriction for the given type."
+        },
+        {
+          "info": {
+            "name": "Check which of the provided work dates have active restrictions across multiple types",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entry-date-restrictions/active/check-multi-type",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check which of the provided work dates have active restrictions across multiple types"
+        },
+        {
+          "info": {
+            "name": "Get a single entry date restriction by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entry-date-restrictions/:id",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single entry date restriction by id"
+        },
+        {
+          "info": {
+            "name": "Update an entry date restriction",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entry-date-restrictions/:id",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an entry date restriction"
+        },
+        {
+          "info": {
+            "name": "Delete an entry date restriction",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/entry-date-restrictions/:id",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an entry date restriction"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Data Retention Audits API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Retention Audits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List data retention audits for a specific customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/data-retention-audits",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List data retention audits for a specific customer"
+        },
+        {
+          "info": {
+            "name": "Create a new data retention audit log entry\nThis endpoint receives audit data and enqueues it for processing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/data-retention-audits",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new data retention audit log entry\nThis endpoint receives audit data and enqueues it for processing"
+        },
+        {
+          "info": {
+            "name": "Return a specific data retention audit by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/data-retention-audits/:auditId",
+            "params": [
+              {
+                "name": "auditId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Return a specific data retention audit by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

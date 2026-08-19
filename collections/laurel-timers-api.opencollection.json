@@ -1,0 +1,284 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Timers API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Timers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "TimerController_findMany_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/timers",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "the date for which timers will be returned"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "TimerController_createOne_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/timers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "TimerController_findOne_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/timers/:timerId",
+            "params": [
+              {
+                "name": "timerId",
+                "value": "",
+                "type": "path",
+                "description": "identifier of the timer"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "TimerController_updateOne_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/timers/:timerId",
+            "params": [
+              {
+                "name": "timerId",
+                "value": "",
+                "type": "path",
+                "description": "identifier of the timer"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Deletes a user Timer by Id and returns the deleted Timer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/timers/:timerId",
+            "params": [
+              {
+                "name": "timerId",
+                "value": "",
+                "type": "path",
+                "description": "identifier of the timer"
+              }
+            ]
+          },
+          "docs": "Deletes a user Timer by Id and returns the deleted Timer"
+        },
+        {
+          "info": {
+            "name": "V2TimerController_getTimers_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/timers"
+          }
+        },
+        {
+          "info": {
+            "name": "V2TimerController_startTimer_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/timers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "V2TimerController_updateOne_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v2/timers/:timerId",
+            "params": [
+              {
+                "name": "timerId",
+                "value": "",
+                "type": "path",
+                "description": "the identifier of v2 timer"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "V2TimerController_stopTimer_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/timers/:timerId/stop",
+            "params": [
+              {
+                "name": "timerId",
+                "value": "",
+                "type": "path",
+                "description": "the identifier of v2 timer"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "V3TimerController_getTimers_v3",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v3/timers",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "V3TimerController_initializeTimer_v3",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v3/timers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "V3TimerController_startTimer_v3",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v3/timers/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "V3TimerController_stopTimer_v3",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v3/timers/stop",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "V3TimerController_adjustTimer_v3",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v3/timers/adjust",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "V3TimerController_getRunningTimers_v3",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v3/timers/running"
+          }
+        },
+        {
+          "info": {
+            "name": "V3TimerController_deleteTimer_v3",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v3/timers/:timerId",
+            "params": [
+              {
+                "name": "timerId",
+                "value": "",
+                "type": "path",
+                "description": "the identifier of v3 timer"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

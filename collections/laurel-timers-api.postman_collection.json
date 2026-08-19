@@ -1,0 +1,1610 @@
+{
+  "item": [
+    {
+      "id": "68e7aa73-caa9-41aa-843f-a1bc3191bcad",
+      "name": "Timers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "77bf17c4-d135-40f7-b1a5-23f183b4adcd",
+          "name": "Timer Controller find Many v1",
+          "request": {
+            "name": "Timer Controller find Many v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "timers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<iso-date>",
+                  "description": "(Required) the date for which timers will be returned"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9323735-382e-4f08-b2dd-2a8520149dae",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "timers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "2022-08-12"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"customerId\": \"string\",\n    \"date\": \"2022-08-12\",\n    \"durationInSeconds\": 9342.656611221,\n    \"initiativeProps\": {\n      \"type\": \"pms\",\n      \"colorHex\": \"fec828\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"initiative\": {\n        \"type\": \"pms\",\n        \"_id\": \"string\",\n        \"billingType\": \"billable\",\n        \"unitIncrements\": 7046.749462068569,\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"client\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": \"string\",\n        \"status\": \"inactive\",\n        \"locale\": \"it-IT\"\n      },\n      \"nickname\": \"string\"\n    },\n    \"isLocked\": true,\n    \"summary\": \"string\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"userId\": \"string\",\n    \"codes\": [\n      {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": {\n          \"_id\": \"string\",\n          \"externalId\": \"string\",\n          \"name\": \"string\",\n          \"semanticType\": \"action\",\n          \"orderingSequence\": \"string\"\n        }\n      },\n      {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": {\n          \"_id\": \"string\",\n          \"externalId\": \"string\",\n          \"name\": \"string\",\n          \"semanticType\": \"phase\",\n          \"orderingSequence\": \"string\"\n        }\n      }\n    ]\n  },\n  {\n    \"_id\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"customerId\": \"string\",\n    \"date\": \"2022-08-12\",\n    \"durationInSeconds\": 7675.714744042041,\n    \"initiativeProps\": {\n      \"type\": \"pms\",\n      \"colorHex\": \"fec828\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"initiative\": {\n        \"type\": \"pms\",\n        \"_id\": \"string\",\n        \"billingType\": \"non-billable\",\n        \"unitIncrements\": 7594.580532061276,\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"client\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": \"string\",\n        \"status\": \"active\",\n        \"locale\": \"de-DE\"\n      },\n      \"nickname\": \"string\"\n    },\n    \"isLocked\": true,\n    \"summary\": \"string\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"userId\": \"string\",\n    \"codes\": [\n      {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": {\n          \"_id\": \"string\",\n          \"externalId\": \"string\",\n          \"name\": \"string\",\n          \"semanticType\": \"task\",\n          \"orderingSequence\": \"string\"\n        }\n      },\n      {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": {\n          \"_id\": \"string\",\n          \"externalId\": \"string\",\n          \"name\": \"string\",\n          \"semanticType\": \"action\",\n          \"orderingSequence\": \"string\"\n        }\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4f9acc7-b3ac-49e9-8ce9-6b56a4d8768e",
+          "name": "Timer Controller create One v1",
+          "request": {
+            "name": "Timer Controller create One v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "timers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"<iso-date>\",\n  \"summary\": \"<string>\",\n  \"codeIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"durationInSeconds\": \"<double>\",\n  \"initiativeId\": \"<objectid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd0dde79-3c48-494b-82b4-aff8d6d52cc5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "timers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"2022-08-12\",\n  \"summary\": \"<string>\",\n  \"codeIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"durationInSeconds\": \"<double>\",\n  \"initiativeId\": \"<objectid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"customerId\": \"string\",\n  \"date\": \"2022-08-12\",\n  \"durationInSeconds\": 1772.2798101057547,\n  \"initiativeProps\": {\n    \"type\": \"pms\",\n    \"colorHex\": \"fec828\",\n    \"tags\": [\n      \"pinned\",\n      \"pinned\"\n    ],\n    \"initiative\": {\n      \"type\": \"pms\",\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"unitIncrements\": 4861.448905035872,\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"callSign\": \"string\",\n      \"status\": \"inactive\",\n      \"locale\": \"no-NO\"\n    },\n    \"nickname\": \"string\"\n  },\n  \"isLocked\": true,\n  \"summary\": \"string\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"userId\": \"string\",\n  \"codes\": [\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"location\",\n        \"orderingSequence\": \"string\"\n      }\n    },\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"location\",\n        \"orderingSequence\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a3f2b21-eab5-4642-bff7-2d0e9cbe14da",
+          "name": "Timer Controller find One v1",
+          "request": {
+            "name": "Timer Controller find One v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "timers",
+                ":timerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "timerId",
+                  "description": "(Required) identifier of the timer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93280cdc-9f10-47da-9f36-773c6cf36ac7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "timers",
+                    ":timerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "timerId",
+                      "description": "(Required) identifier of the timer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"customerId\": \"string\",\n  \"date\": \"2022-08-12\",\n  \"durationInSeconds\": 1772.2798101057547,\n  \"initiativeProps\": {\n    \"type\": \"pms\",\n    \"colorHex\": \"fec828\",\n    \"tags\": [\n      \"pinned\",\n      \"pinned\"\n    ],\n    \"initiative\": {\n      \"type\": \"pms\",\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"unitIncrements\": 4861.448905035872,\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"callSign\": \"string\",\n      \"status\": \"inactive\",\n      \"locale\": \"no-NO\"\n    },\n    \"nickname\": \"string\"\n  },\n  \"isLocked\": true,\n  \"summary\": \"string\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"userId\": \"string\",\n  \"codes\": [\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"location\",\n        \"orderingSequence\": \"string\"\n      }\n    },\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"location\",\n        \"orderingSequence\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "234f106a-4668-4cde-999a-fb404717fdfb",
+          "name": "Timer Controller update One v1",
+          "request": {
+            "name": "Timer Controller update One v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "timers",
+                ":timerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "timerId",
+                  "description": "(Required) identifier of the timer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codeIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"durationInSeconds\": \"<double>\",\n  \"initiativeId\": \"<objectid>\",\n  \"summary\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7f30a98-0c20-4169-acdc-568190710a36",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "timers",
+                    ":timerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "timerId",
+                      "description": "(Required) identifier of the timer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"codeIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"durationInSeconds\": \"<double>\",\n  \"initiativeId\": \"<objectid>\",\n  \"summary\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"customerId\": \"string\",\n  \"date\": \"2022-08-12\",\n  \"durationInSeconds\": 1772.2798101057547,\n  \"initiativeProps\": {\n    \"type\": \"pms\",\n    \"colorHex\": \"fec828\",\n    \"tags\": [\n      \"pinned\",\n      \"pinned\"\n    ],\n    \"initiative\": {\n      \"type\": \"pms\",\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"unitIncrements\": 4861.448905035872,\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"callSign\": \"string\",\n      \"status\": \"inactive\",\n      \"locale\": \"no-NO\"\n    },\n    \"nickname\": \"string\"\n  },\n  \"isLocked\": true,\n  \"summary\": \"string\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"userId\": \"string\",\n  \"codes\": [\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"location\",\n        \"orderingSequence\": \"string\"\n      }\n    },\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"location\",\n        \"orderingSequence\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "136567bd-ec15-4f21-9199-e7667281b19d",
+          "name": "Deletes a user Timer by Id and returns the deleted Timer",
+          "request": {
+            "name": "Deletes a user Timer by Id and returns the deleted Timer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "timers",
+                ":timerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "timerId",
+                  "description": "(Required) identifier of the timer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60023488-0f0f-4a29-9ddc-abb345b453ff",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "timers",
+                    ":timerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "timerId",
+                      "description": "(Required) identifier of the timer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"schemaVersion\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"customerId\": \"string\",\n  \"date\": \"2022-08-12\",\n  \"durationInSeconds\": 1772.2798101057547,\n  \"initiativeProps\": {\n    \"type\": \"pms\",\n    \"colorHex\": \"fec828\",\n    \"tags\": [\n      \"pinned\",\n      \"pinned\"\n    ],\n    \"initiative\": {\n      \"type\": \"pms\",\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"unitIncrements\": 4861.448905035872,\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"callSign\": \"string\",\n      \"status\": \"inactive\",\n      \"locale\": \"no-NO\"\n    },\n    \"nickname\": \"string\"\n  },\n  \"isLocked\": true,\n  \"summary\": \"string\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"userId\": \"string\",\n  \"codes\": [\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"location\",\n        \"orderingSequence\": \"string\"\n      }\n    },\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"location\",\n        \"orderingSequence\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ced22280-7ca4-486f-8590-63629b93dc90",
+          "name": "V2Timer Controller start Timer v2",
+          "request": {
+            "name": "V2Timer Controller start Timer v2",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "timers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"<iso-date>\",\n  \"timerDraftId\": \"<objectid>\",\n  \"initiativeId\": \"<objectid>\",\n  \"entryId\": \"<objectid>\",\n  \"timezone\": \"<string>\",\n  \"startedAt\": \"<iso-date-time>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c6b8fa9-db0e-4fd4-a85b-f324f5141de3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "timers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"2022-08-12\",\n  \"timerDraftId\": \"<objectid>\",\n  \"initiativeId\": \"<objectid>\",\n  \"entryId\": \"<objectid>\",\n  \"timezone\": \"<string>\",\n  \"startedAt\": \"2022-08-12T20:44:48Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"entryId\": \"string\",\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"userId\": \"string\",\n  \"summary\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a35559ec-0c7a-4a2e-8f69-27b20ca799f5",
+          "name": "V2Timer Controller get Timers v2",
+          "request": {
+            "name": "V2Timer Controller get Timers v2",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "timers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c624750-f5be-42bd-8b0d-2a31ce08d25a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "timers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"entryId\": \"string\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"userId\": \"string\",\n    \"summary\": \"string\"\n  },\n  {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"entryId\": \"string\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"userId\": \"string\",\n    \"summary\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb8b50a4-85d2-4ac5-a814-8d73f9994177",
+          "name": "V2Timer Controller update One v2",
+          "request": {
+            "name": "V2Timer Controller update One v2",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "timers",
+                ":timerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "timerId",
+                  "description": "(Required) the identifier of v2 timer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"summary\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7bfce51d-d451-4c22-90a2-9410ddf13ed8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "timers",
+                    ":timerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "timerId",
+                      "description": "(Required) the identifier of v2 timer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"summary\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"entryId\": \"string\",\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"userId\": \"string\",\n  \"summary\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f99f2a9-df2d-4aba-8ded-e05903dc9f16",
+          "name": "V2Timer Controller stop Timer v2",
+          "request": {
+            "name": "V2Timer Controller stop Timer v2",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "timers",
+                ":timerId",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "timerId",
+                  "description": "(Required) the identifier of v2 timer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stoppedAt\": \"<iso-date-time>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3f8a1272-34bc-43ad-8716-a2ae945e683b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "timers",
+                    ":timerId",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "timerId",
+                      "description": "(Required) the identifier of v2 timer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"creationMethod\": \"timer\",\n  \"isLocked\": false,\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"assignedBy\": \"user\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"schemaVersion\": \"string\",\n  \"initiativeProps\": {\n    \"type\": \"pms\",\n    \"colorHex\": \"fec828\",\n    \"tags\": [\n      \"pinned\",\n      \"pinned\"\n    ],\n    \"initiative\": {\n      \"type\": \"pms\",\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"unitIncrements\": 6509.877677372992,\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"client\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"externalId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callSign\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parentClientId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"callSign\": \"string\",\n      \"status\": \"inactive\",\n      \"locale\": \"fr-CA\"\n    },\n    \"nickname\": \"string\"\n  },\n  \"category\": \"string\",\n  \"technology\": \"string\",\n  \"source\": \"string\",\n  \"mechanism\": \"string\",\n  \"externalId\": \"string\",\n  \"threadId\": \"string\",\n  \"enhancedByAi\": false,\n  \"isCopiedByAdmin\": false,\n  \"isSeeded\": true,\n  \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n  \"isDeleted\": false,\n  \"disableThreading\": false,\n  \"sessionIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"splitFromActivityId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba4494c8-f872-452d-9fd9-1f8e90120622",
+          "name": "V3Timer Controller initialize Timer v3",
+          "request": {
+            "name": "V3Timer Controller initialize Timer v3",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "timers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"<iso-date>\",\n  \"summary\": \"<string>\",\n  \"manualAdjustmentMs\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e3f899c5-733a-4c54-861d-636f0197b071",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "timers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"2022-08-12\",\n  \"summary\": \"<string>\",\n  \"manualAdjustmentMs\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"initialized\",\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"date\": \"2022-08-12\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"manualAdjustmentMs\": 6751.915046963274,\n  \"summary\": \"string\",\n  \"initiative\": {\n    \"_id\": \"string\",\n    \"billingType\": \"billable\",\n    \"callSign\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"status\": \"active\",\n    \"unitIncrements\": 2370.894876820141,\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"name\": \"string\",\n    \"type\": \"user\",\n    \"locale\": \"fr-CA\",\n    \"props\": {\n      \"_id\": \"string\",\n      \"colorHex\": \"string\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"userId\": \"string\"\n    }\n  },\n  \"entryId\": \"string\",\n  \"codes\": [\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"action\",\n        \"orderingSequence\": \"string\"\n      }\n    },\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"action\",\n        \"orderingSequence\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bcc6ba7-6d31-4f47-bc90-873ccf112576",
+          "name": "V3Timer Controller get Timers v3",
+          "request": {
+            "name": "V3Timer Controller get Timers v3",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "timers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<iso-date>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28ca084c-1c01-4f4a-8643-8e0f75c204f5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "timers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "2022-08-12"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"status\": \"initialized\",\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"date\": \"2022-08-12\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"manualAdjustmentMs\": 2614.614711266373,\n    \"summary\": \"string\",\n    \"initiative\": {\n      \"_id\": \"string\",\n      \"billingType\": \"non-billable\",\n      \"callSign\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"status\": \"inactive\",\n      \"unitIncrements\": 4668.375276627097,\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"name\": \"string\",\n      \"type\": \"user\",\n      \"locale\": \"fi-FI\",\n      \"props\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"colorHex\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"tags\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    \"entryId\": \"string\",\n    \"codes\": [\n      {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": {\n          \"_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"externalId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"semanticType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"orderingSequence\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": {\n          \"_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"externalId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"semanticType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"orderingSequence\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    ]\n  },\n  {\n    \"status\": \"initialized\",\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"date\": \"2022-08-12\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"manualAdjustmentMs\": 2298.5647710641065,\n    \"summary\": \"string\",\n    \"initiative\": {\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"callSign\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"status\": \"active\",\n      \"unitIncrements\": 4764.492378046515,\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"name\": \"string\",\n      \"type\": \"user\",\n      \"locale\": \"sv-SE\",\n      \"props\": {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"colorHex\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"tags\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    \"entryId\": \"string\",\n    \"codes\": [\n      {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": {\n          \"_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"externalId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"semanticType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"orderingSequence\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": {\n          \"_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"externalId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"semanticType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"orderingSequence\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a6f965b-acc1-469a-9262-6c079f2403b6",
+          "name": "V3Timer Controller start Timer v3",
+          "request": {
+            "name": "V3Timer Controller start Timer v3",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "timers",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startedAt\": \"<iso-date-time>\",\n  \"date\": \"<iso-date>\",\n  \"_id\": \"<objectid>\",\n  \"summary\": \"<string>\",\n  \"manualAdjustmentMs\": \"<double>\",\n  \"timezone\": \"<string>\",\n  \"initiativeId\": \"<objectid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d1c84431-e434-4f89-b650-e5c029878284",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "timers",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startedAt\": \"2022-08-12T20:44:48Z\",\n  \"date\": \"2022-08-12\",\n  \"_id\": \"<objectid>\",\n  \"summary\": \"<string>\",\n  \"manualAdjustmentMs\": \"<double>\",\n  \"timezone\": \"<string>\",\n  \"initiativeId\": \"<objectid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"started timer\",\n  \"started\": {\n    \"status\": \"running\",\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"manualAdjustmentMs\": 8962.545951535008,\n    \"summary\": \"string\",\n    \"initiativeId\": \"string\",\n    \"entry\": {\n      \"_id\": \"string\",\n      \"schemaVersion\": \"string\",\n      \"customerId\": \"string\",\n      \"userId\": \"string\",\n      \"statusInfo\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"creationMethod\": \"async\",\n      \"workDate\": \"2022-08-12\",\n      \"isLocked\": false,\n      \"summary\": \"string\",\n      \"unitIncrementCountFromSources\": 8529.92848957994,\n      \"unitIncrementCountAdjustments\": 9212.465506256418,\n      \"sources\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"workCodes\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"initiative\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"enrichmentCorrelationId\": \"string\",\n      \"createdAsTimer\": true,\n      \"externalId\": \"string\",\n      \"overlapTimeInSeconds\": 522.2275097487994,\n      \"isDeleted\": true,\n      \"notes\": \"string\",\n      \"splitFromActivityId\": \"string\",\n      \"supersededByEntryId\": \"string\",\n      \"releaseCount\": 3449.365717661298,\n      \"lastSyncedAt\": \"2022-08-12T20:44:48Z\",\n      \"timerDurationAdjustmentInSeconds\": 7892.782447898622,\n      \"releasedFrom\": \"time-control\",\n      \"complianceRules\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n      \"timerCarryover\": {},\n      \"autoStoppedReason\": \"twelve_hour_limit\",\n      \"autostopDismissedAt\": \"2022-08-12T20:44:48Z\",\n      \"timezoneAtCreation\": \"string\",\n      \"isShared\": false,\n      \"externalSources\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"sharedFrom\": {}\n    }\n  },\n  \"stopped\": [\n    {\n      \"timer\": {\n        \"status\": \"stopped\",\n        \"_id\": \"string\",\n        \"customerId\": \"string\",\n        \"userId\": \"string\",\n        \"startedAt\": \"2022-08-12T20:44:48Z\",\n        \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n        \"durationMs\": 3643.417807737155,\n        \"activityId\": \"string\",\n        \"entryId\": \"string\",\n        \"initiativeId\": \"string\"\n      },\n      \"activity\": {\n        \"_id\": \"string\",\n        \"customerId\": \"string\",\n        \"userId\": \"string\",\n        \"creationMethod\": \"timer\",\n        \"isLocked\": true,\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"startedAt\": \"2022-08-12T20:44:48Z\",\n        \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n        \"assignedBy\": \"ml\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"category\": \"string\",\n        \"technology\": \"string\",\n        \"externalId\": \"string\",\n        \"threadId\": \"string\",\n        \"enhancedByAi\": false,\n        \"isCopiedByAdmin\": true,\n        \"isSeeded\": false,\n        \"disableThreading\": true,\n        \"initiative\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"entry\": {\n        \"_id\": \"string\",\n        \"schemaVersion\": \"string\",\n        \"customerId\": \"string\",\n        \"userId\": \"string\",\n        \"statusInfo\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"creationMethod\": \"pms\",\n        \"workDate\": \"2022-08-12\",\n        \"isLocked\": true,\n        \"summary\": \"string\",\n        \"unitIncrementCountFromSources\": 2624.1846238446633,\n        \"unitIncrementCountAdjustments\": 4089.498525618809,\n        \"sources\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"workCodes\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"initiative\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enrichmentCorrelationId\": \"string\",\n        \"createdAsTimer\": true,\n        \"externalId\": \"string\",\n        \"overlapTimeInSeconds\": 1692.7207579919977,\n        \"isDeleted\": false,\n        \"notes\": \"string\",\n        \"splitFromActivityId\": \"string\",\n        \"supersededByEntryId\": \"string\",\n        \"releaseCount\": 7792.9140243028605,\n        \"lastSyncedAt\": \"2022-08-12T20:44:48Z\",\n        \"timerDurationAdjustmentInSeconds\": 5743.854257625983,\n        \"releasedFrom\": \"timesheet\",\n        \"complianceRules\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n        \"timerCarryover\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"autoStoppedReason\": \"twelve_hour_limit\",\n        \"autostopDismissedAt\": \"2022-08-12T20:44:48Z\",\n        \"timezoneAtCreation\": \"string\",\n        \"isShared\": false,\n        \"externalSources\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"sharedFrom\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"timer\": {\n        \"status\": \"stopped\",\n        \"_id\": \"string\",\n        \"customerId\": \"string\",\n        \"userId\": \"string\",\n        \"startedAt\": \"2022-08-12T20:44:48Z\",\n        \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n        \"durationMs\": 5465.579615924239,\n        \"activityId\": \"string\",\n        \"entryId\": \"string\",\n        \"initiativeId\": \"string\"\n      },\n      \"activity\": {\n        \"_id\": \"string\",\n        \"customerId\": \"string\",\n        \"userId\": \"string\",\n        \"creationMethod\": \"timer\",\n        \"isLocked\": true,\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"startedAt\": \"2022-08-12T20:44:48Z\",\n        \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n        \"assignedBy\": \"ml\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"category\": \"string\",\n        \"technology\": \"string\",\n        \"externalId\": \"string\",\n        \"threadId\": \"string\",\n        \"enhancedByAi\": true,\n        \"isCopiedByAdmin\": true,\n        \"isSeeded\": false,\n        \"disableThreading\": false,\n        \"initiative\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"entry\": {\n        \"_id\": \"string\",\n        \"schemaVersion\": \"string\",\n        \"customerId\": \"string\",\n        \"userId\": \"string\",\n        \"statusInfo\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"creationMethod\": \"pms\",\n        \"workDate\": \"2022-08-12\",\n        \"isLocked\": true,\n        \"summary\": \"string\",\n        \"unitIncrementCountFromSources\": 7947.054345354177,\n        \"unitIncrementCountAdjustments\": 7211.24438702462,\n        \"sources\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"workCodes\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"initiative\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enrichmentCorrelationId\": \"string\",\n        \"createdAsTimer\": true,\n        \"externalId\": \"string\",\n        \"overlapTimeInSeconds\": 2727.8000829237035,\n        \"isDeleted\": true,\n        \"notes\": \"string\",\n        \"splitFromActivityId\": \"string\",\n        \"supersededByEntryId\": \"string\",\n        \"releaseCount\": 1277.3904049546047,\n        \"lastSyncedAt\": \"2022-08-12T20:44:48Z\",\n        \"timerDurationAdjustmentInSeconds\": 8375.869971255193,\n        \"releasedFrom\": \"timesheet\",\n        \"complianceRules\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n        \"timerCarryover\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"autoStoppedReason\": \"twelve_hour_limit\",\n        \"autostopDismissedAt\": \"2022-08-12T20:44:48Z\",\n        \"timezoneAtCreation\": \"string\",\n        \"isShared\": true,\n        \"externalSources\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"sharedFrom\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "739d4265-1de4-4e78-abe0-f2e94078890d",
+          "name": "V3Timer Controller stop Timer v3",
+          "request": {
+            "name": "V3Timer Controller stop Timer v3",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "timers",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"timerId\": \"<objectid>\",\n  \"stoppedAt\": \"<iso-date-time>\",\n  \"summary\": \"<string>\",\n  \"manualAdjustmentMs\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "af91859c-0d18-406f-843e-ba059a3af007",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "timers",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timerId\": \"<objectid>\",\n  \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n  \"summary\": \"<string>\",\n  \"manualAdjustmentMs\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"stopped timer\",\n  \"stopped\": {\n    \"status\": \"stopped\",\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n    \"durationMs\": 8189.418587851853,\n    \"activityId\": \"string\",\n    \"entryId\": \"string\",\n    \"initiativeId\": \"string\"\n  },\n  \"activity\": {\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"creationMethod\": \"timer\",\n    \"isLocked\": true,\n    \"title\": \"string\",\n    \"detail\": \"string\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n    \"assignedBy\": \"ml\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"category\": \"string\",\n    \"technology\": \"string\",\n    \"externalId\": \"string\",\n    \"threadId\": \"string\",\n    \"enhancedByAi\": true,\n    \"isCopiedByAdmin\": false,\n    \"isSeeded\": false,\n    \"disableThreading\": true,\n    \"initiative\": {\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"callSign\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"status\": \"inactive\",\n      \"unitIncrements\": 2274.047778988837,\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"name\": \"string\",\n      \"type\": \"user\",\n      \"locale\": \"fr-CA\",\n      \"props\": {}\n    }\n  },\n  \"entry\": {\n    \"_id\": \"string\",\n    \"schemaVersion\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"statusInfo\": {\n      \"status\": \"release-failed\",\n      \"releaseFailedErrors\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    },\n    \"creationMethod\": \"async\",\n    \"workDate\": \"2022-08-12\",\n    \"isLocked\": true,\n    \"summary\": \"string\",\n    \"unitIncrementCountFromSources\": 4385.762713993306,\n    \"unitIncrementCountAdjustments\": 8846.85753260197,\n    \"sources\": [\n      {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"creationMethod\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"detail\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"startedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"stoppedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"category\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"technology\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"source\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mechanism\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"clusterId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fromSuggestions\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fromThemes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hasOverlap\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"overlapTimeInSeconds\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"threadId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"disableThreading\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"assignedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"creationMethod\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"title\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"detail\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"startedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"stoppedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"category\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"technology\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"source\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mechanism\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"clusterId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fromSuggestions\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fromThemes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hasOverlap\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"overlapTimeInSeconds\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"threadId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"disableThreading\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"assignedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"workCodes\": [\n      {\n        \"assignedBy\": \"user\",\n        \"code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"assignedBy\": \"user\",\n        \"code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"initiative\": {\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"callSign\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"status\": \"active\",\n      \"unitIncrements\": 7023.424409205293,\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"name\": \"string\",\n      \"type\": \"user\",\n      \"locale\": \"ko-KR\",\n      \"props\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"enrichmentCorrelationId\": \"string\",\n    \"createdAsTimer\": true,\n    \"externalId\": \"string\",\n    \"overlapTimeInSeconds\": 6402.61343932388,\n    \"isDeleted\": true,\n    \"notes\": \"string\",\n    \"splitFromActivityId\": \"string\",\n    \"supersededByEntryId\": \"string\",\n    \"releaseCount\": 4701.463206251485,\n    \"lastSyncedAt\": \"2022-08-12T20:44:48Z\",\n    \"timerDurationAdjustmentInSeconds\": 4778.883123432356,\n    \"releasedFrom\": \"time-control\",\n    \"complianceRules\": [\n      {\n        \"ruleKey\": \"string\",\n        \"enforcementLevel\": \"acknowledge\",\n        \"description\": \"string\"\n      },\n      {\n        \"ruleKey\": \"string\",\n        \"enforcementLevel\": \"acknowledge\",\n        \"description\": \"string\"\n      }\n    ],\n    \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n    \"timerCarryover\": {\n      \"originId\": \"string\"\n    },\n    \"autoStoppedReason\": \"twelve_hour_limit\",\n    \"autostopDismissedAt\": \"2022-08-12T20:44:48Z\",\n    \"timezoneAtCreation\": \"string\",\n    \"isShared\": false,\n    \"externalSources\": [\n      {\n        \"sourceSystem\": \"workday\",\n        \"externalId\": \"string\",\n        \"linkedAt\": \"2022-08-12T20:44:48Z\"\n      },\n      {\n        \"sourceSystem\": \"3e\",\n        \"externalId\": \"string\",\n        \"linkedAt\": \"2022-08-12T20:44:48Z\"\n      }\n    ],\n    \"sharedFrom\": {\n      \"entryId\": \"string\",\n      \"entryUserId\": \"string\",\n      \"sharerId\": \"string\",\n      \"sharerType\": \"admin\",\n      \"sharedAt\": \"2022-08-12T20:44:48Z\",\n      \"entryUserName\": \"string\",\n      \"sharerName\": \"string\"\n    }\n  },\n  \"othersStopped\": [\n    {\n      \"timer\": {\n        \"status\": \"stopped\",\n        \"_id\": \"string\",\n        \"customerId\": \"string\",\n        \"userId\": \"string\",\n        \"startedAt\": \"2022-08-12T20:44:48Z\",\n        \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n        \"durationMs\": 9794.176650310543,\n        \"activityId\": \"string\",\n        \"entryId\": \"string\",\n        \"initiativeId\": \"string\"\n      },\n      \"activity\": {\n        \"_id\": \"string\",\n        \"customerId\": \"string\",\n        \"userId\": \"string\",\n        \"creationMethod\": \"timer\",\n        \"isLocked\": true,\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"startedAt\": \"2022-08-12T20:44:48Z\",\n        \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n        \"assignedBy\": \"user\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"category\": \"string\",\n        \"technology\": \"string\",\n        \"externalId\": \"string\",\n        \"threadId\": \"string\",\n        \"enhancedByAi\": true,\n        \"isCopiedByAdmin\": false,\n        \"isSeeded\": false,\n        \"disableThreading\": false,\n        \"initiative\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"entry\": {\n        \"_id\": \"string\",\n        \"schemaVersion\": \"string\",\n        \"customerId\": \"string\",\n        \"userId\": \"string\",\n        \"statusInfo\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"creationMethod\": \"shared\",\n        \"workDate\": \"2022-08-12\",\n        \"isLocked\": true,\n        \"summary\": \"string\",\n        \"unitIncrementCountFromSources\": 6105.178019744266,\n        \"unitIncrementCountAdjustments\": 4494.1429360567345,\n        \"sources\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"workCodes\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"initiative\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enrichmentCorrelationId\": \"string\",\n        \"createdAsTimer\": false,\n        \"externalId\": \"string\",\n        \"overlapTimeInSeconds\": 825.8757022888897,\n        \"isDeleted\": true,\n        \"notes\": \"string\",\n        \"splitFromActivityId\": \"string\",\n        \"supersededByEntryId\": \"string\",\n        \"releaseCount\": 2190.8123510799505,\n        \"lastSyncedAt\": \"2022-08-12T20:44:48Z\",\n        \"timerDurationAdjustmentInSeconds\": 8813.93242318828,\n        \"releasedFrom\": \"time-control\",\n        \"complianceRules\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n        \"timerCarryover\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"autoStoppedReason\": \"twelve_hour_limit\",\n        \"autostopDismissedAt\": \"2022-08-12T20:44:48Z\",\n        \"timezoneAtCreation\": \"string\",\n        \"isShared\": true,\n        \"externalSources\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"sharedFrom\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"timer\": {\n        \"status\": \"stopped\",\n        \"_id\": \"string\",\n        \"customerId\": \"string\",\n        \"userId\": \"string\",\n        \"startedAt\": \"2022-08-12T20:44:48Z\",\n        \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n        \"durationMs\": 2360.1925110237244,\n        \"activityId\": \"string\",\n        \"entryId\": \"string\",\n        \"initiativeId\": \"string\"\n      },\n      \"activity\": {\n        \"_id\": \"string\",\n        \"customerId\": \"string\",\n        \"userId\": \"string\",\n        \"creationMethod\": \"timer\",\n        \"isLocked\": false,\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"startedAt\": \"2022-08-12T20:44:48Z\",\n        \"stoppedAt\": \"2022-08-12T20:44:48Z\",\n        \"assignedBy\": \"none\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"category\": \"string\",\n        \"technology\": \"string\",\n        \"externalId\": \"string\",\n        \"threadId\": \"string\",\n        \"enhancedByAi\": false,\n        \"isCopiedByAdmin\": true,\n        \"isSeeded\": true,\n        \"disableThreading\": false,\n        \"initiative\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"entry\": {\n        \"_id\": \"string\",\n        \"schemaVersion\": \"string\",\n        \"customerId\": \"string\",\n        \"userId\": \"string\",\n        \"statusInfo\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"creationMethod\": \"user\",\n        \"workDate\": \"2022-08-12\",\n        \"isLocked\": false,\n        \"summary\": \"string\",\n        \"unitIncrementCountFromSources\": 7489.553456622063,\n        \"unitIncrementCountAdjustments\": 4207.6141322498415,\n        \"sources\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"workCodes\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"initiative\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enrichmentCorrelationId\": \"string\",\n        \"createdAsTimer\": true,\n        \"externalId\": \"string\",\n        \"overlapTimeInSeconds\": 9028.019642463461,\n        \"isDeleted\": false,\n        \"notes\": \"string\",\n        \"splitFromActivityId\": \"string\",\n        \"supersededByEntryId\": \"string\",\n        \"releaseCount\": 950.5971523588552,\n        \"lastSyncedAt\": \"2022-08-12T20:44:48Z\",\n        \"timerDurationAdjustmentInSeconds\": 3814.911372681634,\n        \"releasedFrom\": \"time-control\",\n        \"complianceRules\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n        \"timerCarryover\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"autoStoppedReason\": \"twelve_hour_limit\",\n        \"autostopDismissedAt\": \"2022-08-12T20:44:48Z\",\n        \"timezoneAtCreation\": \"string\",\n        \"isShared\": false,\n        \"externalSources\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"sharedFrom\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c9be200-1d97-4a4e-8de6-d96db28b5f66",
+          "name": "V3Timer Controller adjust Timer v3",
+          "request": {
+            "name": "V3Timer Controller adjust Timer v3",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "timers",
+                "adjust"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"timerDraftId\": \"<objectid>\",\n  \"now\": \"<iso-date-time>\",\n  \"summary\": \"<string>\",\n  \"manualAdjustmentMs\": \"<double>\",\n  \"codeIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"initiativeId\": \"<objectid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d164ca41-a063-4e35-9737-2753caf26d17",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "timers",
+                    "adjust"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timerDraftId\": \"<objectid>\",\n  \"now\": \"2022-08-12T20:44:48Z\",\n  \"summary\": \"<string>\",\n  \"manualAdjustmentMs\": \"<double>\",\n  \"codeIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"initiativeId\": \"<objectid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"initialized\",\n  \"_id\": \"string\",\n  \"customerId\": \"string\",\n  \"userId\": \"string\",\n  \"date\": \"2022-08-12\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"manualAdjustmentMs\": 1745.3177820982523,\n  \"summary\": \"string\",\n  \"initiative\": {\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"callSign\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"status\": \"active\",\n    \"unitIncrements\": 8680.777204659815,\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"name\": \"string\",\n    \"type\": \"user\",\n    \"locale\": \"fr-CA\",\n    \"props\": {\n      \"_id\": \"string\",\n      \"colorHex\": \"string\",\n      \"tags\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"userId\": \"string\"\n    }\n  },\n  \"entryId\": \"string\",\n  \"codes\": [\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"activity\",\n        \"orderingSequence\": \"string\"\n      }\n    },\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": {\n        \"_id\": \"string\",\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"semanticType\": \"action\",\n        \"orderingSequence\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9e8e9d8-1d8f-4f97-a38c-02b953a2d6d7",
+          "name": "V3Timer Controller get Running Timers v3",
+          "request": {
+            "name": "V3Timer Controller get Running Timers v3",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "timers",
+                "running"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7972b89-06ab-4862-9d96-e4e3966519af",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "timers",
+                    "running"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"status\": \"running\",\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"manualAdjustmentMs\": 5196.672929132155,\n    \"summary\": \"string\",\n    \"initiativeId\": \"string\",\n    \"entry\": {\n      \"_id\": \"string\",\n      \"schemaVersion\": \"string\",\n      \"customerId\": \"string\",\n      \"userId\": \"string\",\n      \"statusInfo\": {\n        \"status\": \"release-failed\",\n        \"releaseFailedErrors\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"creationMethod\": \"shared\",\n      \"workDate\": \"2022-08-12\",\n      \"isLocked\": false,\n      \"summary\": \"string\",\n      \"unitIncrementCountFromSources\": 8243.932058416327,\n      \"unitIncrementCountAdjustments\": 3794.4406927598993,\n      \"sources\": [\n        {\n          \"_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"creationMethod\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"detail\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stoppedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"technology\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"source\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"mechanism\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"clusterId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fromSuggestions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fromThemes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hasOverlap\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"overlapTimeInSeconds\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"threadId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"disableThreading\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assignedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"creationMethod\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"detail\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stoppedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"technology\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"source\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"mechanism\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"clusterId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fromSuggestions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fromThemes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hasOverlap\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"overlapTimeInSeconds\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"threadId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"disableThreading\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assignedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"workCodes\": [\n        {\n          \"assignedBy\": \"user\",\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"assignedBy\": \"laurel\",\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"initiative\": {\n        \"_id\": \"string\",\n        \"billingType\": \"non-billable\",\n        \"callSign\": \"string\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"status\": \"inactive\",\n        \"unitIncrements\": 9859.538708930477,\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"name\": \"string\",\n        \"type\": \"user\",\n        \"locale\": \"no-NO\",\n        \"props\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"enrichmentCorrelationId\": \"string\",\n      \"createdAsTimer\": true,\n      \"externalId\": \"string\",\n      \"overlapTimeInSeconds\": 5763.44045245484,\n      \"isDeleted\": false,\n      \"notes\": \"string\",\n      \"splitFromActivityId\": \"string\",\n      \"supersededByEntryId\": \"string\",\n      \"releaseCount\": 9474.489792066901,\n      \"lastSyncedAt\": \"2022-08-12T20:44:48Z\",\n      \"timerDurationAdjustmentInSeconds\": 193.92905632712677,\n      \"releasedFrom\": \"time-control\",\n      \"complianceRules\": [\n        {\n          \"ruleKey\": \"string\",\n          \"enforcementLevel\": \"off\",\n          \"description\": \"string\"\n        },\n        {\n          \"ruleKey\": \"string\",\n          \"enforcementLevel\": \"acknowledge\",\n          \"description\": \"string\"\n        }\n      ],\n      \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n      \"timerCarryover\": {\n        \"originId\": \"string\"\n      },\n      \"autoStoppedReason\": \"twelve_hour_limit\",\n      \"autostopDismissedAt\": \"2022-08-12T20:44:48Z\",\n      \"timezoneAtCreation\": \"string\",\n      \"isShared\": true,\n      \"externalSources\": [\n        {\n          \"sourceSystem\": \"workday\",\n          \"externalId\": \"string\",\n          \"linkedAt\": \"2022-08-12T20:44:48Z\"\n        },\n        {\n          \"sourceSystem\": \"workday\",\n          \"externalId\": \"string\",\n          \"linkedAt\": \"2022-08-12T20:44:48Z\"\n        }\n      ],\n      \"sharedFrom\": {\n        \"entryId\": \"string\",\n        \"entryUserId\": \"string\",\n        \"sharerId\": \"string\",\n        \"sharerType\": \"user\",\n        \"sharedAt\": \"2022-08-12T20:44:48Z\",\n        \"entryUserName\": \"string\",\n        \"sharerName\": \"string\"\n      }\n    }\n  },\n  {\n    \"status\": \"running\",\n    \"_id\": \"string\",\n    \"customerId\": \"string\",\n    \"userId\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"startedAt\": \"2022-08-12T20:44:48Z\",\n    \"manualAdjustmentMs\": 4145.152791276083,\n    \"summary\": \"string\",\n    \"initiativeId\": \"string\",\n    \"entry\": {\n      \"_id\": \"string\",\n      \"schemaVersion\": \"string\",\n      \"customerId\": \"string\",\n      \"userId\": \"string\",\n      \"statusInfo\": {\n        \"status\": \"release-failed\",\n        \"releaseFailedErrors\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"creationMethod\": \"user\",\n      \"workDate\": \"2022-08-12\",\n      \"isLocked\": true,\n      \"summary\": \"string\",\n      \"unitIncrementCountFromSources\": 4670.084357822921,\n      \"unitIncrementCountAdjustments\": 4993.902932819897,\n      \"sources\": [\n        {\n          \"_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"creationMethod\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"detail\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stoppedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"technology\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"source\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"mechanism\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"clusterId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fromSuggestions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fromThemes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hasOverlap\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"overlapTimeInSeconds\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"threadId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"disableThreading\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assignedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"creationMethod\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"detail\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stoppedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"technology\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"source\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"mechanism\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"clusterId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fromSuggestions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fromThemes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hasOverlap\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"overlapTimeInSeconds\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"threadId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"disableThreading\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assignedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"workCodes\": [\n        {\n          \"assignedBy\": \"laurel\",\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"assignedBy\": \"laurel\",\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"initiative\": {\n        \"_id\": \"string\",\n        \"billingType\": \"non-billable\",\n        \"callSign\": \"string\",\n        \"createdAt\": \"2022-08-12T20:44:48Z\",\n        \"status\": \"active\",\n        \"unitIncrements\": 8746.322195645367,\n        \"updatedAt\": \"2022-08-12T20:44:48Z\",\n        \"name\": \"string\",\n        \"type\": \"user\",\n        \"locale\": \"nl-NL\",\n        \"props\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"enrichmentCorrelationId\": \"string\",\n      \"createdAsTimer\": true,\n      \"externalId\": \"string\",\n      \"overlapTimeInSeconds\": 299.81094185393187,\n      \"isDeleted\": true,\n      \"notes\": \"string\",\n      \"splitFromActivityId\": \"string\",\n      \"supersededByEntryId\": \"string\",\n      \"releaseCount\": 4887.857315665641,\n      \"lastSyncedAt\": \"2022-08-12T20:44:48Z\",\n      \"timerDurationAdjustmentInSeconds\": 9705.016764063257,\n      \"releasedFrom\": \"time-control\",\n      \"complianceRules\": [\n        {\n          \"ruleKey\": \"string\",\n          \"enforcementLevel\": \"warn\",\n          \"description\": \"string\"\n        },\n        {\n          \"ruleKey\": \"string\",\n          \"enforcementLevel\": \"off\",\n          \"description\": \"string\"\n        }\n      ],\n      \"deletedForRetentionAt\": \"2022-08-12T20:44:48Z\",\n      \"timerCarryover\": {\n        \"originId\": \"string\"\n      },\n      \"autoStoppedReason\": \"twelve_hour_limit\",\n      \"autostopDismissedAt\": \"2022-08-12T20:44:48Z\",\n      \"timezoneAtCreation\": \"string\",\n      \"isShared\": false,\n      \"externalSources\": [\n        {\n          \"sourceSystem\": \"workday\",\n          \"externalId\": \"string\",\n          \"linkedAt\": \"2022-08-12T20:44:48Z\"\n        },\n        {\n          \"sourceSystem\": \"3e\",\n          \"externalId\": \"string\",\n          \"linkedAt\": \"2022-08-12T20:44:48Z\"\n        }\n      ],\n      \"sharedFrom\": {\n        \"entryId\": \"string\",\n        \"entryUserId\": \"string\",\n        \"sharerId\": \"string\",\n        \"sharerType\": \"delegate\",\n        \"sharedAt\": \"2022-08-12T20:44:48Z\",\n        \"entryUserName\": \"string\",\n        \"sharerName\": \"string\"\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0766c424-5699-413b-89df-811bfa98a8a5",
+          "name": "V3Timer Controller delete Timer v3",
+          "request": {
+            "name": "V3Timer Controller delete Timer v3",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "timers",
+                ":timerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "timerId",
+                  "description": "(Required) the identifier of v3 timer"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a71d714-fa52-424d-9592-4c50f7453a0c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "timers",
+                    ":timerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "timerId",
+                      "description": "(Required) the identifier of v3 timer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "46572a9a-a3f4-4108-8d3e-1c4562a94e83",
+    "name": "Identity Service Ably Timers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

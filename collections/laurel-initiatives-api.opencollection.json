@@ -1,0 +1,1092 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Initiatives API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Initiatives",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "InitiativesController_importInitiativeV1_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/import",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativesController_importInitiativesBatchV1_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/batch",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativesController_importInitiativesConsolidatedBatchV1_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/consolidated-batch",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "isInitial",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativesController_importInitiativesConsolidatedBatchV2_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/customers/:customerId/initiatives/consolidated-batch",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "isInitial",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativesController_setInitiativeAccessBatchV1_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/batch/access",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "isInitial",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativesController_setInitiativeAccessBatchWithWallsV1_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/batch/walls-access",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "isInitial",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativesController_setInitiativeCodesBatchV1_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/batch/codes",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativesController_setInitiativeAccessV1_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeExternalId/access",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "initiativeExternalId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativesController_setInitiativeCodesV1_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeExternalId/codes",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "initiativeExternalId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativesController_deleteInitiativeCodesV1_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeExternalId/codes",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "initiativeExternalId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerInitiativeController_search_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billingType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "initiativeIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "clientIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerInitiativeController_findOneById_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerInitiativeController_getInitiativeInternalAccess_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/internal-access",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerInitiativeController_setInitiativeInternalAccess_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/internal-access",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerInitiativeController_deleteInitiativeInternalAccess_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/internal-access",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerInitiativeController_addInternalAccessUsers_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/internal-access/users",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerInitiativeController_removeInternalAccessUsers_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/internal-access/users",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerInitiativeController_getInitiativeInternalGroupRestrictions_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/internal-groups",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerInitiativeController_setInitiativeInternalGroupRestrictions_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/internal-groups",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerInitiativeController_deleteInitiativeInternalGroupRestrictions_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/internal-groups",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerInitiativeController_addInternalGroupRestrictionsGroups_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/internal-groups/groups",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerInitiativeController_removeInternalGroupRestrictionsGroups_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/internal-groups/groups",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Gets a lightweight summary of the access configuration for an initiative.\nReturns access types, user counts, and group info without fetching user details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/access-restrictions",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ]
+          },
+          "docs": "Gets a lightweight summary of the access configuration for an initiative.\nReturns access types, user counts, and group info without fetching user details."
+        },
+        {
+          "info": {
+            "name": "Gets a paginated list of users with access restrictions for an initiative.\nReturns users from both the external access list and internal access restrictions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/access-restrictions/users",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a paginated list of users with access restrictions for an initiative.\nReturns users from both the external access list and internal access restrictions."
+        },
+        {
+          "info": {
+            "name": "Checks restriction information for specific users on an initiative.\nAccepts up to 50 user IDs and returns their restriction details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/access-restrictions/users/lookup",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Checks restriction information for specific users on an initiative.\nAccepts up to 50 user IDs and returns their restriction details."
+        },
+        {
+          "info": {
+            "name": "Gets the groups assigned to an initiative.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/access-restrictions/groups",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ]
+          },
+          "docs": "Gets the groups assigned to an initiative."
+        },
+        {
+          "info": {
+            "name": "This endpoint is used by the implementation team to get walls ids for a given initiative.\nBoomi combines and ingests the rules from different Walls systems (like IntappWalls) as \"walls\".\nSo the only possible value for accessProviderName is \"walls\" for now.\nNote: accessProviderName is not a perfect terminology for this parameter - we have added it for the lack of a better name.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeId/access/:accessProviderName",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              },
+              {
+                "name": "accessProviderName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint is used by the implementation team to get walls ids for a given initiative.\nBoomi combines and ingests the rules from different Walls systems (like IntappWalls) as \"walls\".\nSo the only possible value for accessProviderName is \"walls\" for now.\nNote: accessProviderName is not a perfect terminology for this parameter - we have added it for the lack of a better name."
+        },
+        {
+          "info": {
+            "name": "searches all initiatives for current customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/initiatives",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "the query to search initiatives for"
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "the client to filter initiatives by"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "maximum number of initiatives to return"
+              }
+            ]
+          },
+          "docs": "searches all initiatives for current customer"
+        },
+        {
+          "info": {
+            "name": "InitiativeController_createUserInitiative_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/initiatives",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "returns one initiative by its id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/initiatives/:initiativeId",
+            "params": [
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              },
+              {
+                "name": "workDate",
+                "value": "",
+                "type": "query",
+                "description": "When set (and restrictions are enabled), the initiative is treated as not found if restricted on this date."
+              }
+            ]
+          },
+          "docs": "returns one initiative by its id"
+        },
+        {
+          "info": {
+            "name": "CustomerClientInitiativeController_getClientPmsInitiative_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/clients/:clientId/initiatives/:initiativeId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserInitiativeController_getUserInitiatives_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/user-initiatives",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer's id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserInitiativeController_updateUserInitiative_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/user-initiatives/:initiativeId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerUserInitiativeController_deleteUserInitiative_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/user-initiatives/:initiativeId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "UserInitiativeController_getUserInitiatives_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/user-initiatives"
+          }
+        },
+        {
+          "info": {
+            "name": "UserInitiativeController_createUserInitiative_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/user-initiatives",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserInitiativeController_findOneById_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/user-initiatives/:initiativeId",
+            "params": [
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserInitiativeController_deleteUserInitiative_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/user-initiatives/:initiativeId",
+            "params": [
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "path",
+                "description": "Initiative's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativeCodesController_addInitiativeCodesV2_v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/customers/:customerId/initiatives/:initiativeExternalId/codes",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeExternalId",
+                "value": "",
+                "type": "path",
+                "description": "initiative's external id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativeCodesController_addInitiativeCodesByCodeType_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeExternalId/code-types/:codeTypeExternalId/codes",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeExternalId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "codeTypeExternalId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "InitiativeCodesController_removeInitiativeCodesByCodeType_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/initiatives/:initiativeExternalId/code-types/:codeTypeExternalId/codes",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "initiativeExternalId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "codeTypeExternalId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

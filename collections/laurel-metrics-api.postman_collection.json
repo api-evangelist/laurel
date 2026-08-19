@@ -1,0 +1,377 @@
+{
+  "item": [
+    {
+      "id": "79d0705e-bf95-458d-87af-cc09fb9c0e7c",
+      "name": "Metrics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e639a6e-a88e-4376-bfcb-a0f81387dcc3",
+          "name": "Customer Metrics Controller get Entry Metrics v1",
+          "request": {
+            "name": "Customer Metrics Controller get Entry Metrics v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":customerId",
+                "metrics",
+                "entry"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<iso-date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<iso-date>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a27834d-7b06-4d69-ba39-479ec696194a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "metrics",
+                    "entry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "2022-08-12"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2022-08-12"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"startDate\": \"2022-08-12\",\n  \"endDate\": \"2022-08-12\",\n  \"unreleasedTimeInSeconds\": 9475.847295123116,\n  \"releasePendingTimeInSeconds\": 3519.886557772356,\n  \"releasedTimeInSeconds\": 4193.352315625451\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "025b80d6-9f4e-4577-94f0-36e6b5f190eb",
+          "name": "Metrics Controller get Entry Release Metrics v1",
+          "request": {
+            "name": "Metrics Controller get Entry Release Metrics v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "metrics",
+                "entry-release"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<iso-date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "timePeriod",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d1a02ff-8c79-411c-8199-67c935e5cbac",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "metrics",
+                    "entry-release"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "2022-08-12"
+                    },
+                    {
+                      "key": "timePeriod",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"billable\": {\n    \"releasedInSeconds\": 8897.299886565987,\n    \"unreleasedInSeconds\": 5499.719246996399\n  },\n  \"nonBillable\": {\n    \"releasedInSeconds\": 2440.7709264147247,\n    \"unreleasedInSeconds\": 5642.216742944096\n  },\n  \"billableProjectionInSeconds\": 544.922035220573,\n  \"billableGoalInSeconds\": 9108.642099418508\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "708f7987-41e0-4b63-bc27-25864f80178f",
+          "name": "Returns the work dates on which the current user has entries for the given\ninitiative within the requested date range, plus the total seconds logged\non each date. Dates are returned as `YYYY-MM-DD` strings (UTC) so callers\ndon't have to interpret a timestamp across timezones.",
+          "request": {
+            "name": "Returns the work dates on which the current user has entries for the given\ninitiative within the requested date range, plus the total seconds logged\non each date. Dates are returned as `YYYY-MM-DD` strings (UTC) so callers\ndon't have to interpret a timestamp across timezones.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "metrics",
+                "entry-work-dates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "initiativeId",
+                  "value": "<objectid>",
+                  "description": "(Required) initiative id whose entry work dates are being requested"
+                },
+                {
+                  "disabled": false,
+                  "key": "workDateStart",
+                  "value": "<iso-date>",
+                  "description": "(Required) inclusive lower bound for entry work dates"
+                },
+                {
+                  "disabled": false,
+                  "key": "workDateEnd",
+                  "value": "<iso-date>",
+                  "description": "(Required) inclusive upper bound for entry work dates"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "41ea1016-3eba-4c4e-9943-497c501fc29d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "metrics",
+                    "entry-work-dates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiativeId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "workDateStart",
+                      "value": "2022-08-12"
+                    },
+                    {
+                      "key": "workDateEnd",
+                      "value": "2022-08-12"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"workDate\": \"string\",\n    \"totalSeconds\": 3713.841899345779\n  },\n  {\n    \"workDate\": \"string\",\n    \"totalSeconds\": 2526.549603655902\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "70a89151-8fc6-4428-81b7-f15fc0589348",
+    "name": "Identity Service Ably Metrics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

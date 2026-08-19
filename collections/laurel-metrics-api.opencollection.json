@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Metrics API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CustomerMetricsController_getEntryMetrics_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/metrics/entry",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "MetricsController_getEntryReleaseMetrics_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/metrics/entry-release",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "timePeriod",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Returns the work dates on which the current user has entries for the given\ninitiative within the requested date range, plus the total seconds logged\non each date. Dates are returned as `YYYY-MM-DD` strings (UTC) so callers\ndon't have to interpret a timestamp across timezones.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/metrics/entry-work-dates",
+            "params": [
+              {
+                "name": "initiativeId",
+                "value": "",
+                "type": "query",
+                "description": "initiative id whose entry work dates are being requested"
+              },
+              {
+                "name": "workDateStart",
+                "value": "",
+                "type": "query",
+                "description": "inclusive lower bound for entry work dates"
+              },
+              {
+                "name": "workDateEnd",
+                "value": "",
+                "type": "query",
+                "description": "inclusive upper bound for entry work dates"
+              }
+            ]
+          },
+          "docs": "Returns the work dates on which the current user has entries for the given\ninitiative within the requested date range, plus the total seconds logged\non each date. Dates are returned as `YYYY-MM-DD` strings (UTC) so callers\ndon't have to interpret a timestamp across timezones."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

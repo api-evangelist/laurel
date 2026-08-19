@@ -1,0 +1,376 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Identity Service Ably Code Types API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Code Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CodeTypeController_findMany_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/code-types",
+            "params": [
+              {
+                "name": "customerDefaultable",
+                "value": "",
+                "type": "query",
+                "description": "return codes that are defaultable at the customer-level"
+              },
+              {
+                "name": "userDefaultable",
+                "value": "",
+                "type": "query",
+                "description": "return codes that are defaultable at the user-level"
+              },
+              {
+                "name": "orderingSequence",
+                "value": "",
+                "type": "query",
+                "description": "ordering sequence for UI sorting (alphanumeric)"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CodeTypeController_findOneById_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/code-types/:codeTypeId",
+            "params": [
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerCodeTypeController_import_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/code-types/import",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerCodeTypeController_findManyForCurrentCustomer_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/code-types",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "customerDefaultable",
+                "value": "",
+                "type": "query",
+                "description": "return codes that are defaultable at the customer-level"
+              },
+              {
+                "name": "userDefaultable",
+                "value": "",
+                "type": "query",
+                "description": "return codes that are defaultable at the user-level"
+              },
+              {
+                "name": "orderingSequence",
+                "value": "",
+                "type": "query",
+                "description": "ordering sequence for UI sorting (alphanumeric)"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "DefaultCodeController_findManyByCodeTypeId_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/code-types/:codeTypeId/default-code",
+            "params": [
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "DefaultCodeController_createOne_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/code-types/:codeTypeId/default-code",
+            "params": [
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DefaultCodeController_deleteOne_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/code-types/:codeTypeId/default-codes/:codeId",
+            "params": [
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              },
+              {
+                "name": "codeId",
+                "value": "",
+                "type": "path",
+                "description": "id of the \"code\" that is specified in a DefaultCode"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerDefaultCodeController_findManyByCodeTypeId_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/code-types/:codeTypeId/default-code",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerDefaultCodeController_createOne_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/code-types/:codeTypeId/default-code",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerDefaultCodeController_deleteOne_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/code-types/:codeTypeId/default-codes/:codeId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              },
+              {
+                "name": "codeId",
+                "value": "",
+                "type": "path",
+                "description": "id of the \"code\" that is specified in a DefaultCode"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerDefaultCodeController_findManyByCodeTypeIdForUser_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/code-types/:codeTypeId/default-code",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerDefaultCodeController_createOneForUser_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/code-types/:codeTypeId/default-code",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CustomerDefaultCodeController_deleteOneForUser_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/users/:userId/code-types/:codeTypeId/default-codes/:codeId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user's id"
+              },
+              {
+                "name": "codeTypeId",
+                "value": "",
+                "type": "path",
+                "description": "code type's id"
+              },
+              {
+                "name": "codeId",
+                "value": "",
+                "type": "path",
+                "description": "id of the \"code\" that is specified in a DefaultCode"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

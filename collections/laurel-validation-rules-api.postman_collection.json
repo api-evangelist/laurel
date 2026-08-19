@@ -1,0 +1,605 @@
+{
+  "item": [
+    {
+      "id": "5d791ae2-a4fc-4705-b8c7-78b3336e918e",
+      "name": "Validation Rules",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b6a225a-b022-42ae-9081-214f38275a22",
+          "name": "Entry Validation Rules Controller set One For Initiative v1",
+          "request": {
+            "name": "Entry Validation Rules Controller set One For Initiative v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "validations",
+                "customers",
+                ":customerId",
+                "initiatives",
+                ":initiativeExternalId",
+                "rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "initiativeExternalId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requiredCodeTypeExternalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ed1209f-279f-4683-a302-740ed5ce5a95",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "validations",
+                    "customers",
+                    ":customerId",
+                    "initiatives",
+                    ":initiativeExternalId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "initiativeExternalId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requiredCodeTypeExternalIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d64c2c18-289c-4a97-b2d5-1280da2f7b06",
+          "name": "Entry Validation Rules Controller find Applicable v1",
+          "request": {
+            "name": "Entry Validation Rules Controller find Applicable v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "validations",
+                "rules",
+                "applicable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "initiativeId",
+                  "value": "<objectid>",
+                  "description": "initiative's identifier"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c85f521f-9b52-4817-8043-44173dce072a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "validations",
+                    "rules",
+                    "applicable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiativeId",
+                      "value": "<objectid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cannotReleaseNegativeIncrement\": true,\n  \"cannotReleaseZeroIncrement\": false,\n  \"isSummaryRequired\": false,\n  \"allowEntryDateRestrictions\": false,\n  \"allowNarrativeLineBreaks\": true,\n  \"isWorkingTimekeeperValidationEnabled\": true,\n  \"isDailyLimitValidationEnabled\": true,\n  \"requiredCodeTypes\": [],\n  \"canReleaseOnFutureDates\": {\n    \"billable\": true,\n    \"nonBillable\": false\n  },\n  \"customMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a394ada7-5ded-4a10-bd82-3b3fbcefe764",
+          "name": "Entry Validation Rules Controller find One For Customer v1",
+          "request": {
+            "name": "Entry Validation Rules Controller find One For Customer v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "validations",
+                "customers",
+                ":customerId",
+                "rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58457e72-598a-4e84-97fe-7904b12127aa",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "validations",
+                    "customers",
+                    ":customerId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"customerId\": \"string\",\n  \"requiredCodeTypes\": [],\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"canReleaseOnFutureDates\": {\n    \"billable\": true,\n    \"nonBillable\": true\n  },\n  \"cannotReleaseNegativeIncrement\": false,\n  \"cannotReleaseZeroIncrement\": true,\n  \"isWorkingTimekeeperValidationEnabled\": true,\n  \"customMessage\": \"string\",\n  \"isDailyLimitValidationEnabled\": false,\n  \"allowEntryDateRestrictions\": false,\n  \"allowNarrativeLineBreaks\": false,\n  \"initiative\": {\n    \"type\": \"pms\",\n    \"_id\": \"string\",\n    \"billingType\": \"non-billable\",\n    \"unitIncrements\": 1557.4429634233989,\n    \"externalId\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"client\": {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"callSign\": \"string\",\n      \"type\": \"parent\",\n      \"parentClientId\": \"string\"\n    },\n    \"callSign\": \"string\",\n    \"status\": \"active\",\n    \"locale\": \"nl-NL\"\n  },\n  \"isSummaryRequired\": false,\n  \"schemaVersion\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c4dc27e-5f44-4029-a90a-b324b3a267ae",
+          "name": "Entry Validation Rules Controller set One For Customer v1",
+          "request": {
+            "name": "Entry Validation Rules Controller set One For Customer v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "validations",
+                "customers",
+                ":customerId",
+                "rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) customer id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cannotReleaseNegativeIncrement\": \"<boolean>\",\n  \"cannotReleaseZeroIncrement\": \"<boolean>\",\n  \"isSummaryRequired\": \"<boolean>\",\n  \"isWorkingTimekeeperValidationEnabled\": \"<boolean>\",\n  \"customMessage\": \"<string>\",\n  \"isDailyLimitValidationEnabled\": \"<boolean>\",\n  \"allowEntryDateRestrictions\": \"<boolean>\",\n  \"allowNarrativeLineBreaks\": \"<boolean>\",\n  \"requiredCodeTypeIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"canReleaseOnFutureDates\": {\n    \"billable\": \"<boolean>\",\n    \"nonBillable\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3ac99c5c-be61-4d75-8c0c-354c61f2eb38",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "validations",
+                    "customers",
+                    ":customerId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) customer id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cannotReleaseNegativeIncrement\": \"<boolean>\",\n  \"cannotReleaseZeroIncrement\": \"<boolean>\",\n  \"isSummaryRequired\": \"<boolean>\",\n  \"isWorkingTimekeeperValidationEnabled\": \"<boolean>\",\n  \"customMessage\": \"<string>\",\n  \"isDailyLimitValidationEnabled\": \"<boolean>\",\n  \"allowEntryDateRestrictions\": \"<boolean>\",\n  \"allowNarrativeLineBreaks\": \"<boolean>\",\n  \"requiredCodeTypeIds\": [\n    \"<objectid>\",\n    \"<objectid>\"\n  ],\n  \"canReleaseOnFutureDates\": {\n    \"billable\": \"<boolean>\",\n    \"nonBillable\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"customerId\": \"string\",\n  \"requiredCodeTypes\": [],\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"canReleaseOnFutureDates\": {\n    \"billable\": \"<boolean>\",\n    \"nonBillable\": \"<boolean>\"\n  },\n  \"cannotReleaseNegativeIncrement\": true,\n  \"cannotReleaseZeroIncrement\": true,\n  \"isWorkingTimekeeperValidationEnabled\": true,\n  \"customMessage\": \"string\",\n  \"isDailyLimitValidationEnabled\": true,\n  \"allowEntryDateRestrictions\": false,\n  \"allowNarrativeLineBreaks\": true,\n  \"initiative\": {\n    \"type\": \"pms\",\n    \"_id\": \"string\",\n    \"billingType\": \"billable\",\n    \"unitIncrements\": 319.97820013703995,\n    \"externalId\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"client\": {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"callSign\": \"string\",\n      \"type\": \"client\",\n      \"parentClientId\": \"string\"\n    },\n    \"callSign\": \"string\",\n    \"status\": \"active\",\n    \"locale\": \"en-US\"\n  },\n  \"isSummaryRequired\": false,\n  \"schemaVersion\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ab4af70-8093-414e-aee7-337e5f95007b",
+          "name": "Entry Validation Rules Controller find One For Initiative v1",
+          "request": {
+            "name": "Entry Validation Rules Controller find One For Initiative v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "validations",
+                "customers",
+                ":customerId",
+                "initiatives",
+                ":initiativeId",
+                "rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "customerId",
+                  "description": "(Required) id of the customer who owns the resource"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<objectid>",
+                  "key": "initiativeId",
+                  "description": "(Required) initiative id of the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fada4e8d-ae1c-4cb2-b178-cabb7aa0358a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "validations",
+                    "customers",
+                    ":customerId",
+                    "initiatives",
+                    ":initiativeId",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "customerId",
+                      "description": "(Required) id of the customer who owns the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<objectid>",
+                      "key": "initiativeId",
+                      "description": "(Required) initiative id of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"customerId\": \"string\",\n  \"requiredCodeTypes\": [],\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"canReleaseOnFutureDates\": {\n    \"billable\": \"<boolean>\",\n    \"nonBillable\": \"<boolean>\"\n  },\n  \"cannotReleaseNegativeIncrement\": true,\n  \"cannotReleaseZeroIncrement\": true,\n  \"isWorkingTimekeeperValidationEnabled\": true,\n  \"customMessage\": \"string\",\n  \"isDailyLimitValidationEnabled\": true,\n  \"allowEntryDateRestrictions\": false,\n  \"allowNarrativeLineBreaks\": true,\n  \"initiative\": {\n    \"type\": \"pms\",\n    \"_id\": \"string\",\n    \"billingType\": \"billable\",\n    \"unitIncrements\": 319.97820013703995,\n    \"externalId\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"client\": {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"callSign\": \"string\",\n      \"type\": \"client\",\n      \"parentClientId\": \"string\"\n    },\n    \"callSign\": \"string\",\n    \"status\": \"active\",\n    \"locale\": \"en-US\"\n  },\n  \"isSummaryRequired\": false,\n  \"schemaVersion\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "95cca826-74ed-415e-a734-90c6f617286e",
+    "name": "Identity Service Ably Validation Rules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

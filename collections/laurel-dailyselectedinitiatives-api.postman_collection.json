@@ -1,0 +1,370 @@
+{
+  "item": [
+    {
+      "id": "db6835d6-5f8e-46e1-bb0f-21d080f505d7",
+      "name": "DailySelectedInitiatives",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3f0da11e-9aa9-4fb3-b708-f32dd4c69dd5",
+          "name": "returns all daily selected initiatives for the current user and a given date",
+          "request": {
+            "name": "returns all daily selected initiatives for the current user and a given date",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "daily-selected-initiatives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "minDate",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) min bound for the date to get daily selected initiatives"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxDate",
+                  "value": "<iso-date-time>",
+                  "description": "(Required) max bound for the date to get daily selected initiatives"
+                },
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<objectid>",
+                  "description": "(Required) customer id to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<objectid>",
+                  "description": "(Required) user id to filter by"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f766bdf7-e560-431b-8d4e-1bbbec6ee814",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "daily-selected-initiatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "minDate",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "maxDate",
+                      "value": "2022-08-12T20:44:48Z"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "<objectid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"userId\": \"string\",\n    \"customerId\": \"string\",\n    \"date\": \"2022-08-12\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"initiative\": {\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"callSign\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"status\": \"inactive\",\n      \"unitIncrements\": 1627.7788478922673,\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"name\": \"string\",\n      \"type\": \"user\",\n      \"locale\": \"es-ES\",\n      \"props\": {\n        \"_id\": \"string\",\n        \"colorHex\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"userId\": \"string\"\n      }\n    }\n  },\n  {\n    \"_id\": \"string\",\n    \"userId\": \"string\",\n    \"customerId\": \"string\",\n    \"date\": \"2022-08-12\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"initiative\": {\n      \"_id\": \"string\",\n      \"billingType\": \"billable\",\n      \"callSign\": \"string\",\n      \"createdAt\": \"2022-08-12T20:44:48Z\",\n      \"status\": \"inactive\",\n      \"unitIncrements\": 9287.208444024118,\n      \"updatedAt\": \"2022-08-12T20:44:48Z\",\n      \"name\": \"string\",\n      \"type\": \"user\",\n      \"locale\": \"fr-CA\",\n      \"props\": {\n        \"_id\": \"string\",\n        \"colorHex\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"userId\": \"string\"\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa2cc1fd-f732-4913-be89-b8cbc8c9328c",
+          "name": "creates a daily selected initiative",
+          "request": {
+            "name": "creates a daily selected initiative",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "daily-selected-initiatives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"<objectid>\",\n  \"userId\": \"<objectid>\",\n  \"date\": \"<iso-date>\",\n  \"initiativeId\": \"<objectid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "621e5f70-adb6-4957-9dda-d274ca9de926",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "daily-selected-initiatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"<objectid>\",\n  \"userId\": \"<objectid>\",\n  \"date\": \"2022-08-12\",\n  \"initiativeId\": \"<objectid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"userId\": \"string\",\n  \"customerId\": \"string\",\n  \"date\": \"2022-08-12\",\n  \"createdAt\": \"2022-08-12T20:44:48Z\",\n  \"updatedAt\": \"2022-08-12T20:44:48Z\",\n  \"initiative\": {\n    \"_id\": \"string\",\n    \"billingType\": \"billable\",\n    \"callSign\": \"string\",\n    \"createdAt\": \"2022-08-12T20:44:48Z\",\n    \"status\": \"inactive\",\n    \"unitIncrements\": 8668.973561175866,\n    \"updatedAt\": \"2022-08-12T20:44:48Z\",\n    \"name\": \"string\",\n    \"type\": \"user\",\n    \"locale\": \"fi-FI\",\n    \"props\": {\n      \"_id\": \"string\",\n      \"colorHex\": \"string\",\n      \"tags\": [\n        \"pinned\",\n        \"pinned\"\n      ],\n      \"userId\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70e4ec53-d2c4-43f0-837c-625e42766eba",
+          "name": "deletes a daily selected initiative by id",
+          "request": {
+            "name": "deletes a daily selected initiative by id",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "daily-selected-initiatives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<objectid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<objectid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<iso-date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "initiativeId",
+                  "value": "<objectid>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e630b1e-8fc1-4884-a95a-a60e83be9b92",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "daily-selected-initiatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customerId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "<objectid>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "2022-08-12"
+                    },
+                    {
+                      "key": "initiativeId",
+                      "value": "<objectid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2b1311ee-337e-4c57-b818-7f7e9bb61fbe",
+    "name": "Identity Service Ably DailySelectedInitiatives API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

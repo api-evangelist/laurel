@@ -9,6 +9,18 @@ description: 'Laurel is an AI timekeeping and work-intelligence platform for pro
   analytics on top of the resulting time data. Laurel exposes three public APIs — Identity, Time and
   Ingestion — authenticated with OAuth 2.0 machine-to-machine client credentials, and documents them
   at developer.laurel.ai for firms and partners building connectors.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -881,6 +893,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/laurel-capability-edges.yml
+  name: Laurel Business Capability Map
 - type: Overlay
   url: overlays/laurel-identity-overlay.yaml
 - type: Website

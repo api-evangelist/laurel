@@ -179,7 +179,7 @@ apis:
   humanURL: https://developer.laurel.ai/services/time
   baseURL: https://api.laurel.ai/time/
   tags:
-  - CodeTypes
+  - Code Types
   tags_raw:
   - CodeTypes
   properties:
@@ -851,7 +851,7 @@ apis:
   humanURL: https://developer.laurel.ai/services/time
   baseURL: https://api.laurel.ai/time/
   tags:
-  - Work Groups
+  - Workgroups
   tags_raw:
   - Work Groups
   properties:

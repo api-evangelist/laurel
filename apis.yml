@@ -174,28 +174,6 @@ apis:
     url: https://developer.laurel.ai/services/ingestion
   - type: BuildingBlock
     url: https://developer.laurel.ai/guides/building-a-connector
-- aid: laurel:laurel-codetypes-api
-  name: Laurel CodeTypes API
-  description: The CodeTypes API from Laurel — 1 operation(s) for codetypes.
-  humanURL: https://developer.laurel.ai/services/time
-  baseURL: https://api.laurel.ai/time/
-  tags:
-  - Code Types
-  tags_raw:
-  - CodeTypes
-  properties:
-  - type: OpenAPI
-    url: openapi/laurel-codetypes-api-openapi.yml
-  - type: Documentation
-    url: https://developer.laurel.ai/services/time
-  - type: Documentation
-    url: https://developer.laurel.ai/services/identity
-  - type: Authentication
-    url: https://developer.laurel.ai/guides/authentication
-  - type: Documentation
-    url: https://developer.laurel.ai/services/ingestion
-  - type: BuildingBlock
-    url: https://developer.laurel.ai/guides/building-a-connector
 - aid: laurel:laurel-customers-api
   name: Laurel Customers API
   description: The Customers API from Laurel — 14 operation(s) for customers.
@@ -360,28 +338,6 @@ apis:
     url: https://developer.laurel.ai/services/ingestion
   - type: BuildingBlock
     url: https://developer.laurel.ai/guides/building-a-connector
-- aid: laurel:laurel-healthcheck-api
-  name: Laurel HealthCheck API
-  description: The HealthCheck API from Laurel — 1 operation(s) for healthcheck.
-  humanURL: https://developer.laurel.ai/services/time
-  baseURL: https://api.laurel.ai/time/
-  tags:
-  - Health Check
-  tags_raw:
-  - HealthCheck
-  properties:
-  - type: OpenAPI
-    url: openapi/laurel-healthcheck-api-openapi.yml
-  - type: Documentation
-    url: https://developer.laurel.ai/services/time
-  - type: Documentation
-    url: https://developer.laurel.ai/services/identity
-  - type: Authentication
-    url: https://developer.laurel.ai/guides/authentication
-  - type: Documentation
-    url: https://developer.laurel.ai/services/ingestion
-  - type: BuildingBlock
-    url: https://developer.laurel.ai/guides/building-a-connector
 - aid: laurel:laurel-impersonation-events-api
   name: Laurel Impersonation Events API
   description: The Impersonation Events API from Laurel — 2 operation(s) for impersonation events.
@@ -492,28 +448,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/laurel-narrative-templates-api-openapi.yml
-  - type: Documentation
-    url: https://developer.laurel.ai/services/time
-  - type: Documentation
-    url: https://developer.laurel.ai/services/identity
-  - type: Authentication
-    url: https://developer.laurel.ai/guides/authentication
-  - type: Documentation
-    url: https://developer.laurel.ai/services/ingestion
-  - type: BuildingBlock
-    url: https://developer.laurel.ai/guides/building-a-connector
-- aid: laurel:laurel-oauth-api
-  name: Laurel OAuth API
-  description: The OAuth API from Laurel — 1 operation(s) for oauth.
-  humanURL: https://developer.laurel.ai/services/time
-  baseURL: https://api.laurel.ai/time/
-  tags:
-  - Authentication
-  tags_raw:
-  - OAuth
-  properties:
-  - type: OpenAPI
-    url: openapi/laurel-oauth-api-openapi.yml
   - type: Documentation
     url: https://developer.laurel.ai/services/time
   - type: Documentation
@@ -878,6 +812,26 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/laurel-working-timekeepers-api-openapi.yml
+  - type: Documentation
+    url: https://developer.laurel.ai/services/time
+  - type: Documentation
+    url: https://developer.laurel.ai/services/identity
+  - type: Authentication
+    url: https://developer.laurel.ai/guides/authentication
+  - type: Documentation
+    url: https://developer.laurel.ai/services/ingestion
+  - type: BuildingBlock
+    url: https://developer.laurel.ai/guides/building-a-connector
+- aid: laurel:laurel-oauth-api
+  name: Laurel O Auth API
+  description: The OAuth API from Laurel — 1 operation(s) for oauth.
+  humanURL: https://developer.laurel.ai/services/time
+  baseURL: https://api.laurel.ai/time/
+  tags:
+  - OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/laurel-oauth-api-openapi.yml
   - type: Documentation
     url: https://developer.laurel.ai/services/time
   - type: Documentation

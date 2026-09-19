@@ -828,6 +828,8 @@ apis:
   humanURL: https://developer.laurel.ai/services/time
   baseURL: https://api.laurel.ai/time/
   tags:
+  - Authentication
+  tags_raw:
   - OAuth
   properties:
   - type: OpenAPI

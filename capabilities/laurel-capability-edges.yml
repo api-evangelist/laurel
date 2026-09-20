@@ -11,8 +11,65 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 2
+edge_count: 12
 edges:
+- tag: Entries
+  spec_file: laurel-entries-api-openapi.yml
+  capability_id: BC-4330.10
+  capability_id_l1: BC-4330
+  capability_name: Timekeeping Management
+  confidence: 0.9
+  evidence: POST /api/v1/customers/{customerId}/users/{userId}/entries/import-released; 'bulk-release'
+    and 'unrelease' entries; PATCH .../entries/lock-status; schemas ReleaseOneEntryDto, ReleasePendingTimekeeperIdDto,
+    EntryValidationError
+  reason: These are professional time entries per user/timekeeper with release, unrelease, lock and validation
+    flows against PMS initiatives — the core capture, validation and submission of chargeable time.
+  recovered_from: vertical-professional-services-edges.json
+- tag: Timers
+  spec_file: laurel-timers-api-openapi.yml
+  capability_id: BC-4330.10
+  capability_id_l1: BC-4330
+  capability_name: Timekeeping Management
+  confidence: 0.88
+  evidence: POST /api/v2/timers/{timerId}/stop  V2TimerController_stopTimer_v2; POST /api/v3/timers/start;
+    schemas EntryDto, ComplianceRule, PmsInitiativePropsDto
+  reason: Start/stop/adjust timers producing time entries linked to matters (PMS initiatives) is direct
+    timekeeping capture for billable professionals.
+  recovered_from: vertical-professional-services-edges.json
+- tag: Timesheets
+  spec_file: laurel-timesheets-api-openapi.yml
+  capability_id: BC-4330.10
+  capability_id_l1: BC-4330
+  capability_name: Timekeeping Management
+  confidence: 0.88
+  evidence: PATCH /api/v1/timesheets  TimesheetController_updateTimesheet_v1; POST /api/v1/timesheets/initiatives/suggest;
+    schemas EntryDto, TimesheetSuccessfulInitiativeCategorizationDto
+  reason: Timesheet update plus ML suggestion/prediction of the matter (initiative) each entry belongs
+    to is capture, validation and submission of professional time entries.
+  recovered_from: vertical-professional-services-edges.json
+- tag: Activities
+  spec_file: laurel-activities-api-openapi.yml
+  capability_id: BC-4330.10
+  capability_id_l1: BC-4330
+  capability_name: Timekeeping Management
+  confidence: 0.8
+  evidence: '''Creates a new Timer Activity, optionally adding it to an existing entry''; ''Dismisses
+    a slice of open time by creating a soft-deleted user activity that fills the gap'''
+  reason: Activities are captured work events assembled into timesheets — timer activities, open-time
+    gap handling, time-range queries per user. This is professional time capture (Timekeeping Management)
+    for a law/accounting timekeeping platform.
+  recovered_from: vertical-professional-services-edges.json
+- tag: Tenants
+  spec_file: laurel-tenants-api-openapi.yml
+  capability_id: BC-4230.10
+  capability_id_l1: BC-4230
+  capability_name: Tenant Provisioning & Lifecycle
+  confidence: 0.8
+  evidence: POST /api/v1/tenants TenantController_create_v1; "List all tenants"; "Updates an existing
+    Tenant"
+  reason: CRUD over tenant entities in a multi-tenant SaaS platform is tenant provisioning and lifecycle
+    management.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Customers
   spec_file: laurel-customers-api-openapi.yml
   capability_id: BC-4230
@@ -25,6 +82,62 @@ edges:
   reason: Operations create and configure tenants ('customers') including tenant identity connections,
     SCIM provisioning and region — multi-tenant SaaS tenant provisioning and identity federation. Spans
     both tenant lifecycle and identity federation sub-capabilities, so L1 only.
+- tag: Timer Draft
+  spec_file: laurel-timer-draft-api-openapi.yml
+  capability_id: BC-4330.10
+  capability_id_l1: BC-4330
+  capability_name: Timekeeping Management
+  confidence: 0.75
+  evidence: POST /api/v1/timer-drafts  TimerDraftController_createOne_v1; CreateTimerDraftRequestDto /
+    UpdateTimerDraftRequestDto
+  reason: Draft timers are pre-submission time entries in a professional-services timekeeping product,
+    i.e. capture and validation of professional time entries.
+  recovered_from: vertical-professional-services-edges.json
+- tag: Entry Date Restrictions
+  spec_file: laurel-entry-date-restrictions-api-openapi.yml
+  capability_id: BC-4330.10
+  capability_id_l1: BC-4330
+  capability_name: Timekeeping Management
+  confidence: 0.72
+  evidence: '''Check which of the provided work dates have active restrictions across multiple types'';
+    CreateEntryDateRestrictionRequestDto, RestrictedDateDto, InitiativeDigest'
+  reason: Rules controlling which work dates time entries may be posted to (period locks by date and type)
+    are part of validating and controlling professional time capture rather than a distinct capability.
+  recovered_from: vertical-professional-services-edges.json
+- tag: Timer Carryovers
+  spec_file: laurel-timer-carryovers-api-openapi.yml
+  capability_id: BC-4330.10
+  capability_id_l1: BC-4330
+  capability_name: Timekeeping Management
+  confidence: 0.72
+  evidence: POST /api/v1/timer-carryovers  TimerCarryoverController_runCarryover_v1; schemas TimerCarryoverInProgressState,
+    TimerCarryoverCompletedState — carrying unfinished timer time across dates in an AI timekeeping platform
+  reason: Vendor is a timekeeping platform for law/accounting firms; timer carryover operations manage
+    the capture of chargeable time entries across dates, which is Timekeeping Management. Slight uncertainty
+    because the tag exposes only a batch carryover mechanism.
+  recovered_from: vertical-professional-services-edges.json
+- tag: Roles
+  spec_file: laurel-roles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: GET /api/v1/roles RoleController_getAll_v1 'List all roles'; schemas Role, PermissionDigest
+  reason: Role definitions with associated permissions in the Identity Service — role-based access control,
+    i.e. identity & access management.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: Timekeeper Goals
+  spec_file: laurel-timekeeper-goals-api-openapi.yml
+  capability_id: BC-4320.40
+  capability_id_l1: BC-4320
+  capability_name: Utilisation Management
+  confidence: 0.7
+  evidence: PUT /api/v1/customers/{customerId}/timekeeper-goals  CustomerTimekeeperGoalController_upsertCustomerGoal_v1;
+    AnnualGoalRequestDto
+  reason: Sets and reads annual hour goals for timekeepers at both firm (customer) and individual level,
+    which is the steering of chargeable hours against firm and individual targets described by Utilisation
+    Management. Slight ambiguity remains as goals also feed timekeeping compliance reporting (BC-4330).
+  recovered_from: vertical-professional-services-edges.json
 - tag: Users
   spec_file: laurel-users-api-openapi.yml
   capability_id: BC-620.20

@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Identity Service Ably Timer Carryovers API
+  title: Time Service Timer Carryovers API
   description: ''
   version: '1'
   contact: {}
@@ -32,6 +32,8 @@ paths:
                   $ref: '#/components/schemas/TimerCarryoverResponseDto'
       tags:
       - Timer Carryovers
+      summary: Timer carryover controller find all by user v1
+      x-summary-source: derived
     post:
       operationId: TimerCarryoverController_runCarryover_v1
       parameters: []
@@ -50,6 +52,8 @@ paths:
                 $ref: '#/components/schemas/RunCarryoverResponseDto'
       tags:
       - Timer Carryovers
+      summary: Timer carryover controller run carryover v1
+      x-summary-source: derived
   /api/v1/timer-carryovers/{date}:
     get:
       operationId: TimerCarryoverController_findOneByDate_v1
@@ -65,41 +69,14 @@ paths:
           content:
             application/json:
               schema:
-                nullable: true
                 oneOf:
                 - $ref: '#/components/schemas/TimerCarryoverResponseDto'
       tags:
       - Timer Carryovers
+      summary: Timer carryover controller find one by date v1
+      x-summary-source: derived
 components:
   schemas:
-    TimerCarryoverInProgressState:
-      type: object
-      properties:
-        type:
-          enum:
-          - in_progress
-          type: string
-      required:
-      - type
-    TimerCarryoverCompletedState:
-      type: object
-      properties:
-        type:
-          enum:
-          - completed
-          type: string
-        carriedCount:
-          type: number
-          format: int64
-          minimum: 0
-        skippedCount:
-          type: number
-          format: int64
-          minimum: 0
-      required:
-      - type
-      - carriedCount
-      - skippedCount
     RunCarryoverResponseDto:
       type: object
       properties:
@@ -189,6 +166,34 @@ components:
           type: string
       required:
       - date
+    TimerCarryoverInProgressState:
+      type: object
+      properties:
+        type:
+          enum:
+          - in_progress
+          type: string
+      required:
+      - type
+    TimerCarryoverCompletedState:
+      type: object
+      properties:
+        type:
+          enum:
+          - completed
+          type: string
+        carriedCount:
+          type: number
+          format: int64
+          minimum: 0
+        skippedCount:
+          type: number
+          format: int64
+          minimum: 0
+      required:
+      - type
+      - carriedCount
+      - skippedCount
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

@@ -1,10 +1,9 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Identity Service Ably Users API
-  description: ''
+  title: Laurel Users API
   version: '1'
   contact: {}
-servers: []
+  description: 'Operations tagged Users across 2 of this provider''s published API definitions: laurel-identity-openapi-original.json, laurel-ingestion-openapi-original.json. Each path carries the servers of the definition it was published in.'
 security:
 - ApiBearerAuth: []
 tags:
@@ -31,8 +30,9 @@ paths:
         required: false
         in: query
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
           enum:
           - cloud-assistant-cdr
           - cloud-assistant-google
@@ -83,22 +83,25 @@ paths:
         schema:
           minLength: 2
           maxLength: 100
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       - name: includeRoles
         required: false
         in: query
         schema:
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
       - name: excludeRoles
         required: false
         in: query
         schema:
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
       responses:
@@ -110,6 +113,8 @@ paths:
                 $ref: '#/components/schemas/SearchUsersResponseDto'
       tags:
       - Users
+      summary: Customer user controller search V2 v2
+      x-summary-source: derived
   /api/v1/customers/{customerId}/users-lite:
     get:
       operationId: CustomerUserController_searchLite_v1
@@ -131,8 +136,9 @@ paths:
         required: false
         in: query
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
           enum:
           - cloud-assistant-cdr
           - cloud-assistant-google
@@ -150,6 +156,8 @@ paths:
                   $ref: '#/components/schemas/UserLite'
       tags:
       - Users
+      summary: Customer user controller search lite v1
+      x-summary-source: derived
   /api/v1/customers/{customerId}/users/by-ids:
     get:
       description: Retrieve multiple users from a customer by providing user IDs as repeated query parameters (userIds=id1&userIds=id2&userIds=id3). Maximum 50 IDs per request.
@@ -204,6 +212,8 @@ paths:
                 $ref: '#/components/schemas/Identity'
       tags:
       - Users
+      summary: Customer user controller lookup user v1
+      x-summary-source: derived
   /api/v1/customers/{customerId}/users/batch/lookup:
     post:
       description: Batch equivalent of GET users/lookup. Returns every distinct user under the customer who matches at least one of the given identities.
@@ -301,9 +311,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Identity'
-      summary: ''
+      summary: Customer user controller lookup user identity type v1
       tags:
       - Users
+      x-summary-source: derived
   /api/v2/customers/{customerId}/users/lookup/identity:
     get:
       operationId: CustomerUserController_lookupUserByIdentity_v2
@@ -362,6 +373,8 @@ paths:
                 $ref: '#/components/schemas/User'
       tags:
       - Users
+      summary: Customer user controller lookup user by identity v2
+      x-summary-source: derived
   /api/v1/customers/{customerId}/users/{userId}/identities:
     get:
       operationId: CustomerUserController_lookupUserIdentity_v1
@@ -391,6 +404,8 @@ paths:
                   $ref: '#/components/schemas/Identity'
       tags:
       - Users
+      summary: Customer user controller lookup user identity v1
+      x-summary-source: derived
     post:
       operationId: CustomerUserController_createNewUserIdentity_v1
       parameters:
@@ -419,6 +434,8 @@ paths:
           description: ''
       tags:
       - Users
+      summary: Customer user controller create new user identity v1
+      x-summary-source: derived
     put:
       operationId: CustomerUserController_updateUserIdentity_v1
       parameters:
@@ -447,6 +464,8 @@ paths:
           description: ''
       tags:
       - Users
+      summary: Customer user controller update user identity v1
+      x-summary-source: derived
   /api/v1/customers/{customerId}/users/{userId}/super-delegate:
     patch:
       operationId: CustomerUserController_setUserSuperDelegateStatus_v1
@@ -480,6 +499,8 @@ paths:
                 $ref: '#/components/schemas/User'
       tags:
       - Users
+      summary: Customer user controller set user super delegate status v1
+      x-summary-source: derived
   /api/v1/customers/{customerId}/users/{userId}:
     get:
       operationId: CustomerUserController_get_v1
@@ -562,26 +583,30 @@ paths:
         required: false
         in: query
         schema:
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
       - name: originalPrincipalClientId
         required: false
         in: query
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       - name: originalPrincipalCustomerId
         required: false
         in: query
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       - name: originalPrincipalUserId
         required: false
         in: query
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       responses:
         '200':
           description: ''
@@ -625,6 +650,8 @@ paths:
                 $ref: '#/components/schemas/User'
       tags:
       - Users
+      summary: Customer user controller update V2 v2
+      x-summary-source: derived
   /api/v1/customers/{customerId}/users/{userId}/status:
     patch:
       operationId: CustomerUserController_updateStatus_v1
@@ -658,6 +685,8 @@ paths:
                 $ref: '#/components/schemas/User'
       tags:
       - Users
+      summary: Customer user controller update status v1
+      x-summary-source: derived
   /api/v1/customers/{customerId}/users/{userId}/identities/bulk:
     post:
       description: Adds multiple external identities to a specific user in a single request. Prevents duplicate identities with the same type and value.
@@ -806,9 +835,10 @@ paths:
             application/json:
               schema:
                 type: string
-      summary: ''
+      summary: Customer user controller deprecated import v1
       tags:
       - Users
+      x-summary-source: derived
   /api/v2/customers/{customerId}/users/import:
     post:
       operationId: CustomerUserController_importV2_v2
@@ -835,6 +865,8 @@ paths:
                 $ref: '#/components/schemas/User'
       tags:
       - Users
+      summary: Customer user controller import V2 v2
+      x-summary-source: derived
   /api/v1/customers/{customerId}/users/batch/import:
     post:
       deprecated: true
@@ -862,9 +894,10 @@ paths:
             application/json:
               schema:
                 type: string
-      summary: ''
+      summary: Customer user controller post user data v1
       tags:
       - Users
+      x-summary-source: derived
   /api/v2/customers/{customerId}/users/batch/import:
     post:
       deprecated: true
@@ -890,9 +923,10 @@ paths:
             application/json:
               schema:
                 type: string
-      summary: ''
+      summary: Customer user controller post user data V2 v2
       tags:
       - Users
+      x-summary-source: derived
   /api/v1/users:
     post:
       operationId: UserController_create_v1
@@ -901,8 +935,9 @@ paths:
         required: false
         in: query
         schema:
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
       requestBody:
         required: true
         content:
@@ -966,8 +1001,9 @@ paths:
         description: optional customer id to bind the identity to
         schema:
           format: objectid
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       responses:
         '200':
           description: ''
@@ -1070,6 +1106,8 @@ paths:
                 $ref: '#/components/schemas/User'
       tags:
       - Users
+      summary: User controller get v1
+      x-summary-source: derived
   /api/v1/customers/{customerId}/users/delegates:
     post:
       description: Create an async job that will update user delegates
@@ -1090,9 +1128,10 @@ paths:
       responses:
         '201':
           description: ''
-      summary: ''
+      summary: Users controller update user delegates v1
       tags:
       - Users
+      x-summary-source: derived
   /api/v1/customers/{customerId}/users/delegates/batch:
     post:
       description: Create an async job that will update delegates for a batch of users.
@@ -1118,67 +1157,86 @@ paths:
       responses:
         '201':
           description: ''
-      summary: ''
+      summary: Users controller update user delegates batch v1
       tags:
       - Users
+      x-summary-source: derived
 components:
   schemas:
-    DelegatePermissionDto:
+    TranslateTimekeeperIdsResponseDto:
       type: object
       properties:
-        claim:
-          type: string
+        userIds:
+          description: resolved user IDs (unresolvable timekeeper IDs are silently skipped)
+          type: array
+          items:
+            type: string
       required:
-      - claim
-    UpdateUserDelegatesBatchDto:
+      - userIds
+    UserDelegateDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: objectid
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DelegatePermissionDto'
+      required:
+      - userId
+      - permissions
+    Identity:
+      type: object
+      properties:
+        type:
+          description: type of the external identity
+          enum:
+          - aderant
+          - auth0
+          - azure
+          - email
+          - external-billing-system
+          - elite
+          - intercom
+          - juris
+          - cisco-cdr
+          - mixpanel
+          - phone
+          - phone-extension
+          - salesforce
+          - segment
+          - vitally
+          - walls
+          - zendesk
+          - zoom
+          - exchange
+          - user-principal-name
+          - cisco-webex
+          - ringcentral
+          - google
+          type: string
+        value:
+          type: string
+          description: external identifier
+        customerId:
+          type:
+          - string
+          - 'null'
+          description: optional customer id to bind the identity to
+          format: objectid
+      required:
+      - type
+      - value
+    ImportManyUserDto:
       type: object
       properties:
         users:
-          description: Array of user delegate updates
           type: array
           items:
-            $ref: '#/components/schemas/UpdateUserDelegatesDto'
+            $ref: '#/components/schemas/ImportOneUserDto'
       required:
       - users
-    CreateUserV1Dto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: user id; if omitted a new one is generated
-          nullable: true
-        customerId:
-          type: string
-          description: user customer id
-          format: objectid
-        email:
-          type: string
-          description: user's email address used for login
-          example: user@example.com
-          format: email
-        firstName:
-          type: string
-          description: user's first name
-          nullable: true
-        lastName:
-          type: string
-          description: user's last name
-          nullable: true
-        timezone:
-          type: string
-          description: user's timezone
-        firstDayOfWeek:
-          type: number
-          description: 'first day of week: 1=Monday ... 7=Sunday'
-          format: double
-        identities:
-          description: a list of user's external identities. can be used to lookup this user
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-      required:
-      - customerId
-      - email
     SearchUsersResponseDto:
       type: object
       properties:
@@ -1201,26 +1259,6 @@ components:
       - totalPages
       - totalItems
       - items
-    ImportManyUserDto:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportOneUserDto'
-      required:
-      - users
-    SetSuperDelegateDto:
-      type: object
-      properties:
-        isSuperDelegate:
-          type: boolean
-        superDelegatePermissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/DelegatePermissionDto'
-      required:
-      - isSuperDelegate
     TenantDigest:
       type: object
       properties:
@@ -1243,32 +1281,273 @@ components:
       - _id
       - description
       - name
-    UpdateUserDelegatesDto:
+    EmailAliasesResponseDto:
       type: object
       properties:
-        identity:
-          description: Identity to match the user
-          allOf:
-          - $ref: '#/components/schemas/IdentityDto'
-        delegates:
-          description: Array of delegates to set for this user
+        aliases:
+          description: list of email aliases for the user
           type: array
           items:
-            $ref: '#/components/schemas/UserDelegateInfoDto'
+            type: string
       required:
-      - identity
-      - delegates
-    LookupUsersBatchRequestDto:
+      - aliases
+    PermissionDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: permission's id
+          format: objectid
+        claim:
+          type: string
+          description: permission's claim, which is service, namespace, action, and scope serialized in a string
+        description:
+          type: string
+          description: permission's description
+      required:
+      - _id
+      - claim
+      - description
+    DelegatorUserDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: user's id
+          format: objectid
+        firstName:
+          type: string
+          description: user's first name
+        lastName:
+          type: string
+          description: user's last name
+        identities:
+          description: a list of user's external identities. can be used to look up this user
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Identity'
+      required:
+      - _id
+      - firstName
+      - lastName
+    AddUserIdentitiesBulkDto:
       type: object
       properties:
         identities:
-          description: Identities to resolve to users within the customer
-          maxItems: 500
+          description: Array of identities to add to the user
+          example:
+          - type: email
+            value: user@example.com
+          - type: phone
+            value: '+1234567890'
+          - type: auth0
+            value: auth0|1234567890
+          minItems: 1
           type: array
           items:
-            $ref: '#/components/schemas/IdentityLookupParamDto'
+            $ref: '#/components/schemas/AddUserIdentityDto'
       required:
       - identities
+    OnBrokerAuthRequestDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: MongoDB id of the Auth0 client (laurel-mobile) making the token exchange
+          format: objectid
+        email:
+          type: string
+          description: user's email from the MS id_token
+          example: user@example.com
+          format: email
+        oid:
+          type: string
+          description: AAD object id (oid claim) from the MS id_token
+        tid:
+          type: string
+          description: AAD tenant GUID (tid claim) from the MS id_token — used for customer allowlist lookup
+      required:
+      - clientId
+      - email
+      - oid
+      - tid
+    UpdateUserV2Dto:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: if set, will update user's first name
+        email:
+          type: string
+          description: if set, will update user's email
+          example: user@example.com
+          format: email
+        jobTitle:
+          type: string
+          description: if set, will update user's job title
+        lastName:
+          type: string
+          description: if set, will update user's last name
+        nickname:
+          type: string
+          description: if set, will update user's nickname, can be empty
+        roleIds:
+          description: if set, will update roles that are assigned to the user
+          type: array
+          items:
+            type: string
+            format: objectid
+        seniority:
+          type: string
+          description: if set, will update user's seniority level
+        department:
+          type: string
+          description: if set, will update user's department
+        office:
+          type: string
+          description: if set, will update user's office
+        subdepartment:
+          type: string
+          description: if set, will update user's subdepartment
+        pod:
+          type: string
+          description: if set, will update user's pod
+        delegates:
+          description: if set, will update users who delegate their work to this user
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDelegateDto'
+        identities:
+          description: if set, will update user's external identities
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    DelegateUserDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: user's id
+          format: objectid
+        firstName:
+          type: string
+          description: user's first name
+        lastName:
+          type: string
+          description: user's last name
+        permissions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PermissionDigest'
+      required:
+      - _id
+      - firstName
+      - lastName
+    CustomerDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: customer's id
+          format: objectid
+        fullName:
+          type: string
+          description: customer's full name
+        tenant:
+          description: customer's tenant information
+          allOf:
+          - $ref: '#/components/schemas/TenantDigest'
+        customerSegment:
+          type:
+          - string
+          - 'null'
+          description: customer's segment
+          enum:
+          - strategic
+          - enterprise
+          - mid-market
+          - smb
+        vertical:
+          type:
+          - string
+          - 'null'
+          description: customer's vertical
+          enum:
+          - legal
+          - accounting
+      required:
+      - _id
+      - fullName
+      - tenant
+    DelegatePermissionDto:
+      type: object
+      properties:
+        claim:
+          type: string
+      required:
+      - claim
+    TranslateTimekeeperIdsRequestDto:
+      type: object
+      properties:
+        timekeeperIds:
+          description: list of timekeeper external IDs to translate to user IDs
+          maxItems: 2500
+          type: array
+          items:
+            type: string
+      required:
+      - timekeeperIds
+    OnAuthRequestDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: id of client used for logging in
+          format: objectid
+        connectionId:
+          type: string
+          description: id of the connection that was used for logging in
+        email:
+          type: string
+          description: user's email address used when logging in
+          example: user@example.com
+          format: email
+        externalClientId:
+          type: string
+          description: id of the Auth0 client the user authenticated from
+        firstName:
+          type: string
+          description: user's first name in auth0, can be empty
+        lastName:
+          type: string
+          description: user's last name in auth0, can be empty
+        name:
+          type: string
+          description: user's name in auth0, can be empty
+        nickname:
+          type: string
+          description: user's nickname in auth0, can be empty
+        phone:
+          type: string
+          description: user's phone number in auth0, can be empty
+        userId:
+          type: string
+          description: user's identifier in auth0
+      required:
+      - clientId
+      - connectionId
+      - email
+      - externalClientId
+      - firstName
+      - lastName
+      - name
+      - nickname
+      - phone
+      - userId
     UpdateUserDto:
       type: object
       properties:
@@ -1321,6 +1600,158 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identity'
+    ImportUserV2Dto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: user's email address used for login
+          example: user@example.com
+          format: email
+        firstName:
+          type: string
+          description: user's first name
+        lastName:
+          type: string
+          description: user's last name
+        timezone:
+          type: string
+          description: 'user''s timezone
+
+
+            Note: This field is stored in the configuration service, not in the identity service database.
+
+            In the GET response, this data is nested under the `config` object to reflect its source.
+
+            Here in the import DTO, it''s kept flat for simplicity.'
+        firstDayOfWeek:
+          type: number
+          description: 'user''s first day of the week
+
+
+            Note: This field is also stored in the configuration service'
+          example: ''
+          format: double
+        identities:
+          description: a list of user's external identities. can be used to lookup this user
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+      required:
+      - email
+      - firstName
+      - identities
+    RoleDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: role's id
+          format: objectid
+        name:
+          type: string
+          description: name of the role
+        permissions:
+          description: permissions granted to this users in this role
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDigest'
+      required:
+      - _id
+      - name
+      - permissions
+    AddUserIdentityDto:
+      type: object
+      properties:
+        type:
+          description: Type of the external identity
+          enum:
+          - aderant
+          - auth0
+          - azure
+          - email
+          - external-billing-system
+          - elite
+          - intercom
+          - juris
+          - cisco-cdr
+          - mixpanel
+          - phone
+          - phone-extension
+          - salesforce
+          - segment
+          - vitally
+          - walls
+          - zendesk
+          - zoom
+          - exchange
+          - user-principal-name
+          - cisco-webex
+          - ringcentral
+          - google
+          type: string
+          example: email
+        value:
+          type: string
+          description: External identifier value - cannot be empty or null
+          example: user@example.com
+          minLength: 1
+      required:
+      - type
+      - value
+    LookupUsersBatchRequestDto:
+      type: object
+      properties:
+        identities:
+          description: Identities to resolve to users within the customer
+          maxItems: 500
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityLookupParamDto'
+      required:
+      - identities
+    CreateUserV1Dto:
+      type: object
+      properties:
+        _id:
+          type:
+          - string
+          - 'null'
+          description: user id; if omitted a new one is generated
+        customerId:
+          type: string
+          description: user customer id
+          format: objectid
+        email:
+          type: string
+          description: user's email address used for login
+          example: user@example.com
+          format: email
+        firstName:
+          type:
+          - string
+          - 'null'
+          description: user's first name
+        lastName:
+          type:
+          - string
+          - 'null'
+          description: user's last name
+        timezone:
+          type: string
+          description: user's timezone
+        firstDayOfWeek:
+          type: number
+          description: 'first day of week: 1=Monday ... 7=Sunday'
+          format: double
+        identities:
+          description: a list of user's external identities. can be used to lookup this user
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+      required:
+      - customerId
+      - email
     OnAuthResponseDto:
       type: object
       properties:
@@ -1377,7 +1808,45 @@ components:
       - tenantId
       - userId
       - userEmail
-    UserResponseDto:
+    IdentityLookupParamDto:
+      type: object
+      properties:
+        type:
+          description: type of the external identity
+          enum:
+          - aderant
+          - auth0
+          - azure
+          - email
+          - external-billing-system
+          - elite
+          - intercom
+          - juris
+          - cisco-cdr
+          - mixpanel
+          - phone
+          - phone-extension
+          - salesforce
+          - segment
+          - vitally
+          - walls
+          - zendesk
+          - zoom
+          - exchange
+          - user-principal-name
+          - cisco-webex
+          - ringcentral
+          - google
+          type: string
+        value:
+          type: string
+          description: external identifier
+          maxLength: 256
+          minLength: 1
+      required:
+      - type
+      - value
+    User:
       type: object
       properties:
         _id:
@@ -1404,8 +1873,9 @@ components:
           items:
             $ref: '#/components/schemas/DelegateUserDigest'
         isSuperDelegate:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         email:
           type: string
           description: user's email address used for login
@@ -1435,8 +1905,9 @@ components:
             $ref: '#/components/schemas/RoleDigest'
         superDelegatePermissions:
           description: list of permissions assigned to Super Delegates
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/PermissionDigest'
         updatedAt:
@@ -1445,50 +1916,56 @@ components:
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
         status:
-          type: string
+          type:
+          - string
+          - 'null'
           enum:
           - active
           - adminDisabled
           - firmDisabled
-          nullable: true
         seniority:
-          type: string
+          type:
+          - string
+          - 'null'
           description: user's seniority level
-          nullable: true
         department:
-          type: string
+          type:
+          - string
+          - 'null'
           description: user's department
-          nullable: true
         office:
-          type: string
+          type:
+          - string
+          - 'null'
           description: user's office
-          nullable: true
         subdepartment:
-          type: string
+          type:
+          - string
+          - 'null'
           description: user's subdepartment
-          nullable: true
         pod:
-          type: string
+          type:
+          - string
+          - 'null'
           description: user's pod
-          nullable: true
         groupIds:
           description: user group ids that this user belongs to
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
             format: objectid
         isTestUser:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           description: whether this is a test user
-          nullable: true
         needOnboarding:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           description: whether this user needs to complete onboarding
-          nullable: true
-        config:
-          type: object
-          description: user configuration from configuration service
       required:
       - _id
       - createdAt
@@ -1503,40 +1980,22 @@ components:
       - nickname
       - roles
       - updatedAt
-    CustomerDigest:
+    AddEmailAliasesRequestDto:
       type: object
       properties:
-        _id:
-          type: string
-          description: customer's id
-          format: objectid
-        fullName:
-          type: string
-          description: customer's full name
-        tenant:
-          description: customer's tenant information
-          allOf:
-          - $ref: '#/components/schemas/TenantDigest'
-        customerSegment:
-          type: string
-          description: customer's segment
-          enum:
-          - strategic
-          - enterprise
-          - mid-market
-          - smb
-          nullable: true
-        vertical:
-          type: string
-          description: customer's vertical
-          enum:
-          - legal
-          - accounting
-          nullable: true
+        emails:
+          description: List of email alias addresses to add
+          minItems: 1
+          maxItems: 10
+          example:
+          - alias1@example.com
+          - alias2@example.com
+          type: array
+          items:
+            type: string
+            format: email
       required:
-      - _id
-      - fullName
-      - tenant
+      - emails
     ImportOneUserDto:
       type: object
       properties:
@@ -1546,21 +2005,25 @@ components:
           example: user@example.com
           format: email
         firstName:
-          type: string
+          type:
+          - string
+          - 'null'
           description: user's first name
-          nullable: true
         lastName:
-          type: string
+          type:
+          - string
+          - 'null'
           description: user's last name
-          nullable: true
         nickname:
-          type: string
+          type:
+          - string
+          - 'null'
           description: user's nickname, can be empty
-          nullable: true
         jobTitle:
-          type: string
+          type:
+          - string
+          - 'null'
           description: user's job title, can be empty
-          nullable: true
         timezone:
           type: string
           description: 'user''s timezone
@@ -1600,13 +2063,14 @@ components:
           type: boolean
           description: if the user has a billing system identity
         status:
-          type: string
+          type:
+          - string
+          - 'null'
           description: user's status
           enum:
           - active
           - adminDisabled
           - firmDisabled
-          nullable: true
       required:
       - _id
       - email
@@ -1624,28 +2088,6 @@ components:
           - firmDisabled
       required:
       - status
-    DelegateUserDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: user's id
-          format: objectid
-        firstName:
-          type: string
-          description: user's first name
-        lastName:
-          type: string
-          description: user's last name
-        permissions:
-          nullable: true
-          type: array
-          items:
-            $ref: '#/components/schemas/PermissionDigest'
-      required:
-      - _id
-      - firstName
-      - lastName
     UserIntegrationProjection:
       type: object
       properties:
@@ -1659,9 +2101,10 @@ components:
           example: user@example.com
           format: email
         name:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The concatenated and trimmed firstName and lastName or None if neither exist or are all whitespace
-          nullable: true
         relevantIdentities:
           description: the identities for this user that are relevant to the integration
           type: array
@@ -1671,293 +2114,17 @@ components:
       - _id
       - email
       - relevantIdentities
-    TranslateTimekeeperIdsRequestDto:
+    SetSuperDelegateDto:
       type: object
       properties:
-        timekeeperIds:
-          description: list of timekeeper external IDs to translate to user IDs
-          maxItems: 2500
-          type: array
-          items:
-            type: string
-      required:
-      - timekeeperIds
-    AddEmailAliasesRequestDto:
-      type: object
-      properties:
-        emails:
-          description: List of email alias addresses to add
-          minItems: 1
-          maxItems: 10
-          example:
-          - alias1@example.com
-          - alias2@example.com
-          type: array
-          items:
-            type: string
-            format: email
-      required:
-      - emails
-    ImportUserV2Dto:
-      type: object
-      properties:
-        email:
-          type: string
-          description: user's email address used for login
-          example: user@example.com
-          format: email
-        firstName:
-          type: string
-          description: user's first name
-        lastName:
-          type: string
-          description: user's last name
-        timezone:
-          type: string
-          description: 'user''s timezone
-
-
-            Note: This field is stored in the configuration service, not in the identity service database.
-
-            In the GET response, this data is nested under the `config` object to reflect its source.
-
-            Here in the import DTO, it''s kept flat for simplicity.'
-        firstDayOfWeek:
-          type: number
-          description: 'user''s first day of the week
-
-
-            Note: This field is also stored in the configuration service'
-          example: ''
-          format: double
-        identities:
-          description: a list of user's external identities. can be used to lookup this user
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-      required:
-      - email
-      - firstName
-      - identities
-    DelegatorUserDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: user's id
-          format: objectid
-        firstName:
-          type: string
-          description: user's first name
-        lastName:
-          type: string
-          description: user's last name
-        identities:
-          description: a list of user's external identities. can be used to look up this user
-          nullable: true
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-      required:
-      - _id
-      - firstName
-      - lastName
-    OnBrokerAuthRequestDto:
-      type: object
-      properties:
-        clientId:
-          type: string
-          description: MongoDB id of the Auth0 client (laurel-mobile) making the token exchange
-          format: objectid
-        email:
-          type: string
-          description: user's email from the MS id_token
-          example: user@example.com
-          format: email
-        oid:
-          type: string
-          description: AAD object id (oid claim) from the MS id_token
-        tid:
-          type: string
-          description: AAD tenant GUID (tid claim) from the MS id_token — used for customer allowlist lookup
-      required:
-      - clientId
-      - email
-      - oid
-      - tid
-    AddUserIdentitiesBulkDto:
-      type: object
-      properties:
-        identities:
-          description: Array of identities to add to the user
-          example:
-          - type: email
-            value: user@example.com
-          - type: phone
-            value: '+1234567890'
-          - type: auth0
-            value: auth0|1234567890
-          minItems: 1
-          type: array
-          items:
-            $ref: '#/components/schemas/AddUserIdentityDto'
-      required:
-      - identities
-    RoleDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: role's id
-          format: objectid
-        name:
-          type: string
-          description: name of the role
-        permissions:
-          description: permissions granted to this users in this role
-          type: array
-          items:
-            $ref: '#/components/schemas/PermissionDigest'
-      required:
-      - _id
-      - name
-      - permissions
-    UserDelegateDto:
-      type: object
-      properties:
-        userId:
-          type: string
-          format: objectid
-        permissions:
+        isSuperDelegate:
+          type: boolean
+        superDelegatePermissions:
           type: array
           items:
             $ref: '#/components/schemas/DelegatePermissionDto'
       required:
-      - userId
-      - permissions
-    User:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: user's id
-          format: objectid
-        createdAt:
-          type: string
-          description: date and time user was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        customer:
-          description: user's customer
-          allOf:
-          - $ref: '#/components/schemas/CustomerDigest'
-        delegators:
-          description: list of users whose data this user can access as a delegate
-          type: array
-          items:
-            $ref: '#/components/schemas/DelegatorUserDigest'
-        delegates:
-          description: list of users whose can access this user's data as a delegate
-          type: array
-          items:
-            $ref: '#/components/schemas/DelegateUserDigest'
-        isSuperDelegate:
-          type: boolean
-          nullable: true
-        email:
-          type: string
-          description: user's email address used for login
-          example: user@example.com
-          format: email
-        firstName:
-          type: string
-          description: user's first name
-        identities:
-          description: a list of user's external identities. can be used to lookup this user
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-        jobTitle:
-          type: string
-          description: user's job title
-        lastName:
-          type: string
-          description: user's last name
-        nickname:
-          type: string
-          description: user's nickname, can be empty
-        roles:
-          description: list of roles that are assigned to the user
-          type: array
-          items:
-            $ref: '#/components/schemas/RoleDigest'
-        superDelegatePermissions:
-          description: list of permissions assigned to Super Delegates
-          nullable: true
-          type: array
-          items:
-            $ref: '#/components/schemas/PermissionDigest'
-        updatedAt:
-          type: string
-          description: date and time user was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        status:
-          type: string
-          enum:
-          - active
-          - adminDisabled
-          - firmDisabled
-          nullable: true
-        seniority:
-          type: string
-          description: user's seniority level
-          nullable: true
-        department:
-          type: string
-          description: user's department
-          nullable: true
-        office:
-          type: string
-          description: user's office
-          nullable: true
-        subdepartment:
-          type: string
-          description: user's subdepartment
-          nullable: true
-        pod:
-          type: string
-          description: user's pod
-          nullable: true
-        groupIds:
-          description: user group ids that this user belongs to
-          nullable: true
-          type: array
-          items:
-            type: string
-            format: objectid
-        isTestUser:
-          type: boolean
-          description: whether this is a test user
-          nullable: true
-        needOnboarding:
-          type: boolean
-          description: whether this user needs to complete onboarding
-          nullable: true
-      required:
-      - _id
-      - createdAt
-      - customer
-      - delegators
-      - delegates
-      - email
-      - firstName
-      - identities
-      - jobTitle
-      - lastName
-      - nickname
-      - roles
-      - updatedAt
+      - isSuperDelegate
     UpdateCurrentUserDto:
       type: object
       properties:
@@ -2002,39 +2169,158 @@ components:
         phone:
           type: string
           description: user's phone external identity
-    UserDelegateInfoDto:
-      type: object
-      properties:
-        delegateType:
-          description: Delegate permission type
-          enum:
-          - timesheet_only
-          - timesheet_and_activities
-          type: string
-        identity:
-          description: Identity to match the delegate user
-          allOf:
-          - $ref: '#/components/schemas/IdentityDto'
-      required:
-      - delegateType
-      - identity
-    PermissionDigest:
+    UserResponseDto:
       type: object
       properties:
         _id:
           type: string
-          description: permission's id
+          description: user's id
           format: objectid
-        claim:
+        createdAt:
           type: string
-          description: permission's claim, which is service, namespace, action, and scope serialized in a string
-        description:
+          description: date and time user was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        customer:
+          description: user's customer
+          allOf:
+          - $ref: '#/components/schemas/CustomerDigest'
+        delegators:
+          description: list of users whose data this user can access as a delegate
+          type: array
+          items:
+            $ref: '#/components/schemas/DelegatorUserDigest'
+        delegates:
+          description: list of users whose can access this user's data as a delegate
+          type: array
+          items:
+            $ref: '#/components/schemas/DelegateUserDigest'
+        isSuperDelegate:
+          type:
+          - boolean
+          - 'null'
+        email:
           type: string
-          description: permission's description
+          description: user's email address used for login
+          example: user@example.com
+          format: email
+        firstName:
+          type: string
+          description: user's first name
+        identities:
+          description: a list of user's external identities. can be used to lookup this user
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        jobTitle:
+          type: string
+          description: user's job title
+        lastName:
+          type: string
+          description: user's last name
+        nickname:
+          type: string
+          description: user's nickname, can be empty
+        roles:
+          description: list of roles that are assigned to the user
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleDigest'
+        superDelegatePermissions:
+          description: list of permissions assigned to Super Delegates
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PermissionDigest'
+        updatedAt:
+          type: string
+          description: date and time user was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        status:
+          type:
+          - string
+          - 'null'
+          enum:
+          - active
+          - adminDisabled
+          - firmDisabled
+        seniority:
+          type:
+          - string
+          - 'null'
+          description: user's seniority level
+        department:
+          type:
+          - string
+          - 'null'
+          description: user's department
+        office:
+          type:
+          - string
+          - 'null'
+          description: user's office
+        subdepartment:
+          type:
+          - string
+          - 'null'
+          description: user's subdepartment
+        pod:
+          type:
+          - string
+          - 'null'
+          description: user's pod
+        groupIds:
+          description: user group ids that this user belongs to
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: objectid
+        isTestUser:
+          type:
+          - boolean
+          - 'null'
+          description: whether this is a test user
+        needOnboarding:
+          type:
+          - boolean
+          - 'null'
+          description: whether this user needs to complete onboarding
+        config:
+          type: object
+          description: user configuration from configuration service
       required:
       - _id
-      - claim
-      - description
+      - createdAt
+      - customer
+      - delegators
+      - delegates
+      - email
+      - firstName
+      - identities
+      - jobTitle
+      - lastName
+      - nickname
+      - roles
+      - updatedAt
+    UpdateUserDelegatesDto:
+      type: object
+      properties:
+        identity:
+          description: Identity to match the user
+          allOf:
+          - $ref: '#/components/schemas/IdentityDto'
+        delegates:
+          description: Array of delegates to set for this user
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDelegateInfoDto'
+      required:
+      - identity
+      - delegates
     IdentityDto:
       type: object
       properties:
@@ -2069,242 +2355,32 @@ components:
       required:
       - type
       - value
-    EmailAliasesResponseDto:
+    UserDelegateInfoDto:
       type: object
       properties:
-        aliases:
-          description: list of email aliases for the user
-          type: array
-          items:
-            type: string
-      required:
-      - aliases
-    TranslateTimekeeperIdsResponseDto:
-      type: object
-      properties:
-        userIds:
-          description: resolved user IDs (unresolvable timekeeper IDs are silently skipped)
-          type: array
-          items:
-            type: string
-      required:
-      - userIds
-    Identity:
-      type: object
-      properties:
-        type:
-          description: type of the external identity
+        delegateType:
+          description: Delegate permission type
           enum:
-          - aderant
-          - auth0
-          - azure
-          - email
-          - external-billing-system
-          - elite
-          - intercom
-          - juris
-          - cisco-cdr
-          - mixpanel
-          - phone
-          - phone-extension
-          - salesforce
-          - segment
-          - vitally
-          - walls
-          - zendesk
-          - zoom
-          - exchange
-          - user-principal-name
-          - cisco-webex
-          - ringcentral
-          - google
+          - timesheet_only
+          - timesheet_and_activities
           type: string
-        value:
-          type: string
-          description: external identifier
-        customerId:
-          type: string
-          description: optional customer id to bind the identity to
-          format: objectid
-          nullable: true
+        identity:
+          description: Identity to match the delegate user
+          allOf:
+          - $ref: '#/components/schemas/IdentityDto'
       required:
-      - type
-      - value
-    OnAuthRequestDto:
+      - delegateType
+      - identity
+    UpdateUserDelegatesBatchDto:
       type: object
       properties:
-        clientId:
-          type: string
-          description: id of client used for logging in
-          format: objectid
-        connectionId:
-          type: string
-          description: id of the connection that was used for logging in
-        email:
-          type: string
-          description: user's email address used when logging in
-          example: user@example.com
-          format: email
-        externalClientId:
-          type: string
-          description: id of the Auth0 client the user authenticated from
-        firstName:
-          type: string
-          description: user's first name in auth0, can be empty
-        lastName:
-          type: string
-          description: user's last name in auth0, can be empty
-        name:
-          type: string
-          description: user's name in auth0, can be empty
-        nickname:
-          type: string
-          description: user's nickname in auth0, can be empty
-        phone:
-          type: string
-          description: user's phone number in auth0, can be empty
-        userId:
-          type: string
-          description: user's identifier in auth0
-      required:
-      - clientId
-      - connectionId
-      - email
-      - externalClientId
-      - firstName
-      - lastName
-      - name
-      - nickname
-      - phone
-      - userId
-    AddUserIdentityDto:
-      type: object
-      properties:
-        type:
-          description: Type of the external identity
-          enum:
-          - aderant
-          - auth0
-          - azure
-          - email
-          - external-billing-system
-          - elite
-          - intercom
-          - juris
-          - cisco-cdr
-          - mixpanel
-          - phone
-          - phone-extension
-          - salesforce
-          - segment
-          - vitally
-          - walls
-          - zendesk
-          - zoom
-          - exchange
-          - user-principal-name
-          - cisco-webex
-          - ringcentral
-          - google
-          type: string
-          example: email
-        value:
-          type: string
-          description: External identifier value - cannot be empty or null
-          example: user@example.com
-          minLength: 1
-      required:
-      - type
-      - value
-    IdentityLookupParamDto:
-      type: object
-      properties:
-        type:
-          description: type of the external identity
-          enum:
-          - aderant
-          - auth0
-          - azure
-          - email
-          - external-billing-system
-          - elite
-          - intercom
-          - juris
-          - cisco-cdr
-          - mixpanel
-          - phone
-          - phone-extension
-          - salesforce
-          - segment
-          - vitally
-          - walls
-          - zendesk
-          - zoom
-          - exchange
-          - user-principal-name
-          - cisco-webex
-          - ringcentral
-          - google
-          type: string
-        value:
-          type: string
-          description: external identifier
-          maxLength: 256
-          minLength: 1
-      required:
-      - type
-      - value
-    UpdateUserV2Dto:
-      type: object
-      properties:
-        firstName:
-          type: string
-          description: if set, will update user's first name
-        email:
-          type: string
-          description: if set, will update user's email
-          example: user@example.com
-          format: email
-        jobTitle:
-          type: string
-          description: if set, will update user's job title
-        lastName:
-          type: string
-          description: if set, will update user's last name
-        nickname:
-          type: string
-          description: if set, will update user's nickname, can be empty
-        roleIds:
-          description: if set, will update roles that are assigned to the user
+        users:
+          description: Array of user delegate updates
           type: array
           items:
-            type: string
-            format: objectid
-        seniority:
-          type: string
-          description: if set, will update user's seniority level
-        department:
-          type: string
-          description: if set, will update user's department
-        office:
-          type: string
-          description: if set, will update user's office
-        subdepartment:
-          type: string
-          description: if set, will update user's subdepartment
-        pod:
-          type: string
-          description: if set, will update user's pod
-        delegates:
-          description: if set, will update users who delegate their work to this user
-          type: array
-          items:
-            $ref: '#/components/schemas/UserDelegateDto'
-        identities:
-          description: if set, will update user's external identities
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
+            $ref: '#/components/schemas/UpdateUserDelegatesDto'
+      required:
+      - users
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer
@@ -2314,3 +2390,6 @@ components:
 externalDocs:
   description: Laurel API Documentation
   url: https://developer.laurel.ai/
+x-refined-from:
+- laurel-identity-openapi-original.json
+- laurel-ingestion-openapi-original.json

@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Identity Service Ably Metrics API
+  title: Time Service Metrics API
   description: ''
   version: '1'
   contact: {}
@@ -44,6 +44,8 @@ paths:
                 $ref: '#/components/schemas/EntryCustomerMetricsResponseDto'
       tags:
       - Metrics
+      summary: Customer metrics controller get entry metrics v1
+      x-summary-source: derived
   /api/v1/metrics/entry-release:
     get:
       operationId: MetricsController_getEntryReleaseMetrics_v1
@@ -74,6 +76,8 @@ paths:
                 $ref: '#/components/schemas/EntryReleaseMetricsWithGoalResponseDto'
       tags:
       - Metrics
+      summary: Metrics controller get entry release metrics v1
+      x-summary-source: derived
   /api/v1/metrics/entry-work-dates:
     get:
       operationId: MetricsController_getEntryWorkDatesByInitiative_v1
@@ -110,30 +114,11 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/EntryWorkDateByInitiativeResponseDto'
-      summary: 'Returns the work dates on which the current user has entries for the given
-
-        initiative within the requested date range, plus the total seconds logged
-
-        on each date. Dates are returned as `YYYY-MM-DD` strings (UTC) so callers
-
-        don''t have to interpret a timestamp across timezones.'
+      summary: Returns the work dates on which the current user has entries for the given…
       tags:
       - Metrics
 components:
   schemas:
-    EntryWorkDateByInitiativeResponseDto:
-      type: object
-      properties:
-        workDate:
-          type: string
-          description: ISO calendar date (YYYY-MM-DD) on which the user logged time for this initiative.
-        totalSeconds:
-          type: number
-          description: Total time the user logged for this initiative on workDate, in seconds.
-          format: int64
-      required:
-      - workDate
-      - totalSeconds
     EntryReleaseMetricsWithGoalResponseDto:
       type: object
       properties:
@@ -157,6 +142,22 @@ components:
       required:
       - billable
       - nonBillable
+    Metrics:
+      type: object
+      properties:
+        releasedInSeconds:
+          type: number
+          description: Released in seconds
+          format: int64
+          minimum: 0
+        unreleasedInSeconds:
+          type: number
+          description: Released in seconds
+          format: int64
+          minimum: 0
+      required:
+      - releasedInSeconds
+      - unreleasedInSeconds
     EntryCustomerMetricsResponseDto:
       type: object
       properties:
@@ -183,22 +184,19 @@ components:
       - unreleasedTimeInSeconds
       - releasePendingTimeInSeconds
       - releasedTimeInSeconds
-    Metrics:
+    EntryWorkDateByInitiativeResponseDto:
       type: object
       properties:
-        releasedInSeconds:
+        workDate:
+          type: string
+          description: ISO calendar date (YYYY-MM-DD) on which the user logged time for this initiative.
+        totalSeconds:
           type: number
-          description: Released in seconds
+          description: Total time the user logged for this initiative on workDate, in seconds.
           format: int64
-          minimum: 0
-        unreleasedInSeconds:
-          type: number
-          description: Released in seconds
-          format: int64
-          minimum: 0
       required:
-      - releasedInSeconds
-      - unreleasedInSeconds
+      - workDate
+      - totalSeconds
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

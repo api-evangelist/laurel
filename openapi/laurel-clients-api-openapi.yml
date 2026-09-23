@@ -1,10 +1,9 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Identity Service Ably Clients API
-  description: ''
+  title: Laurel Clients API
   version: '1'
   contact: {}
-servers: []
+  description: 'Operations tagged Clients across 3 of this provider''s published API definitions: laurel-identity-openapi-original.json, laurel-ingestion-openapi-original.json, laurel-time-openapi-original.json. Each path carries the servers of the definition it was published in.'
 security:
 - ApiBearerAuth: []
 tags:
@@ -29,6 +28,8 @@ paths:
                 $ref: '#/components/schemas/OnCredentialsExchangeResponseDto'
       tags:
       - Clients
+      summary: Client controller on credentials exchange v1
+      x-summary-source: derived
   /api/v1/clients:
     post:
       deprecated: true
@@ -156,6 +157,8 @@ paths:
           description: ''
       tags:
       - Clients
+      summary: Clients controller import client V1 v1
+      x-summary-source: derived
   /api/v1/customers/{customerId}/clients/batch:
     post:
       operationId: ClientsController_importClientBatchV1_v1
@@ -182,6 +185,8 @@ paths:
           description: ''
       tags:
       - Clients
+      summary: Clients controller import client batch V1 v1
+      x-summary-source: derived
   /api/v1/customers/{customerId}/clients:
     get:
       operationId: CustomerClientController_search_v1
@@ -264,6 +269,8 @@ paths:
           description: ''
       tags:
       - Clients
+      summary: Customer client controller search v1
+      x-summary-source: derived
   /api/v1/customers/{customerId}/clients/external-id/{externalId}:
     get:
       operationId: CustomerClientController_getByExternalId_v1
@@ -285,6 +292,8 @@ paths:
           description: ''
       tags:
       - Clients
+      summary: Customer client controller get by external id v1
+      x-summary-source: derived
   /api/v1/customers/{customerId}/clients/{clientId}:
     get:
       operationId: CustomerClientController_getClient_v1
@@ -315,6 +324,8 @@ paths:
                 $ref: '#/components/schemas/ClientDto'
       tags:
       - Clients
+      summary: Customer client controller get client v1
+      x-summary-source: derived
   /api/v1/customers/{customerId}/clients/override-compliance-rules/affected-count:
     post:
       operationId: CustomerClientController_getAffectedCount_v1
@@ -341,6 +352,8 @@ paths:
                 $ref: '#/components/schemas/AffectedCountResponseDto'
       tags:
       - Clients
+      summary: Customer client controller get affected count v1
+      x-summary-source: derived
   /api/v1/customers/{customerId}/clients/override-compliance-rules:
     post:
       operationId: CustomerClientController_overrideComplianceRules_v1
@@ -363,6 +376,8 @@ paths:
           description: ''
       tags:
       - Clients
+      summary: Customer client controller override compliance rules v1
+      x-summary-source: derived
 components:
   schemas:
     PermissionDigest:
@@ -382,106 +397,6 @@ components:
       - _id
       - claim
       - description
-    AffectedCountResponseDto:
-      type: object
-      properties:
-        affectedClientCount:
-          type: number
-          format: double
-        affectedInitiativeCount:
-          type: number
-          format: double
-        totalAffectedCount:
-          type: number
-          format: double
-      required:
-      - affectedClientCount
-      - affectedInitiativeCount
-      - totalAffectedCount
-    Object:
-      type: object
-      properties: {}
-    OverrideComplianceRulesDto:
-      type: object
-      properties:
-        clientId:
-          type: string
-          description: DEPRECATED — use clientIds + entityType. Single source client ID.
-          deprecated: true
-          format: objectid
-        clientIds:
-          description: Source client IDs whose children will have rules reset.
-          type: array
-          items:
-            type: string
-            format: objectid
-        entityType:
-          type: string
-          description: Entity type of the source clientIds. Initiative is not valid for Apply & Override.
-          enum:
-          - parent
-          - client
-      required:
-      - clientId
-      - clientIds
-    OnCredentialsExchangeResponseDto:
-      type: object
-      properties:
-        clientId:
-          type: string
-          description: id of client used for logging in
-          format: objectid
-        permissions:
-          description: permissions granted to current client
-          type: array
-          items:
-            type: string
-        encodedPermissions:
-          type: string
-        tenantId:
-          type: string
-          description: client's tenant id
-          format: objectid
-          nullable: true
-        customerId:
-          type: string
-          description: id of the customer the client belongs to
-          format: objectid
-      required:
-      - clientId
-      - permissions
-      - encodedPermissions
-    ClientDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          format: objectid
-        externalId:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        callSign:
-          type: string
-        type:
-          type: string
-          description: if null or undefined, semantic default is ClientType.Client
-          enum:
-          - client
-          - parent
-          nullable: true
-        parentClientId:
-          type: string
-          format: objectid
-          nullable: true
-      required:
-      - _id
-      - externalId
-      - name
-      - description
-      - callSign
     Client:
       type: object
       properties:
@@ -490,10 +405,11 @@ components:
           description: client's id
           format: objectid
         customerId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: id of the customer the client belongs to
           format: objectid
-          nullable: true
         allowedCallbackUrls:
           description: list of URLs that can be call back after user authentication
           default: []
@@ -626,20 +542,23 @@ components:
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
         externalSecretExpiresAt:
-          type: string
+          type:
+          - string
+          - 'null'
           description: expiration date for customer-managed client secrets (90 days from creation)
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
-          nullable: true
         createdByUserId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: user who created this customer-managed client (only set for customer-managed clients)
           format: objectid
-          nullable: true
         permissionTier:
-          type: string
+          type:
+          - string
+          - 'null'
           description: permission tier for customer-managed clients ("read" or "readwrite")
-          nullable: true
         permissions:
           description: permissions granted to service tokens from this client
           default: []
@@ -666,15 +585,34 @@ components:
       - updatedAt
       - permissions
       - userPermissionBoundaries
-    ImportCustomerClientsBatchDto:
+    OnCredentialsExchangeResponseDto:
       type: object
       properties:
-        clients:
+        clientId:
+          type: string
+          description: id of client used for logging in
+          format: objectid
+        permissions:
+          description: permissions granted to current client
           type: array
           items:
-            $ref: '#/components/schemas/ImportCustomerClientDto'
+            type: string
+        encodedPermissions:
+          type: string
+        tenantId:
+          type:
+          - string
+          - 'null'
+          description: client's tenant id
+          format: objectid
+        customerId:
+          type: string
+          description: id of the customer the client belongs to
+          format: objectid
       required:
-      - clients
+      - clientId
+      - permissions
+      - encodedPermissions
     TenantDigest:
       type: object
       properties:
@@ -697,37 +635,6 @@ components:
       - _id
       - description
       - name
-    ImportCustomerClientDto:
-      type: object
-      properties:
-        externalId:
-          type: string
-          description: client's external id
-        name:
-          type: string
-          description: client's name
-        callSign:
-          type: string
-          description: client's call sign
-        description:
-          type: string
-          description: client's description
-        type:
-          type: string
-          description: 'client''s type (optional): if not provided semantic default is client, parent client must have type parent'
-          enum:
-          - client
-          - parent
-          nullable: true
-        parentClientExternalId:
-          type: string
-          description: parent client's external id (optional)
-          nullable: true
-      required:
-      - externalId
-      - name
-      - callSign
-      - description
     CreateClientDto:
       type: object
       properties:
@@ -825,15 +732,17 @@ components:
           - non_interactive
           type: string
         customerId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: id of the customer the client belongs to
           format: objectid
-          nullable: true
         tenantId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: client's tenant
           format: objectid
-          nullable: true
         permissionIds:
           description: ids of permissions granted to service tokens from this client
           type: array
@@ -884,10 +793,11 @@ components:
           type: string
           description: id of the auth0 client that's generating a service token
         customerId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: id of the customer the client belongs to
           format: objectid
-          nullable: true
       required:
       - clientId
       - externalClientId
@@ -1000,10 +910,11 @@ components:
           - agent
           - siem-forwarder
         customerId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: if set, updates the id the customer the client belongs to
           format: objectid
-          nullable: true
         tenantId:
           type: string
           description: if set, updates client's tenant
@@ -1014,6 +925,215 @@ components:
           items:
             type: string
             format: objectid
+    ImportCustomerClientsBatchDto:
+      type: object
+      properties:
+        clients:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportCustomerClientDto'
+      required:
+      - clients
+    ImportCustomerClientDto:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: client's external id
+        name:
+          type: string
+          description: client's name
+        callSign:
+          type: string
+          description: client's call sign
+        description:
+          type: string
+          description: client's description
+        type:
+          type:
+          - string
+          - 'null'
+          description: 'client''s type (optional): if not provided semantic default is client, parent client must have type parent'
+          enum:
+          - client
+          - parent
+        parentClientExternalId:
+          type:
+          - string
+          - 'null'
+          description: parent client's external id (optional)
+      required:
+      - externalId
+      - name
+      - callSign
+      - description
+    Object:
+      type: object
+      properties: {}
+    ClientDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: objectid
+        externalId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        callSign:
+          type: string
+        type:
+          type:
+          - string
+          - 'null'
+          description: if null or undefined, semantic default is ClientType.Client
+          enum:
+          - client
+          - parent
+        parentClientId:
+          type:
+          - string
+          - 'null'
+          format: objectid
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - callSign
+    Client_2:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: client's id
+          format: objectid
+        schemaVersion:
+          type: string
+          description: client's schemaVersion
+        customerId:
+          type: string
+          description: id of customer who owns this client
+          format: objectid
+        externalId:
+          type: string
+          description: client's external id
+        name:
+          type: string
+          description: a name that identifies this client
+        description:
+          type: string
+          description: client's description
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        type:
+          type:
+          - string
+          - 'null'
+          description: client's type, default is client
+          enum:
+          - client
+          - parent
+        parentClientId:
+          type:
+          - string
+          - 'null'
+          description: id of the parent client
+          format: objectid
+        createdAt:
+          type: string
+          description: date and time this client was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time this client was updated last
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - schemaVersion
+      - customerId
+      - externalId
+      - name
+      - description
+      - callSign
+      - createdAt
+      - updatedAt
+    AffectedCountResponseDto:
+      type: object
+      properties:
+        affectedClientCount:
+          type: number
+          format: double
+        affectedInitiativeCount:
+          type: number
+          format: double
+        totalAffectedCount:
+          type: number
+          format: double
+      required:
+      - affectedClientCount
+      - affectedInitiativeCount
+      - totalAffectedCount
+    OverrideComplianceRulesDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: DEPRECATED — use clientIds + entityType. Single source client ID.
+          deprecated: true
+          format: objectid
+        clientIds:
+          description: Source client IDs whose children will have rules reset.
+          type: array
+          items:
+            type: string
+            format: objectid
+        entityType:
+          type: string
+          description: Entity type of the source clientIds. Initiative is not valid for Apply & Override.
+          enum:
+          - parent
+          - client
+      required:
+      - clientId
+      - clientIds
+    ImportCustomerClientDto_2:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: client's external id
+        name:
+          type: string
+          description: a name that identifies this client
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        description:
+          type: string
+          description: client's description
+        type:
+          type: string
+          description: client's type, default is client
+          enum:
+          - client
+          - parent
+        parentClientId:
+          type:
+          - string
+          - 'null'
+          description: id of the parent client
+          format: objectid
+      required:
+      - externalId
+      - name
+      - callSign
+      - description
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer
@@ -1023,3 +1143,7 @@ components:
 externalDocs:
   description: Laurel API Documentation
   url: https://developer.laurel.ai/
+x-refined-from:
+- laurel-identity-openapi-original.json
+- laurel-ingestion-openapi-original.json
+- laurel-time-openapi-original.json

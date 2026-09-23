@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Identity Service Ably Timekeeper Goals API
+  title: Time Service Timekeeper Goals API
   description: ''
   version: '1'
   contact: {}
@@ -29,6 +29,8 @@ paths:
                 $ref: '#/components/schemas/TimekeeperGoalResponseDto'
       tags:
       - Timekeeper Goals
+      summary: Timekeeper goal controller update goals v1
+      x-summary-source: derived
     get:
       operationId: TimekeeperGoalController_getTimekeeperGoal_v1
       parameters: []
@@ -41,6 +43,8 @@ paths:
                 $ref: '#/components/schemas/TimekeeperGoalResponseDto'
       tags:
       - Timekeeper Goals
+      summary: Timekeeper goal controller get timekeeper goal v1
+      x-summary-source: derived
   /api/v1/customers/{customerId}/timekeeper-goals:
     put:
       operationId: CustomerTimekeeperGoalController_upsertCustomerGoal_v1
@@ -67,6 +71,8 @@ paths:
                 $ref: '#/components/schemas/CustomerTimekeeperGoalResponseDto'
       tags:
       - Timekeeper Goals
+      summary: Customer timekeeper goal controller upsert customer goal v1
+      x-summary-source: derived
     get:
       operationId: CustomerTimekeeperGoalController_getCustomerTimekeeperGoal_v1
       parameters:
@@ -86,6 +92,8 @@ paths:
                 $ref: '#/components/schemas/CustomerTimekeeperGoalResponseDto'
       tags:
       - Timekeeper Goals
+      summary: Customer timekeeper goal controller get customer timekeeper goal v1
+      x-summary-source: derived
 components:
   schemas:
     AnnualGoalRequestDto:
@@ -98,74 +106,6 @@ components:
         notInLaurelInSeconds:
           type: number
           description: Time not counted in Laurel in seconds
-          format: double
-      required:
-      - annualInSeconds
-      - notInLaurelInSeconds
-    UpsertCustomerTimekeeperGoalRequestDto:
-      type: object
-      properties:
-        startDate:
-          type: string
-          description: start day and month of the goal - year part will be ignored
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        allowUserOverrideAnnualGoalSeconds:
-          type: boolean
-          description: whether users can override this customer goal
-        allowUserOverrideGoalYearStart:
-          type: boolean
-          description: whether users can override the goal year start date
-        hideYearlyGoals:
-          type: boolean
-          description: whether to hide yearly goals from users
-        hideMonthlyGoals:
-          type: boolean
-          description: whether to hide monthly goals from users
-        hideWeeklyGoals:
-          type: boolean
-          description: whether to hide weekly goals from users
-        hideDailyGoals:
-          type: boolean
-          description: whether to hide daily goals from users
-        billable:
-          description: billable goal
-          allOf:
-          - $ref: '#/components/schemas/AnnualGoalRequestDto'
-      required:
-      - startDate
-      - allowUserOverrideAnnualGoalSeconds
-      - allowUserOverrideGoalYearStart
-      - hideYearlyGoals
-      - hideMonthlyGoals
-      - hideWeeklyGoals
-      - hideDailyGoals
-      - billable
-    UpsertTimekeeperGoalRequestDto:
-      type: object
-      properties:
-        startDate:
-          type: string
-          description: start day and month of the goal - year part will be ignored
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        billable:
-          description: billable goal
-          allOf:
-          - $ref: '#/components/schemas/AnnualGoalRequestDto'
-      required:
-      - startDate
-      - billable
-    AnnualGoalResponseDto:
-      type: object
-      properties:
-        annualInSeconds:
-          type: number
-          description: Annual goal in seconds
-          format: double
-        notInLaurelInSeconds:
-          type: number
-          description: Not in laurel goal in seconds
           format: double
       required:
       - annualInSeconds
@@ -219,6 +159,74 @@ components:
       - hideWeeklyGoals
       - hideDailyGoals
       - billable
+    UpsertTimekeeperGoalRequestDto:
+      type: object
+      properties:
+        startDate:
+          type: string
+          description: start day and month of the goal - year part will be ignored
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        billable:
+          description: billable goal
+          allOf:
+          - $ref: '#/components/schemas/AnnualGoalRequestDto'
+      required:
+      - startDate
+      - billable
+    UpsertCustomerTimekeeperGoalRequestDto:
+      type: object
+      properties:
+        startDate:
+          type: string
+          description: start day and month of the goal - year part will be ignored
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        allowUserOverrideAnnualGoalSeconds:
+          type: boolean
+          description: whether users can override this customer goal
+        allowUserOverrideGoalYearStart:
+          type: boolean
+          description: whether users can override the goal year start date
+        hideYearlyGoals:
+          type: boolean
+          description: whether to hide yearly goals from users
+        hideMonthlyGoals:
+          type: boolean
+          description: whether to hide monthly goals from users
+        hideWeeklyGoals:
+          type: boolean
+          description: whether to hide weekly goals from users
+        hideDailyGoals:
+          type: boolean
+          description: whether to hide daily goals from users
+        billable:
+          description: billable goal
+          allOf:
+          - $ref: '#/components/schemas/AnnualGoalRequestDto'
+      required:
+      - startDate
+      - allowUserOverrideAnnualGoalSeconds
+      - allowUserOverrideGoalYearStart
+      - hideYearlyGoals
+      - hideMonthlyGoals
+      - hideWeeklyGoals
+      - hideDailyGoals
+      - billable
+    AnnualGoalResponseDto:
+      type: object
+      properties:
+        annualInSeconds:
+          type: number
+          description: Annual goal in seconds
+          format: double
+        notInLaurelInSeconds:
+          type: number
+          description: Not in laurel goal in seconds
+          format: double
+      required:
+      - annualInSeconds
+      - notInLaurelInSeconds
     TimekeeperGoalResponseDto:
       type: object
       properties:

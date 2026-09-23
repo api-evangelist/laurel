@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Identity Service Ably Impersonation Events API
+  title: Identity Service Impersonation Events API
   description: ''
   version: '1'
   contact: {}
@@ -67,30 +67,6 @@ paths:
       - Impersonation Events
 components:
   schemas:
-    CreateImpersonationEventDto:
-      type: object
-      properties:
-        impersonatedUserId:
-          type: string
-          description: the user being impersonated
-          format: objectid
-        impersonatedCustomerId:
-          type: string
-          description: the customer id of the impersonated user
-          format: objectid
-        ipAddress:
-          type: string
-          description: IP address from which impersonation was initiated
-        userAgent:
-          type: string
-          description: user agent of the browser/client initiating impersonation
-        reason:
-          type: string
-          description: reason for impersonating this user
-      required:
-      - impersonatedUserId
-      - impersonatedCustomerId
-      - reason
     ImpersonationEvent:
       type: object
       properties:
@@ -137,6 +113,30 @@ components:
       - reason
       - createdAt
       - updatedAt
+    CreateImpersonationEventDto:
+      type: object
+      properties:
+        impersonatedUserId:
+          type: string
+          description: the user being impersonated
+          format: objectid
+        impersonatedCustomerId:
+          type: string
+          description: the customer id of the impersonated user
+          format: objectid
+        ipAddress:
+          type: string
+          description: IP address from which impersonation was initiated
+        userAgent:
+          type: string
+          description: user agent of the browser/client initiating impersonation
+        reason:
+          type: string
+          description: reason for impersonating this user
+      required:
+      - impersonatedUserId
+      - impersonatedCustomerId
+      - reason
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

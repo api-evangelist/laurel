@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Identity Service Ably OAuth API
+  title: Identity Service O Auth API
   description: ''
   version: '1'
   contact: {}
@@ -29,6 +29,8 @@ paths:
                 $ref: '#/components/schemas/ServiceTokenResponseDto'
       tags:
       - OAuth
+      summary: Oauth controller create service token v1
+      x-summary-source: derived
 components:
   schemas:
     ServiceTokenResponseDto:

@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Identity Service Ably Delegators API
+  title: Identity Service Delegators API
   description: ''
   version: '1'
   contact: {}
@@ -35,22 +35,25 @@ paths:
         schema:
           minLength: 2
           maxLength: 100
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       - name: includeRoles
         required: false
         in: query
         schema:
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
       - name: excludeRoles
         required: false
         in: query
         schema:
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
       responses:
@@ -62,28 +65,10 @@ paths:
                 $ref: '#/components/schemas/SearchDelegatorsResponse'
       tags:
       - Delegators
+      summary: Delegator controller search v1
+      x-summary-source: derived
 components:
   schemas:
-    SearchDelegatorsResponse:
-      type: object
-      properties:
-        nextPage:
-          type: number
-          description: next page number. if it is undefined it means this is the last page
-          format: double
-        items:
-          description: the list of items in the current page
-          type: array
-          items:
-            $ref: '#/components/schemas/UserLite'
-        totalPages:
-          type: number
-        totalItems:
-          type: number
-      required:
-      - items
-      - totalPages
-      - totalItems
     UserLite:
       type: object
       properties:
@@ -106,19 +91,40 @@ components:
           type: boolean
           description: if the user has a billing system identity
         status:
-          type: string
+          type:
+          - string
+          - 'null'
           description: user's status
           enum:
           - active
           - adminDisabled
           - firmDisabled
-          nullable: true
       required:
       - _id
       - email
       - firstName
       - lastName
       - isTimekeeperIdSet
+    SearchDelegatorsResponse:
+      type: object
+      properties:
+        nextPage:
+          type: number
+          description: next page number. if it is undefined it means this is the last page
+          format: double
+        items:
+          description: the list of items in the current page
+          type: array
+          items:
+            $ref: '#/components/schemas/UserLite'
+        totalPages:
+          type: number
+        totalItems:
+          type: number
+      required:
+      - items
+      - totalPages
+      - totalItems
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

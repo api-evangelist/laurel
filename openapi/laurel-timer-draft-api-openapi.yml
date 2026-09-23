@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Identity Service Ably Timer Draft API
+  title: Time Service Timer Draft API
   description: ''
   version: '1'
   contact: {}
@@ -33,6 +33,8 @@ paths:
                   type: object
       tags:
       - Timer Draft
+      summary: Timer draft controller find many by date v1
+      x-summary-source: derived
     post:
       operationId: TimerDraftController_createOne_v1
       parameters: []
@@ -51,6 +53,8 @@ paths:
                 type: object
       tags:
       - Timer Draft
+      summary: Timer draft controller create one v1
+      x-summary-source: derived
   /api/v1/timer-drafts/{timerDraftId}:
     patch:
       operationId: TimerDraftController_updateOne_v1
@@ -77,6 +81,8 @@ paths:
                 type: object
       tags:
       - Timer Draft
+      summary: Timer draft controller update one v1
+      x-summary-source: derived
     delete:
       operationId: TimerDraftController_deleteOne_v1
       parameters:
@@ -96,30 +102,10 @@ paths:
                 type: object
       tags:
       - Timer Draft
+      summary: Timer draft controller delete one v1
+      x-summary-source: derived
 components:
   schemas:
-    UpdateTimerDraftRequestDto:
-      type: object
-      properties:
-        date:
-          type: string
-          description: if set, will update timer draft's date
-          example: '2022-08-12'
-          format: iso-date
-        initiativeId:
-          type: string
-          description: if set, will update timer draft's initiative
-          format: objectid
-        summary:
-          type: string
-          description: if set, will update timer draft's summary
-          maxLength: 1024
-        codeIds:
-          description: timer draft's code ids
-          type: array
-          items:
-            type: string
-            format: objectid
     CreateTimerDraftRequestDto:
       type: object
       properties:
@@ -146,6 +132,28 @@ components:
       - date
       - initiativeId
       - summary
+    UpdateTimerDraftRequestDto:
+      type: object
+      properties:
+        date:
+          type: string
+          description: if set, will update timer draft's date
+          example: '2022-08-12'
+          format: iso-date
+        initiativeId:
+          type: string
+          description: if set, will update timer draft's initiative
+          format: objectid
+        summary:
+          type: string
+          description: if set, will update timer draft's summary
+          maxLength: 1024
+        codeIds:
+          description: timer draft's code ids
+          type: array
+          items:
+            type: string
+            format: objectid
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

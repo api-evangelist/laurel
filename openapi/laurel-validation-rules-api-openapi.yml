@@ -1,10 +1,9 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Identity Service Ably Validation Rules API
-  description: ''
+  title: Laurel Validation Rules API
   version: '1'
   contact: {}
-servers: []
+  description: 'Operations tagged Validation Rules across 2 of this provider''s published API definitions: laurel-ingestion-openapi-original.json, laurel-time-openapi-original.json. Each path carries the servers of the definition it was published in.'
 security:
 - ApiBearerAuth: []
 tags:
@@ -36,6 +35,8 @@ paths:
           description: ''
       tags:
       - Validation Rules
+      summary: Entry validation rules controller set one for initiative v1
+      x-summary-source: derived
   /api/v1/validations/rules/applicable:
     get:
       operationId: EntryValidationRulesController_findApplicable_v1
@@ -46,8 +47,9 @@ paths:
         description: initiative's identifier
         schema:
           format: objectid
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       responses:
         '200':
           description: ''
@@ -57,6 +59,8 @@ paths:
                 $ref: '#/components/schemas/ApplicableEntryValidationRules'
       tags:
       - Validation Rules
+      summary: Entry validation rules controller find applicable v1
+      x-summary-source: derived
   /api/v1/validations/customers/{customerId}/rules:
     get:
       operationId: EntryValidationRulesController_findOneForCustomer_v1
@@ -77,6 +81,8 @@ paths:
                 $ref: '#/components/schemas/EntryValidationRules'
       tags:
       - Validation Rules
+      summary: Entry validation rules controller find one for customer v1
+      x-summary-source: derived
     post:
       operationId: EntryValidationRulesController_setOneForCustomer_v1
       parameters:
@@ -102,6 +108,8 @@ paths:
                 $ref: '#/components/schemas/EntryValidationRules'
       tags:
       - Validation Rules
+      summary: Entry validation rules controller set one for customer v1
+      x-summary-source: derived
   /api/v1/validations/customers/{customerId}/initiatives/{initiativeId}/rules:
     get:
       operationId: EntryValidationRulesController_findOneForInitiative_v1
@@ -129,8 +137,18 @@ paths:
                 $ref: '#/components/schemas/EntryValidationRules'
       tags:
       - Validation Rules
+      summary: Entry validation rules controller find one for initiative v1
+      x-summary-source: derived
 components:
   schemas:
+    SetInitiativeLevelEntryValidationRulesDto:
+      type: object
+      properties:
+        requiredCodeTypeExternalIds:
+          description: code type external identifiers that are required for an entry
+          type: array
+          items:
+            type: string
     EntryValidationRules:
       type: object
       properties:
@@ -140,40 +158,48 @@ components:
           format: objectid
         canReleaseOnFutureDates:
           description: per-billability control for future-date release permission
-          nullable: true
-          type: object
+          type:
+          - object
+          - 'null'
           allOf:
           - $ref: '#/components/schemas/CanReleaseOnFutureDates'
         cannotReleaseNegativeIncrement:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           description: whether if negative increments cannot be released or not
-          nullable: true
         cannotReleaseZeroIncrement:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           description: whether if zero increments cannot be released or not
-          nullable: true
         isWorkingTimekeeperValidationEnabled:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           description: whether working timekeeper validation is enabled (Super Laurel admins only)
-          nullable: true
         customMessage:
-          type: string
+          type:
+          - string
+          - 'null'
           description: firm-specific custom message shown when working timekeeper validation blocks an entry release
           maxLength: 1000
           minLength: 1
-          nullable: true
         isDailyLimitValidationEnabled:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           description: whether 24-hour daily release limit validation is enabled
-          nullable: true
         allowEntryDateRestrictions:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           description: whether entry date restrictions are allowed for this customer
-          nullable: true
         allowNarrativeLineBreaks:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           description: whether line breaks are allowed in the narrative/summary field (client-side enforcement)
-          nullable: true
         createdAt:
           type: string
           description: the date and time these rules were first created
@@ -185,14 +211,14 @@ components:
           format: objectid
         initiative:
           description: the initiative that these validation rules apply to
-          nullable: true
           oneOf:
           - $ref: '#/components/schemas/PmsInitiativeDigest'
           - $ref: '#/components/schemas/UserInitiativeDigest'
         isSummaryRequired:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           description: whether summary is required for the entry or not
-          nullable: true
         requiredCodeTypes:
           description: code type identifiers that are required for an entry
           default: []
@@ -213,124 +239,14 @@ components:
       - customerId
       - requiredCodeTypes
       - updatedAt
-    CanReleaseOnFutureDates:
-      type: object
-      properties:
-        billable:
-          type: boolean
-          description: whether billable entries can be released on future dates
-        nonBillable:
-          type: boolean
-          description: whether non-billable entries can be released on future dates
-      required:
-      - billable
-      - nonBillable
-    UserInitiativeDigest:
-      type: object
-      properties:
-        type:
-          description: initiative's type
-          enum:
-          - user
-          type: string
-        _id:
-          type: string
-          description: initiative's id
-          format: objectid
-        billingType:
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
-          type: string
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this pms initiative
-          nullable: true
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative
-          format: double
-        status:
-          type: string
-          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
-
-            with entries whose denormalized digest predates this field — those entries
-
-            gain status on the next initiative update via natural digest propagation.'
-          enum:
-          - active
-          - inactive
-          nullable: true
-        locale:
-          type: string
-          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
-          enum:
-          - da-DK
-          - de-DE
-          - en-CA
-          - en-GB
-          - en-US
-          - es-ES
-          - es-MX
-          - fi-FI
-          - fr-CA
-          - fr-FR
-          - is-IS
-          - it-IT
-          - ko-KR
-          - nl-NL
-          - no-NO
-          - pt-PT
-          - sv-SE
-          nullable: true
-        name:
-          type: string
-          description: the name user has given this initiative
-      required:
-      - type
-      - _id
-      - billingType
-      - unitIncrements
-      - name
-    CodeTypeDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: code type's id
-          format: objectid
-        externalId:
-          type: string
-          description: code type's external id
-        name:
-          type: string
-          description: code type's name
-        semanticType:
-          type: string
-          description: code type's semantic type
-          enum:
-          - action
-          - activity
-          - location
-          - phase
-          - task
-          nullable: true
-        orderingSequence:
-          type: string
-          description: ordering sequence for UI sorting (alphanumeric)
-          nullable: true
-      required:
-      - _id
-      - externalId
-      - name
     ApplicableEntryValidationRules:
       type: object
       properties:
         canReleaseOnFutureDates:
           description: per-billability control for future-date release permission (null = not yet migrated)
-          nullable: true
-          type: object
+          type:
+          - object
+          - 'null'
           allOf:
           - $ref: '#/components/schemas/CanReleaseOnFutureDates'
         cannotReleaseNegativeIncrement:
@@ -352,11 +268,12 @@ components:
           type: boolean
           description: whether working timekeeper validation is enabled
         customMessage:
-          type: string
+          type:
+          - string
+          - 'null'
           description: firm-specific custom message shown when working timekeeper validation blocks an entry release
           maxLength: 1000
           minLength: 1
-          nullable: true
         isDailyLimitValidationEnabled:
           type: boolean
           description: whether 24-hour daily release limit validation is enabled
@@ -375,6 +292,18 @@ components:
       - isWorkingTimekeeperValidationEnabled
       - isDailyLimitValidationEnabled
       - requiredCodeTypes
+    CanReleaseOnFutureDates:
+      type: object
+      properties:
+        billable:
+          type: boolean
+          description: whether billable entries can be released on future dates
+        nonBillable:
+          type: boolean
+          description: whether non-billable entries can be released on future dates
+      required:
+      - billable
+      - nonBillable
     PmsInitiativeDigest:
       type: object
       properties:
@@ -395,15 +324,18 @@ components:
           - non-billable
           type: string
         callSign:
-          type: string
+          type:
+          - string
+          - 'null'
           description: a short name or abbreviation that identifies this pms initiative
-          nullable: true
         unitIncrements:
           type: number
           description: unit of billing increments for this initiative
           format: double
         status:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'initiative''s status (active/inactive). Optional for backwards compatibility
 
             with entries whose denormalized digest predates this field — those entries
@@ -412,9 +344,10 @@ components:
           enum:
           - active
           - inactive
-          nullable: true
         locale:
-          type: string
+          type:
+          - string
+          - 'null'
           description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
           enum:
           - da-DK
@@ -434,7 +367,6 @@ components:
           - no-NO
           - pt-PT
           - sv-SE
-          nullable: true
         externalId:
           type: string
           description: initiative's external id
@@ -457,46 +389,110 @@ components:
       - name
       - description
       - client
+    UserInitiativeDigest:
+      type: object
+      properties:
+        type:
+          description: initiative's type
+          enum:
+          - user
+          type: string
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type:
+          - string
+          - 'null'
+          description: a short name or abbreviation that identifies this pms initiative
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        status:
+          type:
+          - string
+          - 'null'
+          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
+
+            with entries whose denormalized digest predates this field — those entries
+
+            gain status on the next initiative update via natural digest propagation.'
+          enum:
+          - active
+          - inactive
+        locale:
+          type:
+          - string
+          - 'null'
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+        name:
+          type: string
+          description: the name user has given this initiative
+      required:
+      - type
+      - _id
+      - billingType
+      - unitIncrements
+      - name
     SetEntryValidationRulesDto:
       type: object
       properties:
         cannotReleaseNegativeIncrement:
           type: boolean
           description: whether users can release negative increments or not
-          nullable: false
         cannotReleaseZeroIncrement:
           type: boolean
           description: whether users can release zero increments or not
-          nullable: false
         isSummaryRequired:
           type: boolean
           description: whether summary is required for an entry or not
-          nullable: false
         isWorkingTimekeeperValidationEnabled:
           type: boolean
           description: whether working timekeeper validation is enabled (Super Laurel admins only)
-          nullable: false
         customMessage:
-          type: string
+          type:
+          - string
+          - 'null'
           description: firm-specific custom message shown when working timekeeper validation blocks an entry release
           maxLength: 1000
           minLength: 1
-          nullable: true
         isDailyLimitValidationEnabled:
           type: boolean
           description: whether 24-hour daily release limit validation is enabled
-          nullable: false
         allowEntryDateRestrictions:
           type: boolean
           description: whether entry date restrictions are allowed for this customer
-          nullable: false
         allowNarrativeLineBreaks:
           type: boolean
           description: whether line breaks are allowed in the narrative/summary field (client-side enforcement)
-          nullable: false
         requiredCodeTypeIds:
           description: code type identifiers that are required for an entry
-          nullable: false
           type: array
           items:
             type: string
@@ -505,6 +501,39 @@ components:
           description: per-billability control for future-date release permission
           allOf:
           - $ref: '#/components/schemas/CanReleaseOnFutureDates'
+    CodeTypeDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: code type's id
+          format: objectid
+        externalId:
+          type: string
+          description: code type's external id
+        name:
+          type: string
+          description: code type's name
+        semanticType:
+          type:
+          - string
+          - 'null'
+          description: code type's semantic type
+          enum:
+          - action
+          - activity
+          - location
+          - phase
+          - task
+        orderingSequence:
+          type:
+          - string
+          - 'null'
+          description: ordering sequence for UI sorting (alphanumeric)
+      required:
+      - _id
+      - externalId
+      - name
     ClientDigest:
       type: object
       properties:
@@ -525,32 +554,25 @@ components:
           type: string
           description: a short name or abbreviation that identifies this client
         type:
-          type: string
+          type:
+          - string
+          - 'null'
           description: client's type, default is client
           enum:
           - client
           - parent
-          nullable: true
         parentClientId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: id of the parent client
           format: objectid
-          nullable: true
       required:
       - _id
       - externalId
       - name
       - description
       - callSign
-    SetInitiativeLevelEntryValidationRulesDto:
-      type: object
-      properties:
-        requiredCodeTypeExternalIds:
-          description: code type external identifiers that are required for an entry
-          nullable: false
-          type: array
-          items:
-            type: string
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer
@@ -560,3 +582,6 @@ components:
 externalDocs:
   description: Laurel API Documentation
   url: https://developer.laurel.ai/
+x-refined-from:
+- laurel-ingestion-openapi-original.json
+- laurel-time-openapi-original.json

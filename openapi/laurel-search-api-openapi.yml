@@ -317,387 +317,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    InitiativeSearchResultDto:
-      type: object
-      properties:
-        type:
-          description: the type of search result
-          enum:
-          - initiative
-          - initiative-props
-          - initiative-dto
-          type: string
-        score:
-          type: number
-          description: the normalized search score
-          format: double
-        initiative:
-          description: the initiative that is the result of search
-          oneOf:
-          - $ref: '#/components/schemas/PmsInitiativeResponseDto'
-          - $ref: '#/components/schemas/UserInitiativeResponseDto'
-        absoluteScore:
-          type: number
-          description: the raw Atlas Search score - internal use only, excluded from API response
-      required:
-      - type
-      - score
-      - initiative
-    UserInitiativePropsResponseDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: identifier of the initiative props
-          format: objectid
-        colorHex:
-          type: string
-          description: the hex color code for the initiative props
-        customerId:
-          type: string
-          description: identifier of the customer who owns the initiative props
-          format: objectid
-        tags:
-          type: array
-          description: array of initiative props tags
-          items:
-            type: string
-            enum:
-            - pinned
-        type:
-          description: type of initiative for this initiative props
-          enum:
-          - user
-          type: string
-        userId:
-          type: string
-          description: identifier of the user who owns the initiative props
-          format: objectid
-        initiative:
-          description: the initiative for these props
-          allOf:
-          - $ref: '#/components/schemas/UserInitiativeDigest'
-      required:
-      - _id
-      - colorHex
-      - customerId
-      - tags
-      - type
-      - userId
-      - initiative
-    UserInitiativeResponseDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: initiative's id
-          format: objectid
-        billingType:
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
-          type: string
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this initiative
-        createdAt:
-          type: string
-          description: date and time this initiative was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        customerId:
-          type: string
-          description: id of customer who owns this initiative
-          format: objectid
-        groupIds:
-          description: list of group ids that have access to this initiative
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: objectid
-        locale:
-          type:
-          - string
-          - 'null'
-          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
-          enum:
-          - da-DK
-          - de-DE
-          - en-CA
-          - en-GB
-          - en-US
-          - es-ES
-          - es-MX
-          - fi-FI
-          - fr-CA
-          - fr-FR
-          - is-IS
-          - it-IT
-          - ko-KR
-          - nl-NL
-          - no-NO
-          - pt-PT
-          - sv-SE
-        status:
-          description: initiative's status
-          enum:
-          - active
-          - inactive
-          type: string
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative
-          format: double
-        updatedAt:
-          type: string
-          description: date and time this initiative was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        type:
-          description: initiative's type
-          enum:
-          - user
-          type: string
-        name:
-          type: string
-          description: a name that identifies this initiative for the user
-        userId:
-          type: string
-          description: the userId of the user to whom this initiative belongs
-          format: objectid
-        isLaurelCreatedNotModifiable:
-          type:
-          - boolean
-          - 'null'
-          description: indicates this initiative was created by Laurel and cannot be modified or deleted except for unitIncrements
-      required:
-      - _id
-      - billingType
-      - callSign
-      - createdAt
-      - customerId
-      - status
-      - unitIncrements
-      - updatedAt
-      - type
-      - name
-      - userId
-    PmsInitiativePropsResponseDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: identifier of the initiative props
-          format: objectid
-        colorHex:
-          type: string
-          description: the hex color code for the initiative props
-        customerId:
-          type: string
-          description: identifier of the customer who owns the initiative props
-          format: objectid
-        tags:
-          type: array
-          description: array of initiative props tags
-          items:
-            type: string
-            enum:
-            - pinned
-        type:
-          description: type of initiative for this initiative props
-          enum:
-          - pms
-          type: string
-        userId:
-          type: string
-          description: identifier of the user who owns the initiative props
-          format: objectid
-        nickname:
-          type:
-          - string
-          - 'null'
-          description: the nickname assigned to this initiative by the user
-        initiative:
-          description: the initiative for these props
-          allOf:
-          - $ref: '#/components/schemas/PmsInitiativeDigest'
-      required:
-      - _id
-      - colorHex
-      - customerId
-      - tags
-      - type
-      - userId
-      - initiative
-    PmsInitiativePropsDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: identifier of the initiative props
-          format: objectid
-        colorHex:
-          type: string
-          description: the hex color code for the initiative props
-        tags:
-          type: array
-          description: array of initiative props tags
-          items:
-            type: string
-            enum:
-            - pinned
-        userId:
-          type: string
-          description: identifier of the user who owns the initiative props
-          format: objectid
-        nickname:
-          type:
-          - string
-          - 'null'
-          description: the nickname assigned to this initiative by the user
-      required:
-      - _id
-      - colorHex
-      - tags
-      - userId
-    UserInitiativePropsDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: identifier of the initiative props
-          format: objectid
-        colorHex:
-          type: string
-          description: the hex color code for the initiative props
-        tags:
-          type: array
-          description: array of initiative props tags
-          items:
-            type: string
-            enum:
-            - pinned
-        userId:
-          type: string
-          description: identifier of the user who owns the initiative props
-          format: objectid
-      required:
-      - _id
-      - colorHex
-      - tags
-      - userId
-    PmsInitiativeDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: initiative's id
-          format: objectid
-        billingType:
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
-          type: string
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this initiative
-        createdAt:
-          type: string
-          description: date and time this initiative was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        locale:
-          type:
-          - string
-          - 'null'
-          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
-          enum:
-          - da-DK
-          - de-DE
-          - en-CA
-          - en-GB
-          - en-US
-          - es-ES
-          - es-MX
-          - fi-FI
-          - fr-CA
-          - fr-FR
-          - is-IS
-          - it-IT
-          - ko-KR
-          - nl-NL
-          - no-NO
-          - pt-PT
-          - sv-SE
-        status:
-          description: initiative's status
-          enum:
-          - active
-          - inactive
-          type: string
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative
-          format: double
-        updatedAt:
-          type: string
-          description: date and time this initiative was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        description:
-          type: string
-          description: the full long name of the initiative
-        externalId:
-          type: string
-          description: initiative's external id
-        name:
-          type: string
-          description: a short name or code that identifies this initiative
-        allowFrom:
-          type:
-          - string
-          - 'null'
-          description: earliest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
-          example: '2022-08-12'
-          format: iso-date
-        allowTo:
-          type:
-          - string
-          - 'null'
-          description: latest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
-          example: '2022-08-12'
-          format: iso-date
-        client:
-          description: the client this initiative belongs to
-          allOf:
-          - $ref: '#/components/schemas/ClientDigest'
-        type:
-          type: string
-          enum:
-          - pms
-        props:
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/PmsInitiativePropsDto'
-      required:
-      - _id
-      - billingType
-      - callSign
-      - createdAt
-      - status
-      - unitIncrements
-      - updatedAt
-      - description
-      - externalId
-      - name
-      - client
-      - type
     UserInitiativeDto:
       type: object
       properties:
@@ -780,91 +399,118 @@ components:
       - updatedAt
       - name
       - type
-    PmsInitiativeDigest:
+    PmsInitiativePropsDto:
       type: object
       properties:
-        type:
-          description: initiative's type
-          enum:
-          - pms
-          - user
-          type: string
         _id:
           type: string
-          description: initiative's id
+          description: identifier of the initiative props
           format: objectid
-        billingType:
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
+        colorHex:
           type: string
-        callSign:
+          description: the hex color code for the initiative props
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+        nickname:
           type:
           - string
           - 'null'
-          description: a short name or abbreviation that identifies this pms initiative
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative
-          format: double
-        status:
-          type:
-          - string
-          - 'null'
-          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
-
-            with entries whose denormalized digest predates this field — those entries
-
-            gain status on the next initiative update via natural digest propagation.'
+          description: the nickname assigned to this initiative by the user
+      required:
+      - _id
+      - colorHex
+      - tags
+      - userId
+    UserInitiativePropsResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        customerId:
+          type: string
+          description: identifier of the customer who owns the initiative props
+          format: objectid
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        type:
+          description: type of initiative for this initiative props
           enum:
-          - active
-          - inactive
-        locale:
-          type:
-          - string
-          - 'null'
-          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
-          enum:
-          - da-DK
-          - de-DE
-          - en-CA
-          - en-GB
-          - en-US
-          - es-ES
-          - es-MX
-          - fi-FI
-          - fr-CA
-          - fr-FR
-          - is-IS
-          - it-IT
-          - ko-KR
-          - nl-NL
-          - no-NO
-          - pt-PT
-          - sv-SE
+          - user
+          type: string
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+        initiative:
+          description: the initiative for these props
+          allOf:
+          - $ref: '#/components/schemas/UserInitiativeDigest'
+      required:
+      - _id
+      - colorHex
+      - customerId
+      - tags
+      - type
+      - userId
+      - initiative
+    ClientDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: client's id
+          format: objectid
         externalId:
           type: string
-          description: initiative's external id
+          description: client's external id
         name:
           type: string
-          description: a short name or code that identifies this initiative
+          description: a name that identifies this client
         description:
           type: string
-          description: the full name of the initiative
-        client:
-          description: the client this initiative belongs to
-          allOf:
-          - $ref: '#/components/schemas/ClientDigest'
+          description: client's description
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        type:
+          type:
+          - string
+          - 'null'
+          description: client's type, default is client
+          enum:
+          - client
+          - parent
+        parentClientId:
+          type:
+          - string
+          - 'null'
+          description: id of the parent client
+          format: objectid
       required:
-      - type
       - _id
-      - billingType
-      - unitIncrements
       - externalId
       - name
       - description
-      - client
+      - callSign
     UserInitiativeDigest:
       type: object
       properties:
@@ -1053,69 +699,6 @@ components:
       - externalId
       - name
       - client
-    InitiativeDtoSearchResultDto:
-      type: object
-      properties:
-        type:
-          description: the type of search result
-          enum:
-          - initiative-dto
-          type: string
-        score:
-          type: number
-          description: the normalized search score
-          format: double
-        initiative:
-          description: the initiative that is the result of search
-          oneOf:
-          - $ref: '#/components/schemas/UserInitiativeDto'
-          - $ref: '#/components/schemas/PmsInitiativeDto'
-        absoluteScore:
-          type: number
-          description: the raw Atlas Search score - internal use only, excluded from API response
-      required:
-      - type
-      - score
-      - initiative
-    ClientDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: client's id
-          format: objectid
-        externalId:
-          type: string
-          description: client's external id
-        name:
-          type: string
-          description: a name that identifies this client
-        description:
-          type: string
-          description: client's description
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this client
-        type:
-          type:
-          - string
-          - 'null'
-          description: client's type, default is client
-          enum:
-          - client
-          - parent
-        parentClientId:
-          type:
-          - string
-          - 'null'
-          description: id of the parent client
-          format: objectid
-      required:
-      - _id
-      - externalId
-      - name
-      - description
-      - callSign
     InitiativePropsSearchResultDto:
       type: object
       properties:
@@ -1142,6 +725,423 @@ components:
       - type
       - score
       - initiativeProps
+    UserInitiativeResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this initiative
+        createdAt:
+          type: string
+          description: date and time this initiative was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        customerId:
+          type: string
+          description: id of customer who owns this initiative
+          format: objectid
+        groupIds:
+          description: list of group ids that have access to this initiative
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: objectid
+        locale:
+          type:
+          - string
+          - 'null'
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+        status:
+          description: initiative's status
+          enum:
+          - active
+          - inactive
+          type: string
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        updatedAt:
+          type: string
+          description: date and time this initiative was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        type:
+          description: initiative's type
+          enum:
+          - user
+          type: string
+        name:
+          type: string
+          description: a name that identifies this initiative for the user
+        userId:
+          type: string
+          description: the userId of the user to whom this initiative belongs
+          format: objectid
+        isLaurelCreatedNotModifiable:
+          type:
+          - boolean
+          - 'null'
+          description: indicates this initiative was created by Laurel and cannot be modified or deleted except for unitIncrements
+      required:
+      - _id
+      - billingType
+      - callSign
+      - createdAt
+      - customerId
+      - status
+      - unitIncrements
+      - updatedAt
+      - type
+      - name
+      - userId
+    InitiativeDtoSearchResultDto:
+      type: object
+      properties:
+        type:
+          description: the type of search result
+          enum:
+          - initiative-dto
+          type: string
+        score:
+          type: number
+          description: the normalized search score
+          format: double
+        initiative:
+          description: the initiative that is the result of search
+          oneOf:
+          - $ref: '#/components/schemas/UserInitiativeDto'
+          - $ref: '#/components/schemas/PmsInitiativeDto'
+        absoluteScore:
+          type: number
+          description: the raw Atlas Search score - internal use only, excluded from API response
+      required:
+      - type
+      - score
+      - initiative
+    PmsInitiativeDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this initiative
+        createdAt:
+          type: string
+          description: date and time this initiative was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        locale:
+          type:
+          - string
+          - 'null'
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+        status:
+          description: initiative's status
+          enum:
+          - active
+          - inactive
+          type: string
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        updatedAt:
+          type: string
+          description: date and time this initiative was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        description:
+          type: string
+          description: the full long name of the initiative
+        externalId:
+          type: string
+          description: initiative's external id
+        name:
+          type: string
+          description: a short name or code that identifies this initiative
+        allowFrom:
+          type:
+          - string
+          - 'null'
+          description: earliest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+        allowTo:
+          type:
+          - string
+          - 'null'
+          description: latest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+        client:
+          description: the client this initiative belongs to
+          allOf:
+          - $ref: '#/components/schemas/ClientDigest'
+        type:
+          type: string
+          enum:
+          - pms
+        props:
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsDto'
+      required:
+      - _id
+      - billingType
+      - callSign
+      - createdAt
+      - status
+      - unitIncrements
+      - updatedAt
+      - description
+      - externalId
+      - name
+      - client
+      - type
+    InitiativeSearchResultDto:
+      type: object
+      properties:
+        type:
+          description: the type of search result
+          enum:
+          - initiative
+          - initiative-props
+          - initiative-dto
+          type: string
+        score:
+          type: number
+          description: the normalized search score
+          format: double
+        initiative:
+          description: the initiative that is the result of search
+          oneOf:
+          - $ref: '#/components/schemas/PmsInitiativeResponseDto'
+          - $ref: '#/components/schemas/UserInitiativeResponseDto'
+        absoluteScore:
+          type: number
+          description: the raw Atlas Search score - internal use only, excluded from API response
+      required:
+      - type
+      - score
+      - initiative
+    PmsInitiativePropsResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        customerId:
+          type: string
+          description: identifier of the customer who owns the initiative props
+          format: objectid
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        type:
+          description: type of initiative for this initiative props
+          enum:
+          - pms
+          type: string
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+        nickname:
+          type:
+          - string
+          - 'null'
+          description: the nickname assigned to this initiative by the user
+        initiative:
+          description: the initiative for these props
+          allOf:
+          - $ref: '#/components/schemas/PmsInitiativeDigest'
+      required:
+      - _id
+      - colorHex
+      - customerId
+      - tags
+      - type
+      - userId
+      - initiative
+    PmsInitiativeDigest:
+      type: object
+      properties:
+        type:
+          description: initiative's type
+          enum:
+          - pms
+          - user
+          type: string
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type:
+          - string
+          - 'null'
+          description: a short name or abbreviation that identifies this pms initiative
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        status:
+          type:
+          - string
+          - 'null'
+          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
+
+            with entries whose denormalized digest predates this field — those entries
+
+            gain status on the next initiative update via natural digest propagation.'
+          enum:
+          - active
+          - inactive
+        locale:
+          type:
+          - string
+          - 'null'
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+        externalId:
+          type: string
+          description: initiative's external id
+        name:
+          type: string
+          description: a short name or code that identifies this initiative
+        description:
+          type: string
+          description: the full name of the initiative
+        client:
+          description: the client this initiative belongs to
+          allOf:
+          - $ref: '#/components/schemas/ClientDigest'
+      required:
+      - type
+      - _id
+      - billingType
+      - unitIncrements
+      - externalId
+      - name
+      - description
+      - client
+    UserInitiativePropsDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+      required:
+      - _id
+      - colorHex
+      - tags
+      - userId
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

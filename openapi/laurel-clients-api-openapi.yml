@@ -380,23 +380,25 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PermissionDigest:
+    OnCredentialsExchangeRequestDto:
       type: object
       properties:
-        _id:
+        clientId:
           type: string
-          description: permission's id
+          description: id of client used for logging in
           format: objectid
-        claim:
+        externalClientId:
           type: string
-          description: permission's claim, which is service, namespace, action, and scope serialized in a string
-        description:
-          type: string
-          description: permission's description
+          description: id of the auth0 client that's generating a service token
+        customerId:
+          type:
+          - string
+          - 'null'
+          description: id of the customer the client belongs to
+          format: objectid
       required:
-      - _id
-      - claim
-      - description
+      - clientId
+      - externalClientId
     Client:
       type: object
       properties:
@@ -585,6 +587,23 @@ components:
       - updatedAt
       - permissions
       - userPermissionBoundaries
+    PermissionDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: permission's id
+          format: objectid
+        claim:
+          type: string
+          description: permission's claim, which is service, namespace, action, and scope serialized in a string
+        description:
+          type: string
+          description: permission's description
+      required:
+      - _id
+      - claim
+      - description
     OnCredentialsExchangeResponseDto:
       type: object
       properties:
@@ -613,28 +632,6 @@ components:
       - clientId
       - permissions
       - encodedPermissions
-    TenantDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: tenant's id
-          format: objectid
-        description:
-          type: string
-          description: tenant's description, can be empty
-        name:
-          enum:
-          - iad
-          - lhr
-          - syd
-          - pdx
-          - yul
-          type: string
-      required:
-      - _id
-      - description
-      - name
     CreateClientDto:
       type: object
       properties:
@@ -782,25 +779,6 @@ components:
       - allowedCallbackUrls
       - allowedLogoutUrls
       - allowedCorsOrigins
-    OnCredentialsExchangeRequestDto:
-      type: object
-      properties:
-        clientId:
-          type: string
-          description: id of client used for logging in
-          format: objectid
-        externalClientId:
-          type: string
-          description: id of the auth0 client that's generating a service token
-        customerId:
-          type:
-          - string
-          - 'null'
-          description: id of the customer the client belongs to
-          format: objectid
-      required:
-      - clientId
-      - externalClientId
     UpdateClientDto:
       type: object
       properties:
@@ -925,15 +903,28 @@ components:
           items:
             type: string
             format: objectid
-    ImportCustomerClientsBatchDto:
+    TenantDigest:
       type: object
       properties:
-        clients:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportCustomerClientDto'
+        _id:
+          type: string
+          description: tenant's id
+          format: objectid
+        description:
+          type: string
+          description: tenant's description, can be empty
+        name:
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+          type: string
       required:
-      - clients
+      - _id
+      - description
+      - name
     ImportCustomerClientDto:
       type: object
       properties:
@@ -967,28 +958,33 @@ components:
       - name
       - callSign
       - description
-    Object:
-      type: object
-      properties: {}
-    ClientDto:
+    ImportCustomerClientsBatchDto:
       type: object
       properties:
-        _id:
-          type: string
-          format: objectid
+        clients:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportCustomerClientDto'
+      required:
+      - clients
+    ImportCustomerClientDto_2:
+      type: object
+      properties:
         externalId:
           type: string
+          description: client's external id
         name:
           type: string
-        description:
-          type: string
+          description: a name that identifies this client
         callSign:
           type: string
+          description: a short name or abbreviation that identifies this client
+        description:
+          type: string
+          description: client's description
         type:
-          type:
-          - string
-          - 'null'
-          description: if null or undefined, semantic default is ClientType.Client
+          type: string
+          description: client's type, default is client
           enum:
           - client
           - parent
@@ -996,13 +992,13 @@ components:
           type:
           - string
           - 'null'
+          description: id of the parent client
           format: objectid
       required:
-      - _id
       - externalId
       - name
-      - description
       - callSign
+      - description
     Client_2:
       type: object
       properties:
@@ -1063,22 +1059,9 @@ components:
       - callSign
       - createdAt
       - updatedAt
-    AffectedCountResponseDto:
+    Object:
       type: object
-      properties:
-        affectedClientCount:
-          type: number
-          format: double
-        affectedInitiativeCount:
-          type: number
-          format: double
-        totalAffectedCount:
-          type: number
-          format: double
-      required:
-      - affectedClientCount
-      - affectedInitiativeCount
-      - totalAffectedCount
+      properties: {}
     OverrideComplianceRulesDto:
       type: object
       properties:
@@ -1102,24 +1085,41 @@ components:
       required:
       - clientId
       - clientIds
-    ImportCustomerClientDto_2:
+    AffectedCountResponseDto:
       type: object
       properties:
+        affectedClientCount:
+          type: number
+          format: double
+        affectedInitiativeCount:
+          type: number
+          format: double
+        totalAffectedCount:
+          type: number
+          format: double
+      required:
+      - affectedClientCount
+      - affectedInitiativeCount
+      - totalAffectedCount
+    ClientDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: objectid
         externalId:
           type: string
-          description: client's external id
         name:
           type: string
-          description: a name that identifies this client
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this client
         description:
           type: string
-          description: client's description
-        type:
+        callSign:
           type: string
-          description: client's type, default is client
+        type:
+          type:
+          - string
+          - 'null'
+          description: if null or undefined, semantic default is ClientType.Client
           enum:
           - client
           - parent
@@ -1127,13 +1127,13 @@ components:
           type:
           - string
           - 'null'
-          description: id of the parent client
           format: objectid
       required:
+      - _id
       - externalId
       - name
-      - callSign
       - description
+      - callSign
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

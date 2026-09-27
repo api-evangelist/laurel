@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Identity Service O Auth API
+  title: Identity Service OAuth API
   description: ''
   version: '1'
   contact: {}

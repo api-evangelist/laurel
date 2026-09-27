@@ -77,41 +77,34 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    RunCarryoverResponseDto:
+    RunCarryoverRequestDto:
       type: object
       properties:
-        _id:
-          type: string
-          format: objectid
-        customerId:
-          type: string
-          format: objectid
-        userId:
-          type: string
-          format: objectid
         date:
           type: string
-        createdAt:
-          type: string
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        state:
-          oneOf:
-          - $ref: '#/components/schemas/TimerCarryoverInProgressState'
-          - $ref: '#/components/schemas/TimerCarryoverCompletedState'
-          - $ref: '#/components/schemas/TimerCarryoverFailedState'
       required:
-      - _id
-      - customerId
-      - userId
       - date
-      - createdAt
-      - updatedAt
-      - state
+    TimerCarryoverInProgressState:
+      type: object
+      properties:
+        type:
+          enum:
+          - in_progress
+          type: string
+      required:
+      - type
+    TimerCarryoverFailedState:
+      type: object
+      properties:
+        type:
+          enum:
+          - failed
+          type: string
+        message:
+          type: string
+      required:
+      - type
+      - message
     TimerCarryoverResponseDto:
       type: object
       properties:
@@ -147,34 +140,41 @@ components:
       - createdAt
       - updatedAt
       - state
-    TimerCarryoverFailedState:
+    RunCarryoverResponseDto:
       type: object
       properties:
-        type:
-          enum:
-          - failed
+        _id:
           type: string
-        message:
+          format: objectid
+        customerId:
           type: string
-      required:
-      - type
-      - message
-    RunCarryoverRequestDto:
-      type: object
-      properties:
+          format: objectid
+        userId:
+          type: string
+          format: objectid
         date:
           type: string
-      required:
-      - date
-    TimerCarryoverInProgressState:
-      type: object
-      properties:
-        type:
-          enum:
-          - in_progress
+        createdAt:
           type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        state:
+          oneOf:
+          - $ref: '#/components/schemas/TimerCarryoverInProgressState'
+          - $ref: '#/components/schemas/TimerCarryoverCompletedState'
+          - $ref: '#/components/schemas/TimerCarryoverFailedState'
       required:
-      - type
+      - _id
+      - customerId
+      - userId
+      - date
+      - createdAt
+      - updatedAt
+      - state
     TimerCarryoverCompletedState:
       type: object
       properties:

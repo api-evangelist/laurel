@@ -61,28 +61,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UpdateSettingsRequestDto:
-      type: object
-      properties:
-        isReleasePaused:
-          type: boolean
-          description: pause release
-        useEntryNote:
-          type: boolean
-        startOfTheWeek:
-          type: string
-          description: define the start of the week
-          enum:
-          - monday
-          - tuesday
-          - wednesday
-          - thursday
-          - friday
-          - saturday
-          - sunday
-        enableOptionalCodes:
-          type: boolean
-          description: enable optional codes on the entry form
     Settings:
       type: object
       properties:
@@ -119,6 +97,28 @@ components:
       - createdAt
       - updatedAt
       - items
+    UpdateSettingsRequestDto:
+      type: object
+      properties:
+        isReleasePaused:
+          type: boolean
+          description: pause release
+        useEntryNote:
+          type: boolean
+        startOfTheWeek:
+          type: string
+          description: define the start of the week
+          enum:
+          - monday
+          - tuesday
+          - wednesday
+          - thursday
+          - friday
+          - saturday
+          - sunday
+        enableOptionalCodes:
+          type: boolean
+          description: enable optional codes on the entry form
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

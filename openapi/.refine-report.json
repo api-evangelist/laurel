@@ -47,9 +47,7 @@
     "laurel-timesheets-api-openapi.yml",
     "laurel-work-groups-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -117,8 +115,7 @@
     "tag 'Initiatives' spans 2 source specs (laurel-ingestion-openapi-original.json, laurel-time-openapi-original.json): per-path servers applied",
     "tag 'Validation Rules' spans 2 source specs (laurel-ingestion-openapi-original.json, laurel-time-openapi-original.json): per-path servers applied",
     "tag 'Working Timekeepers' spans 2 source specs (laurel-ingestion-openapi-original.json, laurel-time-openapi-original.json): per-path servers applied",
-    "superseded outputs removed: laurel-o-auth-api-openapi.yml",
-    "apis.yml register: written (+3 apis, 40 total)"
+    "apis.yml register: written (+2 apis, 40 total)"
   ],
   "skipped": [
     "laurel-ably-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -140,7 +137,7 @@
     "laurel-initiatives-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "laurel-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "laurel-narrative-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "laurel-o-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "laurel-oauth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "laurel-onboarding-profiles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "laurel-permissions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "laurel-public-api-openapi.yml: previously refined output, superseded by openapi/_original/",

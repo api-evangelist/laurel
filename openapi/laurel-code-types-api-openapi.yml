@@ -438,56 +438,21 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    DefaultCode:
+    CreateDefaultCodeDto:
       type: object
       properties:
-        _id:
-          type: string
-          description: id of default code
-          format: objectid
-        customerId:
-          type: string
-          description: id of customer who owns this default code configuration
-          format: objectid
-        userId:
-          type: string
-          description: id of user who owns this default, if only the customer id is set it means its a customer wide default code
-          format: objectid
-        codeTypeId:
-          type: string
-          description: code type id for the default code
-          format: objectid
         codeId:
           type: string
           description: code id for the default code
           format: objectid
         initiativeBillingType:
           type: string
-          description: initiative's billing type
+          description: optionally provide billable or non-billable
           enum:
           - billable
           - non-billable
-        schemaVersion:
-          type: string
-          description: schema version
-        createdAt:
-          type: string
-          description: date and time this was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          description: date and time this was updated last
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
       required:
-      - _id
-      - customerId
-      - codeTypeId
       - codeId
-      - schemaVersion
-      - createdAt
-      - updatedAt
     CodeType:
       type: object
       properties:
@@ -552,21 +517,6 @@ components:
       - name
       - createdAt
       - updatedAt
-    CreateDefaultCodeDto:
-      type: object
-      properties:
-        codeId:
-          type: string
-          description: code id for the default code
-          format: objectid
-        initiativeBillingType:
-          type: string
-          description: optionally provide billable or non-billable
-          enum:
-          - billable
-          - non-billable
-      required:
-      - codeId
     ImportCustomerCodeTypeDto:
       type: object
       properties:
@@ -597,6 +547,56 @@ components:
       required:
       - externalId
       - name
+    DefaultCode:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: id of default code
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer who owns this default code configuration
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns this default, if only the customer id is set it means its a customer wide default code
+          format: objectid
+        codeTypeId:
+          type: string
+          description: code type id for the default code
+          format: objectid
+        codeId:
+          type: string
+          description: code id for the default code
+          format: objectid
+        initiativeBillingType:
+          type: string
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+        schemaVersion:
+          type: string
+          description: schema version
+        createdAt:
+          type: string
+          description: date and time this was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time this was updated last
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - customerId
+      - codeTypeId
+      - codeId
+      - schemaVersion
+      - createdAt
+      - updatedAt
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

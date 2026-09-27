@@ -138,40 +138,6 @@ paths:
       - Onboarding Profiles
 components:
   schemas:
-    UpdatePrivacyStepSkippedDto:
-      type: object
-      properties:
-        stepType:
-          type: string
-          enum:
-          - PRIVACY
-        skippedAt:
-          type: string
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-      required:
-      - stepType
-      - skippedAt
-    UpdateOnboardingStepDto:
-      type: object
-      properties:
-        step:
-          description: step update data
-          oneOf:
-          - $ref: '#/components/schemas/UpdateBaseStepDto'
-          - $ref: '#/components/schemas/UpdatePrivacyStepDto'
-          - $ref: '#/components/schemas/UpdatePrivacyStepSkippedDto'
-      required:
-      - step
-    PrivacyStepSkippedRecord:
-      type: object
-      properties:
-        skippedAt:
-          type: string
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-      required:
-      - skippedAt
     StepRecordBase:
       type: object
       properties:
@@ -187,6 +153,53 @@ components:
           - 'null'
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
+    OnboardingSteps:
+      type: object
+      properties:
+        LANGUAGE:
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/StepRecordBase'
+        TIMEKEEPING_PREFERENCE:
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/StepRecordBase'
+        WELCOME_VIDEO:
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/StepRecordBase'
+        PRIVACY:
+          oneOf:
+          - $ref: '#/components/schemas/PrivacyStepRecord'
+          - $ref: '#/components/schemas/PrivacyStepSkippedRecord'
+        WALKTHROUGH:
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/StepRecordBase'
+    TimerFrequency:
+      type: string
+      enum:
+      - ALWAYS
+      - SOMETIMES
+      - NEVER
+      description: if set, updates how frequently user uses timers
+    TimekeepingFrequency:
+      type: string
+      enum:
+      - DAILY
+      - FEW_PER_WEEK
+      - WEEKLY
+      - MONTHLY
+      - OTHER
+      description: if set, updates how frequently user does timekeeping
     OnboardingProfile:
       type: object
       properties:
@@ -258,6 +271,34 @@ components:
       - customerId
       - createdAt
       - updatedAt
+    UpdateOnboardingProfileDto:
+      type: object
+      properties:
+        timekeepingSinceYear:
+          type:
+          - number
+          - 'null'
+          description: if set, updates year since user has been timekeeping
+          format: double
+        timekeepingFrequency:
+          description: if set, updates how frequently user does timekeeping
+          allOf:
+          - $ref: '#/components/schemas/TimekeepingFrequency'
+        usesTimers:
+          type:
+          - boolean
+          - 'null'
+          deprecated: true
+        timerFrequency:
+          description: if set, updates how frequently user uses timers
+          allOf:
+          - $ref: '#/components/schemas/TimerFrequency'
+        avgInitiativesPerDay:
+          type:
+          - number
+          - 'null'
+          description: if set, updates average number of initiatives user works on per day
+          format: double
     UpdatePrivacyStepDto:
       type: object
       properties:
@@ -308,6 +349,31 @@ components:
       - docId
       - language
       - versionId
+    UpdateOnboardingStepDto:
+      type: object
+      properties:
+        step:
+          description: step update data
+          oneOf:
+          - $ref: '#/components/schemas/UpdateBaseStepDto'
+          - $ref: '#/components/schemas/UpdatePrivacyStepDto'
+          - $ref: '#/components/schemas/UpdatePrivacyStepSkippedDto'
+      required:
+      - step
+    UpdatePrivacyStepSkippedDto:
+      type: object
+      properties:
+        stepType:
+          type: string
+          enum:
+          - PRIVACY
+        skippedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - stepType
+      - skippedAt
     UpdateBaseStepDto:
       type: object
       properties:
@@ -335,65 +401,6 @@ components:
           format: iso-date-time
       required:
       - stepType
-    UpdateOnboardingProfileDto:
-      type: object
-      properties:
-        timekeepingSinceYear:
-          type:
-          - number
-          - 'null'
-          description: if set, updates year since user has been timekeeping
-          format: double
-        timekeepingFrequency:
-          description: if set, updates how frequently user does timekeeping
-          allOf:
-          - $ref: '#/components/schemas/TimekeepingFrequency'
-        usesTimers:
-          type:
-          - boolean
-          - 'null'
-          deprecated: true
-        timerFrequency:
-          description: if set, updates how frequently user uses timers
-          allOf:
-          - $ref: '#/components/schemas/TimerFrequency'
-        avgInitiativesPerDay:
-          type:
-          - number
-          - 'null'
-          description: if set, updates average number of initiatives user works on per day
-          format: double
-    OnboardingSteps:
-      type: object
-      properties:
-        LANGUAGE:
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/StepRecordBase'
-        TIMEKEEPING_PREFERENCE:
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/StepRecordBase'
-        WELCOME_VIDEO:
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/StepRecordBase'
-        PRIVACY:
-          oneOf:
-          - $ref: '#/components/schemas/PrivacyStepRecord'
-          - $ref: '#/components/schemas/PrivacyStepSkippedRecord'
-        WALKTHROUGH:
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/StepRecordBase'
     CreateOnboardingProfileDto:
       type: object
       properties:
@@ -434,22 +441,15 @@ components:
           - 'null'
           description: average number of initiatives user works on per day
           format: double
-    TimekeepingFrequency:
-      type: string
-      enum:
-      - DAILY
-      - FEW_PER_WEEK
-      - WEEKLY
-      - MONTHLY
-      - OTHER
-      description: if set, updates how frequently user does timekeeping
-    TimerFrequency:
-      type: string
-      enum:
-      - ALWAYS
-      - SOMETIMES
-      - NEVER
-      description: if set, updates how frequently user uses timers
+    PrivacyStepSkippedRecord:
+      type: object
+      properties:
+        skippedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - skippedAt
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

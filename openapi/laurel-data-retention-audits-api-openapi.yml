@@ -73,6 +73,65 @@ paths:
       - Data Retention Audits
 components:
   schemas:
+    DataRetentionErrorDto:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error message
+        failedIds:
+          type: object
+          description: Failed IDs that encountered this error (optional)
+      required:
+      - code
+      - message
+    DataRetentionError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error message
+        failedIds:
+          type: object
+          description: Failed IDs that encountered this error (optional)
+      required:
+      - code
+      - message
+    DataRetentionSummary:
+      type: object
+      properties:
+        store:
+          description: Storage type (e.g., "mongodb", "postgres")
+          enum:
+          - mongodb
+          - postgres
+          type: string
+        namespace:
+          type: string
+          description: Database/collection or schema.table identifier
+        recordsAffected:
+          type: number
+          description: Number of records affected in this store
+          format: double
+        fields:
+          description: Field paths that were deleted
+          type: array
+          items:
+            type: string
+        successfulIds:
+          type: object
+          description: Successfully processed record IDs for this store (optional)
+      required:
+      - store
+      - namespace
+      - recordsAffected
+      - fields
     DataRetentionAudit:
       type: object
       properties:
@@ -147,35 +206,6 @@ components:
       - createdAt
       - updatedAt
       - summary
-    DataRetentionSummary:
-      type: object
-      properties:
-        store:
-          description: Storage type (e.g., "mongodb", "postgres")
-          enum:
-          - mongodb
-          - postgres
-          type: string
-        namespace:
-          type: string
-          description: Database/collection or schema.table identifier
-        recordsAffected:
-          type: number
-          description: Number of records affected in this store
-          format: double
-        fields:
-          description: Field paths that were deleted
-          type: array
-          items:
-            type: string
-        successfulIds:
-          type: object
-          description: Successfully processed record IDs for this store (optional)
-      required:
-      - store
-      - namespace
-      - recordsAffected
-      - fields
     CreateDataRetentionAuditDto:
       type: object
       properties:
@@ -263,36 +293,6 @@ components:
       - namespace
       - recordsAffected
       - fields
-    DataRetentionErrorDto:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Error message
-        failedIds:
-          type: object
-          description: Failed IDs that encountered this error (optional)
-      required:
-      - code
-      - message
-    DataRetentionError:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Error message
-        failedIds:
-          type: object
-          description: Failed IDs that encountered this error (optional)
-      required:
-      - code
-      - message
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

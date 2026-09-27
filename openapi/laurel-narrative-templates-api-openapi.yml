@@ -444,16 +444,7 @@ paths:
       - Narrative Templates
 components:
   schemas:
-    SyncUserNarrativeTemplatesRequestDto:
-      type: object
-      properties:
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/SyncUserNarrativeTemplateItemDto'
-      required:
-      - templates
-    UpdateCustomerNarrativeTemplateRequestDto:
+    CreateUserNarrativeTemplateRequestDto:
       type: object
       properties:
         name:
@@ -468,6 +459,20 @@ components:
           type: string
           description: narrative template's narrative
           maxLength: 5000
+        source:
+          type: string
+          description: 'source of the narrative template (default: "user"). Cannot be "pms-firm" for user templates.'
+          default: user
+          enum:
+          - user
+          - pms-user
+          - pms-practice-group
+          example: user
+      required:
+      - name
+      - shortcut
+      - narrative
+      - source
     SyncUserNarrativeTemplateItemDto:
       type: object
       properties:
@@ -501,7 +506,25 @@ components:
       - narrative
       - source
       - externalId
-    CreateUserNarrativeTemplateRequestDto:
+    SyncCustomerNarrativeTemplatesRequestDto:
+      type: object
+      properties:
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/SyncCustomerNarrativeTemplateItemDto'
+      required:
+      - templates
+    SyncUserNarrativeTemplatesRequestDto:
+      type: object
+      properties:
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/SyncUserNarrativeTemplateItemDto'
+      required:
+      - templates
+    UpdateCustomerNarrativeTemplateRequestDto:
       type: object
       properties:
         name:
@@ -516,20 +539,6 @@ components:
           type: string
           description: narrative template's narrative
           maxLength: 5000
-        source:
-          type: string
-          description: 'source of the narrative template (default: "user"). Cannot be "pms-firm" for user templates.'
-          default: user
-          enum:
-          - user
-          - pms-user
-          - pms-practice-group
-          example: user
-      required:
-      - name
-      - shortcut
-      - narrative
-      - source
     SyncCustomerNarrativeTemplateItemDto:
       type: object
       properties:
@@ -630,15 +639,6 @@ components:
       - name
       - shortcut
       - narrative
-    SyncCustomerNarrativeTemplatesRequestDto:
-      type: object
-      properties:
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/SyncCustomerNarrativeTemplateItemDto'
-      required:
-      - templates
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

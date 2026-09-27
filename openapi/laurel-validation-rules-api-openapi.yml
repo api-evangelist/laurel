@@ -239,6 +239,190 @@ components:
       - customerId
       - requiredCodeTypes
       - updatedAt
+    CodeTypeDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: code type's id
+          format: objectid
+        externalId:
+          type: string
+          description: code type's external id
+        name:
+          type: string
+          description: code type's name
+        semanticType:
+          type:
+          - string
+          - 'null'
+          description: code type's semantic type
+          enum:
+          - action
+          - activity
+          - location
+          - phase
+          - task
+        orderingSequence:
+          type:
+          - string
+          - 'null'
+          description: ordering sequence for UI sorting (alphanumeric)
+      required:
+      - _id
+      - externalId
+      - name
+    ClientDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: client's id
+          format: objectid
+        externalId:
+          type: string
+          description: client's external id
+        name:
+          type: string
+          description: a name that identifies this client
+        description:
+          type: string
+          description: client's description
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        type:
+          type:
+          - string
+          - 'null'
+          description: client's type, default is client
+          enum:
+          - client
+          - parent
+        parentClientId:
+          type:
+          - string
+          - 'null'
+          description: id of the parent client
+          format: objectid
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - callSign
+    UserInitiativeDigest:
+      type: object
+      properties:
+        type:
+          description: initiative's type
+          enum:
+          - user
+          type: string
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type:
+          - string
+          - 'null'
+          description: a short name or abbreviation that identifies this pms initiative
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        status:
+          type:
+          - string
+          - 'null'
+          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
+
+            with entries whose denormalized digest predates this field — those entries
+
+            gain status on the next initiative update via natural digest propagation.'
+          enum:
+          - active
+          - inactive
+        locale:
+          type:
+          - string
+          - 'null'
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+        name:
+          type: string
+          description: the name user has given this initiative
+      required:
+      - type
+      - _id
+      - billingType
+      - unitIncrements
+      - name
+    SetEntryValidationRulesDto:
+      type: object
+      properties:
+        cannotReleaseNegativeIncrement:
+          type: boolean
+          description: whether users can release negative increments or not
+        cannotReleaseZeroIncrement:
+          type: boolean
+          description: whether users can release zero increments or not
+        isSummaryRequired:
+          type: boolean
+          description: whether summary is required for an entry or not
+        isWorkingTimekeeperValidationEnabled:
+          type: boolean
+          description: whether working timekeeper validation is enabled (Super Laurel admins only)
+        customMessage:
+          type:
+          - string
+          - 'null'
+          description: firm-specific custom message shown when working timekeeper validation blocks an entry release
+          maxLength: 1000
+          minLength: 1
+        isDailyLimitValidationEnabled:
+          type: boolean
+          description: whether 24-hour daily release limit validation is enabled
+        allowEntryDateRestrictions:
+          type: boolean
+          description: whether entry date restrictions are allowed for this customer
+        allowNarrativeLineBreaks:
+          type: boolean
+          description: whether line breaks are allowed in the narrative/summary field (client-side enforcement)
+        requiredCodeTypeIds:
+          description: code type identifiers that are required for an entry
+          type: array
+          items:
+            type: string
+            format: objectid
+        canReleaseOnFutureDates:
+          description: per-billability control for future-date release permission
+          allOf:
+          - $ref: '#/components/schemas/CanReleaseOnFutureDates'
     ApplicableEntryValidationRules:
       type: object
       properties:
@@ -389,190 +573,6 @@ components:
       - name
       - description
       - client
-    UserInitiativeDigest:
-      type: object
-      properties:
-        type:
-          description: initiative's type
-          enum:
-          - user
-          type: string
-        _id:
-          type: string
-          description: initiative's id
-          format: objectid
-        billingType:
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
-          type: string
-        callSign:
-          type:
-          - string
-          - 'null'
-          description: a short name or abbreviation that identifies this pms initiative
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative
-          format: double
-        status:
-          type:
-          - string
-          - 'null'
-          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
-
-            with entries whose denormalized digest predates this field — those entries
-
-            gain status on the next initiative update via natural digest propagation.'
-          enum:
-          - active
-          - inactive
-        locale:
-          type:
-          - string
-          - 'null'
-          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
-          enum:
-          - da-DK
-          - de-DE
-          - en-CA
-          - en-GB
-          - en-US
-          - es-ES
-          - es-MX
-          - fi-FI
-          - fr-CA
-          - fr-FR
-          - is-IS
-          - it-IT
-          - ko-KR
-          - nl-NL
-          - no-NO
-          - pt-PT
-          - sv-SE
-        name:
-          type: string
-          description: the name user has given this initiative
-      required:
-      - type
-      - _id
-      - billingType
-      - unitIncrements
-      - name
-    SetEntryValidationRulesDto:
-      type: object
-      properties:
-        cannotReleaseNegativeIncrement:
-          type: boolean
-          description: whether users can release negative increments or not
-        cannotReleaseZeroIncrement:
-          type: boolean
-          description: whether users can release zero increments or not
-        isSummaryRequired:
-          type: boolean
-          description: whether summary is required for an entry or not
-        isWorkingTimekeeperValidationEnabled:
-          type: boolean
-          description: whether working timekeeper validation is enabled (Super Laurel admins only)
-        customMessage:
-          type:
-          - string
-          - 'null'
-          description: firm-specific custom message shown when working timekeeper validation blocks an entry release
-          maxLength: 1000
-          minLength: 1
-        isDailyLimitValidationEnabled:
-          type: boolean
-          description: whether 24-hour daily release limit validation is enabled
-        allowEntryDateRestrictions:
-          type: boolean
-          description: whether entry date restrictions are allowed for this customer
-        allowNarrativeLineBreaks:
-          type: boolean
-          description: whether line breaks are allowed in the narrative/summary field (client-side enforcement)
-        requiredCodeTypeIds:
-          description: code type identifiers that are required for an entry
-          type: array
-          items:
-            type: string
-            format: objectid
-        canReleaseOnFutureDates:
-          description: per-billability control for future-date release permission
-          allOf:
-          - $ref: '#/components/schemas/CanReleaseOnFutureDates'
-    CodeTypeDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: code type's id
-          format: objectid
-        externalId:
-          type: string
-          description: code type's external id
-        name:
-          type: string
-          description: code type's name
-        semanticType:
-          type:
-          - string
-          - 'null'
-          description: code type's semantic type
-          enum:
-          - action
-          - activity
-          - location
-          - phase
-          - task
-        orderingSequence:
-          type:
-          - string
-          - 'null'
-          description: ordering sequence for UI sorting (alphanumeric)
-      required:
-      - _id
-      - externalId
-      - name
-    ClientDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: client's id
-          format: objectid
-        externalId:
-          type: string
-          description: client's external id
-        name:
-          type: string
-          description: a name that identifies this client
-        description:
-          type: string
-          description: client's description
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this client
-        type:
-          type:
-          - string
-          - 'null'
-          description: client's type, default is client
-          enum:
-          - client
-          - parent
-        parentClientId:
-          type:
-          - string
-          - 'null'
-          description: id of the parent client
-          format: objectid
-      required:
-      - _id
-      - externalId
-      - name
-      - description
-      - callSign
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

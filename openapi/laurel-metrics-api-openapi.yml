@@ -119,29 +119,6 @@ paths:
       - Metrics
 components:
   schemas:
-    EntryReleaseMetricsWithGoalResponseDto:
-      type: object
-      properties:
-        billableProjectionInSeconds:
-          type: number
-          description: Projection in seconds
-          format: int64
-          minimum: 0
-        billableGoalInSeconds:
-          type: number
-          description: Goal in seconds
-          format: int64
-        billable:
-          description: Metrics for entries with billable initiatives
-          allOf:
-          - $ref: '#/components/schemas/Metrics'
-        nonBillable:
-          description: Metrics for entries with nonBillable initiatives
-          allOf:
-          - $ref: '#/components/schemas/Metrics'
-      required:
-      - billable
-      - nonBillable
     Metrics:
       type: object
       properties:
@@ -197,6 +174,29 @@ components:
       required:
       - workDate
       - totalSeconds
+    EntryReleaseMetricsWithGoalResponseDto:
+      type: object
+      properties:
+        billableProjectionInSeconds:
+          type: number
+          description: Projection in seconds
+          format: int64
+          minimum: 0
+        billableGoalInSeconds:
+          type: number
+          description: Goal in seconds
+          format: int64
+        billable:
+          description: Metrics for entries with billable initiatives
+          allOf:
+          - $ref: '#/components/schemas/Metrics'
+        nonBillable:
+          description: Metrics for entries with nonBillable initiatives
+          allOf:
+          - $ref: '#/components/schemas/Metrics'
+      required:
+      - billable
+      - nonBillable
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

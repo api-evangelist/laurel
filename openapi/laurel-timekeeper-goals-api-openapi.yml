@@ -96,16 +96,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    AnnualGoalRequestDto:
+    AnnualGoalResponseDto:
       type: object
       properties:
         annualInSeconds:
           type: number
-          description: Annual target in seconds
+          description: Annual goal in seconds
           format: double
         notInLaurelInSeconds:
           type: number
-          description: Time not counted in Laurel in seconds
+          description: Not in laurel goal in seconds
           format: double
       required:
       - annualInSeconds
@@ -159,21 +159,20 @@ components:
       - hideWeeklyGoals
       - hideDailyGoals
       - billable
-    UpsertTimekeeperGoalRequestDto:
+    AnnualGoalRequestDto:
       type: object
       properties:
-        startDate:
-          type: string
-          description: start day and month of the goal - year part will be ignored
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        billable:
-          description: billable goal
-          allOf:
-          - $ref: '#/components/schemas/AnnualGoalRequestDto'
+        annualInSeconds:
+          type: number
+          description: Annual target in seconds
+          format: double
+        notInLaurelInSeconds:
+          type: number
+          description: Time not counted in Laurel in seconds
+          format: double
       required:
-      - startDate
-      - billable
+      - annualInSeconds
+      - notInLaurelInSeconds
     UpsertCustomerTimekeeperGoalRequestDto:
       type: object
       properties:
@@ -213,20 +212,21 @@ components:
       - hideWeeklyGoals
       - hideDailyGoals
       - billable
-    AnnualGoalResponseDto:
+    UpsertTimekeeperGoalRequestDto:
       type: object
       properties:
-        annualInSeconds:
-          type: number
-          description: Annual goal in seconds
-          format: double
-        notInLaurelInSeconds:
-          type: number
-          description: Not in laurel goal in seconds
-          format: double
+        startDate:
+          type: string
+          description: start day and month of the goal - year part will be ignored
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        billable:
+          description: billable goal
+          allOf:
+          - $ref: '#/components/schemas/AnnualGoalRequestDto'
       required:
-      - annualInSeconds
-      - notInLaurelInSeconds
+      - startDate
+      - billable
     TimekeeperGoalResponseDto:
       type: object
       properties:

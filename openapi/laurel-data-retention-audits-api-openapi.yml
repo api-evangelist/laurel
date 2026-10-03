@@ -73,7 +73,36 @@ paths:
       - Data Retention Audits
 components:
   schemas:
-    DataRetentionErrorDto:
+    DataRetentionSummaryDto:
+      type: object
+      properties:
+        store:
+          description: Storage type (e.g., "mongodb", "postgres")
+          enum:
+          - mongodb
+          - postgres
+          type: string
+        namespace:
+          type: string
+          description: Database/collection or schema.table identifier
+        recordsAffected:
+          type: number
+          description: Number of records affected in this store
+          format: double
+        fields:
+          description: Field paths that were deleted
+          type: array
+          items:
+            type: string
+        successfulIds:
+          type: object
+          description: Successfully processed record IDs for this store (optional)
+      required:
+      - store
+      - namespace
+      - recordsAffected
+      - fields
+    DataRetentionError:
       type: object
       properties:
         code:
@@ -88,7 +117,7 @@ components:
       required:
       - code
       - message
-    DataRetentionError:
+    DataRetentionErrorDto:
       type: object
       properties:
         code:
@@ -132,6 +161,64 @@ components:
       - namespace
       - recordsAffected
       - fields
+    CreateDataRetentionAuditDto:
+      type: object
+      properties:
+        region:
+          description: Region where the retention was executed
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+          type: string
+        customerId:
+          type: string
+          description: Customer ID whose data was processed
+          format: objectid
+        service:
+          description: Service that initiated the retention
+          enum:
+          - enrichment-service
+          - time-service
+          - assistant-service
+          type: string
+        retentionPeriodInDays:
+          type: number
+          description: Retention period in days applied
+          format: double
+        cutoffAt:
+          type: string
+          description: Cutoff date for data retention
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        durationMs:
+          type: number
+          description: Duration of the retention operation in milliseconds
+          format: double
+        runId:
+          type: object
+          description: Unique identifier for this retention run (optional)
+        summary:
+          description: Summary of data retention operations per store/database
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/DataRetentionSummaryDto'
+        errors:
+          description: Errors encountered during processing (optional)
+          type: array
+          items:
+            $ref: '#/components/schemas/DataRetentionErrorDto'
+      required:
+      - region
+      - customerId
+      - service
+      - retentionPeriodInDays
+      - cutoffAt
+      - durationMs
+      - summary
     DataRetentionAudit:
       type: object
       properties:
@@ -206,93 +293,6 @@ components:
       - createdAt
       - updatedAt
       - summary
-    CreateDataRetentionAuditDto:
-      type: object
-      properties:
-        region:
-          description: Region where the retention was executed
-          enum:
-          - iad
-          - lhr
-          - syd
-          - pdx
-          - yul
-          type: string
-        customerId:
-          type: string
-          description: Customer ID whose data was processed
-          format: objectid
-        service:
-          description: Service that initiated the retention
-          enum:
-          - enrichment-service
-          - time-service
-          - assistant-service
-          type: string
-        retentionPeriodInDays:
-          type: number
-          description: Retention period in days applied
-          format: double
-        cutoffAt:
-          type: string
-          description: Cutoff date for data retention
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        durationMs:
-          type: number
-          description: Duration of the retention operation in milliseconds
-          format: double
-        runId:
-          type: object
-          description: Unique identifier for this retention run (optional)
-        summary:
-          description: Summary of data retention operations per store/database
-          minItems: 1
-          type: array
-          items:
-            $ref: '#/components/schemas/DataRetentionSummaryDto'
-        errors:
-          description: Errors encountered during processing (optional)
-          type: array
-          items:
-            $ref: '#/components/schemas/DataRetentionErrorDto'
-      required:
-      - region
-      - customerId
-      - service
-      - retentionPeriodInDays
-      - cutoffAt
-      - durationMs
-      - summary
-    DataRetentionSummaryDto:
-      type: object
-      properties:
-        store:
-          description: Storage type (e.g., "mongodb", "postgres")
-          enum:
-          - mongodb
-          - postgres
-          type: string
-        namespace:
-          type: string
-          description: Database/collection or schema.table identifier
-        recordsAffected:
-          type: number
-          description: Number of records affected in this store
-          format: double
-        fields:
-          description: Field paths that were deleted
-          type: array
-          items:
-            type: string
-        successfulIds:
-          type: object
-          description: Successfully processed record IDs for this store (optional)
-      required:
-      - store
-      - namespace
-      - recordsAffected
-      - fields
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

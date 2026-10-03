@@ -567,91 +567,156 @@ paths:
       - Customers
 components:
   schemas:
-    AdfsStrategy:
+    CustomerManagedClientResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: client's internal id
+          format: objectid
+        externalClientId:
+          type: string
+          description: client's Auth0 id
+        externalClientSecret:
+          type: string
+          description: client's Auth0 secret (only returned on creation, never on GET)
+        name:
+          type: string
+          description: client's name
+        description:
+          type: string
+          description: client's description
+        externalSecretExpiresAt:
+          type:
+          - string
+          - 'null'
+          description: expiration date for the client secret
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        createdByUserId:
+          type:
+          - string
+          - 'null'
+          description: user who created this client (for customer-managed clients)
+          format: objectid
+        permissionTier:
+          type:
+          - string
+          - 'null'
+          description: permission tier for this client
+        createdAt:
+          type: string
+          description: date and time client was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - externalClientId
+      - name
+      - description
+      - createdAt
+    AzureStrategy:
       type: object
       properties:
         type:
           description: type of sso strategy
           enum:
-          - adfs
+          - waad
           type: string
-          default: adfs
-        apiEnableUsers:
+          default: waad
+        clientId:
+          type: string
+          description: client id for accessing azure
+        clientSecret:
+          type: string
+          description: client secret for accessing azure
+        identityApi:
+          description: identity api used by the sso strategy
+          oneOf:
+          - $ref: '#/components/schemas/MicrosoftIdentityApi'
+          - $ref: '#/components/schemas/AzureIdentityApi'
+        azureTenantId:
+          type: string
+          description: AAD tenant GUID from the tid claim in MS tokens
+          format: uuid
+        tenantDomain:
+          type: string
+          description: azure tenant domain
+      required:
+      - type
+      - clientId
+      - clientSecret
+      - identityApi
+      - tenantDomain
+    SamlStrategy:
+      type: object
+      properties:
+        type:
+          description: type of sso strategy
+          enum:
+          - samlp
+          type: string
+          default: samlp
+        digestAlgorithm:
+          description: saml digest algorithm
+          enum:
+          - sha256
+          - sha1
+          type: string
+        fieldsMap:
+          type:
+          - object
+          - 'null'
+          description: optional map of saml response to auth0 fields
+          additionalProperties:
+            oneOf:
+            - type: string
+            - items:
+                type: string
+              type: array
+            - type: number
+            - type: boolean
+            - additionalProperties: true
+              type: object
+        signatureAlgorithm:
+          description: saml signature algorithm
+          enum:
+          - rsa-sha256
+          - rsa-sha1
+          type: string
+        signInEndpoint:
+          type: string
+          description: saml sign in endpoint
+        signingCert:
+          type: string
+          description: the certificate used for saml signature validation
+        signSamlRequest:
           type: boolean
           description: whether if saml request is signed
-        adfsServer:
-          type: string
-          description: ADFS server endpoint
-          format: uri
         tenantDomain:
           type: string
           description: home realm domain
       required:
       - type
-      - apiEnableUsers
-      - adfsServer
+      - digestAlgorithm
+      - signatureAlgorithm
+      - signInEndpoint
+      - signingCert
+      - signSamlRequest
       - tenantDomain
-    CreateCustomerDto:
+    ConnectionScimSetupResponseDto:
       type: object
       properties:
-        _id:
+        scimEndpointUrl:
           type:
           - string
           - 'null'
-          description: customer id; if omitted a new one is generated
-        code:
-          type: string
-          description: customer's 3 letter code in upper case
-          maxLength: 3
-          minLength: 3
-        fullName:
-          type: string
-          description: customer's full name
-        name:
-          type: string
-          description: customer's name in kebab case
-          format: kebab-case
-        tenantId:
-          type: string
-          description: customer's tenant id
-          format: objectid
-        pmsVendor:
+          description: SCIM endpoint URL to configure in Entra; present only when enabling
+        scimBearerToken:
           type:
           - string
           - 'null'
-          description: customer's PMS vendor
-        salesforceAccountId:
-          type:
-          - string
-          - 'null'
-          description: customer's Salesforce account ID
-        identities:
-          description: customer's external identities
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-        segment:
-          description: customer's segment
-          enum:
-          - strategic
-          - enterprise
-          - mid-market
-          - smb
-          type: string
-        vertical:
-          description: customer's vertical
-          enum:
-          - legal
-          - accounting
-          type: string
-      required:
-      - code
-      - fullName
-      - name
-      - tenantId
-      - identities
-      - segment
-      - vertical
+          description: SCIM bearer token to configure in Entra; present only when enabling
     UpdateCustomerDto:
       type: object
       properties:
@@ -702,198 +767,30 @@ components:
           - string
           - 'null'
           description: if set, updates customer's Salesforce account ID
-    Connection:
-      type: object
-      properties:
-        name:
-          type: string
-          description: connection's name
-          example: DEV-samlp-timebyping-com
-        createdAt:
-          type: string
-          description: date and time this connection was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        externalId:
-          type: string
-          description: connection's id in auth0
-        scim:
-          type:
-          - boolean
-          - 'null'
-          description: whether this connection is used for SCIM provisioning; false by default
-        strategy:
-          description: connection's strategy
-          oneOf:
-          - $ref: '#/components/schemas/AdfsStrategy'
-          - $ref: '#/components/schemas/AzureStrategy'
-          - $ref: '#/components/schemas/DatabaseStrategy'
-          - $ref: '#/components/schemas/SamlStrategy'
-        updatedAt:
-          type: string
-          description: date and time this connection was updated last
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        fqdns:
-          description: fully qualified domain names that will use this connection
-          type: array
-          items:
-            type: string
-      required:
-      - name
-      - createdAt
-      - externalId
-      - strategy
-      - updatedAt
-      - fqdns
-    TenantDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: tenant's id
-          format: objectid
-        description:
-          type: string
-          description: tenant's description, can be empty
-        name:
-          enum:
-          - iad
-          - lhr
-          - syd
-          - pdx
-          - yul
-          type: string
-      required:
-      - _id
-      - description
-      - name
-    UpdateConnectionDomainsDto:
-      type: object
-      properties:
-        fqdns:
-          minItems: 1
-          description: Fully qualified domain names for home-realm discovery. At least one domain is required.
-          example:
-          - example.com
-          - sso.example.com
-          type: array
-          items:
-            type: string
-      required:
-      - fqdns
-    CustomerRegionResponseDto:
-      type: object
-      properties:
-        region:
-          type: string
-          description: Customer's tenant region
-      required:
-      - region
-    ConnectionScimSetupResponseDto:
-      type: object
-      properties:
-        scimEndpointUrl:
-          type:
-          - string
-          - 'null'
-          description: SCIM endpoint URL to configure in Entra; present only when enabling
-        scimBearerToken:
-          type:
-          - string
-          - 'null'
-          description: SCIM bearer token to configure in Entra; present only when enabling
-    Identity:
+    AdfsStrategy:
       type: object
       properties:
         type:
-          description: type of the external identity
+          description: type of sso strategy
           enum:
-          - aderant
-          - auth0
-          - azure
-          - email
-          - external-billing-system
-          - elite
-          - intercom
-          - juris
-          - cisco-cdr
-          - mixpanel
-          - phone
-          - phone-extension
-          - salesforce
-          - segment
-          - vitally
-          - walls
-          - zendesk
-          - zoom
-          - exchange
-          - user-principal-name
-          - cisco-webex
-          - ringcentral
-          - google
+          - adfs
           type: string
-        value:
-          type: string
-          description: external identifier
-        customerId:
-          type:
-          - string
-          - 'null'
-          description: optional customer id to bind the identity to
-          format: objectid
-      required:
-      - type
-      - value
-    UpdateConnectionDto:
-      type: object
-      properties:
-        strategy:
-          description: connection's strategy
-          oneOf:
-          - $ref: '#/components/schemas/AdfsStrategy'
-          - $ref: '#/components/schemas/AzureStrategy'
-          - $ref: '#/components/schemas/DatabaseStrategy'
-          - $ref: '#/components/schemas/SamlStrategy'
-        scim:
+          default: adfs
+        apiEnableUsers:
           type: boolean
-          description: whether this connection is used for SCIM provisioning
-        fqdns:
-          description: fully qualified domain names that will use this sso connection
-          type: array
-          items:
-            type: string
-    ClientResponseDto:
-      type: object
-      properties:
-        _id:
+          description: whether if saml request is signed
+        adfsServer:
           type: string
-          description: client's id
-          format: objectid
-        clientId:
+          description: ADFS server endpoint
+          format: uri
+        tenantDomain:
           type: string
-        name:
-          type: string
-          description: client's name
-        secret:
-          type: string
-          description: client's secret
-      required:
-      - _id
-      - clientId
-      - name
-      - secret
-    MicrosoftIdentityApi:
-      type: object
-      properties:
-        type:
-          description: type of the identity api
-          enum:
-          - microsoft-identity-platform-v2.0
-          - azure-active-directory-v1.0
-          type: string
+          description: home realm domain
       required:
       - type
+      - apiEnableUsers
+      - adfsServer
+      - tenantDomain
     Customer:
       type: object
       properties:
@@ -995,12 +892,39 @@ components:
           - yul
       required:
       - name
-    CreateConnectionDto:
+    TenantDigest:
       type: object
       properties:
-        scim:
-          type: boolean
-          description: whether this connection is used for SCIM provisioning; defaults to false
+        _id:
+          type: string
+          description: tenant's id
+          format: objectid
+        description:
+          type: string
+          description: tenant's description, can be empty
+        name:
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+          type: string
+      required:
+      - _id
+      - description
+      - name
+    CustomerSegment:
+      type: string
+      enum:
+      - strategic
+      - enterprise
+      - mid-market
+      - smb
+      description: if set, updates customer's segment
+    UpdateConnectionDto:
+      type: object
+      properties:
         strategy:
           description: connection's strategy
           oneOf:
@@ -1008,31 +932,166 @@ components:
           - $ref: '#/components/schemas/AzureStrategy'
           - $ref: '#/components/schemas/DatabaseStrategy'
           - $ref: '#/components/schemas/SamlStrategy'
+        scim:
+          type: boolean
+          description: whether this connection is used for SCIM provisioning
         fqdns:
           description: fully qualified domain names that will use this sso connection
           type: array
           items:
             type: string
-      required:
-      - strategy
-      - fqdns
-    DatabaseStrategy:
+    MicrosoftIdentityApi:
       type: object
       properties:
         type:
-          description: type of sso strategy
+          description: type of the identity api
           enum:
-          - db
+          - microsoft-identity-platform-v2.0
+          - azure-active-directory-v1.0
           type: string
-          default: db
       required:
       - type
+    Connection:
+      type: object
+      properties:
+        name:
+          type: string
+          description: connection's name
+          example: DEV-samlp-timebyping-com
+        createdAt:
+          type: string
+          description: date and time this connection was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        externalId:
+          type: string
+          description: connection's id in auth0
+        scim:
+          type:
+          - boolean
+          - 'null'
+          description: whether this connection is used for SCIM provisioning; false by default
+        strategy:
+          description: connection's strategy
+          oneOf:
+          - $ref: '#/components/schemas/AdfsStrategy'
+          - $ref: '#/components/schemas/AzureStrategy'
+          - $ref: '#/components/schemas/DatabaseStrategy'
+          - $ref: '#/components/schemas/SamlStrategy'
+        updatedAt:
+          type: string
+          description: date and time this connection was updated last
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        fqdns:
+          description: fully qualified domain names that will use this connection
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - createdAt
+      - externalId
+      - strategy
+      - updatedAt
+      - fqdns
     CustomerVertical:
       type: string
       enum:
       - legal
       - accounting
       description: if set, updates customer's vertical
+    CreateCustomerDto:
+      type: object
+      properties:
+        _id:
+          type:
+          - string
+          - 'null'
+          description: customer id; if omitted a new one is generated
+        code:
+          type: string
+          description: customer's 3 letter code in upper case
+          maxLength: 3
+          minLength: 3
+        fullName:
+          type: string
+          description: customer's full name
+        name:
+          type: string
+          description: customer's name in kebab case
+          format: kebab-case
+        tenantId:
+          type: string
+          description: customer's tenant id
+          format: objectid
+        pmsVendor:
+          type:
+          - string
+          - 'null'
+          description: customer's PMS vendor
+        salesforceAccountId:
+          type:
+          - string
+          - 'null'
+          description: customer's Salesforce account ID
+        identities:
+          description: customer's external identities
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        segment:
+          description: customer's segment
+          enum:
+          - strategic
+          - enterprise
+          - mid-market
+          - smb
+          type: string
+        vertical:
+          description: customer's vertical
+          enum:
+          - legal
+          - accounting
+          type: string
+      required:
+      - code
+      - fullName
+      - name
+      - tenantId
+      - identities
+      - segment
+      - vertical
+    CustomerRegionResponseDto:
+      type: object
+      properties:
+        region:
+          type: string
+          description: Customer's tenant region
+      required:
+      - region
+    UpdateConnectionScimDto:
+      type: object
+      properties:
+        scimEnabled:
+          type: boolean
+          description: whether SCIM provisioning should be enabled on this connection
+      required:
+      - scimEnabled
+    UpdateConnectionDomainsDto:
+      type: object
+      properties:
+        fqdns:
+          minItems: 1
+          description: Fully qualified domain names for home-realm discovery. At least one domain is required.
+          example:
+          - example.com
+          - sso.example.com
+          type: array
+          items:
+            type: string
+      required:
+      - fqdns
     CreateCustomerManagedClientDto:
       type: object
       properties:
@@ -1060,103 +1119,6 @@ components:
       - name
       - description
       - permissionTier
-    SamlStrategy:
-      type: object
-      properties:
-        type:
-          description: type of sso strategy
-          enum:
-          - samlp
-          type: string
-          default: samlp
-        digestAlgorithm:
-          description: saml digest algorithm
-          enum:
-          - sha256
-          - sha1
-          type: string
-        fieldsMap:
-          type:
-          - object
-          - 'null'
-          description: optional map of saml response to auth0 fields
-          additionalProperties:
-            oneOf:
-            - type: string
-            - items:
-                type: string
-              type: array
-            - type: number
-            - type: boolean
-            - additionalProperties: true
-              type: object
-        signatureAlgorithm:
-          description: saml signature algorithm
-          enum:
-          - rsa-sha256
-          - rsa-sha1
-          type: string
-        signInEndpoint:
-          type: string
-          description: saml sign in endpoint
-        signingCert:
-          type: string
-          description: the certificate used for saml signature validation
-        signSamlRequest:
-          type: boolean
-          description: whether if saml request is signed
-        tenantDomain:
-          type: string
-          description: home realm domain
-      required:
-      - type
-      - digestAlgorithm
-      - signatureAlgorithm
-      - signInEndpoint
-      - signingCert
-      - signSamlRequest
-      - tenantDomain
-    AzureStrategy:
-      type: object
-      properties:
-        type:
-          description: type of sso strategy
-          enum:
-          - waad
-          type: string
-          default: waad
-        clientId:
-          type: string
-          description: client id for accessing azure
-        clientSecret:
-          type: string
-          description: client secret for accessing azure
-        identityApi:
-          description: identity api used by the sso strategy
-          oneOf:
-          - $ref: '#/components/schemas/MicrosoftIdentityApi'
-          - $ref: '#/components/schemas/AzureIdentityApi'
-        azureTenantId:
-          type: string
-          description: AAD tenant GUID from the tid claim in MS tokens
-          format: uuid
-        tenantDomain:
-          type: string
-          description: azure tenant domain
-      required:
-      - type
-      - clientId
-      - clientSecret
-      - identityApi
-      - tenantDomain
-    UpdateConnectionScimDto:
-      type: object
-      properties:
-        scimEnabled:
-          type: boolean
-          description: whether SCIM provisioning should be enabled on this connection
-      required:
-      - scimEnabled
     AzureIdentityApi:
       type: object
       properties:
@@ -1174,62 +1136,100 @@ components:
       required:
       - type
       - protocol
-    CustomerManagedClientResponseDto:
+    Identity:
+      type: object
+      properties:
+        type:
+          description: type of the external identity
+          enum:
+          - aderant
+          - auth0
+          - azure
+          - email
+          - external-billing-system
+          - elite
+          - intercom
+          - juris
+          - cisco-cdr
+          - mixpanel
+          - phone
+          - phone-extension
+          - salesforce
+          - segment
+          - vitally
+          - walls
+          - zendesk
+          - zoom
+          - exchange
+          - user-principal-name
+          - cisco-webex
+          - ringcentral
+          - google
+          type: string
+        value:
+          type: string
+          description: external identifier
+        customerId:
+          type:
+          - string
+          - 'null'
+          description: optional customer id to bind the identity to
+          format: objectid
+      required:
+      - type
+      - value
+    DatabaseStrategy:
+      type: object
+      properties:
+        type:
+          description: type of sso strategy
+          enum:
+          - db
+          type: string
+          default: db
+      required:
+      - type
+    ClientResponseDto:
       type: object
       properties:
         _id:
           type: string
-          description: client's internal id
+          description: client's id
           format: objectid
-        externalClientId:
+        clientId:
           type: string
-          description: client's Auth0 id
-        externalClientSecret:
-          type: string
-          description: client's Auth0 secret (only returned on creation, never on GET)
         name:
           type: string
           description: client's name
-        description:
+        secret:
           type: string
-          description: client's description
-        externalSecretExpiresAt:
-          type:
-          - string
-          - 'null'
-          description: expiration date for the client secret
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        createdByUserId:
-          type:
-          - string
-          - 'null'
-          description: user who created this client (for customer-managed clients)
-          format: objectid
-        permissionTier:
-          type:
-          - string
-          - 'null'
-          description: permission tier for this client
-        createdAt:
-          type: string
-          description: date and time client was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
+          description: client's secret
       required:
       - _id
-      - externalClientId
+      - clientId
       - name
-      - description
-      - createdAt
-    CustomerSegment:
-      type: string
-      enum:
-      - strategic
-      - enterprise
-      - mid-market
-      - smb
-      description: if set, updates customer's segment
+      - secret
+    CreateConnectionDto:
+      type: object
+      properties:
+        scim:
+          type: boolean
+          description: whether this connection is used for SCIM provisioning; defaults to false
+        strategy:
+          description: connection's strategy
+          oneOf:
+          - $ref: '#/components/schemas/AdfsStrategy'
+          - $ref: '#/components/schemas/AzureStrategy'
+          - $ref: '#/components/schemas/DatabaseStrategy'
+          - $ref: '#/components/schemas/SamlStrategy'
+        fqdns:
+          description: fully qualified domain names that will use this sso connection
+          type: array
+          items:
+            type: string
+      required:
+      - strategy
+      - fqdns
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

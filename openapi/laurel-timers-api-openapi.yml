@@ -381,257 +381,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    V3AdjustTimerDraftRequestDto:
-      type: object
-      properties:
-        timerDraftId:
-          type: string
-          description: The ID of the timer draft to adjust
-          format: objectid
-        now:
-          type: string
-          description: The "now" time from the client (as UTC), we use the client's now to prevent clock drift issues
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        summary:
-          type:
-          - string
-          - 'null'
-          description: Optionally provide a summary, set to null to void existing summary
-        manualAdjustmentMs:
-          type:
-          - number
-          - 'null'
-          description: Optionally include a manual adjustment (Will clip to value that makes now - startedAt at 0 if more negative)
-          format: double
-        codeIds:
-          description: Optionally update timer draft's code ids
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: objectid
-        initiativeId:
-          type:
-          - string
-          - 'null'
-          description: Optionally update timer draft's initiative
-          format: objectid
-      required:
-      - timerDraftId
-      - now
-    PmsInitiativePropsDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: identifier of the initiative props
-          format: objectid
-        colorHex:
-          type: string
-          description: the hex color code for the initiative props
-        tags:
-          type: array
-          description: array of initiative props tags
-          items:
-            type: string
-            enum:
-            - pinned
-        userId:
-          type: string
-          description: identifier of the user who owns the initiative props
-          format: objectid
-        nickname:
-          type:
-          - string
-          - 'null'
-          description: the nickname assigned to this initiative by the user
-      required:
-      - _id
-      - colorHex
-      - tags
-      - userId
-    V3InitializeEntryTimerRequestDto:
-      type: object
-      properties:
-        date:
-          type: string
-          description: Date (iso date no time, ie. 2025-01-01) that the timer is associated with
-          example: '2022-08-12'
-          format: iso-date
-        summary:
-          type:
-          - string
-          - 'null'
-          description: Optionally provide a summary associated with this timer
-        manualAdjustmentMs:
-          type:
-          - number
-          - 'null'
-          description: Optionally include a manual adjustment to persist (Can't be negative)
-          format: double
-        initiativeId:
-          type: string
-          description: The initiative to associate with the Entry created with this timer
-          format: objectid
-      required:
-      - date
-      - initiativeId
-    V2TimerResponseDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: the identifier of this timer
-          format: objectid
-        customerId:
-          type: string
-          description: the identifier of the customer whose user owns this timer
-          format: objectid
-        entryId:
-          type: string
-          description: the identifier of the entry which this timer belongs to
-          format: objectid
-        startedAt:
-          type: string
-          description: the timestamp when this timer was started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        userId:
-          type: string
-          description: the identifier of the user who owns this timer
-          format: objectid
-        summary:
-          type:
-          - string
-          - 'null'
-          description: summary of the timer
-      required:
-      - _id
-      - customerId
-      - entryId
-      - startedAt
-      - userId
-    NestedActivitySource:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: source's id
-          format: objectid
-        type:
-          description: type of entry source
-          enum:
-          - activity
-          type: string
-          default: activity
-        creationMethod:
-          description: the creation method of the activity
-          enum:
-          - timer
-          - tracked
-          - user
-          type: string
-        category:
-          type:
-          - string
-          - 'null'
-          description: category of this activity, if any
-        technology:
-          type:
-          - string
-          - 'null'
-          description: technology of this activity, if any
-        source:
-          type:
-          - string
-          - 'null'
-          description: source of this activity (e.g. 'macos', 'windows'), if any
-        mechanism:
-          type:
-          - string
-          - 'null'
-          description: mechanism of this activity (e.g. browser used to access web app), if any
-        title:
-          type: string
-          description: activity's title
-        detail:
-          type: string
-          description: activity's detail
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        clusterId:
-          type:
-          - string
-          - 'null'
-          description: activity's clusterId
-        fromSuggestions:
-          type:
-          - boolean
-          - 'null'
-          description: whether this activity source was added from suggestions
-        fromThemes:
-          type:
-          - boolean
-          - 'null'
-          description: whether this activity source was added from themes
-        hasOverlap:
-          type:
-          - boolean
-          - 'null'
-          description: activity's overlap state
-        overlapTimeInSeconds:
-          type:
-          - number
-          - 'null'
-          description: activity's overlap time in seconds
-          format: int64
-        threadId:
-          type:
-          - string
-          - 'null'
-          description: activity's thread id
-        disableThreading:
-          type:
-          - boolean
-          - 'null'
-          description: if true, disables threading for this activity
-        assignedAt:
-          type:
-          - string
-          - 'null'
-          description: 'Datetime this activity was assigned to the entry it currently belongs to.
-
-            Unset on entries that predate the field; never back-filled.'
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-      required:
-      - _id
-      - type
-      - creationMethod
-      - title
-      - detail
-      - startedAt
-      - stoppedAt
-    V3AdjustRunningTimerRequestDto:
+    V3StopTimerRequestDto:
       type: object
       properties:
         timerId:
           type: string
-          description: The ID of the running timer to adjust
+          description: The timer that should be stopped
           format: objectid
-        now:
+        stoppedAt:
           type: string
-          description: The "now" time from the client (as UTC), we use the client's now to prevent clock drift issues
+          description: When the timer was stopped, we use client time to account for clock drift
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
         summary:
@@ -640,237 +399,48 @@ components:
           - 'null'
           description: Optionally provide a summary, set to null to void existing summary
         manualAdjustmentMs:
-          type:
-          - number
-          - 'null'
-          description: Optionally include a manual adjustment (Will clip to value that makes now - startedAt at 0 if more negative)
+          type: number
+          description: Optionally include a manual adjustment (Will clip to value that makes stoppedAt - startedAt at 0 if more negative)
           format: double
       required:
       - timerId
-      - now
-    V3RunningTimerResponseDto:
+      - stoppedAt
+    V3StoppedTimerInfo:
       type: object
       properties:
-        status:
-          type: string
-          description: Status of the timer
-          enum:
-          - running
-        _id:
-          type: string
-          description: Timer identifier
-          format: objectid
-        customerId:
-          type: string
-          description: Customer identifier
-          format: objectid
-        userId:
-          type: string
-          description: User identifier
-          format: objectid
-        createdAt:
-          type: string
-          description: Timer creation timestamp
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        startedAt:
-          type: string
-          description: Timestamp when timer started running
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        summary:
-          type:
-          - string
-          - 'null'
-          description: Optionally provide a summary associated with this timer
-        initiativeId:
-          type:
-          - string
-          - 'null'
-          description: Optionally associate an Initiative
-          format: objectid
+        timer:
+          $ref: '#/components/schemas/V3StoppedTimerResponseDto'
+        activity:
+          $ref: '#/components/schemas/TimerActivityDto'
         entry:
-          description: Optionally associate an Entry
           type:
           - object
           - 'null'
           allOf:
           - $ref: '#/components/schemas/EntryDto'
-        manualAdjustmentMs:
-          type: number
-          description: Manual adjustment in milliseconds (can be negative, but total duration >= 0)
-          format: double
       required:
-      - status
-      - _id
-      - customerId
-      - userId
-      - createdAt
-      - startedAt
-      - manualAdjustmentMs
-    TimerActivity:
+      - timer
+      - activity
+      - entry
+    ExternalSource:
       type: object
       properties:
-        _id:
-          type: string
-          description: activity's id
-          format: objectid
-        customerId:
-          type: string
-          description: id of customer who owns this activity
-          format: objectid
-        userId:
-          type: string
-          description: id of user who owns this activity
-          format: objectid
-        creationMethod:
-          description: the creation method of the activity
+        sourceSystem:
           enum:
-          - timer
+          - 3e
+          - workday
           type: string
-        initiativeProps:
-          description: if set, is activity's initiative, otherwise activity is unassigned
-          oneOf:
-          - $ref: '#/components/schemas/PmsInitiativePropsDigest'
-          - $ref: '#/components/schemas/UserInitiativePropsDigest'
-        isLocked:
-          type: boolean
-          description: if true, this activity is locked and cannot be updated
-        category:
-          type:
-          - string
-          - 'null'
-          description: category of this activity, if any
-        technology:
-          type:
-          - string
-          - 'null'
-          description: technology of this activity, if any
-        source:
-          type:
-          - string
-          - 'null'
-          description: source of this activity (e.g. 'macos', 'windows'), if any
-        mechanism:
-          type:
-          - string
-          - 'null'
-          description: mechanism of this activity (e.g. browser used to access web app), if any
-        title:
-          type: string
-          description: activity's title
-        detail:
-          type: string
-          description: activity's detail
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
         externalId:
-          type:
-          - string
-          - 'null'
-          description: activity's external id
-        assignedBy:
-          description: how the activity's initiative was assigned
-          enum:
-          - none
-          - user
-          - ml
           type: string
-        createdAt:
+        linkedAt:
           type: string
-          description: date and time activity was created
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
-        updatedAt:
-          type: string
-          description: date and time activity was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        schemaVersion:
-          type: string
-          description: activities's schemaVersion
-        threadId:
-          type:
-          - string
-          - 'null'
-          description: activity's thread id
-        enhancedByAi:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was enhanced by AI
-        isCopiedByAdmin:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was copied by admin
-        isSeeded:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was created via seeding
-        deletedForRetentionAt:
-          type:
-          - string
-          - 'null'
-          description: date and time activity data was deleted for retention
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        isDeleted:
-          type:
-          - boolean
-          - 'null'
-          description: 'If true, this activity has been soft-deleted (e.g. it was the source of a
-
-            split). Soft-deleted activities are excluded from the unassigned tray but
-
-            remain restorable, which is what keeps a split reversible (undo/merge).'
-        disableThreading:
-          type:
-          - boolean
-          - 'null'
-          description: if true, disables threading for this activity
-        sessionIds:
-          description: The session ids that were used to create this Activity
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: objectid
-        splitFromActivityId:
-          type:
-          - string
-          - 'null'
-          description: 'If set, the id of the activity this one was split from. Child activities
-
-            created by a split carry their source''s id here; it is the sibling key and
-
-            the seam for a future undo/merge.'
-          format: objectid
       required:
-      - _id
-      - customerId
-      - userId
-      - creationMethod
-      - isLocked
-      - title
-      - detail
-      - startedAt
-      - stoppedAt
-      - assignedBy
-      - createdAt
-      - updatedAt
-      - schemaVersion
-    V3StartTimerWithEntryIdRequestDto:
+      - sourceSystem
+      - externalId
+      - linkedAt
+    V3StartTimerWithDateRequestDto:
       type: object
       properties:
         _id:
@@ -1217,171 +787,39 @@ components:
           - Asia/Yerevan
           - Europe/Zagreb
           - Europe/Zurich
-        entryId:
+        date:
           type: string
-          description: The entry to associate with the timer. The timer date will be inferred from the entry's workDate.
+          description: Provide a date if the timer hasn't been initialized
+          example: '2022-08-12'
+          format: iso-date
+        initiativeId:
+          type:
+          - string
+          - 'null'
+          description: Optionally, initiative to associate with Timer, set to null in order to void any existing initiative associated
           format: objectid
       required:
       - startedAt
-      - entryId
-    ReleaseSuccessInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - release-success
-          type: string
-        releasedAt:
-          type: string
-          description: date and time entry was released
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        releasedBy:
-          type: string
-          description: the identifier of the user who released the entry
-          format: objectid
-        reReleaseFailedMessages:
-          type:
-          - array
-          - 'null'
-          description: entry's re-release failed messages
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/ReleaseFailedError'
-      required:
-      - status
-      - releasedAt
-      - releasedBy
-    V3StartTimerNotFoundResponseDto:
-      type: object
-      properties:
-        result:
-          type: string
-          enum:
-          - not found
-        started:
-          type:
-          - object
-          - 'null'
-          additionalProperties: true
-        stopped:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/V3StoppedTimerInfo'
-      required:
-      - result
-      - started
-      - stopped
-    ValidationPendingInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - validation-pending
-          type: string
-      required:
-      - status
-    V3TimerDraftResponseDto:
-      type: object
-      properties:
-        status:
-          type: string
-          description: Status of the timer
-          enum:
-          - initialized
-        _id:
-          type: string
-          description: Timer identifier
-          format: objectid
-        customerId:
-          type: string
-          description: Customer identifier
-          format: objectid
-        userId:
-          type: string
-          description: User identifier
-          format: objectid
-        date:
-          type: string
-          description: Date associated with this timer (iso date no time)
-          example: '2022-08-12'
-          format: iso-date
-        createdAt:
-          type: string
-          description: Timer creation timestamp
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          description: Timer last updated timestamp
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        summary:
-          type:
-          - string
-          - 'null'
-          description: Optionally provide a summary associated with this timer
-        initiative:
-          description: Associated Initiative (null for anonymous timers)
-          oneOf:
-          - $ref: '#/components/schemas/UserInitiativeDto'
-          - $ref: '#/components/schemas/PmsInitiativeDto'
-        entryId:
-          type:
-          - string
-          - 'null'
-          description: Optionally associate an Entry
-          format: objectid
-        manualAdjustmentMs:
-          type: number
-          description: Manual adjustment in milliseconds (always >= 0 for initialized timers)
-          format: double
-        codes:
-          description: Timer draft's codes
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CodeDigest'
-      required:
-      - status
-      - _id
-      - customerId
-      - userId
       - date
-      - createdAt
-      - updatedAt
-      - manualAdjustmentMs
-    ReleasePendingInfo:
+    ValidationFailedInfo:
       type: object
       properties:
         status:
           enum:
-          - release-pending
+          - validation-failed
           type: string
-        releasePendedAt:
-          type: string
-          description: date and time entry was changed to release pending
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        releasePendedBy:
-          type: string
-          description: the identifier of the user who change the entry to release pending
-          format: objectid
+        errors:
+          description: list of errors
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/EntryValidationError'
       required:
       - status
-      - releasePendedAt
-      - releasePendedBy
-    UserInitiativeDigest:
+      - errors
+    PmsInitiativeDto:
       type: object
       properties:
-        type:
-          description: initiative's type
-          enum:
-          - user
-          type: string
         _id:
           type: string
           description: initiative's id
@@ -1393,26 +831,13 @@ components:
           - non-billable
           type: string
         callSign:
-          type:
-          - string
-          - 'null'
-          description: a short name or abbreviation that identifies this pms initiative
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative
-          format: double
-        status:
-          type:
-          - string
-          - 'null'
-          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
-
-            with entries whose denormalized digest predates this field — those entries
-
-            gain status on the next initiative update via natural digest propagation.'
-          enum:
-          - active
-          - inactive
+          type: string
+          description: a short name or abbreviation that identifies this initiative
+        createdAt:
+          type: string
+          description: date and time this initiative was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
         locale:
           type:
           - string
@@ -1436,360 +861,180 @@ components:
           - no-NO
           - pt-PT
           - sv-SE
-        name:
-          type: string
-          description: the name user has given this initiative
-      required:
-      - type
-      - _id
-      - billingType
-      - unitIncrements
-      - name
-    CodeTypeDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: code type's id
-          format: objectid
-        externalId:
-          type: string
-          description: code type's external id
-        name:
-          type: string
-          description: code type's name
-        semanticType:
-          type:
-          - string
-          - 'null'
-          description: code type's semantic type
+        status:
+          description: initiative's status
           enum:
-          - action
-          - activity
-          - location
-          - phase
-          - task
-        orderingSequence:
-          type:
-          - string
-          - 'null'
-          description: ordering sequence for UI sorting (alphanumeric)
-      required:
-      - _id
-      - externalId
-      - name
-    ClientDigest:
-      type: object
-      properties:
-        _id:
+          - active
+          - inactive
           type: string
-          description: client's id
-          format: objectid
-        externalId:
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        updatedAt:
           type: string
-          description: client's external id
-        name:
-          type: string
-          description: a name that identifies this client
+          description: date and time this initiative was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
         description:
           type: string
-          description: client's description
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this client
-        type:
-          type:
-          - string
-          - 'null'
-          description: client's type, default is client
-          enum:
-          - client
-          - parent
-        parentClientId:
-          type:
-          - string
-          - 'null'
-          description: id of the parent client
-          format: objectid
-      required:
-      - _id
-      - externalId
-      - name
-      - description
-      - callSign
-    ExternalSource:
-      type: object
-      properties:
-        sourceSystem:
-          enum:
-          - 3e
-          - workday
-          type: string
+          description: the full long name of the initiative
         externalId:
           type: string
-        linkedAt:
+          description: initiative's external id
+        name:
           type: string
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-      required:
-      - sourceSystem
-      - externalId
-      - linkedAt
-    ReleaseSuccessLockedInfo:
-      type: object
-      properties:
-        status:
+          description: a short name or code that identifies this initiative
+        allowFrom:
+          type:
+          - string
+          - 'null'
+          description: earliest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+        allowTo:
+          type:
+          - string
+          - 'null'
+          description: latest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+        client:
+          description: the client this initiative belongs to
+          allOf:
+          - $ref: '#/components/schemas/ClientDigest'
+        type:
+          type: string
           enum:
-          - release-success-locked
-          type: string
-        releasedAt:
-          type: string
-          description: date and time entry was originally released to PMS
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        releasedBy:
-          type: string
-          description: the identifier of the user who released the entry
-          format: objectid
-        lockedAt:
+          - pms
+        props:
           type:
-          - string
+          - object
           - 'null'
-          description: date the entry became locked in the PMS billing system
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        lastLockCheckAt:
-          type: string
-          description: date lock status was last checked by the Boomi job
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        reReleaseFailedMessages:
-          type:
-          - array
-          - 'null'
-          description: entry's re-release failed messages (retained from previous release-success state)
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/ReleaseFailedError'
+          allOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsDto'
       required:
+      - _id
+      - billingType
+      - callSign
+      - createdAt
       - status
-      - releasedAt
-      - releasedBy
-      - lastLockCheckAt
-    StopTimerRequestDto:
+      - unitIncrements
+      - updatedAt
+      - description
+      - externalId
+      - name
+      - client
+      - type
+    UserInitiativeDto:
       type: object
       properties:
-        stoppedAt:
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this initiative
+        createdAt:
+          type: string
+          description: date and time this initiative was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        locale:
           type:
           - string
           - 'null'
-          description: the date and time at which the timer is being stopped
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+        status:
+          description: initiative's status
+          enum:
+          - active
+          - inactive
+          type: string
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        updatedAt:
+          type: string
+          description: date and time this initiative was last updated
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
-    V3StopTimerNotFoundResponseDto:
+        name:
+          type: string
+          description: a name that identifies this initiative for the user
+        type:
+          type: string
+          enum:
+          - user
+        props:
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/UserInitiativePropsDto'
+      required:
+      - _id
+      - billingType
+      - callSign
+      - createdAt
+      - status
+      - unitIncrements
+      - updatedAt
+      - name
+      - type
+    EntryTimerCarryover:
+      type: object
+      properties:
+        originId:
+          type: string
+          format: objectid
+      required:
+      - originId
+    V3StartTimerSuccessResponseDto:
       type: object
       properties:
         result:
           type: string
           enum:
-          - not found
+          - started timer
+        started:
+          $ref: '#/components/schemas/V3RunningTimerResponseDto'
         stopped:
           type:
-          - object
+          - array
           - 'null'
-          additionalProperties: true
-        othersStopped:
-          type: array
           items:
             $ref: '#/components/schemas/V3StoppedTimerInfo'
       required:
       - result
+      - started
       - stopped
-      - othersStopped
-    UpdateTimerRequestDto:
-      type: object
-      properties:
-        summary:
-          type: string
-          description: summary of the timer
-    ValidationFailedInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - validation-failed
-          type: string
-        errors:
-          description: list of errors
-          minItems: 1
-          type: array
-          items:
-            $ref: '#/components/schemas/EntryValidationError'
-      required:
-      - status
-      - errors
-    TimerActivityDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: activity's id
-          format: objectid
-        customerId:
-          type: string
-          description: id of customer who owns this activity
-          format: objectid
-        userId:
-          type: string
-          description: id of user who owns this activity
-          format: objectid
-        creationMethod:
-          type: string
-          enum:
-          - timer
-        isLocked:
-          type: boolean
-          description: if true, this activity is locked and cannot be updated
-        category:
-          type:
-          - string
-          - 'null'
-          description: category of this activity, if any
-        technology:
-          type:
-          - string
-          - 'null'
-          description: technology of this activity, if any
-        title:
-          type: string
-          description: activity's title
-        detail:
-          type: string
-          description: activity's detail
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        externalId:
-          type:
-          - string
-          - 'null'
-          description: activity's external id
-        assignedBy:
-          description: how the activity's initiative was assigned
-          enum:
-          - none
-          - user
-          - ml
-          type: string
-        createdAt:
-          type: string
-          description: date and time activity was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          description: date and time activity was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        threadId:
-          type:
-          - string
-          - 'null'
-          description: activity's thread id
-        enhancedByAi:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was enhanced by AI
-        isCopiedByAdmin:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was copied by admin
-        isSeeded:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was created via seeding
-        disableThreading:
-          type:
-          - boolean
-          - 'null'
-          description: if true, disables threading for this activity
-        initiative:
-          oneOf:
-          - $ref: '#/components/schemas/UserInitiativeDto'
-          - $ref: '#/components/schemas/PmsInitiativeDto'
-      required:
-      - _id
-      - customerId
-      - userId
-      - creationMethod
-      - isLocked
-      - title
-      - detail
-      - startedAt
-      - stoppedAt
-      - assignedBy
-      - createdAt
-      - updatedAt
-    UserInitiativePropsDigest:
-      type: object
-      properties:
-        type:
-          description: type of the initiative for these props
-          enum:
-          - user
-          type: string
-        colorHex:
-          type: string
-          description: the hex color code for this initiative's display to the user
-          example: fec828
-          format: color-hex
-        tags:
-          type: array
-          description: initiative prop's tags
-          items:
-            type: string
-            enum:
-            - pinned
-        initiative:
-          description: the user initiative that is represented by these initiative props
-          allOf:
-          - $ref: '#/components/schemas/UserInitiativeDigest'
-      required:
-      - type
-      - colorHex
-      - tags
-      - initiative
-    V3InitializeAnonymousTimerRequestDto:
-      type: object
-      properties:
-        date:
-          type: string
-          description: Date (iso date no time, ie. 2025-01-01) that the timer is associated with
-          example: '2022-08-12'
-          format: iso-date
-        summary:
-          type:
-          - string
-          - 'null'
-          description: Optionally provide a summary associated with this timer
-        manualAdjustmentMs:
-          type:
-          - number
-          - 'null'
-          description: Optionally include a manual adjustment to persist (Can't be negative)
-          format: double
-      required:
-      - date
     V3StartTimerWithTimerDraftIdRequestDto:
       type: object
       properties:
@@ -2158,579 +1403,425 @@ components:
       required:
       - startedAt
       - timerDraftId
-    PmsInitiativeDto:
+    CodeTypeDigest:
       type: object
       properties:
         _id:
           type: string
-          description: initiative's id
+          description: code type's id
           format: objectid
-        billingType:
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
-          type: string
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this initiative
-        createdAt:
-          type: string
-          description: date and time this initiative was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        locale:
-          type:
-          - string
-          - 'null'
-          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
-          enum:
-          - da-DK
-          - de-DE
-          - en-CA
-          - en-GB
-          - en-US
-          - es-ES
-          - es-MX
-          - fi-FI
-          - fr-CA
-          - fr-FR
-          - is-IS
-          - it-IT
-          - ko-KR
-          - nl-NL
-          - no-NO
-          - pt-PT
-          - sv-SE
-        status:
-          description: initiative's status
-          enum:
-          - active
-          - inactive
-          type: string
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative
-          format: double
-        updatedAt:
-          type: string
-          description: date and time this initiative was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        description:
-          type: string
-          description: the full long name of the initiative
         externalId:
           type: string
-          description: initiative's external id
+          description: code type's external id
         name:
           type: string
-          description: a short name or code that identifies this initiative
-        allowFrom:
+          description: code type's name
+        semanticType:
           type:
           - string
           - 'null'
-          description: earliest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
-          example: '2022-08-12'
-          format: iso-date
-        allowTo:
-          type:
-          - string
-          - 'null'
-          description: latest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
-          example: '2022-08-12'
-          format: iso-date
-        client:
-          description: the client this initiative belongs to
-          allOf:
-          - $ref: '#/components/schemas/ClientDigest'
-        type:
-          type: string
+          description: code type's semantic type
           enum:
+          - action
+          - activity
+          - location
+          - phase
+          - task
+        orderingSequence:
+          type:
+          - string
+          - 'null'
+          description: ordering sequence for UI sorting (alphanumeric)
+      required:
+      - _id
+      - externalId
+      - name
+    NestedTimerSource:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: source's id
+          format: objectid
+        type:
+          description: type of entry source
+          enum:
+          - timer
+          type: string
+          default: timer
+        durationInSeconds:
+          type: number
+          description: the duration in seconds that this timer has been active
+          format: double
+        summary:
+          type: string
+          description: the summary assigned to this timer, can be empty
+      required:
+      - _id
+      - type
+      - durationInSeconds
+      - summary
+    EntryDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: entry's id
+          format: objectid
+        schemaVersion:
+          type: string
+          description: entry's schemaVersion
+        customerId:
+          type: string
+          description: id of customer who the owner belongs to
+          format: objectid
+        userId:
+          type: string
+          description: if of user who owns the entry
+          format: objectid
+        enrichmentCorrelationId:
+          type:
+          - string
+          - 'null'
+          description: entry's enrichmentCorrelationId to be used by enrichment service
+        statusInfo:
+          description: entry's status info
+          oneOf:
+          - $ref: '#/components/schemas/ReleaseFailedInfo'
+          - $ref: '#/components/schemas/ReleaseValidationPendingInfo'
+          - $ref: '#/components/schemas/ReleasePendingInfo'
+          - $ref: '#/components/schemas/ReleaseSuccessInfo'
+          - $ref: '#/components/schemas/ReleaseSuccessLockedInfo'
+          - $ref: '#/components/schemas/ValidationFailedInfo'
+          - $ref: '#/components/schemas/ValidationPendingInfo'
+          - $ref: '#/components/schemas/ValidationSuccessInfo'
+        creationMethod:
+          description: the creation method of the entry
+          enum:
+          - async
+          - user
           - pms
-        props:
+          - shared
+          type: string
+        createdAsTimer:
+          type:
+          - boolean
+          - 'null'
+          description: if true, this entry was created by a user for use as a timer
+        workDate:
+          type: string
+          description: the date the entry's work was done, this is required for released entries
+          example: '2022-08-12'
+          format: iso-date
+        isLocked:
+          type: boolean
+          description: if true, this entry is locked and cannot be updated
+        summary:
+          type: string
+          description: entry's summary
+        unitIncrementCountFromSources:
+          type: number
+          description: sum of unit increments from this entry's sources
+          format: double
+        unitIncrementCountAdjustments:
+          type: number
+          description: user modified overrides to entry unit increment total
+          format: double
+        sources:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/NestedActivitySource'
+            - $ref: '#/components/schemas/NestedEntrySource'
+            - $ref: '#/components/schemas/NestedTimerSource'
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: entry's external id
+        createdAt:
+          type: string
+          description: date and time this entry was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time this entry was updated last
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        overlapTimeInSeconds:
+          type:
+          - number
+          - 'null'
+          description: entry's duration in seconds with overlap
+          format: int64
+        isDeleted:
+          type:
+          - boolean
+          - 'null'
+          description: set to true if entry is soft deleted
+        notes:
+          type:
+          - string
+          - 'null'
+          description: entry's notes
+        splitFromActivityId:
+          type:
+          - string
+          - 'null'
+          description: 'If set, the id of the captured activity this entry was split from.
+
+            Shared across all entries/activities produced by one split (sibling key),
+
+            and the seam for a future undo/merge. The source activity is soft-deleted,
+
+            so its id uniquely identifies the split.'
+          format: objectid
+        supersededByEntryId:
+          type:
+          - string
+          - 'null'
+          description: 'Surviving entry this one was merged into. Set so PMS sync-in leaves the
+
+            superseded entry deleted instead of resurrecting it as a duplicate.'
+          format: objectid
+        releaseCount:
+          type:
+          - number
+          - 'null'
+          description: entry's release count
+          format: int64
+          minimum: 0
+        lastSyncedAt:
+          type:
+          - string
+          - 'null'
+          description: date and time when the entry was last synced with the PMS
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        timerDurationAdjustmentInSeconds:
+          type:
+          - number
+          - 'null'
+          description: adjustment in seconds to be applied to timer duration
+          format: int64
+        releasedFrom:
+          type:
+          - string
+          - 'null'
+          description: source of the release request
+          enum:
+          - time-control
+          - timesheet
+        complianceRules:
+          description: entry's compliance rules
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ComplianceRule'
+        deletedForRetentionAt:
+          type:
+          - string
+          - 'null'
+          description: date and time entry data was deleted for retention
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        timerCarryover:
           type:
           - object
           - 'null'
           allOf:
-          - $ref: '#/components/schemas/PmsInitiativePropsDto'
-      required:
-      - _id
-      - billingType
-      - callSign
-      - createdAt
-      - status
-      - unitIncrements
-      - updatedAt
-      - description
-      - externalId
-      - name
-      - client
-      - type
-    V3StartTimerWithDateRequestDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: Optionally, provide a custom _id for the timer. If not provided, a new ObjectId will be generated.
-          format: objectid
-        startedAt:
-          type: string
-          description: When the Timer was started, we use client time to account for clock drift
+          - $ref: '#/components/schemas/EntryTimerCarryover'
+        autoStoppedReason:
+          type:
+          - string
+          - 'null'
+          description: 'Indicates the reason this entry''s timer was automatically stopped by the
+
+            system (as opposed to being stopped by the user). `null`/undefined for
+
+            entries whose timers were stopped manually or by the overnight job.'
+          enum:
+          - twelve_hour_limit
+        autostopDismissedAt:
+          type:
+          - string
+          - 'null'
+          description: 'Set when the user explicitly dismisses the auto-stop strip via the × button.
+
+            Once set, the strip is never re-shown for this entry.'
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
+        timezoneAtCreation:
+          type:
+          - string
+          - 'null'
+          description: 'The user''s IANA timezone at the time this entry was created.
+
+            Immutable after creation. Null when the user had no timezone configured.'
+        isShared:
+          type:
+          - boolean
+          - 'null'
+          description: 'Set to `true` when the entry has been shared with at least one recipient.
+
+            Written synchronously by the share endpoint; never reset.
+
+            Absent on entries that pre-date the sharing feature or have never been shared.'
+        externalSources:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExternalSource'
+        workCodes:
+          description: all of the codes assigned to the entry
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeAssignment'
+        initiative:
+          description: entry's initiative information
+          oneOf:
+          - $ref: '#/components/schemas/UserInitiativeDto'
+          - $ref: '#/components/schemas/PmsInitiativeDto'
+        sharedFrom:
+          description: 'Present only on recipient-side copies. Contains the source entry context
+
+            and display names resolved at read-time via identity-service.'
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/SharedFromResponseDto'
+      required:
+      - _id
+      - schemaVersion
+      - customerId
+      - userId
+      - statusInfo
+      - creationMethod
+      - workDate
+      - isLocked
+      - summary
+      - unitIncrementCountFromSources
+      - unitIncrementCountAdjustments
+      - sources
+      - createdAt
+      - updatedAt
+      - workCodes
+      - initiative
+    CodeAssignment:
+      type: object
+      properties:
+        assignedBy:
+          description: entity that assigned the code.
+          enum:
+          - user
+          - laurel
+          type: string
+        code:
+          description: assigned code
+          allOf:
+          - $ref: '#/components/schemas/CodeDigest'
+      required:
+      - assignedBy
+      - code
+    ReleaseFailedError:
+      type: object
+      properties:
+        originalMessage:
+          type: string
+          description: original error message
+        title:
+          type: string
+          description: mapped title for the original error message
+        description:
+          type: string
+          description: mapped description for the original error message
+      required:
+      - originalMessage
+      - title
+      - description
+    EntryValidationError:
+      type: object
+      properties:
+        errorCode:
+          description: the entry validation error code
+          enum:
+          - cannot-have-running-timer
+          - cannot-release-zero-increment
+          - cannot-release-negative-increment
+          - cannot-release-billable-future-work
+          - cannot-release-non-billable-future-work
+          - cannot-release-with-user-initiative
+          - cannot-release-with-inactive-initiative
+          - code-type-is-required
+          - summary-is-required
+          - cannot-have-blocked-compliance-rule
+          - cannot-exceed-twenty-four-hours
+          - entry-date-restricted-no-release
+          - entry-date-restricted-no-create
+          - timekeeper-not-in-working-list
+          - exceeds-twenty-four-hours-daily-limit
+          type: string
+      required:
+      - errorCode
+    ValidationPendingInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - validation-pending
+          type: string
+      required:
+      - status
+    V3InitializeEntryTimerRequestDto:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Date (iso date no time, ie. 2025-01-01) that the timer is associated with
+          example: '2022-08-12'
+          format: iso-date
         summary:
           type:
           - string
           - 'null'
-          description: Optionally, summary to display for the Timer, set to null in order to void any existing summary associated
+          description: Optionally provide a summary associated with this timer
         manualAdjustmentMs:
           type:
           - number
           - 'null'
-          description: Optionally, include a manual adjustment to persist, set to null in order to void any existing manual adjustment associated (Can't be negative)
+          description: Optionally include a manual adjustment to persist (Can't be negative)
           format: double
-        timezone:
-          type:
-          - string
-          - 'null'
-          description: The timezone in which the timer is being started — required for overnight timer detection
-          enum:
-          - Africa/Abidjan
-          - Africa/Accra
-          - America/Adak
-          - Africa/Addis_Ababa
-          - Australia/Adelaide
-          - Asia/Aden
-          - Africa/Algiers
-          - Asia/Almaty
-          - Asia/Amman
-          - Europe/Amsterdam
-          - America/Anchorage
-          - Europe/Andorra
-          - America/Anguilla
-          - Indian/Antananarivo
-          - America/Antigua
-          - Pacific/Apia
-          - America/Aruba
-          - Asia/Ashgabat
-          - Africa/Asmara
-          - America/Asuncion
-          - Europe/Athens
-          - America/Atikokan
-          - Pacific/Auckland
-          - Atlantic/Azores
-          - Asia/Baghdad
-          - Asia/Bahrain
-          - Asia/Baku
-          - Africa/Bamako
-          - Asia/Bangkok
-          - Africa/Bangui
-          - Africa/Banjul
-          - America/Barbados
-          - Asia/Beirut
-          - Europe/Belgrade
-          - America/Belize
-          - Europe/Berlin
-          - Atlantic/Bermuda
-          - Asia/Bishkek
-          - Africa/Bissau
-          - America/Blanc-Sablon
-          - Africa/Blantyre
-          - America/Bogota
-          - Pacific/Bougainville
-          - Europe/Bratislava
-          - Africa/Brazzaville
-          - Australia/Brisbane
-          - Asia/Brunei
-          - Europe/Brussels
-          - Europe/Bucharest
-          - Europe/Budapest
-          - America/Argentina/Buenos_Aires
-          - Africa/Bujumbura
-          - Africa/Cairo
-          - Atlantic/Canary
-          - America/Cancun
-          - Atlantic/Cape_Verde
-          - America/Caracas
-          - Africa/Casablanca
-          - Antarctica/Casey
-          - America/Cayenne
-          - America/Cayman
-          - Indian/Chagos
-          - Pacific/Chatham
-          - America/Chicago
-          - Europe/Chisinau
-          - Asia/Chita
-          - Indian/Christmas
-          - Pacific/Chuuk
-          - Indian/Cocos
-          - Asia/Colombo
-          - Indian/Comoro
-          - Africa/Conakry
-          - Europe/Copenhagen
-          - America/Costa_Rica
-          - America/Curacao
-          - Africa/Dakar
-          - Asia/Damascus
-          - America/Danmarkshavn
-          - Africa/Dar_es_Salaam
-          - Australia/Darwin
-          - Antarctica/Davis
-          - America/Denver
-          - Asia/Dhaka
-          - Asia/Dili
-          - Africa/Djibouti
-          - America/Dominica
-          - Africa/Douala
-          - Asia/Dubai
-          - Europe/Dublin
-          - Antarctica/DumontDUrville
-          - Asia/Dushanbe
-          - Pacific/Easter
-          - America/Edmonton
-          - Pacific/Efate
-          - Africa/El_Aaiun
-          - America/El_Salvador
-          - Australia/Eucla
-          - Pacific/Fakaofo
-          - Atlantic/Faroe
-          - Pacific/Fiji
-          - Africa/Freetown
-          - Pacific/Funafuti
-          - Africa/Gaborone
-          - Pacific/Galapagos
-          - Pacific/Gambier
-          - Europe/Gibraltar
-          - America/Grand_Turk
-          - America/Grenada
-          - Pacific/Guadalcanal
-          - America/Guadeloupe
-          - Pacific/Guam
-          - America/Guatemala
-          - America/Guayaquil
-          - Europe/Guernsey
-          - America/Guyana
-          - America/Halifax
-          - Africa/Harare
-          - America/Havana
-          - Asia/Hebron
-          - Europe/Helsinki
-          - America/Hermosillo
-          - Asia/Ho_Chi_Minh
-          - Asia/Hong_Kong
-          - Pacific/Honolulu
-          - Asia/Hovd
-          - Asia/Irkutsk
-          - Europe/Isle_of_Man
-          - Europe/Istanbul
-          - Asia/Jakarta
-          - America/Jamaica
-          - Asia/Jayapura
-          - Europe/Jersey
-          - Asia/Jerusalem
-          - Africa/Johannesburg
-          - Africa/Juba
-          - Asia/Kabul
-          - Europe/Kaliningrad
-          - Asia/Kamchatka
-          - Africa/Kampala
-          - Pacific/Kanton
-          - Asia/Karachi
-          - Asia/Kathmandu
-          - Indian/Kerguelen
-          - Africa/Khartoum
-          - Africa/Kigali
-          - Africa/Kinshasa
-          - Pacific/Kiritimati
-          - Asia/Kolkata
-          - Pacific/Kosrae
-          - America/Kralendijk
-          - Asia/Kuala_Lumpur
-          - Asia/Kuwait
-          - Europe/Kyiv
-          - America/La_Paz
-          - Africa/Lagos
-          - Africa/Libreville
-          - America/Lima
-          - Europe/Lisbon
-          - Europe/Ljubljana
-          - Africa/Lome
-          - Europe/London
-          - Arctic/Longyearbyen
-          - Australia/Lord_Howe
-          - America/Los_Angeles
-          - America/Lower_Princes
-          - Africa/Luanda
-          - Africa/Lubumbashi
-          - Africa/Lusaka
-          - Europe/Luxembourg
-          - Asia/Macau
-          - Europe/Madrid
-          - Indian/Mahe
-          - Pacific/Majuro
-          - Asia/Makassar
-          - Africa/Malabo
-          - Indian/Maldives
-          - Europe/Malta
-          - America/Managua
-          - America/Manaus
-          - Asia/Manila
-          - Africa/Maputo
-          - Europe/Mariehamn
-          - America/Marigot
-          - Pacific/Marquesas
-          - America/Martinique
-          - Africa/Maseru
-          - Indian/Mauritius
-          - Antarctica/Mawson
-          - Indian/Mayotte
-          - Africa/Mbabane
-          - Antarctica/McMurdo
-          - America/Mexico_City
-          - Pacific/Midway
-          - Europe/Minsk
-          - America/Miquelon
-          - Africa/Mogadishu
-          - Europe/Monaco
-          - Africa/Monrovia
-          - America/Montevideo
-          - America/Montreal
-          - America/Montserrat
-          - Europe/Moscow
-          - Asia/Muscat
-          - Africa/Nairobi
-          - America/Nassau
-          - Pacific/Nauru
-          - Africa/Ndjamena
-          - America/New_York
-          - Africa/Niamey
-          - Asia/Nicosia
-          - Pacific/Niue
-          - Pacific/Norfolk
-          - America/Noronha
-          - Africa/Nouakchott
-          - Pacific/Noumea
-          - Asia/Novosibirsk
-          - America/Nuuk
-          - America/Ojinaga
-          - Asia/Omsk
-          - Europe/Oslo
-          - Africa/Ouagadougou
-          - Pacific/Pago_Pago
-          - Pacific/Palau
-          - Antarctica/Palmer
-          - America/Panama
-          - America/Paramaribo
-          - Europe/Paris
-          - Australia/Perth
-          - Asia/Phnom_Penh
-          - America/Phoenix
-          - Pacific/Pitcairn
-          - Europe/Podgorica
-          - America/Port-au-Prince
-          - Pacific/Port_Moresby
-          - America/Port_of_Spain
-          - Africa/Porto-Novo
-          - Europe/Prague
-          - America/Puerto_Rico
-          - America/Punta_Arenas
-          - Asia/Pyongyang
-          - Asia/Qatar
-          - Asia/Qyzylorda
-          - Pacific/Rarotonga
-          - America/Regina
-          - Indian/Reunion
-          - Atlantic/Reykjavik
-          - Europe/Riga
-          - America/Rio_Branco
-          - Asia/Riyadh
-          - Europe/Rome
-          - Pacific/Saipan
-          - Asia/Sakhalin
-          - Europe/Samara
-          - Europe/San_Marino
-          - America/Santiago
-          - America/Santo_Domingo
-          - America/Sao_Paulo
-          - Africa/Sao_Tome
-          - Europe/Sarajevo
-          - America/Scoresbysund
-          - Asia/Seoul
-          - Asia/Shanghai
-          - Europe/Simferopol
-          - Asia/Singapore
-          - Europe/Skopje
-          - Europe/Sofia
-          - Atlantic/South_Georgia
-          - America/St_Barthelemy
-          - Atlantic/St_Helena
-          - America/St_Johns
-          - America/St_Kitts
-          - America/St_Lucia
-          - America/St_Thomas
-          - America/St_Vincent
-          - Atlantic/Stanley
-          - Europe/Stockholm
-          - Australia/Sydney
-          - Antarctica/Syowa
-          - Pacific/Tahiti
-          - Asia/Taipei
-          - Europe/Tallinn
-          - Pacific/Tarawa
-          - Asia/Tashkent
-          - Asia/Tbilisi
-          - America/Tegucigalpa
-          - Asia/Tehran
-          - Asia/Thimphu
-          - America/Thule
-          - America/Tijuana
-          - Europe/Tirane
-          - Asia/Tokyo
-          - Pacific/Tongatapu
-          - America/Toronto
-          - America/Tortola
-          - Africa/Tripoli
-          - Antarctica/Troll
-          - Africa/Tunis
-          - Asia/Ulaanbaatar
-          - Asia/Urumqi
-          - Europe/Vaduz
-          - America/Vancouver
-          - Europe/Vatican
-          - Europe/Vienna
-          - Asia/Vientiane
-          - Europe/Vilnius
-          - Asia/Vladivostok
-          - Antarctica/Vostok
-          - Pacific/Wake
-          - Pacific/Wallis
-          - Europe/Warsaw
-          - America/Whitehorse
-          - Africa/Windhoek
-          - America/Winnipeg
-          - Asia/Yangon
-          - Asia/Yekaterinburg
-          - Asia/Yerevan
-          - Europe/Zagreb
-          - Europe/Zurich
-        date:
-          type: string
-          description: Provide a date if the timer hasn't been initialized
-          example: '2022-08-12'
-          format: iso-date
         initiativeId:
-          type:
-          - string
-          - 'null'
-          description: Optionally, initiative to associate with Timer, set to null in order to void any existing initiative associated
+          type: string
+          description: The initiative to associate with the Entry created with this timer
           format: objectid
       required:
-      - startedAt
       - date
-    UpdateTimerDto:
-      type: object
-      properties:
-        codeIds:
-          description: if set, will update the codes assigned to this timer
-          type: array
-          items:
-            type: string
-            format: objectid
-        durationInSeconds:
-          type: number
-          description: if set, will update the duration in seconds that this timer has been active
-          format: double
-        initiativeId:
-          type: string
-          description: if set, will update the initiative assigned to this timer. passing null will unassign this timer
-          format: objectid
-        summary:
-          type: string
-          description: if set, will updated the summary for this timer, can be empty
-    V3StopTimerRequestDto:
-      type: object
-      properties:
-        timerId:
-          type: string
-          description: The timer that should be stopped
-          format: objectid
-        stoppedAt:
-          type: string
-          description: When the timer was stopped, we use client time to account for clock drift
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        summary:
-          type:
-          - string
-          - 'null'
-          description: Optionally provide a summary, set to null to void existing summary
-        manualAdjustmentMs:
-          type: number
-          description: Optionally include a manual adjustment (Will clip to value that makes stoppedAt - startedAt at 0 if more negative)
-          format: double
-      required:
-      - timerId
-      - stoppedAt
-    V3StoppedTimerResponseDto:
+      - initiativeId
+    ReleasePendingInfo:
       type: object
       properties:
         status:
-          type: string
-          description: Status of the timer
           enum:
-          - stopped
-        _id:
+          - release-pending
           type: string
-          description: Original timer identifier
-          format: objectid
-        customerId:
+        releasePendedAt:
           type: string
-          description: Customer identifier
-          format: objectid
-        userId:
-          type: string
-          description: User identifier
-          format: objectid
-        startedAt:
-          type: string
-          description: Timestamp when timer started
+          description: date and time entry was changed to release pending
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
-        stoppedAt:
+        releasePendedBy:
           type: string
-          description: Timestamp when timer stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        durationMs:
-          type: number
-          description: Duration in milliseconds
-          format: double
-        activityId:
-          type: string
-          description: The Activity created from this stopped timer
-          format: objectid
-        entryId:
-          type:
-          - string
-          - 'null'
-          description: The Entry associated with this timer, when timer is anonymous this is None
-          format: objectid
-        initiativeId:
-          type:
-          - string
-          - 'null'
-          description: The Initiative associated with this timer
+          description: the identifier of the user who change the entry to release pending
           format: objectid
       required:
       - status
-      - _id
-      - customerId
-      - userId
-      - startedAt
-      - stoppedAt
-      - durationMs
-      - activityId
+      - releasePendedAt
+      - releasePendedBy
     CreateTimerDto:
       type: object
       properties:
@@ -2759,232 +1850,258 @@ components:
       - date
       - summary
       - codeIds
-    UserInitiativeDto:
+    V3InitializeAnonymousTimerRequestDto:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Date (iso date no time, ie. 2025-01-01) that the timer is associated with
+          example: '2022-08-12'
+          format: iso-date
+        summary:
+          type:
+          - string
+          - 'null'
+          description: Optionally provide a summary associated with this timer
+        manualAdjustmentMs:
+          type:
+          - number
+          - 'null'
+          description: Optionally include a manual adjustment to persist (Can't be negative)
+          format: double
+      required:
+      - date
+    ValidationSuccessInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - validation-success
+          type: string
+      required:
+      - status
+    TimerActivity:
       type: object
       properties:
         _id:
           type: string
-          description: initiative's id
+          description: activity's id
           format: objectid
-        billingType:
-          description: initiative's billing type
+        customerId:
+          type: string
+          description: id of customer who owns this activity
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns this activity
+          format: objectid
+        creationMethod:
+          description: the creation method of the activity
           enum:
-          - billable
-          - non-billable
+          - timer
           type: string
-        callSign:
+        initiativeProps:
+          description: if set, is activity's initiative, otherwise activity is unassigned
+          oneOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsDigest'
+          - $ref: '#/components/schemas/UserInitiativePropsDigest'
+        isLocked:
+          type: boolean
+          description: if true, this activity is locked and cannot be updated
+        category:
+          type:
+          - string
+          - 'null'
+          description: category of this activity, if any
+        technology:
+          type:
+          - string
+          - 'null'
+          description: technology of this activity, if any
+        source:
+          type:
+          - string
+          - 'null'
+          description: source of this activity (e.g. 'macos', 'windows'), if any
+        mechanism:
+          type:
+          - string
+          - 'null'
+          description: mechanism of this activity (e.g. browser used to access web app), if any
+        title:
           type: string
-          description: a short name or abbreviation that identifies this initiative
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: activity's external id
+        assignedBy:
+          description: how the activity's initiative was assigned
+          enum:
+          - none
+          - user
+          - ml
+          type: string
         createdAt:
           type: string
-          description: date and time this initiative was created
+          description: date and time activity was created
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
-        locale:
-          type:
-          - string
-          - 'null'
-          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
-          enum:
-          - da-DK
-          - de-DE
-          - en-CA
-          - en-GB
-          - en-US
-          - es-ES
-          - es-MX
-          - fi-FI
-          - fr-CA
-          - fr-FR
-          - is-IS
-          - it-IT
-          - ko-KR
-          - nl-NL
-          - no-NO
-          - pt-PT
-          - sv-SE
-        status:
-          description: initiative's status
-          enum:
-          - active
-          - inactive
-          type: string
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative
-          format: double
         updatedAt:
           type: string
-          description: date and time this initiative was last updated
+          description: date and time activity was last updated
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
-        name:
+        schemaVersion:
           type: string
-          description: a name that identifies this initiative for the user
-        type:
-          type: string
-          enum:
-          - user
-        props:
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/UserInitiativePropsDto'
-      required:
-      - _id
-      - billingType
-      - callSign
-      - createdAt
-      - status
-      - unitIncrements
-      - updatedAt
-      - name
-      - type
-    V3StoppedTimerInfo:
-      type: object
-      properties:
-        timer:
-          $ref: '#/components/schemas/V3StoppedTimerResponseDto'
-        activity:
-          $ref: '#/components/schemas/TimerActivityDto'
-        entry:
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/EntryDto'
-      required:
-      - timer
-      - activity
-      - entry
-    ComplianceRule:
-      type: object
-      properties:
-        ruleKey:
-          type: string
-          description: rule key
-        description:
+          description: activities's schemaVersion
+        threadId:
           type:
           - string
           - 'null'
-          description: rule description
-        enforcementLevel:
-          description: enforcement level
-          enum:
-          - block
-          - acknowledge
-          - warn
-          - 'off'
-          type: string
-      required:
-      - ruleKey
-      - enforcementLevel
-    V3StartTimerSuccessResponseDto:
-      type: object
-      properties:
-        result:
-          type: string
-          enum:
-          - started timer
-        started:
-          $ref: '#/components/schemas/V3RunningTimerResponseDto'
-        stopped:
+          description: activity's thread id
+        enhancedByAi:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was enhanced by AI
+        isCopiedByAdmin:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was copied by admin
+        isSeeded:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was created via seeding
+        deletedForRetentionAt:
+          type:
+          - string
+          - 'null'
+          description: date and time activity data was deleted for retention
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        isDeleted:
+          type:
+          - boolean
+          - 'null'
+          description: 'If true, this activity has been soft-deleted (e.g. it was the source of a
+
+            split). Soft-deleted activities are excluded from the unassigned tray but
+
+            remain restorable, which is what keeps a split reversible (undo/merge).'
+        disableThreading:
+          type:
+          - boolean
+          - 'null'
+          description: if true, disables threading for this activity
+        sessionIds:
+          description: The session ids that were used to create this Activity
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/V3StoppedTimerInfo'
+            type: string
+            format: objectid
+        splitFromActivityId:
+          type:
+          - string
+          - 'null'
+          description: 'If set, the id of the activity this one was split from. Child activities
+
+            created by a split carry their source''s id here; it is the sibling key and
+
+            the seam for a future undo/merge.'
+          format: objectid
       required:
-      - result
-      - started
-      - stopped
-    ReleaseFailedError:
-      type: object
-      properties:
-        originalMessage:
-          type: string
-          description: original error message
-        title:
-          type: string
-          description: mapped title for the original error message
-        description:
-          type: string
-          description: mapped description for the original error message
-      required:
-      - originalMessage
+      - _id
+      - customerId
+      - userId
+      - creationMethod
+      - isLocked
       - title
-      - description
-    V3StopTimerSuccessResponseDto:
+      - detail
+      - startedAt
+      - stoppedAt
+      - assignedBy
+      - createdAt
+      - updatedAt
+      - schemaVersion
+    V3RunningTimerResponseDto:
       type: object
       properties:
-        result:
+        status:
           type: string
+          description: Status of the timer
           enum:
-          - stopped timer
-        stopped:
-          $ref: '#/components/schemas/V3StoppedTimerResponseDto'
-        activity:
-          $ref: '#/components/schemas/TimerActivityDto'
+          - running
+        _id:
+          type: string
+          description: Timer identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Customer identifier
+          format: objectid
+        userId:
+          type: string
+          description: User identifier
+          format: objectid
+        createdAt:
+          type: string
+          description: Timer creation timestamp
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        startedAt:
+          type: string
+          description: Timestamp when timer started running
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        summary:
+          type:
+          - string
+          - 'null'
+          description: Optionally provide a summary associated with this timer
+        initiativeId:
+          type:
+          - string
+          - 'null'
+          description: Optionally associate an Initiative
+          format: objectid
         entry:
+          description: Optionally associate an Entry
           type:
           - object
           - 'null'
           allOf:
           - $ref: '#/components/schemas/EntryDto'
-        othersStopped:
-          type: array
-          items:
-            $ref: '#/components/schemas/V3StoppedTimerInfo'
+        manualAdjustmentMs:
+          type: number
+          description: Manual adjustment in milliseconds (can be negative, but total duration >= 0)
+          format: double
       required:
-      - result
-      - stopped
-      - activity
-      - entry
-      - othersStopped
-    SharedFromResponseDto:
-      type: object
-      properties:
-        entryId:
-          type: string
-          description: id of the source entry that was shared
-          format: objectid
-        entryUserId:
-          type: string
-          description: id of the user who owns the source entry
-          format: objectid
-        sharerId:
-          type: string
-          description: id of the principal who performed the share action
-          format: objectid
-        sharerType:
-          description: capacity in which the sharer acted
-          enum:
-          - user
-          - admin
-          - delegate
-          type: string
-        sharedAt:
-          type: string
-          description: date and time the share was initiated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        entryUserName:
-          type:
-          - string
-          - 'null'
-          description: display name of the entry owner; resolved at read-time, absent on failure
-        sharerName:
-          type:
-          - string
-          - 'null'
-          description: display name of the principal who performed the share; resolved at read-time, absent on failure
-      required:
-      - entryId
-      - entryUserId
-      - sharerId
-      - sharerType
-      - sharedAt
+      - status
+      - _id
+      - customerId
+      - userId
+      - createdAt
+      - startedAt
+      - manualAdjustmentMs
     PmsInitiativeDigest:
       type: object
       properties:
@@ -3070,75 +2187,6 @@ components:
       - name
       - description
       - client
-    NestedTimerSource:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: source's id
-          format: objectid
-        type:
-          description: type of entry source
-          enum:
-          - timer
-          type: string
-          default: timer
-        durationInSeconds:
-          type: number
-          description: the duration in seconds that this timer has been active
-          format: double
-        summary:
-          type: string
-          description: the summary assigned to this timer, can be empty
-      required:
-      - _id
-      - type
-      - durationInSeconds
-      - summary
-    ReleaseFailedInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - release-failed
-          type: string
-        releaseFailedErrors:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/ReleaseFailedError'
-      required:
-      - status
-      - releaseFailedErrors
-    ValidationSuccessInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - validation-success
-          type: string
-      required:
-      - status
-    ReleaseValidationPendingInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - release-validation-pending
-          type: string
-        releasePendedAt:
-          type: string
-          description: date and time entry was changed to release pending
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        releasePendedBy:
-          type: string
-          description: the identifier of the user who change the entry to release pending
-          format: objectid
-      required:
-      - status
-      - releasePendedAt
-      - releasePendedBy
     NestedEntrySource:
       type: object
       properties:
@@ -3169,114 +2217,116 @@ components:
       - type
       - summary
       - unitIncrementCountAdjustments
-    PmsInitiativePropsDigest:
+    V3TimerDraftResponseDto:
       type: object
       properties:
-        type:
-          description: type of the initiative for these props
+        status:
+          type: string
+          description: Status of the timer
           enum:
-          - pms
+          - initialized
+        _id:
           type: string
-        colorHex:
+          description: Timer identifier
+          format: objectid
+        customerId:
           type: string
-          description: the hex color code for this initiative's display to the user
-          example: fec828
-          format: color-hex
-        tags:
-          type: array
-          description: initiative prop's tags
-          items:
-            type: string
-            enum:
-            - pinned
-        nickname:
+          description: Customer identifier
+          format: objectid
+        userId:
+          type: string
+          description: User identifier
+          format: objectid
+        date:
+          type: string
+          description: Date associated with this timer (iso date no time)
+          example: '2022-08-12'
+          format: iso-date
+        createdAt:
+          type: string
+          description: Timer creation timestamp
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: Timer last updated timestamp
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        summary:
           type:
           - string
           - 'null'
-          description: if set, is the nickname user has set for this initiative
+          description: Optionally provide a summary associated with this timer
         initiative:
-          description: the pms initiative that is represented by these initiative props
-          allOf:
-          - $ref: '#/components/schemas/PmsInitiativeDigest'
-      required:
-      - type
-      - colorHex
-      - tags
-      - initiative
-    CodeAssignment:
-      type: object
-      properties:
-        assignedBy:
-          description: entity that assigned the code.
-          enum:
-          - user
-          - laurel
-          type: string
-        code:
-          description: assigned code
-          allOf:
-          - $ref: '#/components/schemas/CodeDigest'
-      required:
-      - assignedBy
-      - code
-    EntryTimerCarryover:
-      type: object
-      properties:
-        originId:
-          type: string
+          description: Associated Initiative (null for anonymous timers)
+          oneOf:
+          - $ref: '#/components/schemas/UserInitiativeDto'
+          - $ref: '#/components/schemas/PmsInitiativeDto'
+        entryId:
+          type:
+          - string
+          - 'null'
+          description: Optionally associate an Entry
           format: objectid
+        manualAdjustmentMs:
+          type: number
+          description: Manual adjustment in milliseconds (always >= 0 for initialized timers)
+          format: double
+        codes:
+          description: Timer draft's codes
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CodeDigest'
       required:
-      - originId
-    CodeDigest:
+      - status
+      - _id
+      - customerId
+      - userId
+      - date
+      - createdAt
+      - updatedAt
+      - manualAdjustmentMs
+    ClientDigest:
       type: object
       properties:
         _id:
           type: string
-          description: code's id
+          description: client's id
           format: objectid
         externalId:
           type: string
-          description: code's external id
+          description: client's external id
         name:
           type: string
-          description: code's name
+          description: a name that identifies this client
         description:
           type: string
-          description: code's description, can be empty
+          description: client's description
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
         type:
-          description: code's type
-          allOf:
-          - $ref: '#/components/schemas/CodeTypeDigest'
+          type:
+          - string
+          - 'null'
+          description: client's type, default is client
+          enum:
+          - client
+          - parent
+        parentClientId:
+          type:
+          - string
+          - 'null'
+          description: id of the parent client
+          format: objectid
       required:
       - _id
       - externalId
       - name
       - description
-      - type
-    EntryValidationError:
-      type: object
-      properties:
-        errorCode:
-          description: the entry validation error code
-          enum:
-          - cannot-have-running-timer
-          - cannot-release-zero-increment
-          - cannot-release-negative-increment
-          - cannot-release-billable-future-work
-          - cannot-release-non-billable-future-work
-          - cannot-release-with-user-initiative
-          - cannot-release-with-inactive-initiative
-          - code-type-is-required
-          - summary-is-required
-          - cannot-have-blocked-compliance-rule
-          - cannot-exceed-twenty-four-hours
-          - entry-date-restricted-no-release
-          - entry-date-restricted-no-create
-          - timekeeper-not-in-working-list
-          - exceeds-twenty-four-hours-daily-limit
-          type: string
-      required:
-      - errorCode
+      - callSign
     V2StartTimerDto:
       type: object
       properties:
@@ -3636,6 +2686,33 @@ components:
           format: iso-date-time
       required:
       - date
+    V3StopTimerSuccessResponseDto:
+      type: object
+      properties:
+        result:
+          type: string
+          enum:
+          - stopped timer
+        stopped:
+          $ref: '#/components/schemas/V3StoppedTimerResponseDto'
+        activity:
+          $ref: '#/components/schemas/TimerActivityDto'
+        entry:
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/EntryDto'
+        othersStopped:
+          type: array
+          items:
+            $ref: '#/components/schemas/V3StoppedTimerInfo'
+      required:
+      - result
+      - stopped
+      - activity
+      - entry
+      - othersStopped
     Timer:
       type: object
       properties:
@@ -3701,256 +2778,115 @@ components:
       - updatedAt
       - userId
       - codes
-    EntryDto:
+    NestedActivitySource:
       type: object
       properties:
         _id:
           type: string
-          description: entry's id
+          description: source's id
           format: objectid
-        schemaVersion:
+        type:
+          description: type of entry source
+          enum:
+          - activity
           type: string
-          description: entry's schemaVersion
-        customerId:
+          default: activity
+        creationMethod:
+          description: the creation method of the activity
+          enum:
+          - timer
+          - tracked
+          - user
           type: string
-          description: id of customer who the owner belongs to
-          format: objectid
-        userId:
-          type: string
-          description: if of user who owns the entry
-          format: objectid
-        enrichmentCorrelationId:
+        category:
           type:
           - string
           - 'null'
-          description: entry's enrichmentCorrelationId to be used by enrichment service
-        statusInfo:
-          description: entry's status info
-          oneOf:
-          - $ref: '#/components/schemas/ReleaseFailedInfo'
-          - $ref: '#/components/schemas/ReleaseValidationPendingInfo'
-          - $ref: '#/components/schemas/ReleasePendingInfo'
-          - $ref: '#/components/schemas/ReleaseSuccessInfo'
-          - $ref: '#/components/schemas/ReleaseSuccessLockedInfo'
-          - $ref: '#/components/schemas/ValidationFailedInfo'
-          - $ref: '#/components/schemas/ValidationPendingInfo'
-          - $ref: '#/components/schemas/ValidationSuccessInfo'
-        creationMethod:
-          description: the creation method of the entry
-          enum:
-          - async
-          - user
-          - pms
-          - shared
+          description: category of this activity, if any
+        technology:
+          type:
+          - string
+          - 'null'
+          description: technology of this activity, if any
+        source:
+          type:
+          - string
+          - 'null'
+          description: source of this activity (e.g. 'macos', 'windows'), if any
+        mechanism:
+          type:
+          - string
+          - 'null'
+          description: mechanism of this activity (e.g. browser used to access web app), if any
+        title:
           type: string
-        createdAsTimer:
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        clusterId:
+          type:
+          - string
+          - 'null'
+          description: activity's clusterId
+        fromSuggestions:
           type:
           - boolean
           - 'null'
-          description: if true, this entry was created by a user for use as a timer
-        workDate:
-          type: string
-          description: the date the entry's work was done, this is required for released entries
-          example: '2022-08-12'
-          format: iso-date
-        isLocked:
-          type: boolean
-          description: if true, this entry is locked and cannot be updated
-        summary:
-          type: string
-          description: entry's summary
-        unitIncrementCountFromSources:
-          type: number
-          description: sum of unit increments from this entry's sources
-          format: double
-        unitIncrementCountAdjustments:
-          type: number
-          description: user modified overrides to entry unit increment total
-          format: double
-        sources:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/NestedActivitySource'
-            - $ref: '#/components/schemas/NestedEntrySource'
-            - $ref: '#/components/schemas/NestedTimerSource'
-        externalId:
+          description: whether this activity source was added from suggestions
+        fromThemes:
           type:
-          - string
+          - boolean
           - 'null'
-          description: entry's external id
-        createdAt:
-          type: string
-          description: date and time this entry was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          description: date and time this entry was updated last
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
+          description: whether this activity source was added from themes
+        hasOverlap:
+          type:
+          - boolean
+          - 'null'
+          description: activity's overlap state
         overlapTimeInSeconds:
           type:
           - number
           - 'null'
-          description: entry's duration in seconds with overlap
+          description: activity's overlap time in seconds
           format: int64
-        isDeleted:
+        threadId:
+          type:
+          - string
+          - 'null'
+          description: activity's thread id
+        disableThreading:
           type:
           - boolean
           - 'null'
-          description: set to true if entry is soft deleted
-        notes:
+          description: if true, disables threading for this activity
+        assignedAt:
           type:
           - string
           - 'null'
-          description: entry's notes
-        splitFromActivityId:
-          type:
-          - string
-          - 'null'
-          description: 'If set, the id of the captured activity this entry was split from.
+          description: 'Datetime this activity was assigned to the entry it currently belongs to.
 
-            Shared across all entries/activities produced by one split (sibling key),
-
-            and the seam for a future undo/merge. The source activity is soft-deleted,
-
-            so its id uniquely identifies the split.'
-          format: objectid
-        supersededByEntryId:
-          type:
-          - string
-          - 'null'
-          description: 'Surviving entry this one was merged into. Set so PMS sync-in leaves the
-
-            superseded entry deleted instead of resurrecting it as a duplicate.'
-          format: objectid
-        releaseCount:
-          type:
-          - number
-          - 'null'
-          description: entry's release count
-          format: int64
-          minimum: 0
-        lastSyncedAt:
-          type:
-          - string
-          - 'null'
-          description: date and time when the entry was last synced with the PMS
+            Unset on entries that predate the field; never back-filled.'
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
-        timerDurationAdjustmentInSeconds:
-          type:
-          - number
-          - 'null'
-          description: adjustment in seconds to be applied to timer duration
-          format: int64
-        releasedFrom:
-          type:
-          - string
-          - 'null'
-          description: source of the release request
-          enum:
-          - time-control
-          - timesheet
-        complianceRules:
-          description: entry's compliance rules
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ComplianceRule'
-        deletedForRetentionAt:
-          type:
-          - string
-          - 'null'
-          description: date and time entry data was deleted for retention
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        timerCarryover:
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/EntryTimerCarryover'
-        autoStoppedReason:
-          type:
-          - string
-          - 'null'
-          description: 'Indicates the reason this entry''s timer was automatically stopped by the
-
-            system (as opposed to being stopped by the user). `null`/undefined for
-
-            entries whose timers were stopped manually or by the overnight job.'
-          enum:
-          - twelve_hour_limit
-        autostopDismissedAt:
-          type:
-          - string
-          - 'null'
-          description: 'Set when the user explicitly dismisses the auto-stop strip via the × button.
-
-            Once set, the strip is never re-shown for this entry.'
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        timezoneAtCreation:
-          type:
-          - string
-          - 'null'
-          description: 'The user''s IANA timezone at the time this entry was created.
-
-            Immutable after creation. Null when the user had no timezone configured.'
-        isShared:
-          type:
-          - boolean
-          - 'null'
-          description: 'Set to `true` when the entry has been shared with at least one recipient.
-
-            Written synchronously by the share endpoint; never reset.
-
-            Absent on entries that pre-date the sharing feature or have never been shared.'
-        externalSources:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ExternalSource'
-        workCodes:
-          description: all of the codes assigned to the entry
-          type: array
-          items:
-            $ref: '#/components/schemas/CodeAssignment'
-        initiative:
-          description: entry's initiative information
-          oneOf:
-          - $ref: '#/components/schemas/UserInitiativeDto'
-          - $ref: '#/components/schemas/PmsInitiativeDto'
-        sharedFrom:
-          description: 'Present only on recipient-side copies. Contains the source entry context
-
-            and display names resolved at read-time via identity-service.'
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/SharedFromResponseDto'
       required:
       - _id
-      - schemaVersion
-      - customerId
-      - userId
-      - statusInfo
+      - type
       - creationMethod
-      - workDate
-      - isLocked
-      - summary
-      - unitIncrementCountFromSources
-      - unitIncrementCountAdjustments
-      - sources
-      - createdAt
-      - updatedAt
-      - workCodes
-      - initiative
+      - title
+      - detail
+      - startedAt
+      - stoppedAt
     UserInitiativePropsDto:
       type: object
       properties:
@@ -3977,6 +2913,1070 @@ components:
       - colorHex
       - tags
       - userId
+    TimerActivityDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: activity's id
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer who owns this activity
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns this activity
+          format: objectid
+        creationMethod:
+          type: string
+          enum:
+          - timer
+        isLocked:
+          type: boolean
+          description: if true, this activity is locked and cannot be updated
+        category:
+          type:
+          - string
+          - 'null'
+          description: category of this activity, if any
+        technology:
+          type:
+          - string
+          - 'null'
+          description: technology of this activity, if any
+        title:
+          type: string
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: activity's external id
+        assignedBy:
+          description: how the activity's initiative was assigned
+          enum:
+          - none
+          - user
+          - ml
+          type: string
+        createdAt:
+          type: string
+          description: date and time activity was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time activity was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        threadId:
+          type:
+          - string
+          - 'null'
+          description: activity's thread id
+        enhancedByAi:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was enhanced by AI
+        isCopiedByAdmin:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was copied by admin
+        isSeeded:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was created via seeding
+        disableThreading:
+          type:
+          - boolean
+          - 'null'
+          description: if true, disables threading for this activity
+        initiative:
+          oneOf:
+          - $ref: '#/components/schemas/UserInitiativeDto'
+          - $ref: '#/components/schemas/PmsInitiativeDto'
+      required:
+      - _id
+      - customerId
+      - userId
+      - creationMethod
+      - isLocked
+      - title
+      - detail
+      - startedAt
+      - stoppedAt
+      - assignedBy
+      - createdAt
+      - updatedAt
+    CodeDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: code's id
+          format: objectid
+        externalId:
+          type: string
+          description: code's external id
+        name:
+          type: string
+          description: code's name
+        description:
+          type: string
+          description: code's description, can be empty
+        type:
+          description: code's type
+          allOf:
+          - $ref: '#/components/schemas/CodeTypeDigest'
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - type
+    UserInitiativeDigest:
+      type: object
+      properties:
+        type:
+          description: initiative's type
+          enum:
+          - user
+          type: string
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type:
+          - string
+          - 'null'
+          description: a short name or abbreviation that identifies this pms initiative
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        status:
+          type:
+          - string
+          - 'null'
+          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
+
+            with entries whose denormalized digest predates this field — those entries
+
+            gain status on the next initiative update via natural digest propagation.'
+          enum:
+          - active
+          - inactive
+        locale:
+          type:
+          - string
+          - 'null'
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+        name:
+          type: string
+          description: the name user has given this initiative
+      required:
+      - type
+      - _id
+      - billingType
+      - unitIncrements
+      - name
+    V3AdjustTimerDraftRequestDto:
+      type: object
+      properties:
+        timerDraftId:
+          type: string
+          description: The ID of the timer draft to adjust
+          format: objectid
+        now:
+          type: string
+          description: The "now" time from the client (as UTC), we use the client's now to prevent clock drift issues
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        summary:
+          type:
+          - string
+          - 'null'
+          description: Optionally provide a summary, set to null to void existing summary
+        manualAdjustmentMs:
+          type:
+          - number
+          - 'null'
+          description: Optionally include a manual adjustment (Will clip to value that makes now - startedAt at 0 if more negative)
+          format: double
+        codeIds:
+          description: Optionally update timer draft's code ids
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: objectid
+        initiativeId:
+          type:
+          - string
+          - 'null'
+          description: Optionally update timer draft's initiative
+          format: objectid
+      required:
+      - timerDraftId
+      - now
+    ReleaseFailedInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-failed
+          type: string
+        releaseFailedErrors:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ReleaseFailedError'
+      required:
+      - status
+      - releaseFailedErrors
+    V3StartTimerNotFoundResponseDto:
+      type: object
+      properties:
+        result:
+          type: string
+          enum:
+          - not found
+        started:
+          type:
+          - object
+          - 'null'
+          additionalProperties: true
+        stopped:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/V3StoppedTimerInfo'
+      required:
+      - result
+      - started
+      - stopped
+    UpdateTimerDto:
+      type: object
+      properties:
+        codeIds:
+          description: if set, will update the codes assigned to this timer
+          type: array
+          items:
+            type: string
+            format: objectid
+        durationInSeconds:
+          type: number
+          description: if set, will update the duration in seconds that this timer has been active
+          format: double
+        initiativeId:
+          type: string
+          description: if set, will update the initiative assigned to this timer. passing null will unassign this timer
+          format: objectid
+        summary:
+          type: string
+          description: if set, will updated the summary for this timer, can be empty
+    UserInitiativePropsDigest:
+      type: object
+      properties:
+        type:
+          description: type of the initiative for these props
+          enum:
+          - user
+          type: string
+        colorHex:
+          type: string
+          description: the hex color code for this initiative's display to the user
+          example: fec828
+          format: color-hex
+        tags:
+          type: array
+          description: initiative prop's tags
+          items:
+            type: string
+            enum:
+            - pinned
+        initiative:
+          description: the user initiative that is represented by these initiative props
+          allOf:
+          - $ref: '#/components/schemas/UserInitiativeDigest'
+      required:
+      - type
+      - colorHex
+      - tags
+      - initiative
+    ReleaseSuccessInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-success
+          type: string
+        releasedAt:
+          type: string
+          description: date and time entry was released
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releasedBy:
+          type: string
+          description: the identifier of the user who released the entry
+          format: objectid
+        reReleaseFailedMessages:
+          type:
+          - array
+          - 'null'
+          description: entry's re-release failed messages
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ReleaseFailedError'
+      required:
+      - status
+      - releasedAt
+      - releasedBy
+    PmsInitiativePropsDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+        nickname:
+          type:
+          - string
+          - 'null'
+          description: the nickname assigned to this initiative by the user
+      required:
+      - _id
+      - colorHex
+      - tags
+      - userId
+    SharedFromResponseDto:
+      type: object
+      properties:
+        entryId:
+          type: string
+          description: id of the source entry that was shared
+          format: objectid
+        entryUserId:
+          type: string
+          description: id of the user who owns the source entry
+          format: objectid
+        sharerId:
+          type: string
+          description: id of the principal who performed the share action
+          format: objectid
+        sharerType:
+          description: capacity in which the sharer acted
+          enum:
+          - user
+          - admin
+          - delegate
+          type: string
+        sharedAt:
+          type: string
+          description: date and time the share was initiated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        entryUserName:
+          type:
+          - string
+          - 'null'
+          description: display name of the entry owner; resolved at read-time, absent on failure
+        sharerName:
+          type:
+          - string
+          - 'null'
+          description: display name of the principal who performed the share; resolved at read-time, absent on failure
+      required:
+      - entryId
+      - entryUserId
+      - sharerId
+      - sharerType
+      - sharedAt
+    PmsInitiativePropsDigest:
+      type: object
+      properties:
+        type:
+          description: type of the initiative for these props
+          enum:
+          - pms
+          type: string
+        colorHex:
+          type: string
+          description: the hex color code for this initiative's display to the user
+          example: fec828
+          format: color-hex
+        tags:
+          type: array
+          description: initiative prop's tags
+          items:
+            type: string
+            enum:
+            - pinned
+        nickname:
+          type:
+          - string
+          - 'null'
+          description: if set, is the nickname user has set for this initiative
+        initiative:
+          description: the pms initiative that is represented by these initiative props
+          allOf:
+          - $ref: '#/components/schemas/PmsInitiativeDigest'
+      required:
+      - type
+      - colorHex
+      - tags
+      - initiative
+    V3StopTimerNotFoundResponseDto:
+      type: object
+      properties:
+        result:
+          type: string
+          enum:
+          - not found
+        stopped:
+          type:
+          - object
+          - 'null'
+          additionalProperties: true
+        othersStopped:
+          type: array
+          items:
+            $ref: '#/components/schemas/V3StoppedTimerInfo'
+      required:
+      - result
+      - stopped
+      - othersStopped
+    StopTimerRequestDto:
+      type: object
+      properties:
+        stoppedAt:
+          type:
+          - string
+          - 'null'
+          description: the date and time at which the timer is being stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+    ReleaseSuccessLockedInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-success-locked
+          type: string
+        releasedAt:
+          type: string
+          description: date and time entry was originally released to PMS
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releasedBy:
+          type: string
+          description: the identifier of the user who released the entry
+          format: objectid
+        lockedAt:
+          type:
+          - string
+          - 'null'
+          description: date the entry became locked in the PMS billing system
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        lastLockCheckAt:
+          type: string
+          description: date lock status was last checked by the Boomi job
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        reReleaseFailedMessages:
+          type:
+          - array
+          - 'null'
+          description: entry's re-release failed messages (retained from previous release-success state)
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ReleaseFailedError'
+      required:
+      - status
+      - releasedAt
+      - releasedBy
+      - lastLockCheckAt
+    V3StartTimerWithEntryIdRequestDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Optionally, provide a custom _id for the timer. If not provided, a new ObjectId will be generated.
+          format: objectid
+        startedAt:
+          type: string
+          description: When the Timer was started, we use client time to account for clock drift
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        summary:
+          type:
+          - string
+          - 'null'
+          description: Optionally, summary to display for the Timer, set to null in order to void any existing summary associated
+        manualAdjustmentMs:
+          type:
+          - number
+          - 'null'
+          description: Optionally, include a manual adjustment to persist, set to null in order to void any existing manual adjustment associated (Can't be negative)
+          format: double
+        timezone:
+          type:
+          - string
+          - 'null'
+          description: The timezone in which the timer is being started — required for overnight timer detection
+          enum:
+          - Africa/Abidjan
+          - Africa/Accra
+          - America/Adak
+          - Africa/Addis_Ababa
+          - Australia/Adelaide
+          - Asia/Aden
+          - Africa/Algiers
+          - Asia/Almaty
+          - Asia/Amman
+          - Europe/Amsterdam
+          - America/Anchorage
+          - Europe/Andorra
+          - America/Anguilla
+          - Indian/Antananarivo
+          - America/Antigua
+          - Pacific/Apia
+          - America/Aruba
+          - Asia/Ashgabat
+          - Africa/Asmara
+          - America/Asuncion
+          - Europe/Athens
+          - America/Atikokan
+          - Pacific/Auckland
+          - Atlantic/Azores
+          - Asia/Baghdad
+          - Asia/Bahrain
+          - Asia/Baku
+          - Africa/Bamako
+          - Asia/Bangkok
+          - Africa/Bangui
+          - Africa/Banjul
+          - America/Barbados
+          - Asia/Beirut
+          - Europe/Belgrade
+          - America/Belize
+          - Europe/Berlin
+          - Atlantic/Bermuda
+          - Asia/Bishkek
+          - Africa/Bissau
+          - America/Blanc-Sablon
+          - Africa/Blantyre
+          - America/Bogota
+          - Pacific/Bougainville
+          - Europe/Bratislava
+          - Africa/Brazzaville
+          - Australia/Brisbane
+          - Asia/Brunei
+          - Europe/Brussels
+          - Europe/Bucharest
+          - Europe/Budapest
+          - America/Argentina/Buenos_Aires
+          - Africa/Bujumbura
+          - Africa/Cairo
+          - Atlantic/Canary
+          - America/Cancun
+          - Atlantic/Cape_Verde
+          - America/Caracas
+          - Africa/Casablanca
+          - Antarctica/Casey
+          - America/Cayenne
+          - America/Cayman
+          - Indian/Chagos
+          - Pacific/Chatham
+          - America/Chicago
+          - Europe/Chisinau
+          - Asia/Chita
+          - Indian/Christmas
+          - Pacific/Chuuk
+          - Indian/Cocos
+          - Asia/Colombo
+          - Indian/Comoro
+          - Africa/Conakry
+          - Europe/Copenhagen
+          - America/Costa_Rica
+          - America/Curacao
+          - Africa/Dakar
+          - Asia/Damascus
+          - America/Danmarkshavn
+          - Africa/Dar_es_Salaam
+          - Australia/Darwin
+          - Antarctica/Davis
+          - America/Denver
+          - Asia/Dhaka
+          - Asia/Dili
+          - Africa/Djibouti
+          - America/Dominica
+          - Africa/Douala
+          - Asia/Dubai
+          - Europe/Dublin
+          - Antarctica/DumontDUrville
+          - Asia/Dushanbe
+          - Pacific/Easter
+          - America/Edmonton
+          - Pacific/Efate
+          - Africa/El_Aaiun
+          - America/El_Salvador
+          - Australia/Eucla
+          - Pacific/Fakaofo
+          - Atlantic/Faroe
+          - Pacific/Fiji
+          - Africa/Freetown
+          - Pacific/Funafuti
+          - Africa/Gaborone
+          - Pacific/Galapagos
+          - Pacific/Gambier
+          - Europe/Gibraltar
+          - America/Grand_Turk
+          - America/Grenada
+          - Pacific/Guadalcanal
+          - America/Guadeloupe
+          - Pacific/Guam
+          - America/Guatemala
+          - America/Guayaquil
+          - Europe/Guernsey
+          - America/Guyana
+          - America/Halifax
+          - Africa/Harare
+          - America/Havana
+          - Asia/Hebron
+          - Europe/Helsinki
+          - America/Hermosillo
+          - Asia/Ho_Chi_Minh
+          - Asia/Hong_Kong
+          - Pacific/Honolulu
+          - Asia/Hovd
+          - Asia/Irkutsk
+          - Europe/Isle_of_Man
+          - Europe/Istanbul
+          - Asia/Jakarta
+          - America/Jamaica
+          - Asia/Jayapura
+          - Europe/Jersey
+          - Asia/Jerusalem
+          - Africa/Johannesburg
+          - Africa/Juba
+          - Asia/Kabul
+          - Europe/Kaliningrad
+          - Asia/Kamchatka
+          - Africa/Kampala
+          - Pacific/Kanton
+          - Asia/Karachi
+          - Asia/Kathmandu
+          - Indian/Kerguelen
+          - Africa/Khartoum
+          - Africa/Kigali
+          - Africa/Kinshasa
+          - Pacific/Kiritimati
+          - Asia/Kolkata
+          - Pacific/Kosrae
+          - America/Kralendijk
+          - Asia/Kuala_Lumpur
+          - Asia/Kuwait
+          - Europe/Kyiv
+          - America/La_Paz
+          - Africa/Lagos
+          - Africa/Libreville
+          - America/Lima
+          - Europe/Lisbon
+          - Europe/Ljubljana
+          - Africa/Lome
+          - Europe/London
+          - Arctic/Longyearbyen
+          - Australia/Lord_Howe
+          - America/Los_Angeles
+          - America/Lower_Princes
+          - Africa/Luanda
+          - Africa/Lubumbashi
+          - Africa/Lusaka
+          - Europe/Luxembourg
+          - Asia/Macau
+          - Europe/Madrid
+          - Indian/Mahe
+          - Pacific/Majuro
+          - Asia/Makassar
+          - Africa/Malabo
+          - Indian/Maldives
+          - Europe/Malta
+          - America/Managua
+          - America/Manaus
+          - Asia/Manila
+          - Africa/Maputo
+          - Europe/Mariehamn
+          - America/Marigot
+          - Pacific/Marquesas
+          - America/Martinique
+          - Africa/Maseru
+          - Indian/Mauritius
+          - Antarctica/Mawson
+          - Indian/Mayotte
+          - Africa/Mbabane
+          - Antarctica/McMurdo
+          - America/Mexico_City
+          - Pacific/Midway
+          - Europe/Minsk
+          - America/Miquelon
+          - Africa/Mogadishu
+          - Europe/Monaco
+          - Africa/Monrovia
+          - America/Montevideo
+          - America/Montreal
+          - America/Montserrat
+          - Europe/Moscow
+          - Asia/Muscat
+          - Africa/Nairobi
+          - America/Nassau
+          - Pacific/Nauru
+          - Africa/Ndjamena
+          - America/New_York
+          - Africa/Niamey
+          - Asia/Nicosia
+          - Pacific/Niue
+          - Pacific/Norfolk
+          - America/Noronha
+          - Africa/Nouakchott
+          - Pacific/Noumea
+          - Asia/Novosibirsk
+          - America/Nuuk
+          - America/Ojinaga
+          - Asia/Omsk
+          - Europe/Oslo
+          - Africa/Ouagadougou
+          - Pacific/Pago_Pago
+          - Pacific/Palau
+          - Antarctica/Palmer
+          - America/Panama
+          - America/Paramaribo
+          - Europe/Paris
+          - Australia/Perth
+          - Asia/Phnom_Penh
+          - America/Phoenix
+          - Pacific/Pitcairn
+          - Europe/Podgorica
+          - America/Port-au-Prince
+          - Pacific/Port_Moresby
+          - America/Port_of_Spain
+          - Africa/Porto-Novo
+          - Europe/Prague
+          - America/Puerto_Rico
+          - America/Punta_Arenas
+          - Asia/Pyongyang
+          - Asia/Qatar
+          - Asia/Qyzylorda
+          - Pacific/Rarotonga
+          - America/Regina
+          - Indian/Reunion
+          - Atlantic/Reykjavik
+          - Europe/Riga
+          - America/Rio_Branco
+          - Asia/Riyadh
+          - Europe/Rome
+          - Pacific/Saipan
+          - Asia/Sakhalin
+          - Europe/Samara
+          - Europe/San_Marino
+          - America/Santiago
+          - America/Santo_Domingo
+          - America/Sao_Paulo
+          - Africa/Sao_Tome
+          - Europe/Sarajevo
+          - America/Scoresbysund
+          - Asia/Seoul
+          - Asia/Shanghai
+          - Europe/Simferopol
+          - Asia/Singapore
+          - Europe/Skopje
+          - Europe/Sofia
+          - Atlantic/South_Georgia
+          - America/St_Barthelemy
+          - Atlantic/St_Helena
+          - America/St_Johns
+          - America/St_Kitts
+          - America/St_Lucia
+          - America/St_Thomas
+          - America/St_Vincent
+          - Atlantic/Stanley
+          - Europe/Stockholm
+          - Australia/Sydney
+          - Antarctica/Syowa
+          - Pacific/Tahiti
+          - Asia/Taipei
+          - Europe/Tallinn
+          - Pacific/Tarawa
+          - Asia/Tashkent
+          - Asia/Tbilisi
+          - America/Tegucigalpa
+          - Asia/Tehran
+          - Asia/Thimphu
+          - America/Thule
+          - America/Tijuana
+          - Europe/Tirane
+          - Asia/Tokyo
+          - Pacific/Tongatapu
+          - America/Toronto
+          - America/Tortola
+          - Africa/Tripoli
+          - Antarctica/Troll
+          - Africa/Tunis
+          - Asia/Ulaanbaatar
+          - Asia/Urumqi
+          - Europe/Vaduz
+          - America/Vancouver
+          - Europe/Vatican
+          - Europe/Vienna
+          - Asia/Vientiane
+          - Europe/Vilnius
+          - Asia/Vladivostok
+          - Antarctica/Vostok
+          - Pacific/Wake
+          - Pacific/Wallis
+          - Europe/Warsaw
+          - America/Whitehorse
+          - Africa/Windhoek
+          - America/Winnipeg
+          - Asia/Yangon
+          - Asia/Yekaterinburg
+          - Asia/Yerevan
+          - Europe/Zagreb
+          - Europe/Zurich
+        entryId:
+          type: string
+          description: The entry to associate with the timer. The timer date will be inferred from the entry's workDate.
+          format: objectid
+      required:
+      - startedAt
+      - entryId
+    ComplianceRule:
+      type: object
+      properties:
+        ruleKey:
+          type: string
+          description: rule key
+        description:
+          type:
+          - string
+          - 'null'
+          description: rule description
+        enforcementLevel:
+          description: enforcement level
+          enum:
+          - block
+          - acknowledge
+          - warn
+          - 'off'
+          type: string
+      required:
+      - ruleKey
+      - enforcementLevel
+    UpdateTimerRequestDto:
+      type: object
+      properties:
+        summary:
+          type: string
+          description: summary of the timer
+    ReleaseValidationPendingInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-validation-pending
+          type: string
+        releasePendedAt:
+          type: string
+          description: date and time entry was changed to release pending
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releasePendedBy:
+          type: string
+          description: the identifier of the user who change the entry to release pending
+          format: objectid
+      required:
+      - status
+      - releasePendedAt
+      - releasePendedBy
+    V3StoppedTimerResponseDto:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Status of the timer
+          enum:
+          - stopped
+        _id:
+          type: string
+          description: Original timer identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Customer identifier
+          format: objectid
+        userId:
+          type: string
+          description: User identifier
+          format: objectid
+        startedAt:
+          type: string
+          description: Timestamp when timer started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: Timestamp when timer stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        durationMs:
+          type: number
+          description: Duration in milliseconds
+          format: double
+        activityId:
+          type: string
+          description: The Activity created from this stopped timer
+          format: objectid
+        entryId:
+          type:
+          - string
+          - 'null'
+          description: The Entry associated with this timer, when timer is anonymous this is None
+          format: objectid
+        initiativeId:
+          type:
+          - string
+          - 'null'
+          description: The Initiative associated with this timer
+          format: objectid
+      required:
+      - status
+      - _id
+      - customerId
+      - userId
+      - startedAt
+      - stoppedAt
+      - durationMs
+      - activityId
+    V2TimerResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: the identifier of this timer
+          format: objectid
+        customerId:
+          type: string
+          description: the identifier of the customer whose user owns this timer
+          format: objectid
+        entryId:
+          type: string
+          description: the identifier of the entry which this timer belongs to
+          format: objectid
+        startedAt:
+          type: string
+          description: the timestamp when this timer was started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        userId:
+          type: string
+          description: the identifier of the user who owns this timer
+          format: objectid
+        summary:
+          type:
+          - string
+          - 'null'
+          description: summary of the timer
+      required:
+      - _id
+      - customerId
+      - entryId
+      - startedAt
+      - userId
+    V3AdjustRunningTimerRequestDto:
+      type: object
+      properties:
+        timerId:
+          type: string
+          description: The ID of the running timer to adjust
+          format: objectid
+        now:
+          type: string
+          description: The "now" time from the client (as UTC), we use the client's now to prevent clock drift issues
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        summary:
+          type:
+          - string
+          - 'null'
+          description: Optionally provide a summary, set to null to void existing summary
+        manualAdjustmentMs:
+          type:
+          - number
+          - 'null'
+          description: Optionally include a manual adjustment (Will clip to value that makes now - startedAt at 0 if more negative)
+          format: double
+      required:
+      - timerId
+      - now
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

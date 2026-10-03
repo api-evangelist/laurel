@@ -95,6 +95,62 @@ paths:
       - Tenants
 components:
   schemas:
+    CreateTenantDto:
+      type: object
+      properties:
+        description:
+          type: string
+          description: tenant's description, can be empty
+        env:
+          description: tenant's execution environment
+          enum:
+          - dev
+          - stg
+          - prd
+          type: string
+        name:
+          description: tenant's name in kebab case
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+          type: string
+        regions:
+          description: tenant's regions
+          type: array
+          items:
+            type: string
+            enum:
+            - me-south-1
+            - af-south-1
+            - eu-central-1
+            - ap-east-1
+            - eu-west-1
+            - ap-southeast-3
+            - eu-west-2
+            - eu-south-1
+            - ca-central-1
+            - ap-south-1
+            - us-west-1
+            - us-east-1
+            - us-east-2
+            - us-west-2
+            - ap-northeast-3
+            - ap-northeast-2
+            - eu-west-3
+            - sa-east-1
+            - ap-southeast-1
+            - eu-north-1
+            - ap-southeast-2
+            - ap-northeast-1
+            - me-central-1
+      required:
+      - description
+      - env
+      - name
+      - regions
     Tenant:
       type: object
       properties:
@@ -220,62 +276,6 @@ components:
             - ap-northeast-1
             - me-central-1
       required:
-      - regions
-    CreateTenantDto:
-      type: object
-      properties:
-        description:
-          type: string
-          description: tenant's description, can be empty
-        env:
-          description: tenant's execution environment
-          enum:
-          - dev
-          - stg
-          - prd
-          type: string
-        name:
-          description: tenant's name in kebab case
-          enum:
-          - iad
-          - lhr
-          - syd
-          - pdx
-          - yul
-          type: string
-        regions:
-          description: tenant's regions
-          type: array
-          items:
-            type: string
-            enum:
-            - me-south-1
-            - af-south-1
-            - eu-central-1
-            - ap-east-1
-            - eu-west-1
-            - ap-southeast-3
-            - eu-west-2
-            - eu-south-1
-            - ca-central-1
-            - ap-south-1
-            - us-west-1
-            - us-east-1
-            - us-east-2
-            - us-west-2
-            - ap-northeast-3
-            - ap-northeast-2
-            - eu-west-3
-            - sa-east-1
-            - ap-southeast-1
-            - eu-north-1
-            - ap-southeast-2
-            - ap-northeast-1
-            - me-central-1
-      required:
-      - description
-      - env
-      - name
       - regions
   securitySchemes:
     ApiBearerAuth:

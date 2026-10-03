@@ -540,7 +540,7 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dto:
+    ImportCustomerCodeDto:
       type: object
       properties:
         externalId:
@@ -584,7 +584,7 @@ components:
             $ref: '#/components/schemas/Dto'
       required:
       - codes
-    ImportCustomerCodeDto:
+    Dto:
       type: object
       properties:
         externalId:
@@ -619,6 +619,30 @@ components:
       - name
       - description
       - codeTypeExternalId
+    GetUserCodesResponseDto:
+      type: object
+      properties:
+        defaultCodeId:
+          type: string
+          description: the Id of the code that should be chosen as a
+          format: objectid
+        nextCursor:
+          type: string
+          description: next cursor. if it is undefined it means this is the last page
+          format: objectid
+        codes:
+          description: all of the codes assigned to the entry
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeResponseDto'
+        items:
+          description: all of the codes assigned to the entry
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeResponseDto'
+      required:
+      - codes
+      - items
     ValidateCodeInitiativeResponseDto:
       type: object
       properties:
@@ -626,6 +650,29 @@ components:
           type: boolean
       required:
       - isValid
+    GetUserCodesOffsetBaseResponseDto:
+      type: object
+      properties:
+        defaultCodeId:
+          type: string
+          description: the Id of the code that should be chosen as a
+          format: objectid
+        items:
+          description: the list of items in the current page
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeResponseDto'
+        nextPage:
+          type: number
+          description: next page number. if it is undefined it means this is the last page
+        totalPages:
+          type: number
+        totalItems:
+          type: number
+      required:
+      - items
+      - totalPages
+      - totalItems
     ImportCustomerCodeDto_2:
       type: object
       properties:
@@ -706,62 +753,6 @@ components:
       - name
       - description
       - type
-    GetUserCodesOffsetBaseResponseDto:
-      type: object
-      properties:
-        defaultCodeId:
-          type: string
-          description: the Id of the code that should be chosen as a
-          format: objectid
-        items:
-          description: the list of items in the current page
-          type: array
-          items:
-            $ref: '#/components/schemas/CodeResponseDto'
-        nextPage:
-          type: number
-          description: next page number. if it is undefined it means this is the last page
-        totalPages:
-          type: number
-        totalItems:
-          type: number
-      required:
-      - items
-      - totalPages
-      - totalItems
-    CodeTypeDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: code type's id
-          format: objectid
-        externalId:
-          type: string
-          description: code type's external id
-        name:
-          type: string
-          description: code type's name
-        semanticType:
-          type:
-          - string
-          - 'null'
-          description: code type's semantic type
-          enum:
-          - action
-          - activity
-          - location
-          - phase
-          - task
-        orderingSequence:
-          type:
-          - string
-          - 'null'
-          description: ordering sequence for UI sorting (alphanumeric)
-      required:
-      - _id
-      - externalId
-      - name
     Code:
       type: object
       properties:
@@ -834,30 +825,39 @@ components:
       - createdAt
       - updatedAt
       - type
-    GetUserCodesResponseDto:
+    CodeTypeDigest:
       type: object
       properties:
-        defaultCodeId:
+        _id:
           type: string
-          description: the Id of the code that should be chosen as a
+          description: code type's id
           format: objectid
-        nextCursor:
+        externalId:
           type: string
-          description: next cursor. if it is undefined it means this is the last page
-          format: objectid
-        codes:
-          description: all of the codes assigned to the entry
-          type: array
-          items:
-            $ref: '#/components/schemas/CodeResponseDto'
-        items:
-          description: all of the codes assigned to the entry
-          type: array
-          items:
-            $ref: '#/components/schemas/CodeResponseDto'
+          description: code type's external id
+        name:
+          type: string
+          description: code type's name
+        semanticType:
+          type:
+          - string
+          - 'null'
+          description: code type's semantic type
+          enum:
+          - action
+          - activity
+          - location
+          - phase
+          - task
+        orderingSequence:
+          type:
+          - string
+          - 'null'
+          description: ordering sequence for UI sorting (alphanumeric)
       required:
-      - codes
-      - items
+      - _id
+      - externalId
+      - name
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

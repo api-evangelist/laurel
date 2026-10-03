@@ -119,22 +119,6 @@ paths:
       - Metrics
 components:
   schemas:
-    Metrics:
-      type: object
-      properties:
-        releasedInSeconds:
-          type: number
-          description: Released in seconds
-          format: int64
-          minimum: 0
-        unreleasedInSeconds:
-          type: number
-          description: Released in seconds
-          format: int64
-          minimum: 0
-      required:
-      - releasedInSeconds
-      - unreleasedInSeconds
     EntryCustomerMetricsResponseDto:
       type: object
       properties:
@@ -197,6 +181,22 @@ components:
       required:
       - billable
       - nonBillable
+    Metrics:
+      type: object
+      properties:
+        releasedInSeconds:
+          type: number
+          description: Released in seconds
+          format: int64
+          minimum: 0
+        unreleasedInSeconds:
+          type: number
+          description: Released in seconds
+          format: int64
+          minimum: 0
+      required:
+      - releasedInSeconds
+      - unreleasedInSeconds
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

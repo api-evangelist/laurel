@@ -1112,6 +1112,182 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    DelegatorUserDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: user's id
+          format: objectid
+        firstName:
+          type: string
+          description: user's first name
+        lastName:
+          type: string
+          description: user's last name
+        identities:
+          description: a list of user's external identities. can be used to look up this user
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Identity'
+      required:
+      - _id
+      - firstName
+      - lastName
+    Identity:
+      type: object
+      properties:
+        type:
+          description: type of the external identity
+          enum:
+          - aderant
+          - auth0
+          - azure
+          - email
+          - external-billing-system
+          - elite
+          - intercom
+          - juris
+          - cisco-cdr
+          - mixpanel
+          - phone
+          - phone-extension
+          - salesforce
+          - segment
+          - vitally
+          - walls
+          - zendesk
+          - zoom
+          - exchange
+          - user-principal-name
+          - cisco-webex
+          - ringcentral
+          - google
+          type: string
+        value:
+          type: string
+          description: external identifier
+        customerId:
+          type:
+          - string
+          - 'null'
+          description: optional customer id to bind the identity to
+          format: objectid
+      required:
+      - type
+      - value
+    IdentityLookupParamDto:
+      type: object
+      properties:
+        type:
+          description: type of the external identity
+          enum:
+          - aderant
+          - auth0
+          - azure
+          - email
+          - external-billing-system
+          - elite
+          - intercom
+          - juris
+          - cisco-cdr
+          - mixpanel
+          - phone
+          - phone-extension
+          - salesforce
+          - segment
+          - vitally
+          - walls
+          - zendesk
+          - zoom
+          - exchange
+          - user-principal-name
+          - cisco-webex
+          - ringcentral
+          - google
+          type: string
+        value:
+          type: string
+          description: external identifier
+          maxLength: 256
+          minLength: 1
+      required:
+      - type
+      - value
+    UserIntegrationProjection:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: user's id
+          format: objectid
+        email:
+          type: string
+          description: user's email address used for login
+          example: user@example.com
+          format: email
+        name:
+          type:
+          - string
+          - 'null'
+          description: The concatenated and trimmed firstName and lastName or None if neither exist or are all whitespace
+        relevantIdentities:
+          description: the identities for this user that are relevant to the integration
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+      required:
+      - _id
+      - email
+      - relevantIdentities
+    LookupUsersBatchRequestDto:
+      type: object
+      properties:
+        identities:
+          description: Identities to resolve to users within the customer
+          maxItems: 500
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityLookupParamDto'
+      required:
+      - identities
+    UserDelegateDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: objectid
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DelegatePermissionDto'
+      required:
+      - userId
+      - permissions
+    TenantDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: tenant's id
+          format: objectid
+        description:
+          type: string
+          description: tenant's description, can be empty
+        name:
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+          type: string
+      required:
+      - _id
+      - description
+      - name
     ServiceTokenResponseDto:
       type: object
       properties:
@@ -1129,30 +1305,6 @@ components:
       - access_token
       - expires_in
       - token_type
-    CreateServiceTokenRequestDto:
-      type: object
-      properties:
-        client_id:
-          type: string
-        client_secret:
-          type: string
-          description: client's Auth0 secret
-        audience:
-          type: string
-        grant_type:
-          type: string
-      required:
-      - client_id
-      - client_secret
-      - audience
-      - grant_type
-    DelegatePermissionDto:
-      type: object
-      properties:
-        claim:
-          type: string
-      required:
-      - claim
     UserResponseDto:
       type: object
       properties:
@@ -1290,68 +1442,6 @@ components:
       - nickname
       - roles
       - updatedAt
-    IdentityLookupParamDto:
-      type: object
-      properties:
-        type:
-          description: type of the external identity
-          enum:
-          - aderant
-          - auth0
-          - azure
-          - email
-          - external-billing-system
-          - elite
-          - intercom
-          - juris
-          - cisco-cdr
-          - mixpanel
-          - phone
-          - phone-extension
-          - salesforce
-          - segment
-          - vitally
-          - walls
-          - zendesk
-          - zoom
-          - exchange
-          - user-principal-name
-          - cisco-webex
-          - ringcentral
-          - google
-          type: string
-        value:
-          type: string
-          description: external identifier
-          maxLength: 256
-          minLength: 1
-      required:
-      - type
-      - value
-    DelegatorUserDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: user's id
-          format: objectid
-        firstName:
-          type: string
-          description: user's first name
-        lastName:
-          type: string
-          description: user's last name
-        identities:
-          description: a list of user's external identities. can be used to look up this user
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Identity'
-      required:
-      - _id
-      - firstName
-      - lastName
     PermissionDigest:
       type: object
       properties:
@@ -1428,144 +1518,6 @@ components:
       - _id
       - fullName
       - tenant
-    UserIntegrationProjection:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: user's id
-          format: objectid
-        email:
-          type: string
-          description: user's email address used for login
-          example: user@example.com
-          format: email
-        name:
-          type:
-          - string
-          - 'null'
-          description: The concatenated and trimmed firstName and lastName or None if neither exist or are all whitespace
-        relevantIdentities:
-          description: the identities for this user that are relevant to the integration
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-      required:
-      - _id
-      - email
-      - relevantIdentities
-    UpdateUserV2Dto:
-      type: object
-      properties:
-        firstName:
-          type: string
-          description: if set, will update user's first name
-        email:
-          type: string
-          description: if set, will update user's email
-          example: user@example.com
-          format: email
-        jobTitle:
-          type: string
-          description: if set, will update user's job title
-        lastName:
-          type: string
-          description: if set, will update user's last name
-        nickname:
-          type: string
-          description: if set, will update user's nickname, can be empty
-        roleIds:
-          description: if set, will update roles that are assigned to the user
-          type: array
-          items:
-            type: string
-            format: objectid
-        seniority:
-          type: string
-          description: if set, will update user's seniority level
-        department:
-          type: string
-          description: if set, will update user's department
-        office:
-          type: string
-          description: if set, will update user's office
-        subdepartment:
-          type: string
-          description: if set, will update user's subdepartment
-        pod:
-          type: string
-          description: if set, will update user's pod
-        delegates:
-          description: if set, will update users who delegate their work to this user
-          type: array
-          items:
-            $ref: '#/components/schemas/UserDelegateDto'
-        identities:
-          description: if set, will update user's external identities
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    Identity:
-      type: object
-      properties:
-        type:
-          description: type of the external identity
-          enum:
-          - aderant
-          - auth0
-          - azure
-          - email
-          - external-billing-system
-          - elite
-          - intercom
-          - juris
-          - cisco-cdr
-          - mixpanel
-          - phone
-          - phone-extension
-          - salesforce
-          - segment
-          - vitally
-          - walls
-          - zendesk
-          - zoom
-          - exchange
-          - user-principal-name
-          - cisco-webex
-          - ringcentral
-          - google
-          type: string
-        value:
-          type: string
-          description: external identifier
-        customerId:
-          type:
-          - string
-          - 'null'
-          description: optional customer id to bind the identity to
-          format: objectid
-      required:
-      - type
-      - value
-    RoleDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: role's id
-          format: objectid
-        name:
-          type: string
-          description: name of the role
-        permissions:
-          description: permissions granted to this users in this role
-          type: array
-          items:
-            $ref: '#/components/schemas/PermissionDigest'
-      required:
-      - _id
-      - name
-      - permissions
     User:
       type: object
       properties:
@@ -1700,52 +1652,146 @@ components:
       - nickname
       - roles
       - updatedAt
-    LookupUsersBatchRequestDto:
+    CreateServiceTokenRequestDto:
       type: object
       properties:
-        identities:
-          description: Identities to resolve to users within the customer
-          maxItems: 500
-          type: array
-          items:
-            $ref: '#/components/schemas/IdentityLookupParamDto'
+        client_id:
+          type: string
+        client_secret:
+          type: string
+          description: client's Auth0 secret
+        audience:
+          type: string
+        grant_type:
+          type: string
       required:
-      - identities
-    TenantDigest:
+      - client_id
+      - client_secret
+      - audience
+      - grant_type
+    DelegatePermissionDto:
+      type: object
+      properties:
+        claim:
+          type: string
+      required:
+      - claim
+    RoleDigest:
       type: object
       properties:
         _id:
           type: string
-          description: tenant's id
+          description: role's id
           format: objectid
-        description:
-          type: string
-          description: tenant's description, can be empty
         name:
-          enum:
-          - iad
-          - lhr
-          - syd
-          - pdx
-          - yul
           type: string
-      required:
-      - _id
-      - description
-      - name
-    UserDelegateDto:
-      type: object
-      properties:
-        userId:
-          type: string
-          format: objectid
+          description: name of the role
         permissions:
+          description: permissions granted to this users in this role
           type: array
           items:
-            $ref: '#/components/schemas/DelegatePermissionDto'
+            $ref: '#/components/schemas/PermissionDigest'
       required:
-      - userId
+      - _id
+      - name
       - permissions
+    UpdateUserV2Dto:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: if set, will update user's first name
+        email:
+          type: string
+          description: if set, will update user's email
+          example: user@example.com
+          format: email
+        jobTitle:
+          type: string
+          description: if set, will update user's job title
+        lastName:
+          type: string
+          description: if set, will update user's last name
+        nickname:
+          type: string
+          description: if set, will update user's nickname, can be empty
+        roleIds:
+          description: if set, will update roles that are assigned to the user
+          type: array
+          items:
+            type: string
+            format: objectid
+        seniority:
+          type: string
+          description: if set, will update user's seniority level
+        department:
+          type: string
+          description: if set, will update user's department
+        office:
+          type: string
+          description: if set, will update user's office
+        subdepartment:
+          type: string
+          description: if set, will update user's subdepartment
+        pod:
+          type: string
+          description: if set, will update user's pod
+        delegates:
+          description: if set, will update users who delegate their work to this user
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDelegateDto'
+        identities:
+          description: if set, will update user's external identities
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    ImportCustomerInitiativesConsolidatedBatchDto:
+      type: object
+      properties:
+        initiatives:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportCustomerInitiativeConsolidatedDto'
+      required:
+      - initiatives
+    ImportCustomerClientsBatchDto:
+      type: object
+      properties:
+        clients:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportCustomerClientDto'
+      required:
+      - clients
+    ImportCustomerCodesBatchDto:
+      type: object
+      properties:
+        codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dto'
+      required:
+      - codes
+    ConsolidatedCodesSubDto:
+      type: object
+      properties:
+        isCodesEmpty:
+          type: boolean
+        codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportCodeDto'
+    ImportCodeDto:
+      type: object
+      properties:
+        codeExternalId:
+          type: string
+        codeTypeExternalId:
+          type: string
+      required:
+      - codeExternalId
+      - codeTypeExternalId
     ConsolidatedInitiativeSubDto:
       type: object
       properties:
@@ -1832,28 +1878,32 @@ components:
       - callSign
       - clientExternalId
       - unitIncrements
-    ImportCustomerInitiativeConsolidatedDto:
+    UpdateUserDelegatesDto:
       type: object
       properties:
-        initiative:
-          $ref: '#/components/schemas/ConsolidatedInitiativeSubDto'
-        codes:
-          $ref: '#/components/schemas/ConsolidatedCodesSubDto'
-        entryValidationRules:
-          $ref: '#/components/schemas/ConsolidatedValidationSubDto'
+        identity:
+          description: Identity to match the user
+          allOf:
+          - $ref: '#/components/schemas/IdentityDto'
+        delegates:
+          description: Array of delegates to set for this user
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDelegateInfoDto'
       required:
-      - initiative
-      - codes
-      - entryValidationRules
-    ConsolidatedValidationSubDto:
+      - identity
+      - delegates
+    SetCustomerInitiativeCodesDto:
       type: object
       properties:
-        isRequiredCodeTypeExternalIdsEmpty:
-          type: boolean
-        requiredCodeTypeExternalIds:
+        codeExternalIds:
+          minItems: 1
+          maxItems: 2500
           type: array
           items:
             type: string
+      required:
+      - codeExternalIds
     ImportCustomerClientDto:
       type: object
       properties:
@@ -1922,6 +1972,40 @@ components:
       - name
       - description
       - codeTypeExternalId
+    IdentityDto:
+      type: object
+      properties:
+        type:
+          enum:
+          - aderant
+          - auth0
+          - azure
+          - email
+          - external-billing-system
+          - elite
+          - intercom
+          - juris
+          - cisco-cdr
+          - mixpanel
+          - phone
+          - phone-extension
+          - salesforce
+          - segment
+          - vitally
+          - walls
+          - zendesk
+          - zoom
+          - exchange
+          - user-principal-name
+          - cisco-webex
+          - ringcentral
+          - google
+          type: string
+        value:
+          type: string
+      required:
+      - type
+      - value
     Dto:
       type: object
       properties:
@@ -1957,58 +2041,15 @@ components:
       - name
       - description
       - codeTypeExternalId
-    ConsolidatedCodesSubDto:
+    ConsolidatedValidationSubDto:
       type: object
       properties:
-        isCodesEmpty:
+        isRequiredCodeTypeExternalIdsEmpty:
           type: boolean
-        codes:
+        requiredCodeTypeExternalIds:
           type: array
           items:
-            $ref: '#/components/schemas/ImportCodeDto'
-    UpdateUserDelegatesDto:
-      type: object
-      properties:
-        identity:
-          description: Identity to match the user
-          allOf:
-          - $ref: '#/components/schemas/IdentityDto'
-        delegates:
-          description: Array of delegates to set for this user
-          type: array
-          items:
-            $ref: '#/components/schemas/UserDelegateInfoDto'
-      required:
-      - identity
-      - delegates
-    ImportCustomerClientsBatchDto:
-      type: object
-      properties:
-        clients:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportCustomerClientDto'
-      required:
-      - clients
-    ImportCustomerCodesBatchDto:
-      type: object
-      properties:
-        codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dto'
-      required:
-      - codes
-    ImportCodeDto:
-      type: object
-      properties:
-        codeExternalId:
-          type: string
-        codeTypeExternalId:
-          type: string
-      required:
-      - codeExternalId
-      - codeTypeExternalId
+            type: string
     SetInitiativeLevelEntryValidationRulesDto:
       type: object
       properties:
@@ -2017,16 +2058,22 @@ components:
           type: array
           items:
             type: string
-    UpdateUserDelegatesBatchDto:
+    UserDelegateInfoDto:
       type: object
       properties:
-        users:
-          description: Array of user delegate updates
-          type: array
-          items:
-            $ref: '#/components/schemas/UpdateUserDelegatesDto'
+        delegateType:
+          description: Delegate permission type
+          enum:
+          - timesheet_only
+          - timesheet_and_activities
+          type: string
+        identity:
+          description: Identity to match the delegate user
+          allOf:
+          - $ref: '#/components/schemas/IdentityDto'
       required:
-      - users
+      - delegateType
+      - identity
     SetCustomerInitiativeAccessDto:
       type: object
       properties:
@@ -2044,429 +2091,110 @@ components:
             format: objectid
       required:
       - type
-    ImportCustomerInitiativesConsolidatedBatchDto:
+    UpdateUserDelegatesBatchDto:
       type: object
       properties:
-        initiatives:
+        users:
+          description: Array of user delegate updates
           type: array
           items:
-            $ref: '#/components/schemas/ImportCustomerInitiativeConsolidatedDto'
+            $ref: '#/components/schemas/UpdateUserDelegatesDto'
       required:
-      - initiatives
-    IdentityDto:
+      - users
+    ImportCustomerInitiativeConsolidatedDto:
       type: object
       properties:
-        type:
+        initiative:
+          $ref: '#/components/schemas/ConsolidatedInitiativeSubDto'
+        codes:
+          $ref: '#/components/schemas/ConsolidatedCodesSubDto'
+        entryValidationRules:
+          $ref: '#/components/schemas/ConsolidatedValidationSubDto'
+      required:
+      - initiative
+      - codes
+      - entryValidationRules
+    ImportCustomerCodeTypeDto:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: code type's external id
+        name:
+          type: string
+          description: code type's name
+        semanticType:
+          type: string
+          description: code type's semantic type
           enum:
-          - aderant
-          - auth0
-          - azure
-          - email
-          - external-billing-system
-          - elite
-          - intercom
-          - juris
-          - cisco-cdr
-          - mixpanel
-          - phone
-          - phone-extension
-          - salesforce
-          - segment
-          - vitally
-          - walls
-          - zendesk
-          - zoom
-          - exchange
-          - user-principal-name
-          - cisco-webex
-          - ringcentral
-          - google
-          type: string
-        value:
-          type: string
-      required:
-      - type
-      - value
-    UserDelegateInfoDto:
-      type: object
-      properties:
-        delegateType:
-          description: Delegate permission type
-          enum:
-          - timesheet_only
-          - timesheet_and_activities
-          type: string
-        identity:
-          description: Identity to match the delegate user
-          allOf:
-          - $ref: '#/components/schemas/IdentityDto'
-      required:
-      - delegateType
-      - identity
-    SetCustomerInitiativeCodesDto:
-      type: object
-      properties:
-        codeExternalIds:
-          minItems: 1
-          maxItems: 2500
-          type: array
-          items:
-            type: string
-      required:
-      - codeExternalIds
-    NestedActivitySource:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: source's id
-          format: objectid
-        type:
-          description: type of entry source
-          enum:
+          - action
           - activity
+          - location
+          - phase
+          - task
+        customerDefaultable:
+          type: boolean
+          description: can the default CodeType value be set at the customer-level
+        userDefaultable:
+          type: boolean
+          description: can the default CodeType value be set at the user-level
+        orderingSequence:
           type: string
-          default: activity
-        creationMethod:
-          description: the creation method of the activity
-          enum:
-          - timer
-          - tracked
-          - user
-          type: string
-        category:
-          type:
-          - string
-          - 'null'
-          description: category of this activity, if any
-        technology:
-          type:
-          - string
-          - 'null'
-          description: technology of this activity, if any
-        source:
-          type:
-          - string
-          - 'null'
-          description: source of this activity (e.g. 'macos', 'windows'), if any
-        mechanism:
-          type:
-          - string
-          - 'null'
-          description: mechanism of this activity (e.g. browser used to access web app), if any
-        title:
-          type: string
-          description: activity's title
-        detail:
-          type: string
-          description: activity's detail
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        clusterId:
-          type:
-          - string
-          - 'null'
-          description: activity's clusterId
-        fromSuggestions:
-          type:
-          - boolean
-          - 'null'
-          description: whether this activity source was added from suggestions
-        fromThemes:
-          type:
-          - boolean
-          - 'null'
-          description: whether this activity source was added from themes
-        hasOverlap:
-          type:
-          - boolean
-          - 'null'
-          description: activity's overlap state
-        overlapTimeInSeconds:
-          type:
-          - number
-          - 'null'
-          description: activity's overlap time in seconds
-          format: int64
-        threadId:
-          type:
-          - string
-          - 'null'
-          description: activity's thread id
-        disableThreading:
-          type:
-          - boolean
-          - 'null'
-          description: if true, disables threading for this activity
-        assignedAt:
-          type:
-          - string
-          - 'null'
-          description: 'Datetime this activity was assigned to the entry it currently belongs to.
-
-            Unset on entries that predate the field; never back-filled.'
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
+          description: ordering sequence for UI sorting (alphanumeric)
       required:
-      - _id
-      - type
-      - creationMethod
-      - title
-      - detail
-      - startedAt
-      - stoppedAt
-    ReleaseSuccessInfo:
+      - externalId
+      - name
+    ValidationFailedInfo:
       type: object
       properties:
         status:
           enum:
-          - release-success
+          - validation-failed
           type: string
-        releasedAt:
+        errors:
+          description: list of errors
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/EntryValidationError'
+      required:
+      - status
+      - errors
+    ImportCustomerInitiativeDto:
+      type: object
+      properties:
+        billingType:
+          description: the billing type for this initiative
+          enum:
+          - billable
+          - non-billable
           type: string
-          description: date and time entry was released
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        releasedBy:
+        externalId:
           type: string
-          description: the identifier of the user who released the entry
-          format: objectid
-        reReleaseFailedMessages:
+          description: initiative's external id
+        name:
+          type: string
+          description: a name that identifies this initiative
+        description:
+          type: string
+          description: the description of the initiative
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this initiative
+        clientExternalId:
+          type: string
+          description: external id of client this initiative belongs to
+        externalGroupIds:
+          description: list of external group ids that have access to this initiative
           type:
           - array
           - 'null'
-          description: entry's re-release failed messages
-          minItems: 1
           items:
-            $ref: '#/components/schemas/ReleaseFailedError'
-      required:
-      - status
-      - releasedAt
-      - releasedBy
-    ValidationPendingInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - validation-pending
-          type: string
-      required:
-      - status
-    ExportEntryResponseDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: entry's id
-          format: objectid
-        customerId:
-          type: string
-          description: id of customer who the owner belongs to
-          format: objectid
-        userId:
-          type: string
-          description: if of user who owns the entry
-          format: objectid
-        workDate:
-          type: string
-          description: the date this entry is released to
-          example: '2022-08-12'
-          format: iso-date
-        summary:
-          type: string
-          description: entry's summary
-        unitIncrementCount:
-          type: number
-          description: sum of unit increments from this entry's sources and adjustments
-          format: double
-        incrementDurationInSeconds:
-          type: number
-          description: entry duration in seconds
-          format: double
-        initiativeProps:
-          description: is entry's initiative
-          oneOf:
-          - $ref: '#/components/schemas/PmsInitiativePropsDigest'
-          - $ref: '#/components/schemas/UserInitiativePropsDigest'
-        externalId:
-          type:
-          - string
-          - 'null'
-          description: entry's external id
-        notes:
-          type:
-          - string
-          - 'null'
-          description: entry's notes
-        releaseCount:
-          type:
-          - number
-          - 'null'
-          description: entry's release count
-          format: int64
-          minimum: 0
-        lastSyncedAt:
-          type:
-          - string
-          - 'null'
-          description: date and time when the entry was last synced with the PMS
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        firstReleaseAttemptedAt:
-          type:
-          - string
-          - 'null'
-          description: first date and time this entry was release attempted
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        isShared:
-          type:
-          - boolean
-          - 'null'
-          description: 'True when this entry has been shared with at least one recipient.
-
-            Absent on entries that pre-date the sharing feature or have never been shared.'
-        sharedFrom:
-          description: 'Present only on recipient-side copies. Contains the source entry context
-
-            and display names resolved at read-time via identity-service.'
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/SharedFromResponseDto'
-        codes:
-          description: all of the codes assigned to the entry
-          type: array
-          items:
-            $ref: '#/components/schemas/CodeDigest'
-      required:
-      - _id
-      - customerId
-      - userId
-      - workDate
-      - summary
-      - unitIncrementCount
-      - incrementDurationInSeconds
-      - initiativeProps
-      - codes
-    DefaultCode:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: id of default code
-          format: objectid
-        customerId:
-          type: string
-          description: id of customer who owns this default code configuration
-          format: objectid
-        userId:
-          type: string
-          description: id of user who owns this default, if only the customer id is set it means its a customer wide default code
-          format: objectid
-        codeTypeId:
-          type: string
-          description: code type id for the default code
-          format: objectid
-        codeId:
-          type: string
-          description: code id for the default code
-          format: objectid
-        initiativeBillingType:
-          type: string
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
-        schemaVersion:
-          type: string
-          description: schema version
-        createdAt:
-          type: string
-          description: date and time this was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          description: date and time this was updated last
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-      required:
-      - _id
-      - customerId
-      - codeTypeId
-      - codeId
-      - schemaVersion
-      - createdAt
-      - updatedAt
-    ReleasePendingInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - release-pending
-          type: string
-        releasePendedAt:
-          type: string
-          description: date and time entry was changed to release pending
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        releasePendedBy:
-          type: string
-          description: the identifier of the user who change the entry to release pending
-          format: objectid
-      required:
-      - status
-      - releasePendedAt
-      - releasePendedBy
-    UserInitiativeDigest:
-      type: object
-      properties:
-        type:
-          description: initiative's type
-          enum:
-          - user
-          type: string
-        _id:
-          type: string
-          description: initiative's id
-          format: objectid
-        billingType:
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
-          type: string
-        callSign:
-          type:
-          - string
-          - 'null'
-          description: a short name or abbreviation that identifies this pms initiative
+            type: string
         unitIncrements:
           type: number
-          description: unit of billing increments for this initiative
+          description: unit of billing increments for this initiative in seconds. 36 = 0.01, 360 = 0.1 and 900 = 0.25
           format: double
-        status:
-          type:
-          - string
-          - 'null'
-          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
-
-            with entries whose denormalized digest predates this field — those entries
-
-            gain status on the next initiative update via natural digest propagation.'
-          enum:
-          - active
-          - inactive
         locale:
           type:
           - string
@@ -2490,15 +2218,46 @@ components:
           - no-NO
           - pt-PT
           - sv-SE
-        name:
+        status:
           type: string
-          description: the name user has given this initiative
+          description: initiative's status
+          enum:
+          - active
+          - inactive
+        allowFrom:
+          type:
+          - string
+          - 'null'
+          description: earliest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+        allowTo:
+          type:
+          - string
+          - 'null'
+          description: latest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
       required:
-      - type
-      - _id
       - billingType
-      - unitIncrements
+      - externalId
       - name
+      - description
+      - callSign
+      - clientExternalId
+      - unitIncrements
+    CanReleaseOnFutureDates:
+      type: object
+      properties:
+        billable:
+          type: boolean
+          description: whether billable entries can be released on future dates
+        nonBillable:
+          type: boolean
+          description: whether non-billable entries can be released on future dates
+      required:
+      - billable
+      - nonBillable
     CodeTypeDigest:
       type: object
       properties:
@@ -2532,129 +2291,87 @@ components:
       - _id
       - externalId
       - name
-    ClientDigest:
+    NestedTimerSource:
       type: object
       properties:
         _id:
           type: string
-          description: client's id
+          description: source's id
           format: objectid
-        externalId:
-          type: string
-          description: client's external id
-        name:
-          type: string
-          description: a name that identifies this client
-        description:
-          type: string
-          description: client's description
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this client
         type:
-          type:
-          - string
-          - 'null'
-          description: client's type, default is client
+          description: type of entry source
           enum:
-          - client
-          - parent
-        parentClientId:
-          type:
-          - string
-          - 'null'
-          description: id of the parent client
-          format: objectid
+          - timer
+          type: string
+          default: timer
+        durationInSeconds:
+          type: number
+          description: the duration in seconds that this timer has been active
+          format: double
+        summary:
+          type: string
+          description: the summary assigned to this timer, can be empty
       required:
       - _id
-      - externalId
-      - name
-      - description
-      - callSign
-    BatchReleaseSucceededRequestDto:
+      - type
+      - durationInSeconds
+      - summary
+    ReleaseFailedError:
       type: object
       properties:
-        request:
-          type: array
-          minItems: 1
-          maxItems: 20
-          items:
-            $ref: '#/components/schemas/ReleaseUpdate'
-      required:
-      - request
-    ReleaseSuccessLockedInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - release-success-locked
+        originalMessage:
           type: string
-        releasedAt:
+          description: original error message
+        title:
           type: string
-          description: date and time entry was originally released to PMS
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        releasedBy:
-          type: string
-          description: the identifier of the user who released the entry
-          format: objectid
-        lockedAt:
-          type:
-          - string
-          - 'null'
-          description: date the entry became locked in the PMS billing system
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        lastLockCheckAt:
-          type: string
-          description: date lock status was last checked by the Boomi job
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        reReleaseFailedMessages:
-          type:
-          - array
-          - 'null'
-          description: entry's re-release failed messages (retained from previous release-success state)
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/ReleaseFailedError'
-      required:
-      - status
-      - releasedAt
-      - releasedBy
-      - lastLockCheckAt
-    ImportCustomerClientDto_2:
-      type: object
-      properties:
-        externalId:
-          type: string
-          description: client's external id
-        name:
-          type: string
-          description: a name that identifies this client
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this client
+          description: mapped title for the original error message
         description:
           type: string
-          description: client's description
-        type:
-          type: string
-          description: client's type, default is client
-          enum:
-          - client
-          - parent
-        parentClientId:
-          type:
-          - string
-          - 'null'
-          description: id of the parent client
-          format: objectid
+          description: mapped description for the original error message
       required:
-      - externalId
-      - name
-      - callSign
+      - originalMessage
+      - title
       - description
+    CodeAssignment:
+      type: object
+      properties:
+        assignedBy:
+          description: entity that assigned the code.
+          enum:
+          - user
+          - laurel
+          type: string
+        code:
+          description: assigned code
+          allOf:
+          - $ref: '#/components/schemas/CodeDigest'
+      required:
+      - assignedBy
+      - code
+    EntryValidationError:
+      type: object
+      properties:
+        errorCode:
+          description: the entry validation error code
+          enum:
+          - cannot-have-running-timer
+          - cannot-release-zero-increment
+          - cannot-release-negative-increment
+          - cannot-release-billable-future-work
+          - cannot-release-non-billable-future-work
+          - cannot-release-with-user-initiative
+          - cannot-release-with-inactive-initiative
+          - code-type-is-required
+          - summary-is-required
+          - cannot-have-blocked-compliance-rule
+          - cannot-exceed-twenty-four-hours
+          - entry-date-restricted-no-release
+          - entry-date-restricted-no-create
+          - timekeeper-not-in-working-list
+          - exceeds-twenty-four-hours-daily-limit
+          type: string
+      required:
+      - errorCode
     EntryValidationRules:
       type: object
       properties:
@@ -2745,76 +2462,143 @@ components:
       - customerId
       - requiredCodeTypes
       - updatedAt
-    ValidationFailedInfo:
+    ValidationPendingInfo:
       type: object
       properties:
         status:
           enum:
-          - validation-failed
+          - validation-pending
           type: string
-        errors:
-          description: list of errors
-          minItems: 1
-          type: array
-          items:
-            $ref: '#/components/schemas/EntryValidationError'
       required:
       - status
-      - errors
-    UserInitiativePropsDigest:
+    ReleasePendingInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-pending
+          type: string
+        releasePendedAt:
+          type: string
+          description: date and time entry was changed to release pending
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releasePendedBy:
+          type: string
+          description: the identifier of the user who change the entry to release pending
+          format: objectid
+      required:
+      - status
+      - releasePendedAt
+      - releasePendedBy
+    ReleaseUpdate:
+      type: object
+      properties:
+        entryId:
+          type: string
+          description: entry's internal id
+          format: objectid
+        userId:
+          type: string
+          description: user's internal id
+          format: objectid
+        externalId:
+          type: string
+          description: entry's external id from billing system
+        reReleaseFailedMessages:
+          description: list of errors from re-release attempt
+          type: array
+          items:
+            type: string
+            minLength: 0
+      required:
+      - entryId
+      - userId
+    PmsInitiativeDigest:
       type: object
       properties:
         type:
-          description: type of the initiative for these props
+          description: initiative's type
           enum:
+          - pms
           - user
           type: string
-        colorHex:
+        _id:
           type: string
-          description: the hex color code for this initiative's display to the user
-          example: fec828
-          format: color-hex
-        tags:
-          type: array
-          description: initiative prop's tags
-          items:
-            type: string
-            enum:
-            - pinned
-        initiative:
-          description: the user initiative that is represented by these initiative props
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type:
+          - string
+          - 'null'
+          description: a short name or abbreviation that identifies this pms initiative
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        status:
+          type:
+          - string
+          - 'null'
+          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
+
+            with entries whose denormalized digest predates this field — those entries
+
+            gain status on the next initiative update via natural digest propagation.'
+          enum:
+          - active
+          - inactive
+        locale:
+          type:
+          - string
+          - 'null'
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+        externalId:
+          type: string
+          description: initiative's external id
+        name:
+          type: string
+          description: a short name or code that identifies this initiative
+        description:
+          type: string
+          description: the full name of the initiative
+        client:
+          description: the client this initiative belongs to
           allOf:
-          - $ref: '#/components/schemas/UserInitiativeDigest'
+          - $ref: '#/components/schemas/ClientDigest'
       required:
       - type
-      - colorHex
-      - tags
-      - initiative
-    OverrideOneEntryRequestDto:
-      type: object
-      properties:
-        summary:
-          type: string
-          description: if set, will update entry's summary
-        unitIncrementCountAdjustments:
-          type: number
-          description: sum of total unit increments from this entry's sources and adjustments
-          format: double
-        initiativeId:
-          type: string
-          description: if set, will update entry's initiativeId
-          format: objectid
-        codeIds:
-          description: if set, will update entry's codes
-          type: array
-          items:
-            type: string
-            format: objectid
-        workDate:
-          type: string
-          description: the date this entry is released to
-          example: '2022-08-12'
-          format: iso-date
+      - _id
+      - billingType
+      - unitIncrements
+      - externalId
+      - name
+      - description
+      - client
     EntryResponseDto:
       type: object
       properties:
@@ -3025,6 +2809,928 @@ components:
       - initiativeName
       - billingType
       - isSplittable
+    NestedEntrySource:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: source's id
+          format: objectid
+        type:
+          description: type of entry source
+          enum:
+          - entry
+          type: string
+          default: entry
+        enrichmentCorrelationId:
+          type:
+          - string
+          - 'null'
+          description: entry's enrichmentCorrelationId to be used by enrichment service
+        summary:
+          type: string
+          description: entry's summary
+        unitIncrementCountAdjustments:
+          type: number
+          description: user modified overrides to entry unit increment total
+          format: double
+      required:
+      - _id
+      - type
+      - summary
+      - unitIncrementCountAdjustments
+    OverrideOneEntryRequestDto:
+      type: object
+      properties:
+        summary:
+          type: string
+          description: if set, will update entry's summary
+        unitIncrementCountAdjustments:
+          type: number
+          description: sum of total unit increments from this entry's sources and adjustments
+          format: double
+        initiativeId:
+          type: string
+          description: if set, will update entry's initiativeId
+          format: objectid
+        codeIds:
+          description: if set, will update entry's codes
+          type: array
+          items:
+            type: string
+            format: objectid
+        workDate:
+          type: string
+          description: the date this entry is released to
+          example: '2022-08-12'
+          format: iso-date
+    SetInitiativeAccessRequestDto:
+      type: object
+      properties:
+        type:
+          description: type of access.
+          enum:
+          - allow
+          - deny
+          type: string
+        userIds:
+          description: list of users whose access is either allowed or denied for an initiative.
+          type: array
+          items:
+            type: string
+            format: objectid
+      required:
+      - type
+    ClientDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: client's id
+          format: objectid
+        externalId:
+          type: string
+          description: client's external id
+        name:
+          type: string
+          description: a name that identifies this client
+        description:
+          type: string
+          description: client's description
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        type:
+          type:
+          - string
+          - 'null'
+          description: client's type, default is client
+          enum:
+          - client
+          - parent
+        parentClientId:
+          type:
+          - string
+          - 'null'
+          description: id of the parent client
+          format: objectid
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - callSign
+    CreateDefaultCodeDto:
+      type: object
+      properties:
+        codeId:
+          type: string
+          description: code id for the default code
+          format: objectid
+        initiativeBillingType:
+          type: string
+          description: optionally provide billable or non-billable
+          enum:
+          - billable
+          - non-billable
+      required:
+      - codeId
+    NestedActivitySource:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: source's id
+          format: objectid
+        type:
+          description: type of entry source
+          enum:
+          - activity
+          type: string
+          default: activity
+        creationMethod:
+          description: the creation method of the activity
+          enum:
+          - timer
+          - tracked
+          - user
+          type: string
+        category:
+          type:
+          - string
+          - 'null'
+          description: category of this activity, if any
+        technology:
+          type:
+          - string
+          - 'null'
+          description: technology of this activity, if any
+        source:
+          type:
+          - string
+          - 'null'
+          description: source of this activity (e.g. 'macos', 'windows'), if any
+        mechanism:
+          type:
+          - string
+          - 'null'
+          description: mechanism of this activity (e.g. browser used to access web app), if any
+        title:
+          type: string
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        clusterId:
+          type:
+          - string
+          - 'null'
+          description: activity's clusterId
+        fromSuggestions:
+          type:
+          - boolean
+          - 'null'
+          description: whether this activity source was added from suggestions
+        fromThemes:
+          type:
+          - boolean
+          - 'null'
+          description: whether this activity source was added from themes
+        hasOverlap:
+          type:
+          - boolean
+          - 'null'
+          description: activity's overlap state
+        overlapTimeInSeconds:
+          type:
+          - number
+          - 'null'
+          description: activity's overlap time in seconds
+          format: int64
+        threadId:
+          type:
+          - string
+          - 'null'
+          description: activity's thread id
+        disableThreading:
+          type:
+          - boolean
+          - 'null'
+          description: if true, disables threading for this activity
+        assignedAt:
+          type:
+          - string
+          - 'null'
+          description: 'Datetime this activity was assigned to the entry it currently belongs to.
+
+            Unset on entries that predate the field; never back-filled.'
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - type
+      - creationMethod
+      - title
+      - detail
+      - startedAt
+      - stoppedAt
+    ExportEntryResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: entry's id
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer who the owner belongs to
+          format: objectid
+        userId:
+          type: string
+          description: if of user who owns the entry
+          format: objectid
+        workDate:
+          type: string
+          description: the date this entry is released to
+          example: '2022-08-12'
+          format: iso-date
+        summary:
+          type: string
+          description: entry's summary
+        unitIncrementCount:
+          type: number
+          description: sum of unit increments from this entry's sources and adjustments
+          format: double
+        incrementDurationInSeconds:
+          type: number
+          description: entry duration in seconds
+          format: double
+        initiativeProps:
+          description: is entry's initiative
+          oneOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsDigest'
+          - $ref: '#/components/schemas/UserInitiativePropsDigest'
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: entry's external id
+        notes:
+          type:
+          - string
+          - 'null'
+          description: entry's notes
+        releaseCount:
+          type:
+          - number
+          - 'null'
+          description: entry's release count
+          format: int64
+          minimum: 0
+        lastSyncedAt:
+          type:
+          - string
+          - 'null'
+          description: date and time when the entry was last synced with the PMS
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        firstReleaseAttemptedAt:
+          type:
+          - string
+          - 'null'
+          description: first date and time this entry was release attempted
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        isShared:
+          type:
+          - boolean
+          - 'null'
+          description: 'True when this entry has been shared with at least one recipient.
+
+            Absent on entries that pre-date the sharing feature or have never been shared.'
+        sharedFrom:
+          description: 'Present only on recipient-side copies. Contains the source entry context
+
+            and display names resolved at read-time via identity-service.'
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/SharedFromResponseDto'
+        codes:
+          description: all of the codes assigned to the entry
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeDigest'
+      required:
+      - _id
+      - customerId
+      - userId
+      - workDate
+      - summary
+      - unitIncrementCount
+      - incrementDurationInSeconds
+      - initiativeProps
+      - codes
+    CodeDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: code's id
+          format: objectid
+        externalId:
+          type: string
+          description: code's external id
+        name:
+          type: string
+          description: code's name
+        description:
+          type: string
+          description: code's description, can be empty
+        type:
+          description: code's type
+          allOf:
+          - $ref: '#/components/schemas/CodeTypeDigest'
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - type
+    UserInitiativeDigest:
+      type: object
+      properties:
+        type:
+          description: initiative's type
+          enum:
+          - user
+          type: string
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type:
+          - string
+          - 'null'
+          description: a short name or abbreviation that identifies this pms initiative
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        status:
+          type:
+          - string
+          - 'null'
+          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
+
+            with entries whose denormalized digest predates this field — those entries
+
+            gain status on the next initiative update via natural digest propagation.'
+          enum:
+          - active
+          - inactive
+        locale:
+          type:
+          - string
+          - 'null'
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+        name:
+          type: string
+          description: the name user has given this initiative
+      required:
+      - type
+      - _id
+      - billingType
+      - unitIncrements
+      - name
+    BulkReleaseEntryDto:
+      type: object
+      properties:
+        workDateStart:
+          type: string
+          description: Start date for entries to release
+          example: '2022-08-12'
+          format: iso-date
+        workDateEnd:
+          type: string
+          description: End date for entries to release
+          example: '2022-08-12'
+          format: iso-date
+        releasedFrom:
+          type:
+          - string
+          - 'null'
+          description: Source of the release request
+          enum:
+          - time-control
+          - timesheet
+        userIds:
+          description: Optional array of user IDs to filter entries by
+          type: array
+          items:
+            type: string
+            format: objectid
+        timezoneNotSet:
+          type: boolean
+          description: 'Union with `timezones[]`: when true, also release entries with `timezoneAtCreation === null`.'
+        billingType:
+          type: string
+          description: Optional billing type filter (matches `initiativeProps.initiative.billingType`).
+          enum:
+          - billable
+          - non-billable
+        clientId:
+          type: string
+          description: Optional client filter
+          format: objectid
+        initiativeId:
+          type: string
+          description: Optional initiative filter
+          format: objectid
+        timezones:
+          description: 'Optional IANA timezone filter (e.g. "America/New_York"). When provided, only
+
+            entries whose `timezoneAtCreation` is in the list are released. A single value
+
+            is accepted as a convenience and normalized to a one-element array.'
+          type: array
+          items:
+            type: string
+      required:
+      - workDateStart
+      - workDateEnd
+    BatchReleaseSucceededResponseDto:
+      type: object
+      properties:
+        response:
+          type: array
+          items:
+            $ref: '#/components/schemas/SingleEntryResponse'
+      required:
+      - response
+    ReleaseFailedInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-failed
+          type: string
+        releaseFailedErrors:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ReleaseFailedError'
+      required:
+      - status
+      - releaseFailedErrors
+    UserInitiativePropsDigest:
+      type: object
+      properties:
+        type:
+          description: type of the initiative for these props
+          enum:
+          - user
+          type: string
+        colorHex:
+          type: string
+          description: the hex color code for this initiative's display to the user
+          example: fec828
+          format: color-hex
+        tags:
+          type: array
+          description: initiative prop's tags
+          items:
+            type: string
+            enum:
+            - pinned
+        initiative:
+          description: the user initiative that is represented by these initiative props
+          allOf:
+          - $ref: '#/components/schemas/UserInitiativeDigest'
+      required:
+      - type
+      - colorHex
+      - tags
+      - initiative
+    ReleaseSuccessInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-success
+          type: string
+        releasedAt:
+          type: string
+          description: date and time entry was released
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releasedBy:
+          type: string
+          description: the identifier of the user who released the entry
+          format: objectid
+        reReleaseFailedMessages:
+          type:
+          - array
+          - 'null'
+          description: entry's re-release failed messages
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ReleaseFailedError'
+      required:
+      - status
+      - releasedAt
+      - releasedBy
+    DefaultCode:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: id of default code
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer who owns this default code configuration
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns this default, if only the customer id is set it means its a customer wide default code
+          format: objectid
+        codeTypeId:
+          type: string
+          description: code type id for the default code
+          format: objectid
+        codeId:
+          type: string
+          description: code id for the default code
+          format: objectid
+        initiativeBillingType:
+          type: string
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+        schemaVersion:
+          type: string
+          description: schema version
+        createdAt:
+          type: string
+          description: date and time this was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time this was updated last
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - customerId
+      - codeTypeId
+      - codeId
+      - schemaVersion
+      - createdAt
+      - updatedAt
+    SharedFromResponseDto:
+      type: object
+      properties:
+        entryId:
+          type: string
+          description: id of the source entry that was shared
+          format: objectid
+        entryUserId:
+          type: string
+          description: id of the user who owns the source entry
+          format: objectid
+        sharerId:
+          type: string
+          description: id of the principal who performed the share action
+          format: objectid
+        sharerType:
+          description: capacity in which the sharer acted
+          enum:
+          - user
+          - admin
+          - delegate
+          type: string
+        sharedAt:
+          type: string
+          description: date and time the share was initiated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        entryUserName:
+          type:
+          - string
+          - 'null'
+          description: display name of the entry owner; resolved at read-time, absent on failure
+        sharerName:
+          type:
+          - string
+          - 'null'
+          description: display name of the principal who performed the share; resolved at read-time, absent on failure
+      required:
+      - entryId
+      - entryUserId
+      - sharerId
+      - sharerType
+      - sharedAt
+    PmsInitiativePropsDigest:
+      type: object
+      properties:
+        type:
+          description: type of the initiative for these props
+          enum:
+          - pms
+          type: string
+        colorHex:
+          type: string
+          description: the hex color code for this initiative's display to the user
+          example: fec828
+          format: color-hex
+        tags:
+          type: array
+          description: initiative prop's tags
+          items:
+            type: string
+            enum:
+            - pinned
+        nickname:
+          type:
+          - string
+          - 'null'
+          description: if set, is the nickname user has set for this initiative
+        initiative:
+          description: the pms initiative that is represented by these initiative props
+          allOf:
+          - $ref: '#/components/schemas/PmsInitiativeDigest'
+      required:
+      - type
+      - colorHex
+      - tags
+      - initiative
+    GetCustomerEntriesCodeResponseDto:
+      type: object
+      properties:
+        codeExternalId:
+          type: string
+        codeTypeExternalId:
+          type: string
+      required:
+      - codeExternalId
+      - codeTypeExternalId
+    CustomerEntryResponseDto:
+      type: object
+      properties:
+        entryId:
+          type: string
+          description: entry's id
+          format: objectid
+        externalId:
+          type: string
+          description: entry's external id
+        customerId:
+          type: string
+          description: id of customer who the owner belongs to
+          format: objectid
+        userId:
+          type: string
+          description: user who owns the entry
+          format: objectid
+        creationMethod:
+          description: the creation method of the entry
+          enum:
+          - async
+          - user
+          - pms
+          - shared
+          type: string
+        releasedBy:
+          type: string
+          description: the identifier of the user who released the entry
+          format: objectid
+        createdBy:
+          type: string
+          description: the identifier of the user who created the entry
+          format: objectid
+        workDate:
+          type: string
+          description: the date this entry is released to
+          example: '2022-08-12'
+          format: iso-date
+        createdAt:
+          type: string
+          description: date and time this entry was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time this entry was updated last
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        initiativeExternalId:
+          type: string
+          description: entry's initiative external Id
+        clientExternalId:
+          type: string
+          description: initiative's client external Id
+        summary:
+          type: string
+          description: entry's summary
+        unitIncrementCount:
+          type: number
+          description: sum of unit increments from this entry's sources and adjustments
+          format: int64
+        incrementDurationInSeconds:
+          type: number
+          description: entry duration in seconds
+          format: int64
+        firstReleaseAttemptedAt:
+          type: string
+          description: first date and time this entry was release attempted
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        lastReleasePendingAt:
+          type: string
+          description: last date and time this entry was release pended
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        lastReleaseFailedAt:
+          type: string
+          description: last date and time this entry was release failed
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releaseSuccessAt:
+          type: string
+          description: date and time this entry was released successfully
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        isDeleted:
+          type: boolean
+          description: is entry soft deleted
+        notes:
+          type: string
+          description: entry's notes
+        releaseCount:
+          type: number
+          format: int64
+          minimum: 0
+        lastSyncedAt:
+          type: string
+          description: date and time when the entry was last synced with the PMS
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        initiativeName:
+          type: string
+          description: initiative name
+        clientName:
+          type: string
+          description: client name
+        billingType:
+          description: initiative billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        codes:
+          description: all of the codes assigned to the entry
+          type: array
+          items:
+            $ref: '#/components/schemas/GetCustomerEntriesCodeResponseDto'
+      required:
+      - entryId
+      - customerId
+      - userId
+      - creationMethod
+      - createdAt
+      - updatedAt
+      - initiativeExternalId
+      - clientExternalId
+      - summary
+      - unitIncrementCount
+      - incrementDurationInSeconds
+      - initiativeName
+      - billingType
+      - codes
+    ReleaseSucceededRequestDto:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: entry's external id from billing system
+        reReleaseFailedMessages:
+          description: list of errors from re-release attempt
+          type: array
+          items:
+            type: string
+            minLength: 0
+    ImportCustomerClientDto_2:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: client's external id
+        name:
+          type: string
+          description: a name that identifies this client
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        description:
+          type: string
+          description: client's description
+        type:
+          type: string
+          description: client's type, default is client
+          enum:
+          - client
+          - parent
+        parentClientId:
+          type:
+          - string
+          - 'null'
+          description: id of the parent client
+          format: objectid
+      required:
+      - externalId
+      - name
+      - callSign
+      - description
+    ReleaseSuccessLockedInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-success-locked
+          type: string
+        releasedAt:
+          type: string
+          description: date and time entry was originally released to PMS
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releasedBy:
+          type: string
+          description: the identifier of the user who released the entry
+          format: objectid
+        lockedAt:
+          type:
+          - string
+          - 'null'
+          description: date the entry became locked in the PMS billing system
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        lastLockCheckAt:
+          type: string
+          description: date lock status was last checked by the Boomi job
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        reReleaseFailedMessages:
+          type:
+          - array
+          - 'null'
+          description: entry's re-release failed messages (retained from previous release-success state)
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ReleaseFailedError'
+      required:
+      - status
+      - releasedAt
+      - releasedBy
+      - lastLockCheckAt
     ImportCustomerCodeDto_2:
       type: object
       properties:
@@ -3059,6 +3765,59 @@ components:
       - name
       - description
       - codeTypeExternalId
+    AddInitiativeCodesRequestDto:
+      type: object
+      properties:
+        codeExternalIds:
+          minItems: 1
+          maxItems: 2500
+          type: array
+          items:
+            type: string
+      required:
+      - codeExternalIds
+    BatchReleaseSucceededRequestDto:
+      type: object
+      properties:
+        request:
+          type: array
+          minItems: 1
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/ReleaseUpdate'
+      required:
+      - request
+    ReleaseFailedRequestDto:
+      type: object
+      properties:
+        errors:
+          description: list of errors
+          type: array
+          items:
+            type: string
+            minLength: 1
+      required:
+      - errors
+    ReleaseValidationPendingInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-validation-pending
+          type: string
+        releasePendedAt:
+          type: string
+          description: date and time entry was changed to release pending
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releasePendedBy:
+          type: string
+          description: the identifier of the user who change the entry to release pending
+          format: objectid
+      required:
+      - status
+      - releasePendedAt
+      - releasePendedBy
     ComplianceRule:
       type: object
       properties:
@@ -3081,57 +3840,15 @@ components:
       required:
       - ruleKey
       - enforcementLevel
-    ReleaseUpdate:
+    ValidationSuccessInfo:
       type: object
       properties:
-        entryId:
+        status:
+          enum:
+          - validation-success
           type: string
-          description: entry's internal id
-          format: objectid
-        userId:
-          type: string
-          description: user's internal id
-          format: objectid
-        externalId:
-          type: string
-          description: entry's external id from billing system
-        reReleaseFailedMessages:
-          description: list of errors from re-release attempt
-          type: array
-          items:
-            type: string
-            minLength: 0
       required:
-      - entryId
-      - userId
-    ReleaseFailedError:
-      type: object
-      properties:
-        originalMessage:
-          type: string
-          description: original error message
-        title:
-          type: string
-          description: mapped title for the original error message
-        description:
-          type: string
-          description: mapped description for the original error message
-      required:
-      - originalMessage
-      - title
-      - description
-    CanReleaseOnFutureDates:
-      type: object
-      properties:
-        billable:
-          type: boolean
-          description: whether billable entries can be released on future dates
-        nonBillable:
-          type: boolean
-          description: whether non-billable entries can be released on future dates
-      required:
-      - billable
-      - nonBillable
+      - status
     SingleEntryResponse:
       type: object
       properties:
@@ -3266,723 +3983,6 @@ components:
       required:
       - entryId
       - status
-    SharedFromResponseDto:
-      type: object
-      properties:
-        entryId:
-          type: string
-          description: id of the source entry that was shared
-          format: objectid
-        entryUserId:
-          type: string
-          description: id of the user who owns the source entry
-          format: objectid
-        sharerId:
-          type: string
-          description: id of the principal who performed the share action
-          format: objectid
-        sharerType:
-          description: capacity in which the sharer acted
-          enum:
-          - user
-          - admin
-          - delegate
-          type: string
-        sharedAt:
-          type: string
-          description: date and time the share was initiated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        entryUserName:
-          type:
-          - string
-          - 'null'
-          description: display name of the entry owner; resolved at read-time, absent on failure
-        sharerName:
-          type:
-          - string
-          - 'null'
-          description: display name of the principal who performed the share; resolved at read-time, absent on failure
-      required:
-      - entryId
-      - entryUserId
-      - sharerId
-      - sharerType
-      - sharedAt
-    BatchReleaseSucceededResponseDto:
-      type: object
-      properties:
-        response:
-          type: array
-          items:
-            $ref: '#/components/schemas/SingleEntryResponse'
-      required:
-      - response
-    GetCustomerEntriesCodeResponseDto:
-      type: object
-      properties:
-        codeExternalId:
-          type: string
-        codeTypeExternalId:
-          type: string
-      required:
-      - codeExternalId
-      - codeTypeExternalId
-    ReleaseFailedInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - release-failed
-          type: string
-        releaseFailedErrors:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/ReleaseFailedError'
-      required:
-      - status
-      - releaseFailedErrors
-    NestedTimerSource:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: source's id
-          format: objectid
-        type:
-          description: type of entry source
-          enum:
-          - timer
-          type: string
-          default: timer
-        durationInSeconds:
-          type: number
-          description: the duration in seconds that this timer has been active
-          format: double
-        summary:
-          type: string
-          description: the summary assigned to this timer, can be empty
-      required:
-      - _id
-      - type
-      - durationInSeconds
-      - summary
-    PmsInitiativeDigest:
-      type: object
-      properties:
-        type:
-          description: initiative's type
-          enum:
-          - pms
-          - user
-          type: string
-        _id:
-          type: string
-          description: initiative's id
-          format: objectid
-        billingType:
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
-          type: string
-        callSign:
-          type:
-          - string
-          - 'null'
-          description: a short name or abbreviation that identifies this pms initiative
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative
-          format: double
-        status:
-          type:
-          - string
-          - 'null'
-          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
-
-            with entries whose denormalized digest predates this field — those entries
-
-            gain status on the next initiative update via natural digest propagation.'
-          enum:
-          - active
-          - inactive
-        locale:
-          type:
-          - string
-          - 'null'
-          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
-          enum:
-          - da-DK
-          - de-DE
-          - en-CA
-          - en-GB
-          - en-US
-          - es-ES
-          - es-MX
-          - fi-FI
-          - fr-CA
-          - fr-FR
-          - is-IS
-          - it-IT
-          - ko-KR
-          - nl-NL
-          - no-NO
-          - pt-PT
-          - sv-SE
-        externalId:
-          type: string
-          description: initiative's external id
-        name:
-          type: string
-          description: a short name or code that identifies this initiative
-        description:
-          type: string
-          description: the full name of the initiative
-        client:
-          description: the client this initiative belongs to
-          allOf:
-          - $ref: '#/components/schemas/ClientDigest'
-      required:
-      - type
-      - _id
-      - billingType
-      - unitIncrements
-      - externalId
-      - name
-      - description
-      - client
-    ReleaseSucceededRequestDto:
-      type: object
-      properties:
-        externalId:
-          type: string
-          description: entry's external id from billing system
-        reReleaseFailedMessages:
-          description: list of errors from re-release attempt
-          type: array
-          items:
-            type: string
-            minLength: 0
-    ValidationSuccessInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - validation-success
-          type: string
-      required:
-      - status
-    ReleaseValidationPendingInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - release-validation-pending
-          type: string
-        releasePendedAt:
-          type: string
-          description: date and time entry was changed to release pending
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        releasePendedBy:
-          type: string
-          description: the identifier of the user who change the entry to release pending
-          format: objectid
-      required:
-      - status
-      - releasePendedAt
-      - releasePendedBy
-    ReleaseFailedRequestDto:
-      type: object
-      properties:
-        errors:
-          description: list of errors
-          type: array
-          items:
-            type: string
-            minLength: 1
-      required:
-      - errors
-    CustomerEntryResponseDto:
-      type: object
-      properties:
-        entryId:
-          type: string
-          description: entry's id
-          format: objectid
-        externalId:
-          type: string
-          description: entry's external id
-        customerId:
-          type: string
-          description: id of customer who the owner belongs to
-          format: objectid
-        userId:
-          type: string
-          description: user who owns the entry
-          format: objectid
-        creationMethod:
-          description: the creation method of the entry
-          enum:
-          - async
-          - user
-          - pms
-          - shared
-          type: string
-        releasedBy:
-          type: string
-          description: the identifier of the user who released the entry
-          format: objectid
-        createdBy:
-          type: string
-          description: the identifier of the user who created the entry
-          format: objectid
-        workDate:
-          type: string
-          description: the date this entry is released to
-          example: '2022-08-12'
-          format: iso-date
-        createdAt:
-          type: string
-          description: date and time this entry was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          description: date and time this entry was updated last
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        initiativeExternalId:
-          type: string
-          description: entry's initiative external Id
-        clientExternalId:
-          type: string
-          description: initiative's client external Id
-        summary:
-          type: string
-          description: entry's summary
-        unitIncrementCount:
-          type: number
-          description: sum of unit increments from this entry's sources and adjustments
-          format: int64
-        incrementDurationInSeconds:
-          type: number
-          description: entry duration in seconds
-          format: int64
-        firstReleaseAttemptedAt:
-          type: string
-          description: first date and time this entry was release attempted
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        lastReleasePendingAt:
-          type: string
-          description: last date and time this entry was release pended
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        lastReleaseFailedAt:
-          type: string
-          description: last date and time this entry was release failed
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        releaseSuccessAt:
-          type: string
-          description: date and time this entry was released successfully
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        isDeleted:
-          type: boolean
-          description: is entry soft deleted
-        notes:
-          type: string
-          description: entry's notes
-        releaseCount:
-          type: number
-          format: int64
-          minimum: 0
-        lastSyncedAt:
-          type: string
-          description: date and time when the entry was last synced with the PMS
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        initiativeName:
-          type: string
-          description: initiative name
-        clientName:
-          type: string
-          description: client name
-        billingType:
-          description: initiative billing type
-          enum:
-          - billable
-          - non-billable
-          type: string
-        codes:
-          description: all of the codes assigned to the entry
-          type: array
-          items:
-            $ref: '#/components/schemas/GetCustomerEntriesCodeResponseDto'
-      required:
-      - entryId
-      - customerId
-      - userId
-      - creationMethod
-      - createdAt
-      - updatedAt
-      - initiativeExternalId
-      - clientExternalId
-      - summary
-      - unitIncrementCount
-      - incrementDurationInSeconds
-      - initiativeName
-      - billingType
-      - codes
-    SetInitiativeAccessRequestDto:
-      type: object
-      properties:
-        type:
-          description: type of access.
-          enum:
-          - allow
-          - deny
-          type: string
-        userIds:
-          description: list of users whose access is either allowed or denied for an initiative.
-          type: array
-          items:
-            type: string
-            format: objectid
-      required:
-      - type
-    PmsInitiativePropsDigest:
-      type: object
-      properties:
-        type:
-          description: type of the initiative for these props
-          enum:
-          - pms
-          type: string
-        colorHex:
-          type: string
-          description: the hex color code for this initiative's display to the user
-          example: fec828
-          format: color-hex
-        tags:
-          type: array
-          description: initiative prop's tags
-          items:
-            type: string
-            enum:
-            - pinned
-        nickname:
-          type:
-          - string
-          - 'null'
-          description: if set, is the nickname user has set for this initiative
-        initiative:
-          description: the pms initiative that is represented by these initiative props
-          allOf:
-          - $ref: '#/components/schemas/PmsInitiativeDigest'
-      required:
-      - type
-      - colorHex
-      - tags
-      - initiative
-    NestedEntrySource:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: source's id
-          format: objectid
-        type:
-          description: type of entry source
-          enum:
-          - entry
-          type: string
-          default: entry
-        enrichmentCorrelationId:
-          type:
-          - string
-          - 'null'
-          description: entry's enrichmentCorrelationId to be used by enrichment service
-        summary:
-          type: string
-          description: entry's summary
-        unitIncrementCountAdjustments:
-          type: number
-          description: user modified overrides to entry unit increment total
-          format: double
-      required:
-      - _id
-      - type
-      - summary
-      - unitIncrementCountAdjustments
-    CodeAssignment:
-      type: object
-      properties:
-        assignedBy:
-          description: entity that assigned the code.
-          enum:
-          - user
-          - laurel
-          type: string
-        code:
-          description: assigned code
-          allOf:
-          - $ref: '#/components/schemas/CodeDigest'
-      required:
-      - assignedBy
-      - code
-    ImportCustomerCodeTypeDto:
-      type: object
-      properties:
-        externalId:
-          type: string
-          description: code type's external id
-        name:
-          type: string
-          description: code type's name
-        semanticType:
-          type: string
-          description: code type's semantic type
-          enum:
-          - action
-          - activity
-          - location
-          - phase
-          - task
-        customerDefaultable:
-          type: boolean
-          description: can the default CodeType value be set at the customer-level
-        userDefaultable:
-          type: boolean
-          description: can the default CodeType value be set at the user-level
-        orderingSequence:
-          type: string
-          description: ordering sequence for UI sorting (alphanumeric)
-      required:
-      - externalId
-      - name
-    CodeDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: code's id
-          format: objectid
-        externalId:
-          type: string
-          description: code's external id
-        name:
-          type: string
-          description: code's name
-        description:
-          type: string
-          description: code's description, can be empty
-        type:
-          description: code's type
-          allOf:
-          - $ref: '#/components/schemas/CodeTypeDigest'
-      required:
-      - _id
-      - externalId
-      - name
-      - description
-      - type
-    EntryValidationError:
-      type: object
-      properties:
-        errorCode:
-          description: the entry validation error code
-          enum:
-          - cannot-have-running-timer
-          - cannot-release-zero-increment
-          - cannot-release-negative-increment
-          - cannot-release-billable-future-work
-          - cannot-release-non-billable-future-work
-          - cannot-release-with-user-initiative
-          - cannot-release-with-inactive-initiative
-          - code-type-is-required
-          - summary-is-required
-          - cannot-have-blocked-compliance-rule
-          - cannot-exceed-twenty-four-hours
-          - entry-date-restricted-no-release
-          - entry-date-restricted-no-create
-          - timekeeper-not-in-working-list
-          - exceeds-twenty-four-hours-daily-limit
-          type: string
-      required:
-      - errorCode
-    CreateDefaultCodeDto:
-      type: object
-      properties:
-        codeId:
-          type: string
-          description: code id for the default code
-          format: objectid
-        initiativeBillingType:
-          type: string
-          description: optionally provide billable or non-billable
-          enum:
-          - billable
-          - non-billable
-      required:
-      - codeId
-    ImportCustomerInitiativeDto:
-      type: object
-      properties:
-        billingType:
-          description: the billing type for this initiative
-          enum:
-          - billable
-          - non-billable
-          type: string
-        externalId:
-          type: string
-          description: initiative's external id
-        name:
-          type: string
-          description: a name that identifies this initiative
-        description:
-          type: string
-          description: the description of the initiative
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this initiative
-        clientExternalId:
-          type: string
-          description: external id of client this initiative belongs to
-        externalGroupIds:
-          description: list of external group ids that have access to this initiative
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative in seconds. 36 = 0.01, 360 = 0.1 and 900 = 0.25
-          format: double
-        locale:
-          type:
-          - string
-          - 'null'
-          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
-          enum:
-          - da-DK
-          - de-DE
-          - en-CA
-          - en-GB
-          - en-US
-          - es-ES
-          - es-MX
-          - fi-FI
-          - fr-CA
-          - fr-FR
-          - is-IS
-          - it-IT
-          - ko-KR
-          - nl-NL
-          - no-NO
-          - pt-PT
-          - sv-SE
-        status:
-          type: string
-          description: initiative's status
-          enum:
-          - active
-          - inactive
-        allowFrom:
-          type:
-          - string
-          - 'null'
-          description: earliest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
-          example: '2022-08-12'
-          format: iso-date
-        allowTo:
-          type:
-          - string
-          - 'null'
-          description: latest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
-          example: '2022-08-12'
-          format: iso-date
-      required:
-      - billingType
-      - externalId
-      - name
-      - description
-      - callSign
-      - clientExternalId
-      - unitIncrements
-    AddInitiativeCodesRequestDto:
-      type: object
-      properties:
-        codeExternalIds:
-          minItems: 1
-          maxItems: 2500
-          type: array
-          items:
-            type: string
-      required:
-      - codeExternalIds
-    BulkReleaseEntryDto:
-      type: object
-      properties:
-        workDateStart:
-          type: string
-          description: Start date for entries to release
-          example: '2022-08-12'
-          format: iso-date
-        workDateEnd:
-          type: string
-          description: End date for entries to release
-          example: '2022-08-12'
-          format: iso-date
-        releasedFrom:
-          type:
-          - string
-          - 'null'
-          description: Source of the release request
-          enum:
-          - time-control
-          - timesheet
-        userIds:
-          description: Optional array of user IDs to filter entries by
-          type: array
-          items:
-            type: string
-            format: objectid
-        timezoneNotSet:
-          type: boolean
-          description: 'Union with `timezones[]`: when true, also release entries with `timezoneAtCreation === null`.'
-        billingType:
-          type: string
-          description: Optional billing type filter (matches `initiativeProps.initiative.billingType`).
-          enum:
-          - billable
-          - non-billable
-        clientId:
-          type: string
-          description: Optional client filter
-          format: objectid
-        initiativeId:
-          type: string
-          description: Optional initiative filter
-          format: objectid
-        timezones:
-          description: 'Optional IANA timezone filter (e.g. "America/New_York"). When provided, only
-
-            entries whose `timezoneAtCreation` is in the list are released. A single value
-
-            is accepted as a convenience and normalized to a one-element array.'
-          type: array
-          items:
-            type: string
-      required:
-      - workDateStart
-      - workDateEnd
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

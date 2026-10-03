@@ -453,6 +453,86 @@ components:
           - non-billable
       required:
       - codeId
+    DefaultCode:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: id of default code
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer who owns this default code configuration
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns this default, if only the customer id is set it means its a customer wide default code
+          format: objectid
+        codeTypeId:
+          type: string
+          description: code type id for the default code
+          format: objectid
+        codeId:
+          type: string
+          description: code id for the default code
+          format: objectid
+        initiativeBillingType:
+          type: string
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+        schemaVersion:
+          type: string
+          description: schema version
+        createdAt:
+          type: string
+          description: date and time this was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time this was updated last
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - customerId
+      - codeTypeId
+      - codeId
+      - schemaVersion
+      - createdAt
+      - updatedAt
+    ImportCustomerCodeTypeDto:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: code type's external id
+        name:
+          type: string
+          description: code type's name
+        semanticType:
+          type: string
+          description: code type's semantic type
+          enum:
+          - action
+          - activity
+          - location
+          - phase
+          - task
+        customerDefaultable:
+          type: boolean
+          description: can the default CodeType value be set at the customer-level
+        userDefaultable:
+          type: boolean
+          description: can the default CodeType value be set at the user-level
+        orderingSequence:
+          type: string
+          description: ordering sequence for UI sorting (alphanumeric)
+      required:
+      - externalId
+      - name
     CodeType:
       type: object
       properties:
@@ -515,86 +595,6 @@ components:
       - customerId
       - externalId
       - name
-      - createdAt
-      - updatedAt
-    ImportCustomerCodeTypeDto:
-      type: object
-      properties:
-        externalId:
-          type: string
-          description: code type's external id
-        name:
-          type: string
-          description: code type's name
-        semanticType:
-          type: string
-          description: code type's semantic type
-          enum:
-          - action
-          - activity
-          - location
-          - phase
-          - task
-        customerDefaultable:
-          type: boolean
-          description: can the default CodeType value be set at the customer-level
-        userDefaultable:
-          type: boolean
-          description: can the default CodeType value be set at the user-level
-        orderingSequence:
-          type: string
-          description: ordering sequence for UI sorting (alphanumeric)
-      required:
-      - externalId
-      - name
-    DefaultCode:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: id of default code
-          format: objectid
-        customerId:
-          type: string
-          description: id of customer who owns this default code configuration
-          format: objectid
-        userId:
-          type: string
-          description: id of user who owns this default, if only the customer id is set it means its a customer wide default code
-          format: objectid
-        codeTypeId:
-          type: string
-          description: code type id for the default code
-          format: objectid
-        codeId:
-          type: string
-          description: code id for the default code
-          format: objectid
-        initiativeBillingType:
-          type: string
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
-        schemaVersion:
-          type: string
-          description: schema version
-        createdAt:
-          type: string
-          description: date and time this was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          description: date and time this was updated last
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-      required:
-      - _id
-      - customerId
-      - codeTypeId
-      - codeId
-      - schemaVersion
       - createdAt
       - updatedAt
   securitySchemes:

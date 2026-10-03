@@ -49,6 +49,23 @@ paths:
       - Roles
 components:
   schemas:
+    PermissionDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: permission's id
+          format: objectid
+        claim:
+          type: string
+          description: permission's claim, which is service, namespace, action, and scope serialized in a string
+        description:
+          type: string
+          description: permission's description
+      required:
+      - _id
+      - claim
+      - description
     Role:
       type: object
       properties:
@@ -88,23 +105,6 @@ components:
       - createdAt
       - updatedAt
       - permissions
-    PermissionDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: permission's id
-          format: objectid
-        claim:
-          type: string
-          description: permission's claim, which is service, namespace, action, and scope serialized in a string
-        description:
-          type: string
-          description: permission's description
-      required:
-      - _id
-      - claim
-      - description
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

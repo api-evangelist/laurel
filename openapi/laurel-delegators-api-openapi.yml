@@ -69,6 +69,26 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    SearchDelegatorsResponse:
+      type: object
+      properties:
+        nextPage:
+          type: number
+          description: next page number. if it is undefined it means this is the last page
+          format: double
+        items:
+          description: the list of items in the current page
+          type: array
+          items:
+            $ref: '#/components/schemas/UserLite'
+        totalPages:
+          type: number
+        totalItems:
+          type: number
+      required:
+      - items
+      - totalPages
+      - totalItems
     UserLite:
       type: object
       properties:
@@ -105,26 +125,6 @@ components:
       - firstName
       - lastName
       - isTimekeeperIdSet
-    SearchDelegatorsResponse:
-      type: object
-      properties:
-        nextPage:
-          type: number
-          description: next page number. if it is undefined it means this is the last page
-          format: double
-        items:
-          description: the list of items in the current page
-          type: array
-          items:
-            $ref: '#/components/schemas/UserLite'
-        totalPages:
-          type: number
-        totalItems:
-          type: number
-      required:
-      - items
-      - totalPages
-      - totalItems
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

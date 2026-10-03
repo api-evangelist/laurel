@@ -33,23 +33,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ServiceTokenResponseDto:
-      type: object
-      properties:
-        access_token:
-          type: string
-          description: access token
-        expires_in:
-          type: number
-          description: time to live of token in second
-          format: double
-        token_type:
-          type: string
-          description: token type
-      required:
-      - access_token
-      - expires_in
-      - token_type
     CreateServiceTokenRequestDto:
       type: object
       properties:
@@ -67,6 +50,23 @@ components:
       - client_secret
       - audience
       - grant_type
+    ServiceTokenResponseDto:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: access token
+        expires_in:
+          type: number
+          description: time to live of token in second
+          format: double
+        token_type:
+          type: string
+          description: token type
+      required:
+      - access_token
+      - expires_in
+      - token_type
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

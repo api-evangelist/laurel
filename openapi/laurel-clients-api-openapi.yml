@@ -380,25 +380,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    OnCredentialsExchangeRequestDto:
-      type: object
-      properties:
-        clientId:
-          type: string
-          description: id of client used for logging in
-          format: objectid
-        externalClientId:
-          type: string
-          description: id of the auth0 client that's generating a service token
-        customerId:
-          type:
-          - string
-          - 'null'
-          description: id of the customer the client belongs to
-          format: objectid
-      required:
-      - clientId
-      - externalClientId
     Client:
       type: object
       properties:
@@ -587,23 +568,6 @@ components:
       - updatedAt
       - permissions
       - userPermissionBoundaries
-    PermissionDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: permission's id
-          format: objectid
-        claim:
-          type: string
-          description: permission's claim, which is service, namespace, action, and scope serialized in a string
-        description:
-          type: string
-          description: permission's description
-      required:
-      - _id
-      - claim
-      - description
     OnCredentialsExchangeResponseDto:
       type: object
       properties:
@@ -632,6 +596,28 @@ components:
       - clientId
       - permissions
       - encodedPermissions
+    TenantDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: tenant's id
+          format: objectid
+        description:
+          type: string
+          description: tenant's description, can be empty
+        name:
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+          type: string
+      required:
+      - _id
+      - description
+      - name
     CreateClientDto:
       type: object
       properties:
@@ -779,6 +765,25 @@ components:
       - allowedCallbackUrls
       - allowedLogoutUrls
       - allowedCorsOrigins
+    OnCredentialsExchangeRequestDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: id of client used for logging in
+          format: objectid
+        externalClientId:
+          type: string
+          description: id of the auth0 client that's generating a service token
+        customerId:
+          type:
+          - string
+          - 'null'
+          description: id of the customer the client belongs to
+          format: objectid
+      required:
+      - clientId
+      - externalClientId
     UpdateClientDto:
       type: object
       properties:
@@ -903,28 +908,32 @@ components:
           items:
             type: string
             format: objectid
-    TenantDigest:
+    PermissionDigest:
       type: object
       properties:
         _id:
           type: string
-          description: tenant's id
+          description: permission's id
           format: objectid
+        claim:
+          type: string
+          description: permission's claim, which is service, namespace, action, and scope serialized in a string
         description:
           type: string
-          description: tenant's description, can be empty
-        name:
-          enum:
-          - iad
-          - lhr
-          - syd
-          - pdx
-          - yul
-          type: string
+          description: permission's description
       required:
       - _id
+      - claim
       - description
-      - name
+    ImportCustomerClientsBatchDto:
+      type: object
+      properties:
+        clients:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportCustomerClientDto'
+      required:
+      - clients
     ImportCustomerClientDto:
       type: object
       properties:
@@ -958,47 +967,29 @@ components:
       - name
       - callSign
       - description
-    ImportCustomerClientsBatchDto:
+    OverrideComplianceRulesDto:
       type: object
       properties:
-        clients:
+        clientId:
+          type: string
+          description: DEPRECATED — use clientIds + entityType. Single source client ID.
+          deprecated: true
+          format: objectid
+        clientIds:
+          description: Source client IDs whose children will have rules reset.
           type: array
           items:
-            $ref: '#/components/schemas/ImportCustomerClientDto'
-      required:
-      - clients
-    ImportCustomerClientDto_2:
-      type: object
-      properties:
-        externalId:
+            type: string
+            format: objectid
+        entityType:
           type: string
-          description: client's external id
-        name:
-          type: string
-          description: a name that identifies this client
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this client
-        description:
-          type: string
-          description: client's description
-        type:
-          type: string
-          description: client's type, default is client
+          description: Entity type of the source clientIds. Initiative is not valid for Apply & Override.
           enum:
-          - client
           - parent
-        parentClientId:
-          type:
-          - string
-          - 'null'
-          description: id of the parent client
-          format: objectid
+          - client
       required:
-      - externalId
-      - name
-      - callSign
-      - description
+      - clientId
+      - clientIds
     Client_2:
       type: object
       properties:
@@ -1059,32 +1050,38 @@ components:
       - callSign
       - createdAt
       - updatedAt
-    Object:
-      type: object
-      properties: {}
-    OverrideComplianceRulesDto:
+    ImportCustomerClientDto_2:
       type: object
       properties:
-        clientId:
+        externalId:
           type: string
-          description: DEPRECATED — use clientIds + entityType. Single source client ID.
-          deprecated: true
-          format: objectid
-        clientIds:
-          description: Source client IDs whose children will have rules reset.
-          type: array
-          items:
-            type: string
-            format: objectid
-        entityType:
+          description: client's external id
+        name:
           type: string
-          description: Entity type of the source clientIds. Initiative is not valid for Apply & Override.
+          description: a name that identifies this client
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        description:
+          type: string
+          description: client's description
+        type:
+          type: string
+          description: client's type, default is client
           enum:
-          - parent
           - client
+          - parent
+        parentClientId:
+          type:
+          - string
+          - 'null'
+          description: id of the parent client
+          format: objectid
       required:
-      - clientId
-      - clientIds
+      - externalId
+      - name
+      - callSign
+      - description
     AffectedCountResponseDto:
       type: object
       properties:
@@ -1134,6 +1131,9 @@ components:
       - name
       - description
       - callSign
+    Object:
+      type: object
+      properties: {}
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

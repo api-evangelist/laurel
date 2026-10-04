@@ -77,18 +77,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    TimerCarryoverFailedState:
-      type: object
-      properties:
-        type:
-          enum:
-          - failed
-          type: string
-        message:
-          type: string
-      required:
-      - type
-      - message
     RunCarryoverRequestDto:
       type: object
       properties:
@@ -115,15 +103,18 @@ components:
       - type
       - carriedCount
       - skippedCount
-    TimerCarryoverInProgressState:
+    TimerCarryoverFailedState:
       type: object
       properties:
         type:
           enum:
-          - in_progress
+          - failed
+          type: string
+        message:
           type: string
       required:
       - type
+      - message
     TimerCarryoverResponseDto:
       type: object
       properties:
@@ -194,6 +185,15 @@ components:
       - createdAt
       - updatedAt
       - state
+    TimerCarryoverInProgressState:
+      type: object
+      properties:
+        type:
+          enum:
+          - in_progress
+          type: string
+      required:
+      - type
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

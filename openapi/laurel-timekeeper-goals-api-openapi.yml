@@ -96,19 +96,48 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UpsertTimekeeperGoalRequestDto:
+    AnnualGoalRequestDto:
       type: object
       properties:
+        annualInSeconds:
+          type: number
+          description: Annual target in seconds
+          format: double
+        notInLaurelInSeconds:
+          type: number
+          description: Time not counted in Laurel in seconds
+          format: double
+      required:
+      - annualInSeconds
+      - notInLaurelInSeconds
+    TimekeeperGoalResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: unique identifier for the goal
+          format: objectid
+        customerId:
+          type: string
+          description: id of the customer associated with this goal
+          format: objectid
+        userId:
+          type: string
+          description: id of the user associated with this goal
+          format: objectid
         startDate:
           type: string
-          description: start day and month of the goal - year part will be ignored
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
+          description: start date of the goal
+          example: '2022-08-12'
+          format: iso-date
         billable:
           description: billable goal
           allOf:
-          - $ref: '#/components/schemas/AnnualGoalRequestDto'
+          - $ref: '#/components/schemas/AnnualGoalResponseDto'
       required:
+      - _id
+      - customerId
+      - userId
       - startDate
       - billable
     CustomerTimekeeperGoalResponseDto:
@@ -160,6 +189,21 @@ components:
       - hideWeeklyGoals
       - hideDailyGoals
       - billable
+    UpsertTimekeeperGoalRequestDto:
+      type: object
+      properties:
+        startDate:
+          type: string
+          description: start day and month of the goal - year part will be ignored
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        billable:
+          description: billable goal
+          allOf:
+          - $ref: '#/components/schemas/AnnualGoalRequestDto'
+      required:
+      - startDate
+      - billable
     UpsertCustomerTimekeeperGoalRequestDto:
       type: object
       properties:
@@ -199,20 +243,6 @@ components:
       - hideWeeklyGoals
       - hideDailyGoals
       - billable
-    AnnualGoalRequestDto:
-      type: object
-      properties:
-        annualInSeconds:
-          type: number
-          description: Annual target in seconds
-          format: double
-        notInLaurelInSeconds:
-          type: number
-          description: Time not counted in Laurel in seconds
-          format: double
-      required:
-      - annualInSeconds
-      - notInLaurelInSeconds
     AnnualGoalResponseDto:
       type: object
       properties:
@@ -227,36 +257,6 @@ components:
       required:
       - annualInSeconds
       - notInLaurelInSeconds
-    TimekeeperGoalResponseDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: unique identifier for the goal
-          format: objectid
-        customerId:
-          type: string
-          description: id of the customer associated with this goal
-          format: objectid
-        userId:
-          type: string
-          description: id of the user associated with this goal
-          format: objectid
-        startDate:
-          type: string
-          description: start date of the goal
-          example: '2022-08-12'
-          format: iso-date
-        billable:
-          description: billable goal
-          allOf:
-          - $ref: '#/components/schemas/AnnualGoalResponseDto'
-      required:
-      - _id
-      - customerId
-      - userId
-      - startDate
-      - billable
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

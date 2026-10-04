@@ -540,6 +540,41 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Dto:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: code's external id
+        name:
+          type: string
+          description: code's name
+        description:
+          type: string
+          description: code's description, can be empty
+        codeTypeExternalId:
+          type: string
+          description: code's type's external id
+        orderingSequence:
+          type:
+          - string
+          - 'null'
+          description: ordering sequence for UI sorting (alphanumeric)
+        group:
+          type:
+          - string
+          - 'null'
+          description: group identifier for categorizing codes
+        isDisabled:
+          type:
+          - boolean
+          - 'null'
+          description: whether the code is disabled, added from ingestion process
+      required:
+      - externalId
+      - name
+      - description
+      - codeTypeExternalId
     ImportCustomerCodeDto:
       type: object
       properties:
@@ -584,65 +619,6 @@ components:
             $ref: '#/components/schemas/Dto'
       required:
       - codes
-    Dto:
-      type: object
-      properties:
-        externalId:
-          type: string
-          description: code's external id
-        name:
-          type: string
-          description: code's name
-        description:
-          type: string
-          description: code's description, can be empty
-        codeTypeExternalId:
-          type: string
-          description: code's type's external id
-        orderingSequence:
-          type:
-          - string
-          - 'null'
-          description: ordering sequence for UI sorting (alphanumeric)
-        group:
-          type:
-          - string
-          - 'null'
-          description: group identifier for categorizing codes
-        isDisabled:
-          type:
-          - boolean
-          - 'null'
-          description: whether the code is disabled, added from ingestion process
-      required:
-      - externalId
-      - name
-      - description
-      - codeTypeExternalId
-    GetUserCodesResponseDto:
-      type: object
-      properties:
-        defaultCodeId:
-          type: string
-          description: the Id of the code that should be chosen as a
-          format: objectid
-        nextCursor:
-          type: string
-          description: next cursor. if it is undefined it means this is the last page
-          format: objectid
-        codes:
-          description: all of the codes assigned to the entry
-          type: array
-          items:
-            $ref: '#/components/schemas/CodeResponseDto'
-        items:
-          description: all of the codes assigned to the entry
-          type: array
-          items:
-            $ref: '#/components/schemas/CodeResponseDto'
-      required:
-      - codes
-      - items
     ValidateCodeInitiativeResponseDto:
       type: object
       properties:
@@ -650,63 +626,6 @@ components:
           type: boolean
       required:
       - isValid
-    GetUserCodesOffsetBaseResponseDto:
-      type: object
-      properties:
-        defaultCodeId:
-          type: string
-          description: the Id of the code that should be chosen as a
-          format: objectid
-        items:
-          description: the list of items in the current page
-          type: array
-          items:
-            $ref: '#/components/schemas/CodeResponseDto'
-        nextPage:
-          type: number
-          description: next page number. if it is undefined it means this is the last page
-        totalPages:
-          type: number
-        totalItems:
-          type: number
-      required:
-      - items
-      - totalPages
-      - totalItems
-    ImportCustomerCodeDto_2:
-      type: object
-      properties:
-        externalId:
-          type: string
-          description: code's external id
-        name:
-          type: string
-          description: code's name
-        description:
-          type: string
-          description: code's description, can be empty
-        codeTypeExternalId:
-          type: string
-          description: code's type's external id
-        orderingSequence:
-          type: string
-          description: ordering sequence for UI sorting (alphanumeric)
-        group:
-          type: string
-          description: group identifier for categorizing codes
-        userGroupExternalIds:
-          description: user group external ids this code is associated with (from identity service)
-          type: array
-          items:
-            type: string
-        isDisabled:
-          type: boolean
-          description: is this code disabled - this property is set during ingestion and can't be synced back to the PMS
-      required:
-      - externalId
-      - name
-      - description
-      - codeTypeExternalId
     CodeResponseDto:
       type: object
       properties:
@@ -753,6 +672,39 @@ components:
       - name
       - description
       - type
+    CodeTypeDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: code type's id
+          format: objectid
+        externalId:
+          type: string
+          description: code type's external id
+        name:
+          type: string
+          description: code type's name
+        semanticType:
+          type:
+          - string
+          - 'null'
+          description: code type's semantic type
+          enum:
+          - action
+          - activity
+          - location
+          - phase
+          - task
+        orderingSequence:
+          type:
+          - string
+          - 'null'
+          description: ordering sequence for UI sorting (alphanumeric)
+      required:
+      - _id
+      - externalId
+      - name
     Code:
       type: object
       properties:
@@ -825,39 +777,87 @@ components:
       - createdAt
       - updatedAt
       - type
-    CodeTypeDigest:
+    GetUserCodesResponseDto:
       type: object
       properties:
-        _id:
+        defaultCodeId:
           type: string
-          description: code type's id
+          description: the Id of the code that should be chosen as a
           format: objectid
+        nextCursor:
+          type: string
+          description: next cursor. if it is undefined it means this is the last page
+          format: objectid
+        codes:
+          description: all of the codes assigned to the entry
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeResponseDto'
+        items:
+          description: all of the codes assigned to the entry
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeResponseDto'
+      required:
+      - codes
+      - items
+    ImportCustomerCodeDto_2:
+      type: object
+      properties:
         externalId:
           type: string
-          description: code type's external id
+          description: code's external id
         name:
           type: string
-          description: code type's name
-        semanticType:
-          type:
-          - string
-          - 'null'
-          description: code type's semantic type
-          enum:
-          - action
-          - activity
-          - location
-          - phase
-          - task
+          description: code's name
+        description:
+          type: string
+          description: code's description, can be empty
+        codeTypeExternalId:
+          type: string
+          description: code's type's external id
         orderingSequence:
-          type:
-          - string
-          - 'null'
+          type: string
           description: ordering sequence for UI sorting (alphanumeric)
+        group:
+          type: string
+          description: group identifier for categorizing codes
+        userGroupExternalIds:
+          description: user group external ids this code is associated with (from identity service)
+          type: array
+          items:
+            type: string
+        isDisabled:
+          type: boolean
+          description: is this code disabled - this property is set during ingestion and can't be synced back to the PMS
       required:
-      - _id
       - externalId
       - name
+      - description
+      - codeTypeExternalId
+    GetUserCodesOffsetBaseResponseDto:
+      type: object
+      properties:
+        defaultCodeId:
+          type: string
+          description: the Id of the code that should be chosen as a
+          format: objectid
+        items:
+          description: the list of items in the current page
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeResponseDto'
+        nextPage:
+          type: number
+          description: next page number. if it is undefined it means this is the last page
+        totalPages:
+          type: number
+        totalItems:
+          type: number
+      required:
+      - items
+      - totalPages
+      - totalItems
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

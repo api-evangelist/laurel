@@ -299,106 +299,64 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UserInitiativePropsDigest:
+    ClientDigest:
       type: object
       properties:
-        type:
-          description: type of the initiative for these props
-          enum:
-          - user
-          type: string
-        colorHex:
-          type: string
-          description: the hex color code for this initiative's display to the user
-          example: fec828
-          format: color-hex
-        tags:
-          type: array
-          description: initiative prop's tags
-          items:
-            type: string
-            enum:
-            - pinned
-        initiative:
-          description: the user initiative that is represented by these initiative props
-          allOf:
-          - $ref: '#/components/schemas/UserInitiativeDigest'
-      required:
-      - type
-      - colorHex
-      - tags
-      - initiative
-    UserInitiativeDigest:
-      type: object
-      properties:
-        type:
-          description: initiative's type
-          enum:
-          - user
-          type: string
         _id:
           type: string
-          description: initiative's id
+          description: client's id
           format: objectid
-        billingType:
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
+        externalId:
           type: string
-        callSign:
-          type:
-          - string
-          - 'null'
-          description: a short name or abbreviation that identifies this pms initiative
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative
-          format: double
-        status:
-          type:
-          - string
-          - 'null'
-          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
-
-            with entries whose denormalized digest predates this field — those entries
-
-            gain status on the next initiative update via natural digest propagation.'
-          enum:
-          - active
-          - inactive
-        locale:
-          type:
-          - string
-          - 'null'
-          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
-          enum:
-          - da-DK
-          - de-DE
-          - en-CA
-          - en-GB
-          - en-US
-          - es-ES
-          - es-MX
-          - fi-FI
-          - fr-CA
-          - fr-FR
-          - is-IS
-          - it-IT
-          - ko-KR
-          - nl-NL
-          - no-NO
-          - pt-PT
-          - sv-SE
+          description: client's external id
         name:
           type: string
-          description: the name user has given this initiative
+          description: a name that identifies this client
+        description:
+          type: string
+          description: client's description
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        type:
+          type:
+          - string
+          - 'null'
+          description: client's type, default is client
+          enum:
+          - client
+          - parent
+        parentClientId:
+          type:
+          - string
+          - 'null'
+          description: id of the parent client
+          format: objectid
       required:
-      - type
       - _id
-      - billingType
-      - unitIncrements
+      - externalId
       - name
+      - description
+      - callSign
+    UpdateWorkGroupRequestDto:
+      type: object
+      properties:
+        activityIds:
+          minItems: 1
+          maxItems: 100
+          type: array
+          items:
+            type: string
+            format: objectid
+        description:
+          type: string
+        priority:
+          type: number
+          description: work group's priority
+          format: double
+        initiativeId:
+          type: string
+          format: objectid
     WorkGroup:
       type: object
       properties:
@@ -487,13 +445,12 @@ components:
       - createdAt
       - updatedAt
       - activities
-    PmsInitiativeDigest:
+    UserInitiativeDigest:
       type: object
       properties:
         type:
           description: initiative's type
           enum:
-          - pms
           - user
           type: string
         _id:
@@ -550,86 +507,15 @@ components:
           - no-NO
           - pt-PT
           - sv-SE
-        externalId:
-          type: string
-          description: initiative's external id
         name:
           type: string
-          description: a short name or code that identifies this initiative
-        description:
-          type: string
-          description: the full name of the initiative
-        client:
-          description: the client this initiative belongs to
-          allOf:
-          - $ref: '#/components/schemas/ClientDigest'
+          description: the name user has given this initiative
       required:
       - type
       - _id
       - billingType
       - unitIncrements
-      - externalId
       - name
-      - description
-      - client
-    UpdateWorkGroupRequestDto:
-      type: object
-      properties:
-        activityIds:
-          minItems: 1
-          maxItems: 100
-          type: array
-          items:
-            type: string
-            format: objectid
-        description:
-          type: string
-        priority:
-          type: number
-          description: work group's priority
-          format: double
-        initiativeId:
-          type: string
-          format: objectid
-    ClientDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: client's id
-          format: objectid
-        externalId:
-          type: string
-          description: client's external id
-        name:
-          type: string
-          description: a name that identifies this client
-        description:
-          type: string
-          description: client's description
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this client
-        type:
-          type:
-          - string
-          - 'null'
-          description: client's type, default is client
-          enum:
-          - client
-          - parent
-        parentClientId:
-          type:
-          - string
-          - 'null'
-          description: id of the parent client
-          format: objectid
-      required:
-      - _id
-      - externalId
-      - name
-      - description
-      - callSign
     ActivityDigest:
       type: object
       properties:
@@ -738,6 +624,120 @@ components:
           description: the pms initiative that is represented by these initiative props
           allOf:
           - $ref: '#/components/schemas/PmsInitiativeDigest'
+      required:
+      - type
+      - colorHex
+      - tags
+      - initiative
+    PmsInitiativeDigest:
+      type: object
+      properties:
+        type:
+          description: initiative's type
+          enum:
+          - pms
+          - user
+          type: string
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type:
+          - string
+          - 'null'
+          description: a short name or abbreviation that identifies this pms initiative
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        status:
+          type:
+          - string
+          - 'null'
+          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
+
+            with entries whose denormalized digest predates this field — those entries
+
+            gain status on the next initiative update via natural digest propagation.'
+          enum:
+          - active
+          - inactive
+        locale:
+          type:
+          - string
+          - 'null'
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+        externalId:
+          type: string
+          description: initiative's external id
+        name:
+          type: string
+          description: a short name or code that identifies this initiative
+        description:
+          type: string
+          description: the full name of the initiative
+        client:
+          description: the client this initiative belongs to
+          allOf:
+          - $ref: '#/components/schemas/ClientDigest'
+      required:
+      - type
+      - _id
+      - billingType
+      - unitIncrements
+      - externalId
+      - name
+      - description
+      - client
+    UserInitiativePropsDigest:
+      type: object
+      properties:
+        type:
+          description: type of the initiative for these props
+          enum:
+          - user
+          type: string
+        colorHex:
+          type: string
+          description: the hex color code for this initiative's display to the user
+          example: fec828
+          format: color-hex
+        tags:
+          type: array
+          description: initiative prop's tags
+          items:
+            type: string
+            enum:
+            - pinned
+        initiative:
+          description: the user initiative that is represented by these initiative props
+          allOf:
+          - $ref: '#/components/schemas/UserInitiativeDigest'
       required:
       - type
       - colorHex

@@ -119,6 +119,35 @@ paths:
       - Metrics
 components:
   schemas:
+    Metrics:
+      type: object
+      properties:
+        releasedInSeconds:
+          type: number
+          description: Released in seconds
+          format: int64
+          minimum: 0
+        unreleasedInSeconds:
+          type: number
+          description: Released in seconds
+          format: int64
+          minimum: 0
+      required:
+      - releasedInSeconds
+      - unreleasedInSeconds
+    EntryWorkDateByInitiativeResponseDto:
+      type: object
+      properties:
+        workDate:
+          type: string
+          description: ISO calendar date (YYYY-MM-DD) on which the user logged time for this initiative.
+        totalSeconds:
+          type: number
+          description: Total time the user logged for this initiative on workDate, in seconds.
+          format: int64
+      required:
+      - workDate
+      - totalSeconds
     EntryCustomerMetricsResponseDto:
       type: object
       properties:
@@ -145,19 +174,6 @@ components:
       - unreleasedTimeInSeconds
       - releasePendingTimeInSeconds
       - releasedTimeInSeconds
-    EntryWorkDateByInitiativeResponseDto:
-      type: object
-      properties:
-        workDate:
-          type: string
-          description: ISO calendar date (YYYY-MM-DD) on which the user logged time for this initiative.
-        totalSeconds:
-          type: number
-          description: Total time the user logged for this initiative on workDate, in seconds.
-          format: int64
-      required:
-      - workDate
-      - totalSeconds
     EntryReleaseMetricsWithGoalResponseDto:
       type: object
       properties:
@@ -181,22 +197,6 @@ components:
       required:
       - billable
       - nonBillable
-    Metrics:
-      type: object
-      properties:
-        releasedInSeconds:
-          type: number
-          description: Released in seconds
-          format: int64
-          minimum: 0
-        unreleasedInSeconds:
-          type: number
-          description: Released in seconds
-          format: int64
-          minimum: 0
-      required:
-      - releasedInSeconds
-      - unreleasedInSeconds
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

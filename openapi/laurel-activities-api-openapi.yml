@@ -690,191 +690,107 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    CreateTimerActivityDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: optional custom id for the activity
-          format: objectid
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        title:
-          type: string
-          description: activity's title
-        entryId:
-          type: string
-          description: optional entry id to add this activity to
-          format: objectid
-      required:
-      - startedAt
-      - stoppedAt
-      - title
-    MeetingMetadata:
+    EmailMetadata:
       type: object
       properties:
         id:
           type:
           - string
           - 'null'
-          description: Provider-specific meeting identifier, when available.
+          description: The unique identifier for the email
         subject:
           type:
           - string
           - 'null'
-          description: The meeting subject/topic.
-        iCalUid:
+          description: The subject of the email
+        from:
           type:
           - string
           - 'null'
-          description: 'The iCalendar UID — stable across event modifications and unique per recurring-series
-
-            occurrence. Present for calendar-sourced meetings.'
-        organizer:
-          description: Who organized/hosted the meeting.
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/MeetingParticipant'
-        participants:
-          description: All participants (including the user and the organizer).
+          description: Who this email was received from.
+        to:
+          description: Who this email was sent to.
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/MeetingParticipant'
-    ImageMetadata:
-      type: object
-      properties:
-        uniqueFileName:
-          type: string
-          description: the unique file name of the image
-        createdAt:
-          type: string
-          description: the creation date time of the image
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-      required:
-      - uniqueFileName
-      - createdAt
-    PmsInitiativeDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: initiative's id
-          format: objectid
-        billingType:
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
-          type: string
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this initiative
-        createdAt:
-          type: string
-          description: date and time this initiative was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        locale:
+            type: string
+        cc:
+          description: Who was cc'd on this email.
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        bcc:
+          description: Who was bcc'd on this email.
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        threadId:
           type:
           - string
           - 'null'
-          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
-          enum:
-          - da-DK
-          - de-DE
-          - en-CA
-          - en-GB
-          - en-US
-          - es-ES
-          - es-MX
-          - fi-FI
-          - fr-CA
-          - fr-FR
-          - is-IS
-          - it-IT
-          - ko-KR
-          - nl-NL
-          - no-NO
-          - pt-PT
-          - sv-SE
+          description: The id associated with this email thread
+        threadIndex:
+          type:
+          - string
+          - 'null'
+          description: The thread index which is the position of this email in a thread.
+        threadIndexList:
+          description: The list of thread indices representing the position of this email in a thread.
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
         status:
-          description: initiative's status
+          type:
+          - string
+          - 'null'
+          description: The status of this email
           enum:
-          - active
-          - inactive
-          type: string
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative
-          format: double
-        updatedAt:
-          type: string
-          description: date and time this initiative was last updated
+          - read
+          - draft
+          - sent
+        folder:
+          type:
+          - string
+          - 'null'
+          description: The folder that contains this email.
+        searchKey:
+          type:
+          - string
+          - 'null'
+          description: The microsoft mapi search_key in hex.
+        recordKey:
+          type:
+          - string
+          - 'null'
+          description: The microsoft mapi record_key in hex.
+        createdAt:
+          type:
+          - string
+          - 'null'
+          description: When this email was created.
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
-        description:
-          type: string
-          description: the full long name of the initiative
-        externalId:
-          type: string
-          description: initiative's external id
-        name:
-          type: string
-          description: a short name or code that identifies this initiative
-        allowFrom:
+        attachments:
+          description: The email attachments
           type:
-          - string
+          - array
           - 'null'
-          description: earliest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
-          example: '2022-08-12'
-          format: iso-date
-        allowTo:
+          items:
+            $ref: '#/components/schemas/EmailAttachmentMetadata'
+        recipients:
+          description: The full recipient information
           type:
-          - string
+          - array
           - 'null'
-          description: latest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
-          example: '2022-08-12'
-          format: iso-date
-        client:
-          description: the client this initiative belongs to
-          allOf:
-          - $ref: '#/components/schemas/ClientDigest'
-        type:
-          type: string
-          enum:
-          - pms
-        props:
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/PmsInitiativePropsDto'
-      required:
-      - _id
-      - billingType
-      - callSign
-      - createdAt
-      - status
-      - unitIncrements
-      - updatedAt
-      - description
-      - externalId
-      - name
-      - client
-      - type
+          items:
+            $ref: '#/components/schemas/EmailRecipientMetadata'
     UserInitiativeDto:
       type: object
       properties:
@@ -957,6 +873,309 @@ components:
       - updatedAt
       - name
       - type
+    Activity:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: activity's id
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer who owns this activity
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns this activity
+          format: objectid
+        creationMethod:
+          description: the creation method of the activity
+          enum:
+          - timer
+          - tracked
+          - user
+          type: string
+        initiativeProps:
+          description: if set, is activity's initiative, otherwise activity is unassigned
+          oneOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsDigest'
+          - $ref: '#/components/schemas/UserInitiativePropsDigest'
+        isLocked:
+          type: boolean
+          description: if true, this activity is locked and cannot be updated
+        category:
+          type:
+          - string
+          - 'null'
+          description: category of this activity, if any
+        technology:
+          type:
+          - string
+          - 'null'
+          description: technology of this activity, if any
+        source:
+          type:
+          - string
+          - 'null'
+          description: source of this activity (e.g. 'macos', 'windows'), if any
+        mechanism:
+          type:
+          - string
+          - 'null'
+          description: mechanism of this activity (e.g. browser used to access web app), if any
+        title:
+          type: string
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: activity's external id
+        assignedBy:
+          description: how the activity's initiative was assigned
+          enum:
+          - none
+          - user
+          - ml
+          type: string
+        createdAt:
+          type: string
+          description: date and time activity was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time activity was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        schemaVersion:
+          type: string
+          description: activities's schemaVersion
+        threadId:
+          type:
+          - string
+          - 'null'
+          description: activity's thread id
+        enhancedByAi:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was enhanced by AI
+        isCopiedByAdmin:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was copied by admin
+        isSeeded:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was created via seeding
+        deletedForRetentionAt:
+          type:
+          - string
+          - 'null'
+          description: date and time activity data was deleted for retention
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        isDeleted:
+          type:
+          - boolean
+          - 'null'
+          description: 'If true, this activity has been soft-deleted (e.g. it was the source of a
+
+            split). Soft-deleted activities are excluded from the unassigned tray but
+
+            remain restorable, which is what keeps a split reversible (undo/merge).'
+        disableThreading:
+          type:
+          - boolean
+          - 'null'
+          description: if true, disables threading for this activity
+        sessionIds:
+          description: The session ids that were used to create this Activity
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: objectid
+        splitFromActivityId:
+          type:
+          - string
+          - 'null'
+          description: 'If set, the id of the activity this one was split from. Child activities
+
+            created by a split carry their source''s id here; it is the sibling key and
+
+            the seam for a future undo/merge.'
+          format: objectid
+      required:
+      - _id
+      - customerId
+      - userId
+      - creationMethod
+      - isLocked
+      - title
+      - detail
+      - startedAt
+      - stoppedAt
+      - assignedBy
+      - createdAt
+      - updatedAt
+      - schemaVersion
+    CallParticipant:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Provider-specific identifier for the participant, when available.
+        name:
+          type:
+          - string
+          - 'null'
+          description: Display name of the participant.
+        number:
+          type:
+          - string
+          - 'null'
+          description: Phone number of the participant, when available.
+        role:
+          type:
+          - string
+          - 'null'
+          description: The participant's role in the call.
+          enum:
+          - caller
+          - receiver
+          - host
+    UserActivityDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: activity's id
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer who owns this activity
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns this activity
+          format: objectid
+        creationMethod:
+          type: string
+          enum:
+          - user
+        isLocked:
+          type: boolean
+          description: if true, this activity is locked and cannot be updated
+        category:
+          type:
+          - string
+          - 'null'
+          description: category of this activity, if any
+        technology:
+          type:
+          - string
+          - 'null'
+          description: technology of this activity, if any
+        title:
+          type: string
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: activity's external id
+        assignedBy:
+          description: how the activity's initiative was assigned
+          enum:
+          - none
+          - user
+          - ml
+          type: string
+        createdAt:
+          type: string
+          description: date and time activity was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time activity was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        threadId:
+          type:
+          - string
+          - 'null'
+          description: activity's thread id
+        enhancedByAi:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was enhanced by AI
+        isCopiedByAdmin:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was copied by admin
+        isSeeded:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was created via seeding
+        disableThreading:
+          type:
+          - boolean
+          - 'null'
+          description: if true, disables threading for this activity
+        initiative:
+          oneOf:
+          - $ref: '#/components/schemas/UserInitiativeDto'
+          - $ref: '#/components/schemas/PmsInitiativeDto'
+      required:
+      - _id
+      - customerId
+      - userId
+      - creationMethod
+      - isLocked
+      - title
+      - detail
+      - startedAt
+      - stoppedAt
+      - assignedBy
+      - createdAt
+      - updatedAt
     ArchiveActivitiesRequestDto:
       type: object
       properties:
@@ -969,6 +1188,1690 @@ components:
             format: objectid
       required:
       - activityIds
+    WorkContextMetadata:
+      type: object
+      properties:
+        clientName:
+          type:
+          - string
+          - 'null'
+          description: Client or workspace name parsed from the source (e.g. iManage matter folder prefix).
+        initiativeName:
+          type: string
+          description: Matter id, engagement folder, or remainder of the matter folder path (provider-specific).
+        name:
+          description: Provider that produced this work context (e.g. imanage, prolaw, caseware, relativityone).
+          enum:
+          - caseware
+          - imanage
+          - prolaw
+          - relativityone
+          type: string
+      required:
+      - initiativeName
+      - name
+    MicrosoftTeamsChatMetadata:
+      type: object
+      properties:
+        chatId:
+          type:
+          - string
+          - 'null'
+          description: Stable identifier for the chat — the qualified chat path used to group (thread) chats.
+        title:
+          type:
+          - string
+          - 'null'
+          description: Human-readable chat name shown in the activity row.
+    EmailAttachmentMetadata:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the attachment
+        content_type:
+          type:
+          - string
+          - 'null'
+          description: The attachment content type
+        size:
+          type:
+          - number
+          - 'null'
+          description: The attachment size
+          format: double
+    DismissOpenTimeRequestDto:
+      type: object
+      properties:
+        startedAt:
+          type: string
+          description: start of the open time to dismiss
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: end of the open time to dismiss
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - startedAt
+      - stoppedAt
+    PmsInitiativeDigest:
+      type: object
+      properties:
+        type:
+          description: initiative's type
+          enum:
+          - pms
+          - user
+          type: string
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type:
+          - string
+          - 'null'
+          description: a short name or abbreviation that identifies this pms initiative
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        status:
+          type:
+          - string
+          - 'null'
+          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
+
+            with entries whose denormalized digest predates this field — those entries
+
+            gain status on the next initiative update via natural digest propagation.'
+          enum:
+          - active
+          - inactive
+        locale:
+          type:
+          - string
+          - 'null'
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+        externalId:
+          type: string
+          description: initiative's external id
+        name:
+          type: string
+          description: a short name or code that identifies this initiative
+        description:
+          type: string
+          description: the full name of the initiative
+        client:
+          description: the client this initiative belongs to
+          allOf:
+          - $ref: '#/components/schemas/ClientDigest'
+      required:
+      - type
+      - _id
+      - billingType
+      - unitIncrements
+      - externalId
+      - name
+      - description
+      - client
+    UserInitiativePropsDigest:
+      type: object
+      properties:
+        type:
+          description: type of the initiative for these props
+          enum:
+          - user
+          type: string
+        colorHex:
+          type: string
+          description: the hex color code for this initiative's display to the user
+          example: fec828
+          format: color-hex
+        tags:
+          type: array
+          description: initiative prop's tags
+          items:
+            type: string
+            enum:
+            - pinned
+        initiative:
+          description: the user initiative that is represented by these initiative props
+          allOf:
+          - $ref: '#/components/schemas/UserInitiativeDigest'
+      required:
+      - type
+      - colorHex
+      - tags
+      - initiative
+    CreateUserActivityDto:
+      type: object
+      properties:
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        category:
+          type: string
+          description: category of this activity, if any
+        technology:
+          type: string
+          description: technology of this activity, if any
+        source:
+          type: string
+          description: source of this activity (e.g. 'macos', 'windows', 'cloud-assistant-cdr', 'cloud-assistant-zoom'), if any
+        mechanism:
+          type: string
+          description: mechanism of this activity (e.g. voip, video-call, or browser)
+        title:
+          type: string
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        initiativeId:
+          type: string
+          description: activity's initiative id (optional)
+          format: objectid
+        isSeeded:
+          type: boolean
+          description: if true, indicates this activity was created via seeding
+      required:
+      - startedAt
+      - stoppedAt
+      - title
+      - detail
+    DocumentMetadata:
+      type: object
+      properties:
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the document
+        path:
+          type: string
+          description: The full path to the document
+      required:
+      - path
+    TrackedActivity:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: activity's id
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer who owns this activity
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns this activity
+          format: objectid
+        creationMethod:
+          description: the creation method of the activity
+          enum:
+          - tracked
+          type: string
+        initiativeProps:
+          description: if set, is activity's initiative, otherwise activity is unassigned
+          oneOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsDigest'
+          - $ref: '#/components/schemas/UserInitiativePropsDigest'
+        isLocked:
+          type: boolean
+          description: if true, this activity is locked and cannot be updated
+        category:
+          type:
+          - string
+          - 'null'
+          description: category of this activity, if any
+        technology:
+          type:
+          - string
+          - 'null'
+          description: technology of this activity, if any
+        source:
+          type:
+          - string
+          - 'null'
+          description: source of this activity (e.g. 'macos', 'windows'), if any
+        mechanism:
+          type:
+          - string
+          - 'null'
+          description: mechanism of this activity (e.g. browser used to access web app), if any
+        title:
+          type: string
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: activity's external id
+        assignedBy:
+          description: how the activity's initiative was assigned
+          enum:
+          - none
+          - user
+          - ml
+          type: string
+        createdAt:
+          type: string
+          description: date and time activity was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time activity was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        schemaVersion:
+          type: string
+          description: activities's schemaVersion
+        threadId:
+          type:
+          - string
+          - 'null'
+          description: activity's thread id
+        enhancedByAi:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was enhanced by AI
+        isCopiedByAdmin:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was copied by admin
+        isSeeded:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was created via seeding
+        deletedForRetentionAt:
+          type:
+          - string
+          - 'null'
+          description: date and time activity data was deleted for retention
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        isDeleted:
+          type:
+          - boolean
+          - 'null'
+          description: 'If true, this activity has been soft-deleted (e.g. it was the source of a
+
+            split). Soft-deleted activities are excluded from the unassigned tray but
+
+            remain restorable, which is what keeps a split reversible (undo/merge).'
+        disableThreading:
+          type:
+          - boolean
+          - 'null'
+          description: if true, disables threading for this activity
+        sessionIds:
+          description: The session ids that were used to create this Activity
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: objectid
+        splitFromActivityId:
+          type:
+          - string
+          - 'null'
+          description: 'If set, the id of the activity this one was split from. Child activities
+
+            created by a split carry their source''s id here; it is the sibling key and
+
+            the seam for a future undo/merge.'
+          format: objectid
+        captureSource:
+          description: capture source information for this activity
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/CaptureSourceDigest'
+      required:
+      - _id
+      - customerId
+      - userId
+      - creationMethod
+      - isLocked
+      - title
+      - detail
+      - startedAt
+      - stoppedAt
+      - assignedBy
+      - createdAt
+      - updatedAt
+      - schemaVersion
+    UserInitiativeDigest:
+      type: object
+      properties:
+        type:
+          description: initiative's type
+          enum:
+          - user
+          type: string
+        _id:
+          type: string
+          description: initiative's id
+          format: objectid
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type:
+          - string
+          - 'null'
+          description: a short name or abbreviation that identifies this pms initiative
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        status:
+          type:
+          - string
+          - 'null'
+          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
+
+            with entries whose denormalized digest predates this field — those entries
+
+            gain status on the next initiative update via natural digest propagation.'
+          enum:
+          - active
+          - inactive
+        locale:
+          type:
+          - string
+          - 'null'
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+        name:
+          type: string
+          description: the name user has given this initiative
+      required:
+      - type
+      - _id
+      - billingType
+      - unitIncrements
+      - name
+    CaptureSourceDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: capture source's id
+          format: objectid
+        capturingSourceType:
+          type:
+          - string
+          - 'null'
+          description: whether this source is an application or website
+          enum:
+          - application
+          - website
+        activityCategory:
+          type:
+          - string
+          - 'null'
+          description: category of the activity associated with this source
+          enum:
+          - call
+          - chat
+          - doc
+          - email
+          - meeting
+          - web
+          - terminal
+          - app
+        name:
+          type: string
+          description: Name of the app or website visible to the user
+          minLength: 2
+        iconId:
+          type: string
+          description: icon representing the capture app or website, shown in the UI
+          maxLength: 512
+          minLength: 1
+      required:
+      - _id
+      - name
+      - iconId
+    BatchActivityErrorDto:
+      type: object
+      properties:
+        activityId:
+          type: string
+          description: id of an activity that was skipped
+          format: objectid
+        status:
+          type: number
+          description: http-style status describing why it was skipped (404 not found, 409 locked)
+          format: double
+        message:
+          type: string
+          description: human-readable skip reason
+      required:
+      - activityId
+      - status
+      - message
+    WindowsWindowMetadata:
+      type: object
+      properties:
+        hwnd:
+          type: string
+          description: Window handle in hex format - unique per window instance
+        processId:
+          type: number
+          description: Process ID - distinguishes multiple app instances
+          format: double
+        windowClass:
+          type: string
+          description: Win32 window class - identifies window type within an app
+        windowType:
+          description: 'Classified type: main, child, popup, dialog, tool'
+          enum:
+          - main
+          - child
+          - popup
+          - dialog
+          - tool
+          type: string
+        parentHwnd:
+          type:
+          - string
+          - 'null'
+          description: Parent handle for MDI/child windows
+        ownerHwnd:
+          type:
+          - string
+          - 'null'
+          description: Owner handle for dialogs/popups
+        isModal:
+          type: boolean
+          description: True if this is a modal dialog (owner is disabled)
+        monitorIndex:
+          type:
+          - number
+          - 'null'
+          description: Display index for multi-monitor tracking
+          format: double
+      required:
+      - hwnd
+      - processId
+      - windowClass
+      - windowType
+      - isModal
+    CaptureSourceDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: capture source's id
+          format: objectid
+        capturingSourceType:
+          type:
+          - string
+          - 'null'
+          description: whether this source is an application or website
+          enum:
+          - application
+          - website
+        activityCategory:
+          type:
+          - string
+          - 'null'
+          description: category of the activity associated with this source
+          enum:
+          - call
+          - chat
+          - doc
+          - email
+          - meeting
+          - web
+          - terminal
+          - app
+        name:
+          type: string
+          description: Name of the app or website visible to the user
+          minLength: 2
+        iconId:
+          type: string
+          description: icon representing the capture app or website, shown in the UI
+          maxLength: 512
+          minLength: 1
+      required:
+      - _id
+      - name
+      - iconId
+    EmailRecipientMetadata:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Display name of the recipient
+        recipient_type:
+          type:
+          - number
+          - 'null'
+          description: The recipient type, to(1), cc(2), bcc(3), etc.
+          format: double
+        address_type:
+          type:
+          - string
+          - 'null'
+          description: Address Type EX, SMTP, etc.
+        address:
+          type:
+          - string
+          - 'null'
+          description: Address of the recipient
+        smtp_address:
+          type:
+          - string
+          - 'null'
+          description: SMTP address of the recipient
+    TrackOneUserActivityDto:
+      type: object
+      properties:
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        category:
+          type: string
+          description: category of this activity, if any
+        technology:
+          type: string
+          description: technology of this activity, if any
+        source:
+          type: string
+          description: source of this activity (e.g. 'macos', 'windows', 'cloud-assistant-cdr', 'cloud-assistant-zoom'), if any
+        mechanism:
+          type: string
+          description: mechanism of this activity (e.g. voip, video-call, or browser), if any
+        title:
+          type: string
+          description: activity's title (optional)
+        detail:
+          type: string
+          description: activity's detail (optional)
+        externalId:
+          type: string
+          description: an id unique to this customer and activity that is being tracked
+        captureSourceId:
+          type: string
+          description: optional id of the capture source for this activity
+          format: objectid
+        enhancedByAi:
+          type: boolean
+          description: indicates if this activity was enhanced by AI
+        isSeeded:
+          type: boolean
+          description: if true, indicates this activity was created via seeding
+        sessionIds:
+          description: The session ids that were used to create this Activity
+          type: array
+          items:
+            type: string
+            format: objectid
+        threadId:
+          type: string
+          description: activity's thread id
+        activityMetadata:
+          description: Optional metadata associated with this activity
+          allOf:
+          - $ref: '#/components/schemas/ActivityMetadataRequestDto'
+        customerId:
+          type: string
+          description: the id of the customer to which this activity belongs
+          format: objectid
+        userId:
+          type: string
+          description: the id of the user to which this activity belongs
+          format: objectid
+      required:
+      - startedAt
+      - stoppedAt
+      - customerId
+      - userId
+    UpdateOneActivityDto:
+      type: object
+      properties:
+        category:
+          type: string
+          description: category of this activity, if any
+        title:
+          type: string
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        initiativeId:
+          type: string
+          description: activity's initiative id (optional)
+          format: objectid
+        threadId:
+          type: string
+          description: activity's thread id
+        disableThreading:
+          type:
+          - boolean
+          - 'null'
+          description: if true, disables threading for this activity
+        deleteEmptyEntry:
+          type: boolean
+          description: if true, delete the entry if it becomes empty after removing this activity
+    BatchActivityResultResponseDto:
+      type: object
+      properties:
+        successes:
+          description: activities whose isDeleted flag was updated
+          type: array
+          items:
+            $ref: '#/components/schemas/BatchActivitySuccessDto'
+        errors:
+          description: activities that were skipped (not found or locked)
+          type: array
+          items:
+            $ref: '#/components/schemas/BatchActivityErrorDto'
+      required:
+      - successes
+      - errors
+    MeetingParticipant:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Provider-specific identifier for the participant, when available.
+        name:
+          type:
+          - string
+          - 'null'
+          description: Display name of the participant.
+        email:
+          type:
+          - string
+          - 'null'
+          description: Email address of the participant, when available.
+        role:
+          type:
+          - string
+          - 'null'
+          description: The participant's role in the meeting.
+          enum:
+          - host
+          - required
+          - optional
+          - attendee
+    PmsInitiativePropsDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+        nickname:
+          type:
+          - string
+          - 'null'
+          description: the nickname assigned to this initiative by the user
+      required:
+      - _id
+      - colorHex
+      - tags
+      - userId
+    ImageMetadata:
+      type: object
+      properties:
+        uniqueFileName:
+          type: string
+          description: the unique file name of the image
+        createdAt:
+          type: string
+          description: the creation date time of the image
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - uniqueFileName
+      - createdAt
+    TimerActivityDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: activity's id
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer who owns this activity
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns this activity
+          format: objectid
+        creationMethod:
+          type: string
+          enum:
+          - timer
+        isLocked:
+          type: boolean
+          description: if true, this activity is locked and cannot be updated
+        category:
+          type:
+          - string
+          - 'null'
+          description: category of this activity, if any
+        technology:
+          type:
+          - string
+          - 'null'
+          description: technology of this activity, if any
+        title:
+          type: string
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: activity's external id
+        assignedBy:
+          description: how the activity's initiative was assigned
+          enum:
+          - none
+          - user
+          - ml
+          type: string
+        createdAt:
+          type: string
+          description: date and time activity was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time activity was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        threadId:
+          type:
+          - string
+          - 'null'
+          description: activity's thread id
+        enhancedByAi:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was enhanced by AI
+        isCopiedByAdmin:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was copied by admin
+        isSeeded:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was created via seeding
+        disableThreading:
+          type:
+          - boolean
+          - 'null'
+          description: if true, disables threading for this activity
+        initiative:
+          oneOf:
+          - $ref: '#/components/schemas/UserInitiativeDto'
+          - $ref: '#/components/schemas/PmsInitiativeDto'
+      required:
+      - _id
+      - customerId
+      - userId
+      - creationMethod
+      - isLocked
+      - title
+      - detail
+      - startedAt
+      - stoppedAt
+      - assignedBy
+      - createdAt
+      - updatedAt
+    TimerActivity:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: activity's id
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer who owns this activity
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns this activity
+          format: objectid
+        creationMethod:
+          description: the creation method of the activity
+          enum:
+          - timer
+          type: string
+        initiativeProps:
+          description: if set, is activity's initiative, otherwise activity is unassigned
+          oneOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsDigest'
+          - $ref: '#/components/schemas/UserInitiativePropsDigest'
+        isLocked:
+          type: boolean
+          description: if true, this activity is locked and cannot be updated
+        category:
+          type:
+          - string
+          - 'null'
+          description: category of this activity, if any
+        technology:
+          type:
+          - string
+          - 'null'
+          description: technology of this activity, if any
+        source:
+          type:
+          - string
+          - 'null'
+          description: source of this activity (e.g. 'macos', 'windows'), if any
+        mechanism:
+          type:
+          - string
+          - 'null'
+          description: mechanism of this activity (e.g. browser used to access web app), if any
+        title:
+          type: string
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: activity's external id
+        assignedBy:
+          description: how the activity's initiative was assigned
+          enum:
+          - none
+          - user
+          - ml
+          type: string
+        createdAt:
+          type: string
+          description: date and time activity was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time activity was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        schemaVersion:
+          type: string
+          description: activities's schemaVersion
+        threadId:
+          type:
+          - string
+          - 'null'
+          description: activity's thread id
+        enhancedByAi:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was enhanced by AI
+        isCopiedByAdmin:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was copied by admin
+        isSeeded:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was created via seeding
+        deletedForRetentionAt:
+          type:
+          - string
+          - 'null'
+          description: date and time activity data was deleted for retention
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        isDeleted:
+          type:
+          - boolean
+          - 'null'
+          description: 'If true, this activity has been soft-deleted (e.g. it was the source of a
+
+            split). Soft-deleted activities are excluded from the unassigned tray but
+
+            remain restorable, which is what keeps a split reversible (undo/merge).'
+        disableThreading:
+          type:
+          - boolean
+          - 'null'
+          description: if true, disables threading for this activity
+        sessionIds:
+          description: The session ids that were used to create this Activity
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: objectid
+        splitFromActivityId:
+          type:
+          - string
+          - 'null'
+          description: 'If set, the id of the activity this one was split from. Child activities
+
+            created by a split carry their source''s id here; it is the sibling key and
+
+            the seam for a future undo/merge.'
+          format: objectid
+      required:
+      - _id
+      - customerId
+      - userId
+      - creationMethod
+      - isLocked
+      - title
+      - detail
+      - startedAt
+      - stoppedAt
+      - assignedBy
+      - createdAt
+      - updatedAt
+      - schemaVersion
+    ActivityMetadataResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: activity metadata's id
+          format: objectid
+        activityId:
+          type: string
+          description: id of activity
+          format: objectid
+        userId:
+          type: string
+          description: id of user
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer
+          format: objectid
+        trackingSourceType:
+          description: Type of tracking source
+          enum:
+          - website
+          - application
+          - system
+          type: string
+        operatingSystem:
+          description: Operating system information
+          enum:
+          - windows
+          - macos
+          - unknown
+          type: string
+        operatingSystemVersion:
+          type:
+          - string
+          - 'null'
+          description: Version of the operating system
+        trackedAppName:
+          type:
+          - string
+          - 'null'
+          description: Name of the process that was tracked.
+        trackedAppTitle:
+          type:
+          - string
+          - 'null'
+          description: Human readable name of the tracked app
+        trackedAppDisplayName:
+          type:
+          - string
+          - 'null'
+          description: Display name of the tracked app (e.g. "Microsoft Word")
+        trackedAppVersion:
+          type:
+          - string
+          - 'null'
+          description: Version of the tracked application
+        trackedAppCommandline:
+          type:
+          - string
+          - 'null'
+          description: Commandline of the process being tracked.
+        bodyFirst1000Characters:
+          type:
+          - string
+          - 'null'
+          description: The first 1000 characters of the body of the document/email. Will be null if encrypted.
+        bodyFirst1000CharactersEncrypted:
+          type:
+          - string
+          - 'null'
+          description: The encrypted first 1000 characters of the body of the document/email.
+        website:
+          description: Metadata captured from a web browser
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/WebsiteMetadata'
+        document:
+          description: Metadata captured from a document
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/DocumentMetadata'
+        email:
+          description: Metadata captured from an email client
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/EmailMetadata'
+        windowsWindow:
+          description: Metadata for a window in Windows OS
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/WindowsWindowMetadata'
+        images:
+          description: Images associated with this capture.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ImageMetadata'
+        callState:
+          description: Call state information for the capture
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/CallState'
+        meeting:
+          description: Normalized meeting metadata (Zoom, Teams, Outlook/calendar, etc.)
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/MeetingMetadata'
+        call:
+          description: Normalized call metadata (Zoom Phone, Cisco CDR, etc.); distinct from callState booleans
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/CallMetadata'
+        dynamicMetadata:
+          type:
+          - object
+          - 'null'
+          description: Dynamic metadata associated with the capture of the event.
+          additionalProperties:
+            type: string
+        workContext:
+          description: Structured client/matter context parsed from the captured document path or window title
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/WorkContextMetadata'
+        microsoftTeamsChat:
+          description: Normalized Microsoft Teams chat metadata; enrichment threads Teams chats by `chatId`.
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/MicrosoftTeamsChatMetadata'
+      required:
+      - _id
+      - activityId
+      - userId
+      - customerId
+      - trackingSourceType
+      - operatingSystem
+    CallState:
+      type: object
+      properties:
+        isCameraActive:
+          type: boolean
+          description: whether the camera is currently active
+        isMicActive:
+          type: boolean
+          description: whether the microphone is currently active
+        isInCall:
+          type: boolean
+          description: whether the user is currently in a call
+      required:
+      - isCameraActive
+      - isMicActive
+      - isInCall
+    CopyActivitiesRequestDto:
+      type: object
+      properties:
+        startedBefore:
+          type: string
+          description: the date to get activities that their started at time is less than this date
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAfter:
+          type: string
+          description: the date to get activities that their stopped at time is greater than this date
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        targetDate:
+          type: string
+          description: the date to copy activities to
+          example: '2022-08-12'
+          format: iso-date
+      required:
+      - startedBefore
+      - stoppedAfter
+      - targetDate
+    UpdateOneActivityFromServiceDto:
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: the id of the customer to which this activity belongs
+          format: objectid
+        externalId:
+          type: string
+          description: the external id the activity was tracked with (the upstream correlation id)
+        title:
+          type: string
+          description: the new title for the activity
+        detail:
+          type: string
+          description: the new detail for the activity
+      required:
+      - customerId
+      - externalId
+    UserActivity:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: activity's id
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer who owns this activity
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns this activity
+          format: objectid
+        creationMethod:
+          description: the creation method of the activity
+          enum:
+          - user
+          type: string
+        initiativeProps:
+          description: if set, is activity's initiative, otherwise activity is unassigned
+          oneOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsDigest'
+          - $ref: '#/components/schemas/UserInitiativePropsDigest'
+        isLocked:
+          type: boolean
+          description: if true, this activity is locked and cannot be updated
+        category:
+          type:
+          - string
+          - 'null'
+          description: category of this activity, if any
+        technology:
+          type:
+          - string
+          - 'null'
+          description: technology of this activity, if any
+        source:
+          type:
+          - string
+          - 'null'
+          description: source of this activity (e.g. 'macos', 'windows'), if any
+        mechanism:
+          type:
+          - string
+          - 'null'
+          description: mechanism of this activity (e.g. browser used to access web app), if any
+        title:
+          type: string
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: activity's external id
+        assignedBy:
+          description: how the activity's initiative was assigned
+          enum:
+          - none
+          - user
+          - ml
+          type: string
+        createdAt:
+          type: string
+          description: date and time activity was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time activity was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        schemaVersion:
+          type: string
+          description: activities's schemaVersion
+        threadId:
+          type:
+          - string
+          - 'null'
+          description: activity's thread id
+        enhancedByAi:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was enhanced by AI
+        isCopiedByAdmin:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was copied by admin
+        isSeeded:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was created via seeding
+        deletedForRetentionAt:
+          type:
+          - string
+          - 'null'
+          description: date and time activity data was deleted for retention
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        isDeleted:
+          type:
+          - boolean
+          - 'null'
+          description: 'If true, this activity has been soft-deleted (e.g. it was the source of a
+
+            split). Soft-deleted activities are excluded from the unassigned tray but
+
+            remain restorable, which is what keeps a split reversible (undo/merge).'
+        disableThreading:
+          type:
+          - boolean
+          - 'null'
+          description: if true, disables threading for this activity
+        sessionIds:
+          description: The session ids that were used to create this Activity
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: objectid
+        splitFromActivityId:
+          type:
+          - string
+          - 'null'
+          description: 'If set, the id of the activity this one was split from. Child activities
+
+            created by a split carry their source''s id here; it is the sibling key and
+
+            the seam for a future undo/merge.'
+          format: objectid
+      required:
+      - _id
+      - customerId
+      - userId
+      - creationMethod
+      - isLocked
+      - title
+      - detail
+      - startedAt
+      - stoppedAt
+      - assignedBy
+      - createdAt
+      - updatedAt
+      - schemaVersion
+    WebsiteMetadata:
+      type: object
+      properties:
+        tabTitle:
+          type:
+          - string
+          - 'null'
+          description: The tab title on the browser.
+        windowTitle:
+          type:
+          - string
+          - 'null'
+          description: The window title on the browser.
+        url:
+          type: string
+          description: The url in the browser.
+        browserUser:
+          type:
+          - string
+          - 'null'
+          description: The User that is logged into the browser
+        clientName:
+          type:
+          - string
+          - 'null'
+          description: QuickBooks and WestLaw client name
+      required:
+      - url
+    MeetingMetadata:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Provider-specific meeting identifier, when available.
+        subject:
+          type:
+          - string
+          - 'null'
+          description: The meeting subject/topic.
+        iCalUid:
+          type:
+          - string
+          - 'null'
+          description: 'The iCalendar UID — stable across event modifications and unique per recurring-series
+
+            occurrence. Present for calendar-sourced meetings.'
+        organizer:
+          description: Who organized/hosted the meeting.
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/MeetingParticipant'
+        participants:
+          description: All participants (including the user and the organizer).
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MeetingParticipant'
+    TrackedActivityDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: activity's id
+          format: objectid
+        customerId:
+          type: string
+          description: id of customer who owns this activity
+          format: objectid
+        userId:
+          type: string
+          description: id of user who owns this activity
+          format: objectid
+        creationMethod:
+          type: string
+          enum:
+          - tracked
+        isLocked:
+          type: boolean
+          description: if true, this activity is locked and cannot be updated
+        category:
+          type:
+          - string
+          - 'null'
+          description: category of this activity, if any
+        technology:
+          type:
+          - string
+          - 'null'
+          description: technology of this activity, if any
+        title:
+          type: string
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: activity's external id
+        assignedBy:
+          description: how the activity's initiative was assigned
+          enum:
+          - none
+          - user
+          - ml
+          type: string
+        createdAt:
+          type: string
+          description: date and time activity was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        updatedAt:
+          type: string
+          description: date and time activity was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        threadId:
+          type:
+          - string
+          - 'null'
+          description: activity's thread id
+        enhancedByAi:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was enhanced by AI
+        isCopiedByAdmin:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was copied by admin
+        isSeeded:
+          type:
+          - boolean
+          - 'null'
+          description: indicates if this activity was created via seeding
+        disableThreading:
+          type:
+          - boolean
+          - 'null'
+          description: if true, disables threading for this activity
+        initiative:
+          oneOf:
+          - $ref: '#/components/schemas/UserInitiativeDto'
+          - $ref: '#/components/schemas/PmsInitiativeDto'
+        captureSource:
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/CaptureSourceDto'
+      required:
+      - _id
+      - customerId
+      - userId
+      - creationMethod
+      - isLocked
+      - title
+      - detail
+      - startedAt
+      - stoppedAt
+      - assignedBy
+      - createdAt
+      - updatedAt
     ActivityWithMetadataResponseDto:
       type: object
       properties:
@@ -1151,926 +3054,23 @@ components:
       - updatedAt
       - schemaVersion
       - isSplittable
-    DocumentMetadata:
+    UpdateOneCustomerActivityRequestDto:
       type: object
       properties:
-        title:
-          type:
-          - string
-          - 'null'
-          description: The title of the document
-        path:
+        threadId:
           type: string
-          description: The full path to the document
-      required:
-      - path
-    TrackedActivityDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: activity's id
-          format: objectid
-        customerId:
-          type: string
-          description: id of customer who owns this activity
-          format: objectid
-        userId:
-          type: string
-          description: id of user who owns this activity
-          format: objectid
-        creationMethod:
-          type: string
-          enum:
-          - tracked
-        isLocked:
-          type: boolean
-          description: if true, this activity is locked and cannot be updated
-        category:
-          type:
-          - string
-          - 'null'
-          description: category of this activity, if any
-        technology:
-          type:
-          - string
-          - 'null'
-          description: technology of this activity, if any
+          description: activity's thread id
         title:
           type: string
           description: activity's title
         detail:
           type: string
           description: activity's detail
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        externalId:
-          type:
-          - string
-          - 'null'
-          description: activity's external id
-        assignedBy:
-          description: how the activity's initiative was assigned
-          enum:
-          - none
-          - user
-          - ml
-          type: string
-        createdAt:
-          type: string
-          description: date and time activity was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          description: date and time activity was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        threadId:
-          type:
-          - string
-          - 'null'
-          description: activity's thread id
-        enhancedByAi:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was enhanced by AI
-        isCopiedByAdmin:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was copied by admin
-        isSeeded:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was created via seeding
         disableThreading:
           type:
           - boolean
           - 'null'
           description: if true, disables threading for this activity
-        initiative:
-          oneOf:
-          - $ref: '#/components/schemas/UserInitiativeDto'
-          - $ref: '#/components/schemas/PmsInitiativeDto'
-        captureSource:
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/CaptureSourceDto'
-      required:
-      - _id
-      - customerId
-      - userId
-      - creationMethod
-      - isLocked
-      - title
-      - detail
-      - startedAt
-      - stoppedAt
-      - assignedBy
-      - createdAt
-      - updatedAt
-    CallMetadata:
-      type: object
-      properties:
-        direction:
-          type:
-          - string
-          - 'null'
-          description: The direction of the call.
-          enum:
-          - inbound
-          - outbound
-        participants:
-          description: The parties on the call (caller, receiver, host, etc.).
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CallParticipant'
-    CallState:
-      type: object
-      properties:
-        isCameraActive:
-          type: boolean
-          description: whether the camera is currently active
-        isMicActive:
-          type: boolean
-          description: whether the microphone is currently active
-        isInCall:
-          type: boolean
-          description: whether the user is currently in a call
-      required:
-      - isCameraActive
-      - isMicActive
-      - isInCall
-    WindowsWindowMetadata:
-      type: object
-      properties:
-        hwnd:
-          type: string
-          description: Window handle in hex format - unique per window instance
-        processId:
-          type: number
-          description: Process ID - distinguishes multiple app instances
-          format: double
-        windowClass:
-          type: string
-          description: Win32 window class - identifies window type within an app
-        windowType:
-          description: 'Classified type: main, child, popup, dialog, tool'
-          enum:
-          - main
-          - child
-          - popup
-          - dialog
-          - tool
-          type: string
-        parentHwnd:
-          type:
-          - string
-          - 'null'
-          description: Parent handle for MDI/child windows
-        ownerHwnd:
-          type:
-          - string
-          - 'null'
-          description: Owner handle for dialogs/popups
-        isModal:
-          type: boolean
-          description: True if this is a modal dialog (owner is disabled)
-        monitorIndex:
-          type:
-          - number
-          - 'null'
-          description: Display index for multi-monitor tracking
-          format: double
-      required:
-      - hwnd
-      - processId
-      - windowClass
-      - windowType
-      - isModal
-    UserActivity:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: activity's id
-          format: objectid
-        customerId:
-          type: string
-          description: id of customer who owns this activity
-          format: objectid
-        userId:
-          type: string
-          description: id of user who owns this activity
-          format: objectid
-        creationMethod:
-          description: the creation method of the activity
-          enum:
-          - user
-          type: string
-        initiativeProps:
-          description: if set, is activity's initiative, otherwise activity is unassigned
-          oneOf:
-          - $ref: '#/components/schemas/PmsInitiativePropsDigest'
-          - $ref: '#/components/schemas/UserInitiativePropsDigest'
-        isLocked:
-          type: boolean
-          description: if true, this activity is locked and cannot be updated
-        category:
-          type:
-          - string
-          - 'null'
-          description: category of this activity, if any
-        technology:
-          type:
-          - string
-          - 'null'
-          description: technology of this activity, if any
-        source:
-          type:
-          - string
-          - 'null'
-          description: source of this activity (e.g. 'macos', 'windows'), if any
-        mechanism:
-          type:
-          - string
-          - 'null'
-          description: mechanism of this activity (e.g. browser used to access web app), if any
-        title:
-          type: string
-          description: activity's title
-        detail:
-          type: string
-          description: activity's detail
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        externalId:
-          type:
-          - string
-          - 'null'
-          description: activity's external id
-        assignedBy:
-          description: how the activity's initiative was assigned
-          enum:
-          - none
-          - user
-          - ml
-          type: string
-        createdAt:
-          type: string
-          description: date and time activity was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          description: date and time activity was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        schemaVersion:
-          type: string
-          description: activities's schemaVersion
-        threadId:
-          type:
-          - string
-          - 'null'
-          description: activity's thread id
-        enhancedByAi:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was enhanced by AI
-        isCopiedByAdmin:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was copied by admin
-        isSeeded:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was created via seeding
-        deletedForRetentionAt:
-          type:
-          - string
-          - 'null'
-          description: date and time activity data was deleted for retention
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        isDeleted:
-          type:
-          - boolean
-          - 'null'
-          description: 'If true, this activity has been soft-deleted (e.g. it was the source of a
-
-            split). Soft-deleted activities are excluded from the unassigned tray but
-
-            remain restorable, which is what keeps a split reversible (undo/merge).'
-        disableThreading:
-          type:
-          - boolean
-          - 'null'
-          description: if true, disables threading for this activity
-        sessionIds:
-          description: The session ids that were used to create this Activity
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: objectid
-        splitFromActivityId:
-          type:
-          - string
-          - 'null'
-          description: 'If set, the id of the activity this one was split from. Child activities
-
-            created by a split carry their source''s id here; it is the sibling key and
-
-            the seam for a future undo/merge.'
-          format: objectid
-      required:
-      - _id
-      - customerId
-      - userId
-      - creationMethod
-      - isLocked
-      - title
-      - detail
-      - startedAt
-      - stoppedAt
-      - assignedBy
-      - createdAt
-      - updatedAt
-      - schemaVersion
-    CreateUserActivityDto:
-      type: object
-      properties:
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        category:
-          type: string
-          description: category of this activity, if any
-        technology:
-          type: string
-          description: technology of this activity, if any
-        source:
-          type: string
-          description: source of this activity (e.g. 'macos', 'windows', 'cloud-assistant-cdr', 'cloud-assistant-zoom'), if any
-        mechanism:
-          type: string
-          description: mechanism of this activity (e.g. voip, video-call, or browser)
-        title:
-          type: string
-          description: activity's title
-        detail:
-          type: string
-          description: activity's detail
-        initiativeId:
-          type: string
-          description: activity's initiative id (optional)
-          format: objectid
-        isSeeded:
-          type: boolean
-          description: if true, indicates this activity was created via seeding
-      required:
-      - startedAt
-      - stoppedAt
-      - title
-      - detail
-    WorkContextMetadata:
-      type: object
-      properties:
-        clientName:
-          type:
-          - string
-          - 'null'
-          description: Client or workspace name parsed from the source (e.g. iManage matter folder prefix).
-        initiativeName:
-          type: string
-          description: Matter id, engagement folder, or remainder of the matter folder path (provider-specific).
-        name:
-          description: Provider that produced this work context (e.g. imanage, prolaw, caseware, relativityone).
-          enum:
-          - caseware
-          - imanage
-          - prolaw
-          - relativityone
-          type: string
-      required:
-      - initiativeName
-      - name
-    EmailMetadata:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier for the email
-        subject:
-          type:
-          - string
-          - 'null'
-          description: The subject of the email
-        from:
-          type:
-          - string
-          - 'null'
-          description: Who this email was received from.
-        to:
-          description: Who this email was sent to.
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        cc:
-          description: Who was cc'd on this email.
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        bcc:
-          description: Who was bcc'd on this email.
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        threadId:
-          type:
-          - string
-          - 'null'
-          description: The id associated with this email thread
-        threadIndex:
-          type:
-          - string
-          - 'null'
-          description: The thread index which is the position of this email in a thread.
-        threadIndexList:
-          description: The list of thread indices representing the position of this email in a thread.
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        status:
-          type:
-          - string
-          - 'null'
-          description: The status of this email
-          enum:
-          - read
-          - draft
-          - sent
-        folder:
-          type:
-          - string
-          - 'null'
-          description: The folder that contains this email.
-        searchKey:
-          type:
-          - string
-          - 'null'
-          description: The microsoft mapi search_key in hex.
-        recordKey:
-          type:
-          - string
-          - 'null'
-          description: The microsoft mapi record_key in hex.
-        createdAt:
-          type:
-          - string
-          - 'null'
-          description: When this email was created.
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        attachments:
-          description: The email attachments
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EmailAttachmentMetadata'
-        recipients:
-          description: The full recipient information
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EmailRecipientMetadata'
-    UpdateOneActivityFromServiceDto:
-      type: object
-      properties:
-        customerId:
-          type: string
-          description: the id of the customer to which this activity belongs
-          format: objectid
-        externalId:
-          type: string
-          description: the external id the activity was tracked with (the upstream correlation id)
-        title:
-          type: string
-          description: the new title for the activity
-        detail:
-          type: string
-          description: the new detail for the activity
-      required:
-      - customerId
-      - externalId
-    CaptureSourceDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: capture source's id
-          format: objectid
-        capturingSourceType:
-          type:
-          - string
-          - 'null'
-          description: whether this source is an application or website
-          enum:
-          - application
-          - website
-        activityCategory:
-          type:
-          - string
-          - 'null'
-          description: category of the activity associated with this source
-          enum:
-          - call
-          - chat
-          - doc
-          - email
-          - meeting
-          - web
-          - terminal
-          - app
-        name:
-          type: string
-          description: Name of the app or website visible to the user
-          minLength: 2
-        iconId:
-          type: string
-          description: icon representing the capture app or website, shown in the UI
-          maxLength: 512
-          minLength: 1
-      required:
-      - _id
-      - name
-      - iconId
-    ActivityMetadataResponseDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: activity metadata's id
-          format: objectid
-        activityId:
-          type: string
-          description: id of activity
-          format: objectid
-        userId:
-          type: string
-          description: id of user
-          format: objectid
-        customerId:
-          type: string
-          description: id of customer
-          format: objectid
-        trackingSourceType:
-          description: Type of tracking source
-          enum:
-          - website
-          - application
-          - system
-          type: string
-        operatingSystem:
-          description: Operating system information
-          enum:
-          - windows
-          - macos
-          - unknown
-          type: string
-        operatingSystemVersion:
-          type:
-          - string
-          - 'null'
-          description: Version of the operating system
-        trackedAppName:
-          type:
-          - string
-          - 'null'
-          description: Name of the process that was tracked.
-        trackedAppTitle:
-          type:
-          - string
-          - 'null'
-          description: Human readable name of the tracked app
-        trackedAppDisplayName:
-          type:
-          - string
-          - 'null'
-          description: Display name of the tracked app (e.g. "Microsoft Word")
-        trackedAppVersion:
-          type:
-          - string
-          - 'null'
-          description: Version of the tracked application
-        trackedAppCommandline:
-          type:
-          - string
-          - 'null'
-          description: Commandline of the process being tracked.
-        bodyFirst1000Characters:
-          type:
-          - string
-          - 'null'
-          description: The first 1000 characters of the body of the document/email. Will be null if encrypted.
-        bodyFirst1000CharactersEncrypted:
-          type:
-          - string
-          - 'null'
-          description: The encrypted first 1000 characters of the body of the document/email.
-        website:
-          description: Metadata captured from a web browser
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/WebsiteMetadata'
-        document:
-          description: Metadata captured from a document
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/DocumentMetadata'
-        email:
-          description: Metadata captured from an email client
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/EmailMetadata'
-        windowsWindow:
-          description: Metadata for a window in Windows OS
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/WindowsWindowMetadata'
-        images:
-          description: Images associated with this capture.
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ImageMetadata'
-        callState:
-          description: Call state information for the capture
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/CallState'
-        meeting:
-          description: Normalized meeting metadata (Zoom, Teams, Outlook/calendar, etc.)
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/MeetingMetadata'
-        call:
-          description: Normalized call metadata (Zoom Phone, Cisco CDR, etc.); distinct from callState booleans
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/CallMetadata'
-        dynamicMetadata:
-          type:
-          - object
-          - 'null'
-          description: Dynamic metadata associated with the capture of the event.
-          additionalProperties:
-            type: string
-        workContext:
-          description: Structured client/matter context parsed from the captured document path or window title
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/WorkContextMetadata'
-        microsoftTeamsChat:
-          description: Normalized Microsoft Teams chat metadata; enrichment threads Teams chats by `chatId`.
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/MicrosoftTeamsChatMetadata'
-      required:
-      - _id
-      - activityId
-      - userId
-      - customerId
-      - trackingSourceType
-      - operatingSystem
-    TimerActivity:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: activity's id
-          format: objectid
-        customerId:
-          type: string
-          description: id of customer who owns this activity
-          format: objectid
-        userId:
-          type: string
-          description: id of user who owns this activity
-          format: objectid
-        creationMethod:
-          description: the creation method of the activity
-          enum:
-          - timer
-          type: string
-        initiativeProps:
-          description: if set, is activity's initiative, otherwise activity is unassigned
-          oneOf:
-          - $ref: '#/components/schemas/PmsInitiativePropsDigest'
-          - $ref: '#/components/schemas/UserInitiativePropsDigest'
-        isLocked:
-          type: boolean
-          description: if true, this activity is locked and cannot be updated
-        category:
-          type:
-          - string
-          - 'null'
-          description: category of this activity, if any
-        technology:
-          type:
-          - string
-          - 'null'
-          description: technology of this activity, if any
-        source:
-          type:
-          - string
-          - 'null'
-          description: source of this activity (e.g. 'macos', 'windows'), if any
-        mechanism:
-          type:
-          - string
-          - 'null'
-          description: mechanism of this activity (e.g. browser used to access web app), if any
-        title:
-          type: string
-          description: activity's title
-        detail:
-          type: string
-          description: activity's detail
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        externalId:
-          type:
-          - string
-          - 'null'
-          description: activity's external id
-        assignedBy:
-          description: how the activity's initiative was assigned
-          enum:
-          - none
-          - user
-          - ml
-          type: string
-        createdAt:
-          type: string
-          description: date and time activity was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          description: date and time activity was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        schemaVersion:
-          type: string
-          description: activities's schemaVersion
-        threadId:
-          type:
-          - string
-          - 'null'
-          description: activity's thread id
-        enhancedByAi:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was enhanced by AI
-        isCopiedByAdmin:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was copied by admin
-        isSeeded:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was created via seeding
-        deletedForRetentionAt:
-          type:
-          - string
-          - 'null'
-          description: date and time activity data was deleted for retention
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        isDeleted:
-          type:
-          - boolean
-          - 'null'
-          description: 'If true, this activity has been soft-deleted (e.g. it was the source of a
-
-            split). Soft-deleted activities are excluded from the unassigned tray but
-
-            remain restorable, which is what keeps a split reversible (undo/merge).'
-        disableThreading:
-          type:
-          - boolean
-          - 'null'
-          description: if true, disables threading for this activity
-        sessionIds:
-          description: The session ids that were used to create this Activity
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: objectid
-        splitFromActivityId:
-          type:
-          - string
-          - 'null'
-          description: 'If set, the id of the activity this one was split from. Child activities
-
-            created by a split carry their source''s id here; it is the sibling key and
-
-            the seam for a future undo/merge.'
-          format: objectid
-      required:
-      - _id
-      - customerId
-      - userId
-      - creationMethod
-      - isLocked
-      - title
-      - detail
-      - startedAt
-      - stoppedAt
-      - assignedBy
-      - createdAt
-      - updatedAt
-      - schemaVersion
     SignalActivityBackfillRequestDto:
       type: object
       properties:
@@ -2092,9 +3092,13 @@ components:
       - customerId
       - startingDate
       - endingDate
-    TrackOneUserActivityDto:
+    CreateTimerActivityDto:
       type: object
       properties:
+        _id:
+          type: string
+          description: optional custom id for the activity
+          format: objectid
         startedAt:
           type: string
           description: date and time this activity started
@@ -2105,273 +3109,17 @@ components:
           description: date and time this activity stopped
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
-        category:
-          type: string
-          description: category of this activity, if any
-        technology:
-          type: string
-          description: technology of this activity, if any
-        source:
-          type: string
-          description: source of this activity (e.g. 'macos', 'windows', 'cloud-assistant-cdr', 'cloud-assistant-zoom'), if any
-        mechanism:
-          type: string
-          description: mechanism of this activity (e.g. voip, video-call, or browser), if any
-        title:
-          type: string
-          description: activity's title (optional)
-        detail:
-          type: string
-          description: activity's detail (optional)
-        externalId:
-          type: string
-          description: an id unique to this customer and activity that is being tracked
-        captureSourceId:
-          type: string
-          description: optional id of the capture source for this activity
-          format: objectid
-        enhancedByAi:
-          type: boolean
-          description: indicates if this activity was enhanced by AI
-        isSeeded:
-          type: boolean
-          description: if true, indicates this activity was created via seeding
-        sessionIds:
-          description: The session ids that were used to create this Activity
-          type: array
-          items:
-            type: string
-            format: objectid
-        threadId:
-          type: string
-          description: activity's thread id
-        activityMetadata:
-          description: Optional metadata associated with this activity
-          allOf:
-          - $ref: '#/components/schemas/ActivityMetadataRequestDto'
-        customerId:
-          type: string
-          description: the id of the customer to which this activity belongs
-          format: objectid
-        userId:
-          type: string
-          description: the id of the user to which this activity belongs
-          format: objectid
-      required:
-      - startedAt
-      - stoppedAt
-      - customerId
-      - userId
-    PmsInitiativeDigest:
-      type: object
-      properties:
-        type:
-          description: initiative's type
-          enum:
-          - pms
-          - user
-          type: string
-        _id:
-          type: string
-          description: initiative's id
-          format: objectid
-        billingType:
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
-          type: string
-        callSign:
-          type:
-          - string
-          - 'null'
-          description: a short name or abbreviation that identifies this pms initiative
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative
-          format: double
-        status:
-          type:
-          - string
-          - 'null'
-          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
-
-            with entries whose denormalized digest predates this field — those entries
-
-            gain status on the next initiative update via natural digest propagation.'
-          enum:
-          - active
-          - inactive
-        locale:
-          type:
-          - string
-          - 'null'
-          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
-          enum:
-          - da-DK
-          - de-DE
-          - en-CA
-          - en-GB
-          - en-US
-          - es-ES
-          - es-MX
-          - fi-FI
-          - fr-CA
-          - fr-FR
-          - is-IS
-          - it-IT
-          - ko-KR
-          - nl-NL
-          - no-NO
-          - pt-PT
-          - sv-SE
-        externalId:
-          type: string
-          description: initiative's external id
-        name:
-          type: string
-          description: a short name or code that identifies this initiative
-        description:
-          type: string
-          description: the full name of the initiative
-        client:
-          description: the client this initiative belongs to
-          allOf:
-          - $ref: '#/components/schemas/ClientDigest'
-      required:
-      - type
-      - _id
-      - billingType
-      - unitIncrements
-      - externalId
-      - name
-      - description
-      - client
-    MicrosoftTeamsChatMetadata:
-      type: object
-      properties:
-        chatId:
-          type:
-          - string
-          - 'null'
-          description: Stable identifier for the chat — the qualified chat path used to group (thread) chats.
-        title:
-          type:
-          - string
-          - 'null'
-          description: Human-readable chat name shown in the activity row.
-    UserActivityDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: activity's id
-          format: objectid
-        customerId:
-          type: string
-          description: id of customer who owns this activity
-          format: objectid
-        userId:
-          type: string
-          description: id of user who owns this activity
-          format: objectid
-        creationMethod:
-          type: string
-          enum:
-          - user
-        isLocked:
-          type: boolean
-          description: if true, this activity is locked and cannot be updated
-        category:
-          type:
-          - string
-          - 'null'
-          description: category of this activity, if any
-        technology:
-          type:
-          - string
-          - 'null'
-          description: technology of this activity, if any
         title:
           type: string
           description: activity's title
-        detail:
+        entryId:
           type: string
-          description: activity's detail
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        externalId:
-          type:
-          - string
-          - 'null'
-          description: activity's external id
-        assignedBy:
-          description: how the activity's initiative was assigned
-          enum:
-          - none
-          - user
-          - ml
-          type: string
-        createdAt:
-          type: string
-          description: date and time activity was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          description: date and time activity was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        threadId:
-          type:
-          - string
-          - 'null'
-          description: activity's thread id
-        enhancedByAi:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was enhanced by AI
-        isCopiedByAdmin:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was copied by admin
-        isSeeded:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was created via seeding
-        disableThreading:
-          type:
-          - boolean
-          - 'null'
-          description: if true, disables threading for this activity
-        initiative:
-          oneOf:
-          - $ref: '#/components/schemas/UserInitiativeDto'
-          - $ref: '#/components/schemas/PmsInitiativeDto'
+          description: optional entry id to add this activity to
+          format: objectid
       required:
-      - _id
-      - customerId
-      - userId
-      - creationMethod
-      - isLocked
-      - title
-      - detail
       - startedAt
       - stoppedAt
-      - assignedBy
-      - createdAt
-      - updatedAt
+      - title
     ClientDigest:
       type: object
       properties:
@@ -2411,857 +3159,6 @@ components:
       - name
       - description
       - callSign
-    TrackOneActivityDto:
-      type: object
-      properties:
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        category:
-          type: string
-          description: category of this activity, if any
-        technology:
-          type: string
-          description: technology of this activity, if any
-        source:
-          type: string
-          description: source of this activity (e.g. 'macos', 'windows', 'cloud-assistant-cdr', 'cloud-assistant-zoom'), if any
-        mechanism:
-          type: string
-          description: mechanism of this activity (e.g. voip, video-call, or browser), if any
-        title:
-          type: string
-          description: activity's title (optional)
-        detail:
-          type: string
-          description: activity's detail (optional)
-        externalId:
-          type: string
-          description: an id unique to this customer and activity that is being tracked
-        captureSourceId:
-          type: string
-          description: optional id of the capture source for this activity
-          format: objectid
-        enhancedByAi:
-          type: boolean
-          description: indicates if this activity was enhanced by AI
-        isSeeded:
-          type: boolean
-          description: if true, indicates this activity was created via seeding
-        sessionIds:
-          description: The session ids that were used to create this Activity
-          type: array
-          items:
-            type: string
-            format: objectid
-        threadId:
-          type: string
-          description: activity's thread id
-        activityMetadata:
-          description: Optional metadata associated with this activity
-          allOf:
-          - $ref: '#/components/schemas/ActivityMetadataRequestDto'
-      required:
-      - startedAt
-      - stoppedAt
-    BatchActivityResultResponseDto:
-      type: object
-      properties:
-        successes:
-          description: activities whose isDeleted flag was updated
-          type: array
-          items:
-            $ref: '#/components/schemas/BatchActivitySuccessDto'
-        errors:
-          description: activities that were skipped (not found or locked)
-          type: array
-          items:
-            $ref: '#/components/schemas/BatchActivityErrorDto'
-      required:
-      - successes
-      - errors
-    UpdateOneCustomerActivityRequestDto:
-      type: object
-      properties:
-        threadId:
-          type: string
-          description: activity's thread id
-        title:
-          type: string
-          description: activity's title
-        detail:
-          type: string
-          description: activity's detail
-        disableThreading:
-          type:
-          - boolean
-          - 'null'
-          description: if true, disables threading for this activity
-    UserInitiativePropsDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: identifier of the initiative props
-          format: objectid
-        colorHex:
-          type: string
-          description: the hex color code for the initiative props
-        tags:
-          type: array
-          description: array of initiative props tags
-          items:
-            type: string
-            enum:
-            - pinned
-        userId:
-          type: string
-          description: identifier of the user who owns the initiative props
-          format: objectid
-      required:
-      - _id
-      - colorHex
-      - tags
-      - userId
-    TimerActivityDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: activity's id
-          format: objectid
-        customerId:
-          type: string
-          description: id of customer who owns this activity
-          format: objectid
-        userId:
-          type: string
-          description: id of user who owns this activity
-          format: objectid
-        creationMethod:
-          type: string
-          enum:
-          - timer
-        isLocked:
-          type: boolean
-          description: if true, this activity is locked and cannot be updated
-        category:
-          type:
-          - string
-          - 'null'
-          description: category of this activity, if any
-        technology:
-          type:
-          - string
-          - 'null'
-          description: technology of this activity, if any
-        title:
-          type: string
-          description: activity's title
-        detail:
-          type: string
-          description: activity's detail
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        externalId:
-          type:
-          - string
-          - 'null'
-          description: activity's external id
-        assignedBy:
-          description: how the activity's initiative was assigned
-          enum:
-          - none
-          - user
-          - ml
-          type: string
-        createdAt:
-          type: string
-          description: date and time activity was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          description: date and time activity was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        threadId:
-          type:
-          - string
-          - 'null'
-          description: activity's thread id
-        enhancedByAi:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was enhanced by AI
-        isCopiedByAdmin:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was copied by admin
-        isSeeded:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was created via seeding
-        disableThreading:
-          type:
-          - boolean
-          - 'null'
-          description: if true, disables threading for this activity
-        initiative:
-          oneOf:
-          - $ref: '#/components/schemas/UserInitiativeDto'
-          - $ref: '#/components/schemas/PmsInitiativeDto'
-      required:
-      - _id
-      - customerId
-      - userId
-      - creationMethod
-      - isLocked
-      - title
-      - detail
-      - startedAt
-      - stoppedAt
-      - assignedBy
-      - createdAt
-      - updatedAt
-    Activity:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: activity's id
-          format: objectid
-        customerId:
-          type: string
-          description: id of customer who owns this activity
-          format: objectid
-        userId:
-          type: string
-          description: id of user who owns this activity
-          format: objectid
-        creationMethod:
-          description: the creation method of the activity
-          enum:
-          - timer
-          - tracked
-          - user
-          type: string
-        initiativeProps:
-          description: if set, is activity's initiative, otherwise activity is unassigned
-          oneOf:
-          - $ref: '#/components/schemas/PmsInitiativePropsDigest'
-          - $ref: '#/components/schemas/UserInitiativePropsDigest'
-        isLocked:
-          type: boolean
-          description: if true, this activity is locked and cannot be updated
-        category:
-          type:
-          - string
-          - 'null'
-          description: category of this activity, if any
-        technology:
-          type:
-          - string
-          - 'null'
-          description: technology of this activity, if any
-        source:
-          type:
-          - string
-          - 'null'
-          description: source of this activity (e.g. 'macos', 'windows'), if any
-        mechanism:
-          type:
-          - string
-          - 'null'
-          description: mechanism of this activity (e.g. browser used to access web app), if any
-        title:
-          type: string
-          description: activity's title
-        detail:
-          type: string
-          description: activity's detail
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        externalId:
-          type:
-          - string
-          - 'null'
-          description: activity's external id
-        assignedBy:
-          description: how the activity's initiative was assigned
-          enum:
-          - none
-          - user
-          - ml
-          type: string
-        createdAt:
-          type: string
-          description: date and time activity was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          description: date and time activity was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        schemaVersion:
-          type: string
-          description: activities's schemaVersion
-        threadId:
-          type:
-          - string
-          - 'null'
-          description: activity's thread id
-        enhancedByAi:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was enhanced by AI
-        isCopiedByAdmin:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was copied by admin
-        isSeeded:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was created via seeding
-        deletedForRetentionAt:
-          type:
-          - string
-          - 'null'
-          description: date and time activity data was deleted for retention
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        isDeleted:
-          type:
-          - boolean
-          - 'null'
-          description: 'If true, this activity has been soft-deleted (e.g. it was the source of a
-
-            split). Soft-deleted activities are excluded from the unassigned tray but
-
-            remain restorable, which is what keeps a split reversible (undo/merge).'
-        disableThreading:
-          type:
-          - boolean
-          - 'null'
-          description: if true, disables threading for this activity
-        sessionIds:
-          description: The session ids that were used to create this Activity
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: objectid
-        splitFromActivityId:
-          type:
-          - string
-          - 'null'
-          description: 'If set, the id of the activity this one was split from. Child activities
-
-            created by a split carry their source''s id here; it is the sibling key and
-
-            the seam for a future undo/merge.'
-          format: objectid
-      required:
-      - _id
-      - customerId
-      - userId
-      - creationMethod
-      - isLocked
-      - title
-      - detail
-      - startedAt
-      - stoppedAt
-      - assignedBy
-      - createdAt
-      - updatedAt
-      - schemaVersion
-    UserInitiativeDigest:
-      type: object
-      properties:
-        type:
-          description: initiative's type
-          enum:
-          - user
-          type: string
-        _id:
-          type: string
-          description: initiative's id
-          format: objectid
-        billingType:
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
-          type: string
-        callSign:
-          type:
-          - string
-          - 'null'
-          description: a short name or abbreviation that identifies this pms initiative
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative
-          format: double
-        status:
-          type:
-          - string
-          - 'null'
-          description: 'initiative''s status (active/inactive). Optional for backwards compatibility
-
-            with entries whose denormalized digest predates this field — those entries
-
-            gain status on the next initiative update via natural digest propagation.'
-          enum:
-          - active
-          - inactive
-        locale:
-          type:
-          - string
-          - 'null'
-          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
-          enum:
-          - da-DK
-          - de-DE
-          - en-CA
-          - en-GB
-          - en-US
-          - es-ES
-          - es-MX
-          - fi-FI
-          - fr-CA
-          - fr-FR
-          - is-IS
-          - it-IT
-          - ko-KR
-          - nl-NL
-          - no-NO
-          - pt-PT
-          - sv-SE
-        name:
-          type: string
-          description: the name user has given this initiative
-      required:
-      - type
-      - _id
-      - billingType
-      - unitIncrements
-      - name
-    EmailAttachmentMetadata:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the attachment
-        content_type:
-          type:
-          - string
-          - 'null'
-          description: The attachment content type
-        size:
-          type:
-          - number
-          - 'null'
-          description: The attachment size
-          format: double
-    BatchActivityErrorDto:
-      type: object
-      properties:
-        activityId:
-          type: string
-          description: id of an activity that was skipped
-          format: objectid
-        status:
-          type: number
-          description: http-style status describing why it was skipped (404 not found, 409 locked)
-          format: double
-        message:
-          type: string
-          description: human-readable skip reason
-      required:
-      - activityId
-      - status
-      - message
-    EmailRecipientMetadata:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Display name of the recipient
-        recipient_type:
-          type:
-          - number
-          - 'null'
-          description: The recipient type, to(1), cc(2), bcc(3), etc.
-          format: double
-        address_type:
-          type:
-          - string
-          - 'null'
-          description: Address Type EX, SMTP, etc.
-        address:
-          type:
-          - string
-          - 'null'
-          description: Address of the recipient
-        smtp_address:
-          type:
-          - string
-          - 'null'
-          description: SMTP address of the recipient
-    UserInitiativePropsDigest:
-      type: object
-      properties:
-        type:
-          description: type of the initiative for these props
-          enum:
-          - user
-          type: string
-        colorHex:
-          type: string
-          description: the hex color code for this initiative's display to the user
-          example: fec828
-          format: color-hex
-        tags:
-          type: array
-          description: initiative prop's tags
-          items:
-            type: string
-            enum:
-            - pinned
-        initiative:
-          description: the user initiative that is represented by these initiative props
-          allOf:
-          - $ref: '#/components/schemas/UserInitiativeDigest'
-      required:
-      - type
-      - colorHex
-      - tags
-      - initiative
-    WebsiteMetadata:
-      type: object
-      properties:
-        tabTitle:
-          type:
-          - string
-          - 'null'
-          description: The tab title on the browser.
-        windowTitle:
-          type:
-          - string
-          - 'null'
-          description: The window title on the browser.
-        url:
-          type: string
-          description: The url in the browser.
-        browserUser:
-          type:
-          - string
-          - 'null'
-          description: The User that is logged into the browser
-        clientName:
-          type:
-          - string
-          - 'null'
-          description: QuickBooks and WestLaw client name
-      required:
-      - url
-    PmsInitiativePropsDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: identifier of the initiative props
-          format: objectid
-        colorHex:
-          type: string
-          description: the hex color code for the initiative props
-        tags:
-          type: array
-          description: array of initiative props tags
-          items:
-            type: string
-            enum:
-            - pinned
-        userId:
-          type: string
-          description: identifier of the user who owns the initiative props
-          format: objectid
-        nickname:
-          type:
-          - string
-          - 'null'
-          description: the nickname assigned to this initiative by the user
-      required:
-      - _id
-      - colorHex
-      - tags
-      - userId
-    MeetingParticipant:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: Provider-specific identifier for the participant, when available.
-        name:
-          type:
-          - string
-          - 'null'
-          description: Display name of the participant.
-        email:
-          type:
-          - string
-          - 'null'
-          description: Email address of the participant, when available.
-        role:
-          type:
-          - string
-          - 'null'
-          description: The participant's role in the meeting.
-          enum:
-          - host
-          - required
-          - optional
-          - attendee
-    TrackedActivity:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: activity's id
-          format: objectid
-        customerId:
-          type: string
-          description: id of customer who owns this activity
-          format: objectid
-        userId:
-          type: string
-          description: id of user who owns this activity
-          format: objectid
-        creationMethod:
-          description: the creation method of the activity
-          enum:
-          - tracked
-          type: string
-        initiativeProps:
-          description: if set, is activity's initiative, otherwise activity is unassigned
-          oneOf:
-          - $ref: '#/components/schemas/PmsInitiativePropsDigest'
-          - $ref: '#/components/schemas/UserInitiativePropsDigest'
-        isLocked:
-          type: boolean
-          description: if true, this activity is locked and cannot be updated
-        category:
-          type:
-          - string
-          - 'null'
-          description: category of this activity, if any
-        technology:
-          type:
-          - string
-          - 'null'
-          description: technology of this activity, if any
-        source:
-          type:
-          - string
-          - 'null'
-          description: source of this activity (e.g. 'macos', 'windows'), if any
-        mechanism:
-          type:
-          - string
-          - 'null'
-          description: mechanism of this activity (e.g. browser used to access web app), if any
-        title:
-          type: string
-          description: activity's title
-        detail:
-          type: string
-          description: activity's detail
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        externalId:
-          type:
-          - string
-          - 'null'
-          description: activity's external id
-        assignedBy:
-          description: how the activity's initiative was assigned
-          enum:
-          - none
-          - user
-          - ml
-          type: string
-        createdAt:
-          type: string
-          description: date and time activity was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        updatedAt:
-          type: string
-          description: date and time activity was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        schemaVersion:
-          type: string
-          description: activities's schemaVersion
-        threadId:
-          type:
-          - string
-          - 'null'
-          description: activity's thread id
-        enhancedByAi:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was enhanced by AI
-        isCopiedByAdmin:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was copied by admin
-        isSeeded:
-          type:
-          - boolean
-          - 'null'
-          description: indicates if this activity was created via seeding
-        deletedForRetentionAt:
-          type:
-          - string
-          - 'null'
-          description: date and time activity data was deleted for retention
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        isDeleted:
-          type:
-          - boolean
-          - 'null'
-          description: 'If true, this activity has been soft-deleted (e.g. it was the source of a
-
-            split). Soft-deleted activities are excluded from the unassigned tray but
-
-            remain restorable, which is what keeps a split reversible (undo/merge).'
-        disableThreading:
-          type:
-          - boolean
-          - 'null'
-          description: if true, disables threading for this activity
-        sessionIds:
-          description: The session ids that were used to create this Activity
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: objectid
-        splitFromActivityId:
-          type:
-          - string
-          - 'null'
-          description: 'If set, the id of the activity this one was split from. Child activities
-
-            created by a split carry their source''s id here; it is the sibling key and
-
-            the seam for a future undo/merge.'
-          format: objectid
-        captureSource:
-          description: capture source information for this activity
-          type:
-          - object
-          - 'null'
-          allOf:
-          - $ref: '#/components/schemas/CaptureSourceDigest'
-      required:
-      - _id
-      - customerId
-      - userId
-      - creationMethod
-      - isLocked
-      - title
-      - detail
-      - startedAt
-      - stoppedAt
-      - assignedBy
-      - createdAt
-      - updatedAt
-      - schemaVersion
-    PmsInitiativePropsDigest:
-      type: object
-      properties:
-        type:
-          description: type of the initiative for these props
-          enum:
-          - pms
-          type: string
-        colorHex:
-          type: string
-          description: the hex color code for this initiative's display to the user
-          example: fec828
-          format: color-hex
-        tags:
-          type: array
-          description: initiative prop's tags
-          items:
-            type: string
-            enum:
-            - pinned
-        nickname:
-          type:
-          - string
-          - 'null'
-          description: if set, is the nickname user has set for this initiative
-        initiative:
-          description: the pms initiative that is represented by these initiative props
-          allOf:
-          - $ref: '#/components/schemas/PmsInitiativeDigest'
-      required:
-      - type
-      - colorHex
-      - tags
-      - initiative
     BatchActivitySuccessDto:
       type: object
       properties:
@@ -3379,40 +3276,53 @@ components:
       required:
       - trackingSourceType
       - operatingSystem
-    CopyActivitiesRequestDto:
+    CallMetadata:
       type: object
       properties:
-        startedBefore:
+        direction:
+          type:
+          - string
+          - 'null'
+          description: The direction of the call.
+          enum:
+          - inbound
+          - outbound
+        participants:
+          description: The parties on the call (caller, receiver, host, etc.).
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CallParticipant'
+    UserInitiativePropsDto:
+      type: object
+      properties:
+        _id:
           type: string
-          description: the date to get activities that their started at time is less than this date
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAfter:
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
           type: string
-          description: the date to get activities that their stopped at time is greater than this date
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        targetDate:
+          description: the hex color code for the initiative props
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        userId:
           type: string
-          description: the date to copy activities to
-          example: '2022-08-12'
-          format: iso-date
+          description: identifier of the user who owns the initiative props
+          format: objectid
       required:
-      - startedBefore
-      - stoppedAfter
-      - targetDate
-    UpdateOneActivityDto:
+      - _id
+      - colorHex
+      - tags
+      - userId
+    TrackOneActivityDto:
       type: object
       properties:
-        category:
-          type: string
-          description: category of this activity, if any
-        title:
-          type: string
-          description: activity's title
-        detail:
-          type: string
-          description: activity's detail
         startedAt:
           type: string
           description: date and time this activity started
@@ -3423,106 +3333,196 @@ components:
           description: date and time this activity stopped
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
-        initiativeId:
+        category:
           type: string
-          description: activity's initiative id (optional)
+          description: category of this activity, if any
+        technology:
+          type: string
+          description: technology of this activity, if any
+        source:
+          type: string
+          description: source of this activity (e.g. 'macos', 'windows', 'cloud-assistant-cdr', 'cloud-assistant-zoom'), if any
+        mechanism:
+          type: string
+          description: mechanism of this activity (e.g. voip, video-call, or browser), if any
+        title:
+          type: string
+          description: activity's title (optional)
+        detail:
+          type: string
+          description: activity's detail (optional)
+        externalId:
+          type: string
+          description: an id unique to this customer and activity that is being tracked
+        captureSourceId:
+          type: string
+          description: optional id of the capture source for this activity
           format: objectid
+        enhancedByAi:
+          type: boolean
+          description: indicates if this activity was enhanced by AI
+        isSeeded:
+          type: boolean
+          description: if true, indicates this activity was created via seeding
+        sessionIds:
+          description: The session ids that were used to create this Activity
+          type: array
+          items:
+            type: string
+            format: objectid
         threadId:
           type: string
           description: activity's thread id
-        disableThreading:
-          type:
-          - boolean
-          - 'null'
-          description: if true, disables threading for this activity
-        deleteEmptyEntry:
-          type: boolean
-          description: if true, delete the entry if it becomes empty after removing this activity
-    CallParticipant:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: Provider-specific identifier for the participant, when available.
-        name:
-          type:
-          - string
-          - 'null'
-          description: Display name of the participant.
-        number:
-          type:
-          - string
-          - 'null'
-          description: Phone number of the participant, when available.
-        role:
-          type:
-          - string
-          - 'null'
-          description: The participant's role in the call.
-          enum:
-          - caller
-          - receiver
-          - host
-    DismissOpenTimeRequestDto:
-      type: object
-      properties:
-        startedAt:
-          type: string
-          description: start of the open time to dismiss
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: end of the open time to dismiss
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
+        activityMetadata:
+          description: Optional metadata associated with this activity
+          allOf:
+          - $ref: '#/components/schemas/ActivityMetadataRequestDto'
       required:
       - startedAt
       - stoppedAt
-    CaptureSourceDigest:
+    PmsInitiativePropsDigest:
+      type: object
+      properties:
+        type:
+          description: type of the initiative for these props
+          enum:
+          - pms
+          type: string
+        colorHex:
+          type: string
+          description: the hex color code for this initiative's display to the user
+          example: fec828
+          format: color-hex
+        tags:
+          type: array
+          description: initiative prop's tags
+          items:
+            type: string
+            enum:
+            - pinned
+        nickname:
+          type:
+          - string
+          - 'null'
+          description: if set, is the nickname user has set for this initiative
+        initiative:
+          description: the pms initiative that is represented by these initiative props
+          allOf:
+          - $ref: '#/components/schemas/PmsInitiativeDigest'
+      required:
+      - type
+      - colorHex
+      - tags
+      - initiative
+    PmsInitiativeDto:
       type: object
       properties:
         _id:
           type: string
-          description: capture source's id
+          description: initiative's id
           format: objectid
-        capturingSourceType:
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
+          type: string
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this initiative
+        createdAt:
+          type: string
+          description: date and time this initiative was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        locale:
           type:
           - string
           - 'null'
-          description: whether this source is an application or website
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
           enum:
-          - application
-          - website
-        activityCategory:
-          type:
-          - string
-          - 'null'
-          description: category of the activity associated with this source
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+        status:
+          description: initiative's status
           enum:
-          - call
-          - chat
-          - doc
-          - email
-          - meeting
-          - web
-          - terminal
-          - app
+          - active
+          - inactive
+          type: string
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        updatedAt:
+          type: string
+          description: date and time this initiative was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        description:
+          type: string
+          description: the full long name of the initiative
+        externalId:
+          type: string
+          description: initiative's external id
         name:
           type: string
-          description: Name of the app or website visible to the user
-          minLength: 2
-        iconId:
+          description: a short name or code that identifies this initiative
+        allowFrom:
+          type:
+          - string
+          - 'null'
+          description: earliest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+        allowTo:
+          type:
+          - string
+          - 'null'
+          description: latest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+        client:
+          description: the client this initiative belongs to
+          allOf:
+          - $ref: '#/components/schemas/ClientDigest'
+        type:
           type: string
-          description: icon representing the capture app or website, shown in the UI
-          maxLength: 512
-          minLength: 1
+          enum:
+          - pms
+        props:
+          type:
+          - object
+          - 'null'
+          allOf:
+          - $ref: '#/components/schemas/PmsInitiativePropsDto'
       required:
       - _id
+      - billingType
+      - callSign
+      - createdAt
+      - status
+      - unitIncrements
+      - updatedAt
+      - description
+      - externalId
       - name
-      - iconId
+      - client
+      - type
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

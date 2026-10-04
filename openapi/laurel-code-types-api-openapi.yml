@@ -438,6 +438,36 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ImportCustomerCodeTypeDto:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: code type's external id
+        name:
+          type: string
+          description: code type's name
+        semanticType:
+          type: string
+          description: code type's semantic type
+          enum:
+          - action
+          - activity
+          - location
+          - phase
+          - task
+        customerDefaultable:
+          type: boolean
+          description: can the default CodeType value be set at the customer-level
+        userDefaultable:
+          type: boolean
+          description: can the default CodeType value be set at the user-level
+        orderingSequence:
+          type: string
+          description: ordering sequence for UI sorting (alphanumeric)
+      required:
+      - externalId
+      - name
     CreateDefaultCodeDto:
       type: object
       properties:
@@ -503,36 +533,6 @@ components:
       - schemaVersion
       - createdAt
       - updatedAt
-    ImportCustomerCodeTypeDto:
-      type: object
-      properties:
-        externalId:
-          type: string
-          description: code type's external id
-        name:
-          type: string
-          description: code type's name
-        semanticType:
-          type: string
-          description: code type's semantic type
-          enum:
-          - action
-          - activity
-          - location
-          - phase
-          - task
-        customerDefaultable:
-          type: boolean
-          description: can the default CodeType value be set at the customer-level
-        userDefaultable:
-          type: boolean
-          description: can the default CodeType value be set at the user-level
-        orderingSequence:
-          type: string
-          description: ordering sequence for UI sorting (alphanumeric)
-      required:
-      - externalId
-      - name
     CodeType:
       type: object
       properties:

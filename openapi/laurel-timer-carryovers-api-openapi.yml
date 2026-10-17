@@ -77,13 +77,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    RunCarryoverRequestDto:
-      type: object
-      properties:
-        date:
-          type: string
-      required:
-      - date
     TimerCarryoverCompletedState:
       type: object
       properties:
@@ -194,6 +187,13 @@ components:
           type: string
       required:
       - type
+    RunCarryoverRequestDto:
+      type: object
+      properties:
+        date:
+          type: string
+      required:
+      - date
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

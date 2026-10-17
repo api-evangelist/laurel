@@ -100,6 +100,18 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    SyncCustomerWorkingTimekeepersBatchDto:
+      type: object
+      properties:
+        initiatives:
+          description: List of initiatives to sync working timekeepers for
+          minItems: 1
+          maxItems: 500
+          type: array
+          items:
+            $ref: '#/components/schemas/SyncCustomerWorkingTimekeepersItemDto'
+      required:
+      - initiatives
     SyncCustomerWorkingTimekeepersItemDto:
       type: object
       properties:
@@ -121,18 +133,6 @@ components:
       required:
       - initiativeExternalId
       - timekeeperExternalIds
-    SyncCustomerWorkingTimekeepersBatchDto:
-      type: object
-      properties:
-        initiatives:
-          description: List of initiatives to sync working timekeepers for
-          minItems: 1
-          maxItems: 500
-          type: array
-          items:
-            $ref: '#/components/schemas/SyncCustomerWorkingTimekeepersItemDto'
-      required:
-      - initiatives
     SyncWorkingTimekeepersDto:
       type: object
       properties:

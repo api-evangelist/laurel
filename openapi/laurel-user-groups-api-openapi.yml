@@ -389,33 +389,20 @@ paths:
       - User Groups
 components:
   schemas:
-    AddUserIdsToGroupDto:
+    UserIdUserGroupDto:
       type: object
       properties:
-        kind:
-          description: The kind of IDs being used (user-id)
-          enum:
-          - user-id
+        _id:
           type: string
-        ids:
-          description: Array of user IDs to add to the group
-          type: array
-          items:
-            type: string
-            format: objectid
-      required:
-      - kind
-      - ids
-    CreateUserGroupDto:
-      type: object
-      properties:
+          description: The user group ID
+          format: objectid
         customerId:
           type: string
-          description: The customer's id who this group is associated with
+          description: The customer ID that owns this user group
           format: objectid
         externalId:
           type: string
-          description: The external ID for external system integration
+          description: The external ID of the user group for external system integration
         name:
           type: string
           description: The name of the user group
@@ -424,10 +411,23 @@ components:
           - string
           - 'null'
           description: The description of the user group
+        updatedAt:
+          type: string
+          description: The date and time this user group was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        createdAt:
+          type: string
+          description: The date and time this user group was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
       required:
+      - _id
       - customerId
       - externalId
       - name
+      - updatedAt
+      - createdAt
     TimekeeperIdUserGroupDto:
       type: object
       properties:
@@ -489,45 +489,23 @@ components:
       - added
       - removed
       - unresolved
-    UserIdUserGroupDto:
+    AddUserIdsToGroupDto:
       type: object
       properties:
-        _id:
+        kind:
+          description: The kind of IDs being used (user-id)
+          enum:
+          - user-id
           type: string
-          description: The user group ID
-          format: objectid
-        customerId:
-          type: string
-          description: The customer ID that owns this user group
-          format: objectid
-        externalId:
-          type: string
-          description: The external ID of the user group for external system integration
-        name:
-          type: string
-          description: The name of the user group
-        description:
-          type:
-          - string
-          - 'null'
-          description: The description of the user group
-        updatedAt:
-          type: string
-          description: The date and time this user group was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        createdAt:
-          type: string
-          description: The date and time this user group was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
+        ids:
+          description: Array of user IDs to add to the group
+          type: array
+          items:
+            type: string
+            format: objectid
       required:
-      - _id
-      - customerId
-      - externalId
-      - name
-      - updatedAt
-      - createdAt
+      - kind
+      - ids
     RemoveTimekeeperIdsFromGroupDto:
       type: object
       properties:
@@ -544,20 +522,45 @@ components:
       required:
       - kind
       - ids
-    RemoveUserIdsFromGroupDto:
+    SyncGroupMembershipDto:
       type: object
       properties:
-        kind:
-          description: The kind of IDs being used (user-id)
+        mode:
           enum:
-          - user-id
+          - add
+          - set
           type: string
-        ids:
-          description: Array of user IDs to remove from the group
+          description: set (full-replace) or add (additive)
+        emails:
+          description: user emails to resolve to members
           type: array
           items:
             type: string
-            format: objectid
+        externalIds:
+          description: user externalIds to resolve to members
+          type: array
+          items:
+            type: string
+        externalBillingSystemIds:
+          description: user external-billing-system identity values to resolve to members
+          type: array
+          items:
+            type: string
+      required:
+      - mode
+    AddTimekeeperIdsToGroupDto:
+      type: object
+      properties:
+        kind:
+          description: The kind of IDs being used (timekeeper-id)
+          enum:
+          - timekeeper-id
+          type: string
+        ids:
+          description: Array of timekeeper IDs to add to the group
+          type: array
+          items:
+            type: string
       required:
       - kind
       - ids
@@ -592,22 +595,19 @@ components:
       - email
       - firstName
       - lastName
-    AddTimekeeperIdsToGroupDto:
+    UpsertUserGroupByExternalIdDto:
       type: object
       properties:
-        kind:
-          description: The kind of IDs being used (timekeeper-id)
-          enum:
-          - timekeeper-id
+        name:
           type: string
-        ids:
-          description: Array of timekeeper IDs to add to the group
-          type: array
-          items:
-            type: string
+          description: The name of the user group
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the user group
       required:
-      - kind
-      - ids
+      - name
     UserGroupDto:
       type: object
       properties:
@@ -647,35 +647,16 @@ components:
       - name
       - updatedAt
       - createdAt
-    SyncGroupMembershipDto:
+    CreateUserGroupDto:
       type: object
       properties:
-        mode:
-          enum:
-          - add
-          - set
+        customerId:
           type: string
-          description: set (full-replace) or add (additive)
-        emails:
-          description: user emails to resolve to members
-          type: array
-          items:
-            type: string
-        externalIds:
-          description: user externalIds to resolve to members
-          type: array
-          items:
-            type: string
-        externalBillingSystemIds:
-          description: user external-billing-system identity values to resolve to members
-          type: array
-          items:
-            type: string
-      required:
-      - mode
-    UpsertUserGroupByExternalIdDto:
-      type: object
-      properties:
+          description: The customer's id who this group is associated with
+          format: objectid
+        externalId:
+          type: string
+          description: The external ID for external system integration
         name:
           type: string
           description: The name of the user group
@@ -685,7 +666,26 @@ components:
           - 'null'
           description: The description of the user group
       required:
+      - customerId
+      - externalId
       - name
+    RemoveUserIdsFromGroupDto:
+      type: object
+      properties:
+        kind:
+          description: The kind of IDs being used (user-id)
+          enum:
+          - user-id
+          type: string
+        ids:
+          description: Array of user IDs to remove from the group
+          type: array
+          items:
+            type: string
+            format: objectid
+      required:
+      - kind
+      - ids
     UpdateUserGroupDto:
       type: object
       properties:

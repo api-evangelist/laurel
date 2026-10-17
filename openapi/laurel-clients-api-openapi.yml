@@ -425,60 +425,17 @@ components:
       - clientId
       - permissions
       - encodedPermissions
-    TenantDigest:
+    CreateClientDto:
       type: object
       properties:
-        _id:
+        name:
           type: string
-          description: tenant's id
-          format: objectid
+          description: client's name displayed in user authentication flow
         description:
           type: string
-          description: tenant's description, can be empty
-        name:
-          enum:
-          - iad
-          - lhr
-          - syd
-          - pdx
-          - yul
-          type: string
-      required:
-      - _id
-      - description
-      - name
-    UpdateClientDto:
-      type: object
-      properties:
-        allowedCallbackUrls:
-          description: list of URLs that can be call back after user authentication
-          type: array
-          items:
-            type: string
-        allowedCorsOrigins:
-          description: list of URLs that are allowed to make requests
-          type: array
-          items:
-            type: string
-        allowedLogoutUrls:
-          description: list of URLs that are valid to redirect to after logout
-          type: array
-          items:
-            type: string
-        clientSecret:
-          type: string
-          description: client's secret in Auth0
-          maxLength: 64
-          minLength: 64
-        permissionIds:
-          description: if set, updates permissions granted to service tokens from this client
-          type: array
-          items:
-            type: string
-            format: objectid
+          description: client's description
         service:
-          type: string
-          description: if set, updates the service this client is for
+          description: indicates which service this client is for
           enum:
           - webapp-admin
           - android
@@ -555,22 +512,66 @@ components:
           - test-user-creation
           - agent
           - siem-forwarder
+          type: string
+        type:
+          description: which type of client this is - corresponds to Auth0 application type
+          enum:
+          - regular_web
+          - spa
+          - native
+          - non_interactive
+          type: string
         customerId:
           type:
           - string
           - 'null'
-          description: if set, updates the id the customer the client belongs to
+          description: id of the customer the client belongs to
           format: objectid
         tenantId:
-          type: string
-          description: if set, updates client's tenant
+          type:
+          - string
+          - 'null'
+          description: client's tenant
           format: objectid
-        userPermissionBoundaryIds:
-          description: if set, updates permissions that limit what's granted in user tokens from this client
+        permissionIds:
+          description: ids of permissions granted to service tokens from this client
           type: array
           items:
             type: string
             format: objectid
+        userPermissionBoundaryIds:
+          description: ids of permissions that limit what's granted in user tokens from this client
+          type: array
+          items:
+            type: string
+            format: objectid
+        allowedCallbackUrls:
+          description: list of URLs that can be call back after user authentication
+          default: []
+          type: array
+          items:
+            type: string
+        allowedLogoutUrls:
+          description: list of URLs that are valid to redirect to after logout
+          default: []
+          type: array
+          items:
+            type: string
+        allowedCorsOrigins:
+          description: list of URLs that are allowed to make requests
+          default: []
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - description
+      - service
+      - type
+      - permissionIds
+      - allowedCallbackUrls
+      - allowedLogoutUrls
+      - allowedCorsOrigins
     Client:
       type: object
       properties:
@@ -759,36 +760,38 @@ components:
       - updatedAt
       - permissions
       - userPermissionBoundaries
-    OnCredentialsExchangeRequestDto:
+    UpdateClientDto:
       type: object
       properties:
-        clientId:
+        allowedCallbackUrls:
+          description: list of URLs that can be call back after user authentication
+          type: array
+          items:
+            type: string
+        allowedCorsOrigins:
+          description: list of URLs that are allowed to make requests
+          type: array
+          items:
+            type: string
+        allowedLogoutUrls:
+          description: list of URLs that are valid to redirect to after logout
+          type: array
+          items:
+            type: string
+        clientSecret:
           type: string
-          description: id of client used for logging in
-          format: objectid
-        externalClientId:
-          type: string
-          description: id of the auth0 client that's generating a service token
-        customerId:
-          type:
-          - string
-          - 'null'
-          description: id of the customer the client belongs to
-          format: objectid
-      required:
-      - clientId
-      - externalClientId
-    CreateClientDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: client's name displayed in user authentication flow
-        description:
-          type: string
-          description: client's description
+          description: client's secret in Auth0
+          maxLength: 64
+          minLength: 64
+        permissionIds:
+          description: if set, updates permissions granted to service tokens from this client
+          type: array
+          items:
+            type: string
+            format: objectid
         service:
-          description: indicates which service this client is for
+          type: string
+          description: if set, updates the service this client is for
           enum:
           - webapp-admin
           - android
@@ -865,66 +868,72 @@ components:
           - test-user-creation
           - agent
           - siem-forwarder
+        customerId:
+          type:
+          - string
+          - 'null'
+          description: if set, updates the id the customer the client belongs to
+          format: objectid
+        tenantId:
           type: string
-        type:
-          description: which type of client this is - corresponds to Auth0 application type
-          enum:
-          - regular_web
-          - spa
-          - native
-          - non_interactive
+          description: if set, updates client's tenant
+          format: objectid
+        userPermissionBoundaryIds:
+          description: if set, updates permissions that limit what's granted in user tokens from this client
+          type: array
+          items:
+            type: string
+            format: objectid
+    OnCredentialsExchangeRequestDto:
+      type: object
+      properties:
+        clientId:
           type: string
+          description: id of client used for logging in
+          format: objectid
+        externalClientId:
+          type: string
+          description: id of the auth0 client that's generating a service token
         customerId:
           type:
           - string
           - 'null'
           description: id of the customer the client belongs to
           format: objectid
-        tenantId:
-          type:
-          - string
-          - 'null'
-          description: client's tenant
-          format: objectid
-        permissionIds:
-          description: ids of permissions granted to service tokens from this client
-          type: array
-          items:
-            type: string
-            format: objectid
-        userPermissionBoundaryIds:
-          description: ids of permissions that limit what's granted in user tokens from this client
-          type: array
-          items:
-            type: string
-            format: objectid
-        allowedCallbackUrls:
-          description: list of URLs that can be call back after user authentication
-          default: []
-          type: array
-          items:
-            type: string
-        allowedLogoutUrls:
-          description: list of URLs that are valid to redirect to after logout
-          default: []
-          type: array
-          items:
-            type: string
-        allowedCorsOrigins:
-          description: list of URLs that are allowed to make requests
-          default: []
-          type: array
-          items:
-            type: string
       required:
-      - name
+      - clientId
+      - externalClientId
+    TenantDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: tenant's id
+          format: objectid
+        description:
+          type: string
+          description: tenant's description, can be empty
+        name:
+          enum:
+          - iad
+          - lhr
+          - syd
+          - pdx
+          - yul
+          type: string
+      required:
+      - _id
       - description
-      - service
-      - type
-      - permissionIds
-      - allowedCallbackUrls
-      - allowedLogoutUrls
-      - allowedCorsOrigins
+      - name
+    ImportCustomerClientsBatchDto:
+      type: object
+      properties:
+        clients:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportCustomerClientDto'
+      required:
+      - clients
     ImportCustomerClientDto:
       type: object
       properties:
@@ -953,73 +962,6 @@ components:
           - string
           - 'null'
           description: parent client's external id (optional)
-      required:
-      - externalId
-      - name
-      - callSign
-      - description
-    ImportCustomerClientsBatchDto:
-      type: object
-      properties:
-        clients:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportCustomerClientDto'
-      required:
-      - clients
-    Object:
-      type: object
-      properties: {}
-    OverrideComplianceRulesDto:
-      type: object
-      properties:
-        clientId:
-          type: string
-          description: DEPRECATED — use clientIds + entityType. Single source client ID.
-          deprecated: true
-          format: objectid
-        clientIds:
-          description: Source client IDs whose children will have rules reset.
-          type: array
-          items:
-            type: string
-            format: objectid
-        entityType:
-          type: string
-          description: Entity type of the source clientIds. Initiative is not valid for Apply & Override.
-          enum:
-          - parent
-          - client
-      required:
-      - clientId
-      - clientIds
-    ImportCustomerClientDto_2:
-      type: object
-      properties:
-        externalId:
-          type: string
-          description: client's external id
-        name:
-          type: string
-          description: a name that identifies this client
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this client
-        description:
-          type: string
-          description: client's description
-        type:
-          type: string
-          description: client's type, default is client
-          enum:
-          - client
-          - parent
-        parentClientId:
-          type:
-          - string
-          - 'null'
-          description: id of the parent client
-          format: objectid
       required:
       - externalId
       - name
@@ -1074,6 +1016,32 @@ components:
       - affectedClientCount
       - affectedInitiativeCount
       - totalAffectedCount
+    OverrideComplianceRulesDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: DEPRECATED — use clientIds + entityType. Single source client ID.
+          deprecated: true
+          format: objectid
+        clientIds:
+          description: Source client IDs whose children will have rules reset.
+          type: array
+          items:
+            type: string
+            format: objectid
+        entityType:
+          type: string
+          description: Entity type of the source clientIds. Initiative is not valid for Apply & Override.
+          enum:
+          - parent
+          - client
+      required:
+      - clientId
+      - clientIds
+    Object:
+      type: object
+      properties: {}
     Client_2:
       type: object
       properties:
@@ -1134,6 +1102,38 @@ components:
       - callSign
       - createdAt
       - updatedAt
+    ImportCustomerClientDto_2:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: client's external id
+        name:
+          type: string
+          description: a name that identifies this client
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        description:
+          type: string
+          description: client's description
+        type:
+          type: string
+          description: client's type, default is client
+          enum:
+          - client
+          - parent
+        parentClientId:
+          type:
+          - string
+          - 'null'
+          description: id of the parent client
+          format: objectid
+      required:
+      - externalId
+      - name
+      - callSign
+      - description
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

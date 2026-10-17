@@ -119,6 +119,19 @@ paths:
       - Metrics
 components:
   schemas:
+    EntryWorkDateByInitiativeResponseDto:
+      type: object
+      properties:
+        workDate:
+          type: string
+          description: ISO calendar date (YYYY-MM-DD) on which the user logged time for this initiative.
+        totalSeconds:
+          type: number
+          description: Total time the user logged for this initiative on workDate, in seconds.
+          format: int64
+      required:
+      - workDate
+      - totalSeconds
     Metrics:
       type: object
       properties:
@@ -135,19 +148,6 @@ components:
       required:
       - releasedInSeconds
       - unreleasedInSeconds
-    EntryWorkDateByInitiativeResponseDto:
-      type: object
-      properties:
-        workDate:
-          type: string
-          description: ISO calendar date (YYYY-MM-DD) on which the user logged time for this initiative.
-        totalSeconds:
-          type: number
-          description: Total time the user logged for this initiative on workDate, in seconds.
-          format: int64
-      required:
-      - workDate
-      - totalSeconds
     EntryCustomerMetricsResponseDto:
       type: object
       properties:

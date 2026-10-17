@@ -110,35 +110,44 @@ components:
       required:
       - annualInSeconds
       - notInLaurelInSeconds
-    TimekeeperGoalResponseDto:
+    UpsertCustomerTimekeeperGoalRequestDto:
       type: object
       properties:
-        _id:
-          type: string
-          description: unique identifier for the goal
-          format: objectid
-        customerId:
-          type: string
-          description: id of the customer associated with this goal
-          format: objectid
-        userId:
-          type: string
-          description: id of the user associated with this goal
-          format: objectid
         startDate:
           type: string
-          description: start date of the goal
-          example: '2022-08-12'
-          format: iso-date
+          description: start day and month of the goal - year part will be ignored
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        allowUserOverrideAnnualGoalSeconds:
+          type: boolean
+          description: whether users can override this customer goal
+        allowUserOverrideGoalYearStart:
+          type: boolean
+          description: whether users can override the goal year start date
+        hideYearlyGoals:
+          type: boolean
+          description: whether to hide yearly goals from users
+        hideMonthlyGoals:
+          type: boolean
+          description: whether to hide monthly goals from users
+        hideWeeklyGoals:
+          type: boolean
+          description: whether to hide weekly goals from users
+        hideDailyGoals:
+          type: boolean
+          description: whether to hide daily goals from users
         billable:
           description: billable goal
           allOf:
-          - $ref: '#/components/schemas/AnnualGoalResponseDto'
+          - $ref: '#/components/schemas/AnnualGoalRequestDto'
       required:
-      - _id
-      - customerId
-      - userId
       - startDate
+      - allowUserOverrideAnnualGoalSeconds
+      - allowUserOverrideGoalYearStart
+      - hideYearlyGoals
+      - hideMonthlyGoals
+      - hideWeeklyGoals
+      - hideDailyGoals
       - billable
     CustomerTimekeeperGoalResponseDto:
       type: object
@@ -189,6 +198,36 @@ components:
       - hideWeeklyGoals
       - hideDailyGoals
       - billable
+    TimekeeperGoalResponseDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: unique identifier for the goal
+          format: objectid
+        customerId:
+          type: string
+          description: id of the customer associated with this goal
+          format: objectid
+        userId:
+          type: string
+          description: id of the user associated with this goal
+          format: objectid
+        startDate:
+          type: string
+          description: start date of the goal
+          example: '2022-08-12'
+          format: iso-date
+        billable:
+          description: billable goal
+          allOf:
+          - $ref: '#/components/schemas/AnnualGoalResponseDto'
+      required:
+      - _id
+      - customerId
+      - userId
+      - startDate
+      - billable
     UpsertTimekeeperGoalRequestDto:
       type: object
       properties:
@@ -203,45 +242,6 @@ components:
           - $ref: '#/components/schemas/AnnualGoalRequestDto'
       required:
       - startDate
-      - billable
-    UpsertCustomerTimekeeperGoalRequestDto:
-      type: object
-      properties:
-        startDate:
-          type: string
-          description: start day and month of the goal - year part will be ignored
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        allowUserOverrideAnnualGoalSeconds:
-          type: boolean
-          description: whether users can override this customer goal
-        allowUserOverrideGoalYearStart:
-          type: boolean
-          description: whether users can override the goal year start date
-        hideYearlyGoals:
-          type: boolean
-          description: whether to hide yearly goals from users
-        hideMonthlyGoals:
-          type: boolean
-          description: whether to hide monthly goals from users
-        hideWeeklyGoals:
-          type: boolean
-          description: whether to hide weekly goals from users
-        hideDailyGoals:
-          type: boolean
-          description: whether to hide daily goals from users
-        billable:
-          description: billable goal
-          allOf:
-          - $ref: '#/components/schemas/AnnualGoalRequestDto'
-      required:
-      - startDate
-      - allowUserOverrideAnnualGoalSeconds
-      - allowUserOverrideGoalYearStart
-      - hideYearlyGoals
-      - hideMonthlyGoals
-      - hideWeeklyGoals
-      - hideDailyGoals
       - billable
     AnnualGoalResponseDto:
       type: object

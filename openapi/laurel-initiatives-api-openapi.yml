@@ -1301,6 +1301,45 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    InitiativeAccessWithWallsDto:
+      type: object
+      properties:
+        initiativeExternalId:
+          type: string
+        access:
+          $ref: '#/components/schemas/SetCustomerInitiativeAccessWallsDto'
+      required:
+      - initiativeExternalId
+      - access
+    ImportCodeDto:
+      type: object
+      properties:
+        codeExternalId:
+          type: string
+        codeTypeExternalId:
+          type: string
+      required:
+      - codeExternalId
+      - codeTypeExternalId
+    InitiativeCodesDto:
+      type: object
+      properties:
+        initiativeExternalId:
+          type: string
+        codes:
+          $ref: '#/components/schemas/Dto'
+      required:
+      - initiativeExternalId
+      - codes
+    ConsolidatedCodesSubDto:
+      type: object
+      properties:
+        isCodesEmpty:
+          type: boolean
+        codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportCodeDto'
     ConsolidatedInitiativeSubDto:
       type: object
       properties:
@@ -1398,15 +1437,71 @@ components:
             type: string
       required:
       - codeExternalIds
-    SetCustomerInitiativeAccessBatchDto:
+    ImportCustomerInitiativesBatchDto:
       type: object
       properties:
         initiatives:
           type: array
           items:
-            $ref: '#/components/schemas/InitiativeAccessDto'
+            $ref: '#/components/schemas/Dto'
       required:
       - initiatives
+    ConsolidatedValidationSubDto:
+      type: object
+      properties:
+        isRequiredCodeTypeExternalIdsEmpty:
+          type: boolean
+        requiredCodeTypeExternalIds:
+          type: array
+          items:
+            type: string
+    SetCustomerInitiativeAccessDto:
+      type: object
+      properties:
+        type:
+          description: type of access.
+          enum:
+          - allow
+          - deny
+          type: string
+        userIds:
+          description: list of users whose access is either allowed or denied for an initiative.
+          type: array
+          items:
+            type: string
+            format: objectid
+      required:
+      - type
+    ImportCustomerInitiativeConsolidatedDto:
+      type: object
+      properties:
+        initiative:
+          $ref: '#/components/schemas/ConsolidatedInitiativeSubDto'
+        codes:
+          $ref: '#/components/schemas/ConsolidatedCodesSubDto'
+        entryValidationRules:
+          $ref: '#/components/schemas/ConsolidatedValidationSubDto'
+      required:
+      - initiative
+      - codes
+      - entryValidationRules
+    SetCustomerInitiativeAccessWallsDto:
+      type: object
+      properties:
+        type:
+          description: type of access.
+          enum:
+          - allow
+          - deny
+          type: string
+        wallIds:
+          description: list of users whose access is either allowed or denied for an initiative by walls ID.
+          type: array
+          items:
+            type: string
+      required:
+      - type
+      - wallIds
     ImportCustomerInitiativesConsolidatedBatchDto:
       type: object
       properties:
@@ -1416,6 +1511,25 @@ components:
             $ref: '#/components/schemas/ImportCustomerInitiativeConsolidatedDto'
       required:
       - initiatives
+    SetCustomerInitiativeCodesBatchDto:
+      type: object
+      properties:
+        initiatives:
+          type: array
+          items:
+            $ref: '#/components/schemas/InitiativeCodesDto'
+      required:
+      - initiatives
+    InitiativeAccessDto:
+      type: object
+      properties:
+        initiativeExternalId:
+          type: string
+        access:
+          $ref: '#/components/schemas/Dto'
+      required:
+      - initiativeExternalId
+      - access
     Dto:
       type: object
       properties:
@@ -1451,23 +1565,6 @@ components:
       - name
       - description
       - codeTypeExternalId
-    SetCustomerInitiativeAccessDto:
-      type: object
-      properties:
-        type:
-          description: type of access.
-          enum:
-          - allow
-          - deny
-          type: string
-        userIds:
-          description: list of users whose access is either allowed or denied for an initiative.
-          type: array
-          items:
-            type: string
-            format: objectid
-      required:
-      - type
     ImportCustomerInitiativeDto:
       type: object
       properties:
@@ -1554,16 +1651,6 @@ components:
       - callSign
       - clientExternalId
       - unitIncrements
-    InitiativeAccessWithWallsDto:
-      type: object
-      properties:
-        initiativeExternalId:
-          type: string
-        access:
-          $ref: '#/components/schemas/SetCustomerInitiativeAccessWallsDto'
-      required:
-      - initiativeExternalId
-      - access
     SetCustomerInitiativeAccessWallsBatchDto:
       type: object
       properties:
@@ -1573,119 +1660,15 @@ components:
             $ref: '#/components/schemas/InitiativeAccessWithWallsDto'
       required:
       - initiatives
-    ImportCodeDto:
-      type: object
-      properties:
-        codeExternalId:
-          type: string
-        codeTypeExternalId:
-          type: string
-      required:
-      - codeExternalId
-      - codeTypeExternalId
-    SetCustomerInitiativeCodesBatchDto:
+    SetCustomerInitiativeAccessBatchDto:
       type: object
       properties:
         initiatives:
           type: array
           items:
-            $ref: '#/components/schemas/InitiativeCodesDto'
+            $ref: '#/components/schemas/InitiativeAccessDto'
       required:
       - initiatives
-    ImportCustomerInitiativesBatchDto:
-      type: object
-      properties:
-        initiatives:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dto'
-      required:
-      - initiatives
-    InitiativeCodesDto:
-      type: object
-      properties:
-        initiativeExternalId:
-          type: string
-        codes:
-          $ref: '#/components/schemas/Dto'
-      required:
-      - initiativeExternalId
-      - codes
-    SetCustomerInitiativeAccessWallsDto:
-      type: object
-      properties:
-        type:
-          description: type of access.
-          enum:
-          - allow
-          - deny
-          type: string
-        wallIds:
-          description: list of users whose access is either allowed or denied for an initiative by walls ID.
-          type: array
-          items:
-            type: string
-      required:
-      - type
-      - wallIds
-    ConsolidatedCodesSubDto:
-      type: object
-      properties:
-        isCodesEmpty:
-          type: boolean
-        codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportCodeDto'
-    ConsolidatedValidationSubDto:
-      type: object
-      properties:
-        isRequiredCodeTypeExternalIdsEmpty:
-          type: boolean
-        requiredCodeTypeExternalIds:
-          type: array
-          items:
-            type: string
-    InitiativeAccessDto:
-      type: object
-      properties:
-        initiativeExternalId:
-          type: string
-        access:
-          $ref: '#/components/schemas/Dto'
-      required:
-      - initiativeExternalId
-      - access
-    ImportCustomerInitiativeConsolidatedDto:
-      type: object
-      properties:
-        initiative:
-          $ref: '#/components/schemas/ConsolidatedInitiativeSubDto'
-        codes:
-          $ref: '#/components/schemas/ConsolidatedCodesSubDto'
-        entryValidationRules:
-          $ref: '#/components/schemas/ConsolidatedValidationSubDto'
-      required:
-      - initiative
-      - codes
-      - entryValidationRules
-    GroupMembershipDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Group's internal ID
-          format: objectid
-        externalId:
-          type: string
-          description: Group's external ID
-        name:
-          type: string
-          description: Group's name
-      required:
-      - id
-      - externalId
-      - name
     SetInitiativeInternalAccessRequestDto:
       type: object
       properties:
@@ -1705,99 +1688,7 @@ components:
       required:
       - type
       - userIds
-    InitiativeAccessResponseDto:
-      type: object
-      properties:
-        initiativeId:
-          type: string
-          description: Initiative's internal ID
-          format: objectid
-        initiativeExternalId:
-          type: string
-          description: Initiative's external ID from IntApp
-        accessProviderName:
-          type: string
-          description: Provider of the access control
-        type:
-          description: Type of access control (Allow or Deny)
-          enum:
-          - allow
-          - deny
-          type: string
-        users:
-          description: List of users affected by the access rule
-          type: array
-          items:
-            $ref: '#/components/schemas/UserAccessDto'
-      required:
-      - initiativeId
-      - initiativeExternalId
-      - accessProviderName
-      - type
-      - users
-    UserAccessDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: User's internal ID
-          format: objectid
-        providerUserId:
-          type: string
-          description: User's ID from External Provider
-        firstName:
-          type: string
-          description: User's first name
-        lastName:
-          type: string
-          description: User's last name
-        email:
-          type: string
-          description: User's email address
-      required:
-      - id
-      - providerUserId
-      - firstName
-      - lastName
-      - email
-    InitiativeAccessRestrictionsResponseDto:
-      type: object
-      properties:
-        access:
-          description: Summary of external access restrictions (from PMS/Walls integration)
-          allOf:
-          - $ref: '#/components/schemas/AccessRestrictionsSummaryDto'
-        internalAccessRestrictions:
-          description: Summary of internal access restrictions (Laurel-managed)
-          allOf:
-          - $ref: '#/components/schemas/AccessRestrictionsSummaryDto'
-        groups:
-          description: Summary of external group configuration (from PMS import)
-          allOf:
-          - $ref: '#/components/schemas/GroupRestrictionsSummaryDto'
-        internalGroupRestrictions:
-          description: Summary of internal group restrictions (Laurel-managed)
-          allOf:
-          - $ref: '#/components/schemas/InternalGroupRestrictionsSummaryDto'
-      required:
-      - access
-      - internalAccessRestrictions
-      - groups
-      - internalGroupRestrictions
-    InitiativeAccessRestrictionsUsersLookupRequestDto:
-      type: object
-      properties:
-        userIds:
-          description: List of user IDs to check (max 50, min 1)
-          minItems: 1
-          maxItems: 50
-          type: array
-          items:
-            type: string
-            format: objectid
-      required:
-      - userIds
-    UserInitiativeResponseDto:
+    PmsInitiativeAdminResponseDto:
       type: object
       properties:
         _id:
@@ -1871,20 +1762,39 @@ components:
         type:
           description: initiative's type
           enum:
-          - user
+          - pms
           type: string
+        description:
+          type: string
+          description: the full long name of the initiative
+        externalId:
+          type: string
+          description: initiative's external id
         name:
           type: string
-          description: a name that identifies this initiative for the user
-        userId:
-          type: string
-          description: the userId of the user to whom this initiative belongs
-          format: objectid
-        isLaurelCreatedNotModifiable:
+          description: a short name or code that identifies this initiative
+        allowFrom:
           type:
-          - boolean
+          - string
           - 'null'
-          description: indicates this initiative was created by Laurel and cannot be modified or deleted except for unitIncrements
+          description: earliest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+        allowTo:
+          type:
+          - string
+          - 'null'
+          description: latest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
+          example: '2022-08-12'
+          format: iso-date
+        internalAccessRestrictions:
+          description: defines Laurel-managed internal access restrictions for the initiative
+          allOf:
+          - $ref: '#/components/schemas/InitiativeAccess'
+        client:
+          description: the client this initiative belongs to
+          allOf:
+          - $ref: '#/components/schemas/ClientDigest'
       required:
       - _id
       - billingType
@@ -1895,57 +1805,80 @@ components:
       - unitIncrements
       - updatedAt
       - type
-      - name
-      - userId
-    InitiativeAccessRestrictionsGroupResponseDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Group's internal ID
-          format: objectid
-        name:
-          type: string
-          description: Group's name
-        externalId:
-          type: string
-          description: Group's external ID (for external system integration)
-        externalRestrictionType:
-          type:
-          - string
-          - 'null'
-          description: Type of external restriction if group is in external groups list (always Allow), null otherwise
-          enum:
-          - allow
-        internalRestrictionType:
-          type:
-          - string
-          - 'null'
-          description: Type of internal restriction if group is in internal group restrictions, null otherwise
-          enum:
-          - allow
-          - deny
-      required:
-      - id
-      - name
+      - description
       - externalId
-    AccessRestrictionsSummaryDto:
+      - name
+      - client
+    InitiativeInternalAccessResponseDto:
       type: object
       properties:
         type:
-          type:
-          - string
-          - 'null'
-          description: The type of access restriction (allow or deny), null if not configured
+          description: type of access restriction
           enum:
           - allow
           - deny
-        userCount:
-          type: number
-          description: Number of users on this restriction list
-          format: double
+          type: string
+        userIds:
+          description: list of users whose access is either allowed or denied for the initiative
+          type: array
+          items:
+            type: string
+            format: objectid
       required:
-      - userCount
+      - type
+      - userIds
+    CreateUserInitiativeDto:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 3
+      required:
+      - name
+    SetInitiativeInternalGroupRestrictionsRequestDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'type of group restriction.
+
+            Always allow-only by default (for now).'
+          enum:
+          - allow
+        groupIds:
+          description: list of groups whose access is allowed for an initiative
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: objectid
+      required:
+      - type
+      - groupIds
+    InitiativeAccessRestrictionsResponseDto:
+      type: object
+      properties:
+        access:
+          description: Summary of external access restrictions (from PMS/Walls integration)
+          allOf:
+          - $ref: '#/components/schemas/AccessRestrictionsSummaryDto'
+        internalAccessRestrictions:
+          description: Summary of internal access restrictions (Laurel-managed)
+          allOf:
+          - $ref: '#/components/schemas/AccessRestrictionsSummaryDto'
+        groups:
+          description: Summary of external group configuration (from PMS import)
+          allOf:
+          - $ref: '#/components/schemas/GroupRestrictionsSummaryDto'
+        internalGroupRestrictions:
+          description: Summary of internal group restrictions (Laurel-managed)
+          allOf:
+          - $ref: '#/components/schemas/InternalGroupRestrictionsSummaryDto'
+      required:
+      - access
+      - internalAccessRestrictions
+      - groups
+      - internalGroupRestrictions
     InitiativeInternalGroupRestrictionsResponseDto:
       type: object
       properties:
@@ -1969,6 +1902,19 @@ components:
         userIds:
           description: list of user IDs to add **or** remove from the internal access restriction
           minItems: 1
+          type: array
+          items:
+            type: string
+            format: objectid
+      required:
+      - userIds
+    InitiativeAccessRestrictionsUsersLookupRequestDto:
+      type: object
+      properties:
+        userIds:
+          description: List of user IDs to check (max 50, min 1)
+          minItems: 1
+          maxItems: 50
           type: array
           items:
             type: string
@@ -2003,52 +1949,6 @@ components:
       - entryCount
       - totalHours
       - isLaurelCreatedNotModifiable
-    SetInitiativeAccessRequestDto:
-      type: object
-      properties:
-        type:
-          description: type of access.
-          enum:
-          - allow
-          - deny
-          type: string
-        userIds:
-          description: list of users whose access is either allowed or denied for an initiative.
-          type: array
-          items:
-            type: string
-            format: objectid
-      required:
-      - type
-    SetInitiativeInternalGroupRestrictionsRequestDto:
-      type: object
-      properties:
-        type:
-          type: string
-          description: 'type of group restriction.
-
-            Always allow-only by default (for now).'
-          enum:
-          - allow
-        groupIds:
-          description: list of groups whose access is allowed for an initiative
-          minItems: 1
-          type: array
-          items:
-            type: string
-            format: objectid
-      required:
-      - type
-      - groupIds
-    GroupRestrictionsSummaryDto:
-      type: object
-      properties:
-        groupCount:
-          type: number
-          description: Number of groups assigned to this initiative
-          format: double
-      required:
-      - groupCount
     GroupDetailsResponseDto:
       type: object
       properties:
@@ -2066,6 +1966,139 @@ components:
       - id
       - name
       - externalId
+    GroupMembershipDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Group's internal ID
+          format: objectid
+        externalId:
+          type: string
+          description: Group's external ID
+        name:
+          type: string
+          description: Group's name
+      required:
+      - id
+      - externalId
+      - name
+    GroupRestrictionsSummaryDto:
+      type: object
+      properties:
+        groupCount:
+          type: number
+          description: Number of groups assigned to this initiative
+          format: double
+      required:
+      - groupCount
+    InitiativeAccessRestrictionsUserResponseDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User's internal ID
+          format: objectid
+        name:
+          type: string
+          description: User's full name (firstName + lastName)
+        email:
+          type: string
+          description: User's email address
+        wallsId:
+          type:
+          - string
+          - 'null'
+          description: User's Walls identity ID, null if user has no Walls identity
+        groupMembership:
+          description: Groups the user belongs to (filtered to initiative groups), with id and name
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupMembershipDto'
+        internalRestrictionType:
+          type:
+          - string
+          - 'null'
+          description: Type of internal access restriction if user is on the list, null otherwise
+          enum:
+          - allow
+          - deny
+        externalRestrictionType:
+          type:
+          - string
+          - 'null'
+          description: Type of external access restriction if user is on the list, null otherwise
+          enum:
+          - allow
+          - deny
+        hasAccess:
+          type: boolean
+          description: Whether the user has access to this initiative
+        accessChecks:
+          description: Detailed access check results explaining why user has or doesn't have access
+          type: array
+          items:
+            type: string
+            enum:
+            - external_deny_list_passed
+            - external_deny_list_failed
+            - external_allow_list_passed
+            - external_allow_list_failed
+            - internal_deny_list_passed
+            - internal_deny_list_failed
+            - internal_allow_list_passed
+            - internal_allow_list_failed
+            - external_group_check_passed
+            - external_group_check_failed
+            - internal_group_check_passed
+            - internal_group_check_failed
+      required:
+      - userId
+      - name
+      - email
+      - wallsId
+      - groupMembership
+      - hasAccess
+      - accessChecks
+    ClientDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: client's id
+          format: objectid
+        externalId:
+          type: string
+          description: client's external id
+        name:
+          type: string
+          description: a name that identifies this client
+        description:
+          type: string
+          description: client's description
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        type:
+          type:
+          - string
+          - 'null'
+          description: client's type, default is client
+          enum:
+          - client
+          - parent
+        parentClientId:
+          type:
+          - string
+          - 'null'
+          description: id of the parent client
+          format: objectid
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - callSign
     ImportCustomerInitiativeDto_2:
       type: object
       properties:
@@ -2152,6 +2185,107 @@ components:
       - callSign
       - clientExternalId
       - unitIncrements
+    SetInitiativeAccessRequestDto:
+      type: object
+      properties:
+        type:
+          description: type of access.
+          enum:
+          - allow
+          - deny
+          type: string
+        userIds:
+          description: list of users whose access is either allowed or denied for an initiative.
+          type: array
+          items:
+            type: string
+            format: objectid
+      required:
+      - type
+    InitiativeGroupRestrictions:
+      type: object
+      properties:
+        type:
+          type: string
+          description: type of group restriction (allow-only for now)
+          enum:
+          - allow
+        groupIds:
+          description: list of groups whose access is allowed for an initiative
+          type: array
+          items:
+            type: string
+            format: objectid
+      required:
+      - type
+      - groupIds
+    InternalGroupRestrictionsSummaryDto:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          description: The type of group restriction (allow or deny), null if not configured
+          enum:
+          - allow
+          - deny
+        groupCount:
+          type: number
+          description: Number of groups on this restriction list
+          format: double
+      required:
+      - groupCount
+    AccessRestrictionsSummaryDto:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          description: The type of access restriction (allow or deny), null if not configured
+          enum:
+          - allow
+          - deny
+        userCount:
+          type: number
+          description: Number of users on this restriction list
+          format: double
+      required:
+      - userCount
+    Object:
+      type: object
+      properties: {}
+    InitiativeAccessResponseDto:
+      type: object
+      properties:
+        initiativeId:
+          type: string
+          description: Initiative's internal ID
+          format: objectid
+        initiativeExternalId:
+          type: string
+          description: Initiative's external ID from IntApp
+        accessProviderName:
+          type: string
+          description: Provider of the access control
+        type:
+          description: Type of access control (Allow or Deny)
+          enum:
+          - allow
+          - deny
+          type: string
+        users:
+          description: List of users affected by the access rule
+          type: array
+          items:
+            $ref: '#/components/schemas/UserAccessDto'
+      required:
+      - initiativeId
+      - initiativeExternalId
+      - accessProviderName
+      - type
+      - users
     UserInitiative:
       type: object
       properties:
@@ -2282,121 +2416,6 @@ components:
       - unitIncrements
       - updatedAt
       - userId
-    UpdateOneUserInitiativeDto:
-      type: object
-      properties:
-        name:
-          type: string
-      required:
-      - name
-    InitiativeAccessRestrictionsUserResponseDto:
-      type: object
-      properties:
-        userId:
-          type: string
-          description: User's internal ID
-          format: objectid
-        name:
-          type: string
-          description: User's full name (firstName + lastName)
-        email:
-          type: string
-          description: User's email address
-        wallsId:
-          type:
-          - string
-          - 'null'
-          description: User's Walls identity ID, null if user has no Walls identity
-        groupMembership:
-          description: Groups the user belongs to (filtered to initiative groups), with id and name
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupMembershipDto'
-        internalRestrictionType:
-          type:
-          - string
-          - 'null'
-          description: Type of internal access restriction if user is on the list, null otherwise
-          enum:
-          - allow
-          - deny
-        externalRestrictionType:
-          type:
-          - string
-          - 'null'
-          description: Type of external access restriction if user is on the list, null otherwise
-          enum:
-          - allow
-          - deny
-        hasAccess:
-          type: boolean
-          description: Whether the user has access to this initiative
-        accessChecks:
-          description: Detailed access check results explaining why user has or doesn't have access
-          type: array
-          items:
-            type: string
-            enum:
-            - external_deny_list_passed
-            - external_deny_list_failed
-            - external_allow_list_passed
-            - external_allow_list_failed
-            - internal_deny_list_passed
-            - internal_deny_list_failed
-            - internal_allow_list_passed
-            - internal_allow_list_failed
-            - external_group_check_passed
-            - external_group_check_failed
-            - internal_group_check_passed
-            - internal_group_check_failed
-      required:
-      - userId
-      - name
-      - email
-      - wallsId
-      - groupMembership
-      - hasAccess
-      - accessChecks
-    AddInitiativeCodesRequestDto:
-      type: object
-      properties:
-        codeExternalIds:
-          minItems: 1
-          maxItems: 2500
-          type: array
-          items:
-            type: string
-      required:
-      - codeExternalIds
-    InternalGroupRestrictionsSummaryDto:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-          description: The type of group restriction (allow or deny), null if not configured
-          enum:
-          - allow
-          - deny
-        groupCount:
-          type: number
-          description: Number of groups on this restriction list
-          format: double
-      required:
-      - groupCount
-    UpdateInternalGroupsRequestDto:
-      type: object
-      properties:
-        groupIds:
-          description: list of group IDs to add or remove from the internal group restrictions
-          minItems: 1
-          type: array
-          items:
-            type: string
-            format: objectid
-      required:
-      - groupIds
     InitiativeAccess:
       type: object
       properties:
@@ -2415,91 +2434,143 @@ components:
       required:
       - type
       - userIds
-    ClientDigest:
+    UserAccessDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User's internal ID
+          format: objectid
+        providerUserId:
+          type: string
+          description: User's ID from External Provider
+        firstName:
+          type: string
+          description: User's first name
+        lastName:
+          type: string
+          description: User's last name
+        email:
+          type: string
+          description: User's email address
+      required:
+      - id
+      - providerUserId
+      - firstName
+      - lastName
+      - email
+    UpdateInternalGroupsRequestDto:
+      type: object
+      properties:
+        groupIds:
+          description: list of group IDs to add or remove from the internal group restrictions
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: objectid
+      required:
+      - groupIds
+    UserInitiativeResponseDto:
       type: object
       properties:
         _id:
           type: string
-          description: client's id
+          description: initiative's id
           format: objectid
-        externalId:
+        billingType:
+          description: initiative's billing type
+          enum:
+          - billable
+          - non-billable
           type: string
-          description: client's external id
-        name:
-          type: string
-          description: a name that identifies this client
-        description:
-          type: string
-          description: client's description
         callSign:
           type: string
-          description: a short name or abbreviation that identifies this client
-        type:
-          type:
-          - string
-          - 'null'
-          description: client's type, default is client
-          enum:
-          - client
-          - parent
-        parentClientId:
-          type:
-          - string
-          - 'null'
-          description: id of the parent client
+          description: a short name or abbreviation that identifies this initiative
+        createdAt:
+          type: string
+          description: date and time this initiative was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        customerId:
+          type: string
+          description: id of customer who owns this initiative
           format: objectid
-      required:
-      - _id
-      - externalId
-      - name
-      - description
-      - callSign
-    Object:
-      type: object
-      properties: {}
-    CreateUserInitiativeDto:
-      type: object
-      properties:
+        groupIds:
+          description: list of group ids that have access to this initiative
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: objectid
+        locale:
+          type:
+          - string
+          - 'null'
+          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
+          enum:
+          - da-DK
+          - de-DE
+          - en-CA
+          - en-GB
+          - en-US
+          - es-ES
+          - es-MX
+          - fi-FI
+          - fr-CA
+          - fr-FR
+          - is-IS
+          - it-IT
+          - ko-KR
+          - nl-NL
+          - no-NO
+          - pt-PT
+          - sv-SE
+        status:
+          description: initiative's status
+          enum:
+          - active
+          - inactive
+          type: string
+        unitIncrements:
+          type: number
+          description: unit of billing increments for this initiative
+          format: double
+        updatedAt:
+          type: string
+          description: date and time this initiative was last updated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        type:
+          description: initiative's type
+          enum:
+          - user
+          type: string
         name:
           type: string
-          minLength: 3
+          description: a name that identifies this initiative for the user
+        userId:
+          type: string
+          description: the userId of the user to whom this initiative belongs
+          format: objectid
+        isLaurelCreatedNotModifiable:
+          type:
+          - boolean
+          - 'null'
+          description: indicates this initiative was created by Laurel and cannot be modified or deleted except for unitIncrements
       required:
+      - _id
+      - billingType
+      - callSign
+      - createdAt
+      - customerId
+      - status
+      - unitIncrements
+      - updatedAt
+      - type
       - name
-    InitiativeInternalAccessResponseDto:
-      type: object
-      properties:
-        type:
-          description: type of access restriction
-          enum:
-          - allow
-          - deny
-          type: string
-        userIds:
-          description: list of users whose access is either allowed or denied for the initiative
-          type: array
-          items:
-            type: string
-            format: objectid
-      required:
-      - type
-      - userIds
-    InitiativeGroupRestrictions:
-      type: object
-      properties:
-        type:
-          type: string
-          description: type of group restriction (allow-only for now)
-          enum:
-          - allow
-        groupIds:
-          description: list of groups whose access is allowed for an initiative
-          type: array
-          items:
-            type: string
-            format: objectid
-      required:
-      - type
-      - groupIds
+      - userId
     PmsInitiativeResponseDto:
       type: object
       properties:
@@ -2617,127 +2688,56 @@ components:
       - externalId
       - name
       - client
-    PmsInitiativeAdminResponseDto:
+    UpdateOneUserInitiativeDto:
       type: object
       properties:
-        _id:
-          type: string
-          description: initiative's id
-          format: objectid
-        billingType:
-          description: initiative's billing type
-          enum:
-          - billable
-          - non-billable
-          type: string
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this initiative
-        createdAt:
-          type: string
-          description: date and time this initiative was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        customerId:
-          type: string
-          description: id of customer who owns this initiative
-          format: objectid
-        groupIds:
-          description: list of group ids that have access to this initiative
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: objectid
-        locale:
-          type:
-          - string
-          - 'null'
-          description: BCP-47 locale for this initiative (e.g. en-US, fr-CA)
-          enum:
-          - da-DK
-          - de-DE
-          - en-CA
-          - en-GB
-          - en-US
-          - es-ES
-          - es-MX
-          - fi-FI
-          - fr-CA
-          - fr-FR
-          - is-IS
-          - it-IT
-          - ko-KR
-          - nl-NL
-          - no-NO
-          - pt-PT
-          - sv-SE
-        status:
-          description: initiative's status
-          enum:
-          - active
-          - inactive
-          type: string
-        unitIncrements:
-          type: number
-          description: unit of billing increments for this initiative
-          format: double
-        updatedAt:
-          type: string
-          description: date and time this initiative was last updated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        type:
-          description: initiative's type
-          enum:
-          - pms
-          type: string
-        description:
-          type: string
-          description: the full long name of the initiative
-        externalId:
-          type: string
-          description: initiative's external id
         name:
           type: string
-          description: a short name or code that identifies this initiative
-        allowFrom:
-          type:
-          - string
-          - 'null'
-          description: earliest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
-          example: '2022-08-12'
-          format: iso-date
-        allowTo:
-          type:
-          - string
-          - 'null'
-          description: latest calendar date on which this initiative is valid for use (date-only, midnight UTC, inclusive)
-          example: '2022-08-12'
-          format: iso-date
-        internalAccessRestrictions:
-          description: defines Laurel-managed internal access restrictions for the initiative
-          allOf:
-          - $ref: '#/components/schemas/InitiativeAccess'
-        client:
-          description: the client this initiative belongs to
-          allOf:
-          - $ref: '#/components/schemas/ClientDigest'
       required:
-      - _id
-      - billingType
-      - callSign
-      - createdAt
-      - customerId
-      - status
-      - unitIncrements
-      - updatedAt
-      - type
-      - description
-      - externalId
       - name
-      - client
+    InitiativeAccessRestrictionsGroupResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Group's internal ID
+          format: objectid
+        name:
+          type: string
+          description: Group's name
+        externalId:
+          type: string
+          description: Group's external ID (for external system integration)
+        externalRestrictionType:
+          type:
+          - string
+          - 'null'
+          description: Type of external restriction if group is in external groups list (always Allow), null otherwise
+          enum:
+          - allow
+        internalRestrictionType:
+          type:
+          - string
+          - 'null'
+          description: Type of internal restriction if group is in internal group restrictions, null otherwise
+          enum:
+          - allow
+          - deny
+      required:
+      - id
+      - name
+      - externalId
+    AddInitiativeCodesRequestDto:
+      type: object
+      properties:
+        codeExternalIds:
+          minItems: 1
+          maxItems: 2500
+          type: array
+          items:
+            type: string
+      required:
+      - codeExternalIds
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer

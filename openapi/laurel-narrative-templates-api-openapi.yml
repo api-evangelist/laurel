@@ -444,6 +444,127 @@ paths:
       - Narrative Templates
 components:
   schemas:
+    UpdateNarrativeTemplateRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: narrative template's name
+          maxLength: 50
+        shortcut:
+          type: string
+          description: narrative template's shortcut
+          maxLength: 50
+        narrative:
+          type: string
+          description: narrative template's narrative
+          maxLength: 5000
+        source:
+          type: string
+          description: source of the narrative template. Cannot be "pms-firm" for user templates.
+          enum:
+          - user
+          - pms-user
+          - pms-practice-group
+    SyncUserNarrativeTemplateItemDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: narrative template's name
+          maxLength: 50
+        shortcut:
+          type: string
+          description: narrative template's shortcut
+          maxLength: 50
+        narrative:
+          type: string
+          description: narrative template's narrative
+          maxLength: 5000
+        source:
+          type: string
+          description: 'source of the narrative template (default: "user"). Cannot be "pms-firm" for user templates.'
+          default: user
+          enum:
+          - user
+          - pms-user
+          - pms-practice-group
+          example: user
+        externalId:
+          type: string
+          description: narrative template's externalId for Pms Sync
+      required:
+      - name
+      - shortcut
+      - narrative
+      - source
+      - externalId
+    SyncCustomerNarrativeTemplateItemDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: narrative template's name
+          maxLength: 50
+        shortcut:
+          type: string
+          description: narrative template's shortcut
+          maxLength: 50
+        narrative:
+          type: string
+          description: narrative template's narrative
+          maxLength: 5000
+        externalId:
+          type: string
+          description: narrative template's externalId for Pms Sync
+      required:
+      - name
+      - shortcut
+      - narrative
+      - externalId
+    CreateCustomerNarrativeTemplateRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: narrative template's name
+          maxLength: 50
+        shortcut:
+          type: string
+          description: narrative template's shortcut
+          maxLength: 50
+        narrative:
+          type: string
+          description: narrative template's narrative
+          maxLength: 5000
+      required:
+      - name
+      - shortcut
+      - narrative
+    UpdateCustomerNarrativeTemplateRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: narrative template's name
+          maxLength: 50
+        shortcut:
+          type: string
+          description: narrative template's shortcut
+          maxLength: 50
+        narrative:
+          type: string
+          description: narrative template's narrative
+          maxLength: 5000
+    SyncUserNarrativeTemplatesRequestDto:
+      type: object
+      properties:
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/SyncUserNarrativeTemplateItemDto'
+      required:
+      - templates
     CreateUserNarrativeTemplateRequestDto:
       type: object
       properties:
@@ -473,52 +594,6 @@ components:
       - shortcut
       - narrative
       - source
-    SyncUserNarrativeTemplatesRequestDto:
-      type: object
-      properties:
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/SyncUserNarrativeTemplateItemDto'
-      required:
-      - templates
-    UpdateCustomerNarrativeTemplateRequestDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: narrative template's name
-          maxLength: 50
-        shortcut:
-          type: string
-          description: narrative template's shortcut
-          maxLength: 50
-        narrative:
-          type: string
-          description: narrative template's narrative
-          maxLength: 5000
-    UpdateNarrativeTemplateRequestDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: narrative template's name
-          maxLength: 50
-        shortcut:
-          type: string
-          description: narrative template's shortcut
-          maxLength: 50
-        narrative:
-          type: string
-          description: narrative template's narrative
-          maxLength: 5000
-        source:
-          type: string
-          description: source of the narrative template. Cannot be "pms-firm" for user templates.
-          enum:
-          - user
-          - pms-user
-          - pms-practice-group
     NarrativeTemplateResponseDto:
       type: object
       properties:
@@ -555,81 +630,6 @@ components:
       - shortcut
       - narrative
       - source
-    SyncUserNarrativeTemplateItemDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: narrative template's name
-          maxLength: 50
-        shortcut:
-          type: string
-          description: narrative template's shortcut
-          maxLength: 50
-        narrative:
-          type: string
-          description: narrative template's narrative
-          maxLength: 5000
-        source:
-          type: string
-          description: 'source of the narrative template (default: "user"). Cannot be "pms-firm" for user templates.'
-          default: user
-          enum:
-          - user
-          - pms-user
-          - pms-practice-group
-          example: user
-        externalId:
-          type: string
-          description: narrative template's externalId for Pms Sync
-      required:
-      - name
-      - shortcut
-      - narrative
-      - source
-      - externalId
-    CreateCustomerNarrativeTemplateRequestDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: narrative template's name
-          maxLength: 50
-        shortcut:
-          type: string
-          description: narrative template's shortcut
-          maxLength: 50
-        narrative:
-          type: string
-          description: narrative template's narrative
-          maxLength: 5000
-      required:
-      - name
-      - shortcut
-      - narrative
-    SyncCustomerNarrativeTemplateItemDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: narrative template's name
-          maxLength: 50
-        shortcut:
-          type: string
-          description: narrative template's shortcut
-          maxLength: 50
-        narrative:
-          type: string
-          description: narrative template's narrative
-          maxLength: 5000
-        externalId:
-          type: string
-          description: narrative template's externalId for Pms Sync
-      required:
-      - name
-      - shortcut
-      - narrative
-      - externalId
     SyncCustomerNarrativeTemplatesRequestDto:
       type: object
       properties:

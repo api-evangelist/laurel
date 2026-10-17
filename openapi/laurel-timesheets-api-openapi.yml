@@ -140,6 +140,161 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CodeAssignment:
+      type: object
+      properties:
+        assignedBy:
+          description: entity that assigned the code.
+          enum:
+          - user
+          - laurel
+          type: string
+        code:
+          description: assigned code
+          allOf:
+          - $ref: '#/components/schemas/CodeDigest'
+      required:
+      - assignedBy
+      - code
+    DismissPredictionRequestDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        activityId:
+          type: string
+          description: Activity identifier
+          format: objectid
+        initiativeId:
+          type: string
+          description: Initiative identifier to dismiss for this activity
+          format: objectid
+      required:
+      - userId
+      - customerId
+      - date
+      - activityId
+      - initiativeId
+    NestedActivitySource:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: source's id
+          format: objectid
+        type:
+          description: type of entry source
+          enum:
+          - activity
+          type: string
+          default: activity
+        creationMethod:
+          description: the creation method of the activity
+          enum:
+          - timer
+          - tracked
+          - user
+          type: string
+        category:
+          type:
+          - string
+          - 'null'
+          description: category of this activity, if any
+        technology:
+          type:
+          - string
+          - 'null'
+          description: technology of this activity, if any
+        source:
+          type:
+          - string
+          - 'null'
+          description: source of this activity (e.g. 'macos', 'windows'), if any
+        mechanism:
+          type:
+          - string
+          - 'null'
+          description: mechanism of this activity (e.g. browser used to access web app), if any
+        title:
+          type: string
+          description: activity's title
+        detail:
+          type: string
+          description: activity's detail
+        startedAt:
+          type: string
+          description: date and time this activity started
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        stoppedAt:
+          type: string
+          description: date and time this activity stopped
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        clusterId:
+          type:
+          - string
+          - 'null'
+          description: activity's clusterId
+        fromSuggestions:
+          type:
+          - boolean
+          - 'null'
+          description: whether this activity source was added from suggestions
+        fromThemes:
+          type:
+          - boolean
+          - 'null'
+          description: whether this activity source was added from themes
+        hasOverlap:
+          type:
+          - boolean
+          - 'null'
+          description: activity's overlap state
+        overlapTimeInSeconds:
+          type:
+          - number
+          - 'null'
+          description: activity's overlap time in seconds
+          format: int64
+        threadId:
+          type:
+          - string
+          - 'null'
+          description: activity's thread id
+        disableThreading:
+          type:
+          - boolean
+          - 'null'
+          description: if true, disables threading for this activity
+        assignedAt:
+          type:
+          - string
+          - 'null'
+          description: 'Datetime this activity was assigned to the entry it currently belongs to.
+
+            Unset on entries that predate the field; never back-filled.'
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - _id
+      - type
+      - creationMethod
+      - title
+      - detail
+      - startedAt
+      - stoppedAt
     UserInitiativeDto:
       type: object
       properties:
@@ -222,7 +377,129 @@ components:
       - updatedAt
       - name
       - type
-    TimesheetInitialDto:
+    UpdateTimesheetRequestDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+      required:
+      - userId
+      - customerId
+      - date
+    ExternalSource:
+      type: object
+      properties:
+        sourceSystem:
+          enum:
+          - 3e
+          - workday
+          type: string
+        externalId:
+          type: string
+        linkedAt:
+          type: string
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - sourceSystem
+      - externalId
+      - linkedAt
+    SharedFromResponseDto:
+      type: object
+      properties:
+        entryId:
+          type: string
+          description: id of the source entry that was shared
+          format: objectid
+        entryUserId:
+          type: string
+          description: id of the user who owns the source entry
+          format: objectid
+        sharerId:
+          type: string
+          description: id of the principal who performed the share action
+          format: objectid
+        sharerType:
+          description: capacity in which the sharer acted
+          enum:
+          - user
+          - admin
+          - delegate
+          type: string
+        sharedAt:
+          type: string
+          description: date and time the share was initiated
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        entryUserName:
+          type:
+          - string
+          - 'null'
+          description: display name of the entry owner; resolved at read-time, absent on failure
+        sharerName:
+          type:
+          - string
+          - 'null'
+          description: display name of the principal who performed the share; resolved at read-time, absent on failure
+      required:
+      - entryId
+      - entryUserId
+      - sharerId
+      - sharerType
+      - sharedAt
+    PredictInitiativesRequestDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        activityIds:
+          description: Activities to categorize
+          type: array
+          items:
+            type: string
+            format: objectid
+        initiativeIds:
+          description: Initiative candidates
+          type: array
+          items:
+            type: string
+            format: objectid
+        skipEntryCreation:
+          type: boolean
+          description: If true, skip entry creation from predictions
+        highConfidenceMinimumScore:
+          type: number
+          description: Minimum score threshold for high confidence predictions
+          format: double
+      required:
+      - userId
+      - customerId
+      - date
+      - activityIds
+      - initiativeIds
+    TimesheetProcessingInitiativeCategorizationDto:
       type: object
       properties:
         date:
@@ -241,28 +518,110 @@ components:
         status:
           description: Current workflow status
           enum:
-          - initial
+          - processing-initiative-categorization
           type: string
         statusCreatedAt:
           type: string
           description: Timestamp the status was created
           example: '2022-08-12T20:44:48Z'
           format: iso-date-time
-        dismissedActivityIdToInitiativeIds:
-          type:
-          - object
-          - 'null'
-          description: Map of activity IDs to dismissed initiative IDs
-          additionalProperties:
-            items:
-              type: string
-            type: array
+        activityIds:
+          description: Activities included in categorization
+          type: array
+          items:
+            type: string
+            format: objectid
+        initiativeIds:
+          description: Initiatives included in categorization
+          type: array
+          items:
+            type: string
+            format: objectid
+        model:
+          type: string
+          description: Prediction model identifier
+        parameters:
+          type: object
+          description: Prediction parameters
+          additionalProperties: true
       required:
       - date
       - userId
       - customerId
       - status
       - statusCreatedAt
+      - activityIds
+      - initiativeIds
+      - model
+      - parameters
+    ReleaseValidationPendingInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-validation-pending
+          type: string
+        releasePendedAt:
+          type: string
+          description: date and time entry was changed to release pending
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releasePendedBy:
+          type: string
+          description: the identifier of the user who change the entry to release pending
+          format: objectid
+      required:
+      - status
+      - releasePendedAt
+      - releasePendedBy
+    ComplianceRule:
+      type: object
+      properties:
+        ruleKey:
+          type: string
+          description: rule key
+        description:
+          type:
+          - string
+          - 'null'
+          description: rule description
+        enforcementLevel:
+          description: enforcement level
+          enum:
+          - block
+          - acknowledge
+          - warn
+          - 'off'
+          type: string
+      required:
+      - ruleKey
+      - enforcementLevel
+    CodeDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: code's id
+          format: objectid
+        externalId:
+          type: string
+          description: code's external id
+        name:
+          type: string
+          description: code's name
+        description:
+          type: string
+          description: code's description, can be empty
+        type:
+          description: code's type
+          allOf:
+          - $ref: '#/components/schemas/CodeTypeDigest'
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - type
     TimesheetFailedInitiativeCategorizationDto:
       type: object
       properties:
@@ -301,26 +660,6 @@ components:
       - status
       - statusCreatedAt
       - errors
-    ReleaseValidationPendingInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - release-validation-pending
-          type: string
-        releasePendedAt:
-          type: string
-          description: date and time entry was changed to release pending
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        releasePendedBy:
-          type: string
-          description: the identifier of the user who change the entry to release pending
-          format: objectid
-      required:
-      - status
-      - releasePendedAt
-      - releasePendedBy
     TimesheetSuccessfulSuggestedInitiativesDto:
       type: object
       properties:
@@ -367,28 +706,229 @@ components:
       - statusCreatedAt
       - suggestedInitiativeIds
       - dismissedInitiativeIds
-    ComplianceRule:
+    TimesheetInitialDto:
       type: object
       properties:
-        ruleKey:
+        date:
           type: string
-          description: rule key
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        status:
+          description: Current workflow status
+          enum:
+          - initial
+          type: string
+        statusCreatedAt:
+          type: string
+          description: Timestamp the status was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        dismissedActivityIdToInitiativeIds:
+          type:
+          - object
+          - 'null'
+          description: Map of activity IDs to dismissed initiative IDs
+          additionalProperties:
+            items:
+              type: string
+            type: array
+      required:
+      - date
+      - userId
+      - customerId
+      - status
+      - statusCreatedAt
+    ReleaseFailedInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-failed
+          type: string
+        releaseFailedErrors:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ReleaseFailedError'
+      required:
+      - status
+      - releaseFailedErrors
+    ValidationFailedInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - validation-failed
+          type: string
+        errors:
+          description: list of errors
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/EntryValidationError'
+      required:
+      - status
+      - errors
+    ClientDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: client's id
+          format: objectid
+        externalId:
+          type: string
+          description: client's external id
+        name:
+          type: string
+          description: a name that identifies this client
         description:
+          type: string
+          description: client's description
+        callSign:
+          type: string
+          description: a short name or abbreviation that identifies this client
+        type:
           type:
           - string
           - 'null'
-          description: rule description
-        enforcementLevel:
-          description: enforcement level
+          description: client's type, default is client
           enum:
-          - block
-          - acknowledge
-          - warn
-          - 'off'
+          - client
+          - parent
+        parentClientId:
+          type:
+          - string
+          - 'null'
+          description: id of the parent client
+          format: objectid
+      required:
+      - _id
+      - externalId
+      - name
+      - description
+      - callSign
+    CodeTypeDigest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: code type's id
+          format: objectid
+        externalId:
+          type: string
+          description: code type's external id
+        name:
+          type: string
+          description: code type's name
+        semanticType:
+          type:
+          - string
+          - 'null'
+          description: code type's semantic type
+          enum:
+          - action
+          - activity
+          - location
+          - phase
+          - task
+        orderingSequence:
+          type:
+          - string
+          - 'null'
+          description: ordering sequence for UI sorting (alphanumeric)
+      required:
+      - _id
+      - externalId
+      - name
+    NestedTimerSource:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: source's id
+          format: objectid
+        type:
+          description: type of entry source
+          enum:
+          - timer
+          type: string
+          default: timer
+        durationInSeconds:
+          type: number
+          description: the duration in seconds that this timer has been active
+          format: double
+        summary:
+          type: string
+          description: the summary assigned to this timer, can be empty
+      required:
+      - _id
+      - type
+      - durationInSeconds
+      - summary
+    EntryValidationError:
+      type: object
+      properties:
+        errorCode:
+          description: the entry validation error code
+          enum:
+          - cannot-have-running-timer
+          - cannot-release-zero-increment
+          - cannot-release-negative-increment
+          - cannot-release-billable-future-work
+          - cannot-release-non-billable-future-work
+          - cannot-release-with-user-initiative
+          - cannot-release-with-inactive-initiative
+          - code-type-is-required
+          - summary-is-required
+          - cannot-have-blocked-compliance-rule
+          - cannot-exceed-twenty-four-hours
+          - entry-date-restricted-no-release
+          - entry-date-restricted-no-create
+          - timekeeper-not-in-working-list
+          - exceeds-twenty-four-hours-daily-limit
           type: string
       required:
-      - ruleKey
-      - enforcementLevel
+      - errorCode
+    NestedEntrySource:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: source's id
+          format: objectid
+        type:
+          description: type of entry source
+          enum:
+          - entry
+          type: string
+          default: entry
+        enrichmentCorrelationId:
+          type:
+          - string
+          - 'null'
+          description: entry's enrichmentCorrelationId to be used by enrichment service
+        summary:
+          type: string
+          description: entry's summary
+        unitIncrementCountAdjustments:
+          type: number
+          description: user modified overrides to entry unit increment total
+          format: double
+      required:
+      - _id
+      - type
+      - summary
+      - unitIncrementCountAdjustments
     EntryDto:
       type: object
       properties:
@@ -639,9 +1179,14 @@ components:
       - updatedAt
       - workCodes
       - initiative
-    DismissInitiativesRequestDto:
+    TimesheetProcessingSuggestedInitiativesDto:
       type: object
       properties:
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
         userId:
           type: string
           description: Owner user identifier
@@ -650,42 +1195,96 @@ components:
           type: string
           description: Owning customer identifier
           format: objectid
-        date:
+        status:
+          description: Current workflow status
+          enum:
+          - processing-suggested-initiatives
           type: string
-          description: Target date for the timesheet
-          example: '2022-08-12'
-          format: iso-date
-        initiativeIds:
-          description: Initiative identifiers to dismiss
+        statusCreatedAt:
+          type: string
+          description: Timestamp the status was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+      required:
+      - date
+      - userId
+      - customerId
+      - status
+      - statusCreatedAt
+    ReleasePendingInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-pending
+          type: string
+        releasePendedAt:
+          type: string
+          description: date and time entry was changed to release pending
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releasePendedBy:
+          type: string
+          description: the identifier of the user who change the entry to release pending
+          format: objectid
+      required:
+      - status
+      - releasePendedAt
+      - releasePendedBy
+    ReleaseSuccessInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - release-success
+          type: string
+        releasedAt:
+          type: string
+          description: date and time entry was released
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        releasedBy:
+          type: string
+          description: the identifier of the user who released the entry
+          format: objectid
+        reReleaseFailedMessages:
+          type:
+          - array
+          - 'null'
+          description: entry's re-release failed messages
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ReleaseFailedError'
+      required:
+      - status
+      - releasedAt
+      - releasedBy
+    UserInitiativePropsDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        tags:
           type: array
+          description: array of initiative props tags
           items:
             type: string
-            format: objectid
-      required:
-      - userId
-      - customerId
-      - date
-      - initiativeIds
-    DeleteTimesheetRequestDto:
-      type: object
-      properties:
+            enum:
+            - pinned
         userId:
           type: string
-          description: Owner user identifier
+          description: identifier of the user who owns the initiative props
           format: objectid
-        customerId:
-          type: string
-          description: Owning customer identifier
-          format: objectid
-        date:
-          type: string
-          description: Target date for the timesheet
-          example: '2022-08-12'
-          format: iso-date
       required:
+      - _id
+      - colorHex
+      - tags
       - userId
-      - customerId
-      - date
     EntryTimerCarryover:
       type: object
       properties:
@@ -694,64 +1293,6 @@ components:
           format: objectid
       required:
       - originId
-    NestedTimerSource:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: source's id
-          format: objectid
-        type:
-          description: type of entry source
-          enum:
-          - timer
-          type: string
-          default: timer
-        durationInSeconds:
-          type: number
-          description: the duration in seconds that this timer has been active
-          format: double
-        summary:
-          type: string
-          description: the summary assigned to this timer, can be empty
-      required:
-      - _id
-      - type
-      - durationInSeconds
-      - summary
-    CodeTypeDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: code type's id
-          format: objectid
-        externalId:
-          type: string
-          description: code type's external id
-        name:
-          type: string
-          description: code type's name
-        semanticType:
-          type:
-          - string
-          - 'null'
-          description: code type's semantic type
-          enum:
-          - action
-          - activity
-          - location
-          - phase
-          - task
-        orderingSequence:
-          type:
-          - string
-          - 'null'
-          description: ordering sequence for UI sorting (alphanumeric)
-      required:
-      - _id
-      - externalId
-      - name
     TimesheetFailedSuggestedInitiativesDto:
       type: object
       properties:
@@ -804,189 +1345,6 @@ components:
       - suggestedInitiativeIds
       - dismissedInitiativeIds
       - errors
-    PredictInitiativesRequestDto:
-      type: object
-      properties:
-        userId:
-          type: string
-          description: Owner user identifier
-          format: objectid
-        customerId:
-          type: string
-          description: Owning customer identifier
-          format: objectid
-        date:
-          type: string
-          description: Target date for the timesheet
-          example: '2022-08-12'
-          format: iso-date
-        activityIds:
-          description: Activities to categorize
-          type: array
-          items:
-            type: string
-            format: objectid
-        initiativeIds:
-          description: Initiative candidates
-          type: array
-          items:
-            type: string
-            format: objectid
-        skipEntryCreation:
-          type: boolean
-          description: If true, skip entry creation from predictions
-        highConfidenceMinimumScore:
-          type: number
-          description: Minimum score threshold for high confidence predictions
-          format: double
-      required:
-      - userId
-      - customerId
-      - date
-      - activityIds
-      - initiativeIds
-    EntryValidationError:
-      type: object
-      properties:
-        errorCode:
-          description: the entry validation error code
-          enum:
-          - cannot-have-running-timer
-          - cannot-release-zero-increment
-          - cannot-release-negative-increment
-          - cannot-release-billable-future-work
-          - cannot-release-non-billable-future-work
-          - cannot-release-with-user-initiative
-          - cannot-release-with-inactive-initiative
-          - code-type-is-required
-          - summary-is-required
-          - cannot-have-blocked-compliance-rule
-          - cannot-exceed-twenty-four-hours
-          - entry-date-restricted-no-release
-          - entry-date-restricted-no-create
-          - timekeeper-not-in-working-list
-          - exceeds-twenty-four-hours-daily-limit
-          type: string
-      required:
-      - errorCode
-    SharedFromResponseDto:
-      type: object
-      properties:
-        entryId:
-          type: string
-          description: id of the source entry that was shared
-          format: objectid
-        entryUserId:
-          type: string
-          description: id of the user who owns the source entry
-          format: objectid
-        sharerId:
-          type: string
-          description: id of the principal who performed the share action
-          format: objectid
-        sharerType:
-          description: capacity in which the sharer acted
-          enum:
-          - user
-          - admin
-          - delegate
-          type: string
-        sharedAt:
-          type: string
-          description: date and time the share was initiated
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        entryUserName:
-          type:
-          - string
-          - 'null'
-          description: display name of the entry owner; resolved at read-time, absent on failure
-        sharerName:
-          type:
-          - string
-          - 'null'
-          description: display name of the principal who performed the share; resolved at read-time, absent on failure
-      required:
-      - entryId
-      - entryUserId
-      - sharerId
-      - sharerType
-      - sharedAt
-    ExternalSource:
-      type: object
-      properties:
-        sourceSystem:
-          enum:
-          - 3e
-          - workday
-          type: string
-        externalId:
-          type: string
-        linkedAt:
-          type: string
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-      required:
-      - sourceSystem
-      - externalId
-      - linkedAt
-    ReleaseFailedError:
-      type: object
-      properties:
-        originalMessage:
-          type: string
-          description: original error message
-        title:
-          type: string
-          description: mapped title for the original error message
-        description:
-          type: string
-          description: mapped description for the original error message
-      required:
-      - originalMessage
-      - title
-      - description
-    TimesheetProcessingSuggestedInitiativesDto:
-      type: object
-      properties:
-        date:
-          type: string
-          description: Target date for the timesheet
-          example: '2022-08-12'
-          format: iso-date
-        userId:
-          type: string
-          description: Owner user identifier
-          format: objectid
-        customerId:
-          type: string
-          description: Owning customer identifier
-          format: objectid
-        status:
-          description: Current workflow status
-          enum:
-          - processing-suggested-initiatives
-          type: string
-        statusCreatedAt:
-          type: string
-          description: Timestamp the status was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-      required:
-      - date
-      - userId
-      - customerId
-      - status
-      - statusCreatedAt
-    ValidationSuccessInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - validation-success
-          type: string
-      required:
-      - status
     ValidationPendingInfo:
       type: object
       properties:
@@ -996,191 +1354,7 @@ components:
           type: string
       required:
       - status
-    PmsInitiativePropsDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: identifier of the initiative props
-          format: objectid
-        colorHex:
-          type: string
-          description: the hex color code for the initiative props
-        tags:
-          type: array
-          description: array of initiative props tags
-          items:
-            type: string
-            enum:
-            - pinned
-        userId:
-          type: string
-          description: identifier of the user who owns the initiative props
-          format: objectid
-        nickname:
-          type:
-          - string
-          - 'null'
-          description: the nickname assigned to this initiative by the user
-      required:
-      - _id
-      - colorHex
-      - tags
-      - userId
-    TimesheetProcessingInitiativeCategorizationDto:
-      type: object
-      properties:
-        date:
-          type: string
-          description: Target date for the timesheet
-          example: '2022-08-12'
-          format: iso-date
-        userId:
-          type: string
-          description: Owner user identifier
-          format: objectid
-        customerId:
-          type: string
-          description: Owning customer identifier
-          format: objectid
-        status:
-          description: Current workflow status
-          enum:
-          - processing-initiative-categorization
-          type: string
-        statusCreatedAt:
-          type: string
-          description: Timestamp the status was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        activityIds:
-          description: Activities included in categorization
-          type: array
-          items:
-            type: string
-            format: objectid
-        initiativeIds:
-          description: Initiatives included in categorization
-          type: array
-          items:
-            type: string
-            format: objectid
-        model:
-          type: string
-          description: Prediction model identifier
-        parameters:
-          type: object
-          description: Prediction parameters
-          additionalProperties: true
-      required:
-      - date
-      - userId
-      - customerId
-      - status
-      - statusCreatedAt
-      - activityIds
-      - initiativeIds
-      - model
-      - parameters
-    TimesheetSuccessfulInitiativeCategorizationDto:
-      type: object
-      properties:
-        date:
-          type: string
-          description: Target date for the timesheet
-          example: '2022-08-12'
-          format: iso-date
-        userId:
-          type: string
-          description: Owner user identifier
-          format: objectid
-        customerId:
-          type: string
-          description: Owning customer identifier
-          format: objectid
-        status:
-          description: Current workflow status
-          enum:
-          - successful-initiative-categorization
-          type: string
-        statusCreatedAt:
-          type: string
-          description: Timestamp the status was created
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        predictions:
-          type: object
-          description: Prediction results
-          additionalProperties:
-            additionalProperties: true
-            type: object
-        entries:
-          type: array
-          description: Entries created from categorized activities
-          items:
-            $ref: '#/components/schemas/EntryDto'
-        dismissedPredictions:
-          type:
-          - object
-          - 'null'
-          description: Map of activity IDs to dismissed initiative IDs
-          additionalProperties:
-            items:
-              type: string
-            type: array
-      required:
-      - date
-      - userId
-      - customerId
-      - status
-      - statusCreatedAt
-      - predictions
-      - entries
-    ReleaseSuccessInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - release-success
-          type: string
-        releasedAt:
-          type: string
-          description: date and time entry was released
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        releasedBy:
-          type: string
-          description: the identifier of the user who released the entry
-          format: objectid
-        reReleaseFailedMessages:
-          type:
-          - array
-          - 'null'
-          description: entry's re-release failed messages
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/ReleaseFailedError'
-      required:
-      - status
-      - releasedAt
-      - releasedBy
-    ValidationFailedInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - validation-failed
-          type: string
-        errors:
-          description: list of errors
-          minItems: 1
-          type: array
-          items:
-            $ref: '#/components/schemas/EntryValidationError'
-      required:
-      - status
-      - errors
-    UpdateTimesheetRequestDto:
+    DeleteTimesheetRequestDto:
       type: object
       properties:
         userId:
@@ -1200,182 +1374,15 @@ components:
       - userId
       - customerId
       - date
-    ClientDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: client's id
-          format: objectid
-        externalId:
-          type: string
-          description: client's external id
-        name:
-          type: string
-          description: a name that identifies this client
-        description:
-          type: string
-          description: client's description
-        callSign:
-          type: string
-          description: a short name or abbreviation that identifies this client
-        type:
-          type:
-          - string
-          - 'null'
-          description: client's type, default is client
-          enum:
-          - client
-          - parent
-        parentClientId:
-          type:
-          - string
-          - 'null'
-          description: id of the parent client
-          format: objectid
-      required:
-      - _id
-      - externalId
-      - name
-      - description
-      - callSign
-    CodeDigest:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: code's id
-          format: objectid
-        externalId:
-          type: string
-          description: code's external id
-        name:
-          type: string
-          description: code's name
-        description:
-          type: string
-          description: code's description, can be empty
-        type:
-          description: code's type
-          allOf:
-          - $ref: '#/components/schemas/CodeTypeDigest'
-      required:
-      - _id
-      - externalId
-      - name
-      - description
-      - type
-    SuggestInitiativesRequestDto:
-      type: object
-      properties:
-        userId:
-          type: string
-          description: Owner user identifier
-          format: objectid
-        customerId:
-          type: string
-          description: Owning customer identifier
-          format: objectid
-        date:
-          type: string
-          description: Target date for the timesheet
-          example: '2022-08-12'
-          format: iso-date
-      required:
-      - userId
-      - customerId
-      - date
-    UserInitiativePropsDto:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: identifier of the initiative props
-          format: objectid
-        colorHex:
-          type: string
-          description: the hex color code for the initiative props
-        tags:
-          type: array
-          description: array of initiative props tags
-          items:
-            type: string
-            enum:
-            - pinned
-        userId:
-          type: string
-          description: identifier of the user who owns the initiative props
-          format: objectid
-      required:
-      - _id
-      - colorHex
-      - tags
-      - userId
-    ReleasePendingInfo:
+    ValidationSuccessInfo:
       type: object
       properties:
         status:
           enum:
-          - release-pending
+          - validation-success
           type: string
-        releasePendedAt:
-          type: string
-          description: date and time entry was changed to release pending
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        releasePendedBy:
-          type: string
-          description: the identifier of the user who change the entry to release pending
-          format: objectid
       required:
       - status
-      - releasePendedAt
-      - releasePendedBy
-    ReleaseFailedInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - release-failed
-          type: string
-        releaseFailedErrors:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/ReleaseFailedError'
-      required:
-      - status
-      - releaseFailedErrors
-    NestedEntrySource:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: source's id
-          format: objectid
-        type:
-          description: type of entry source
-          enum:
-          - entry
-          type: string
-          default: entry
-        enrichmentCorrelationId:
-          type:
-          - string
-          - 'null'
-          description: entry's enrichmentCorrelationId to be used by enrichment service
-        summary:
-          type: string
-          description: entry's summary
-        unitIncrementCountAdjustments:
-          type: number
-          description: user modified overrides to entry unit increment total
-          format: double
-      required:
-      - _id
-      - type
-      - summary
-      - unitIncrementCountAdjustments
     PmsInitiativeDto:
       type: object
       properties:
@@ -1526,116 +1533,23 @@ components:
       - releasedAt
       - releasedBy
       - lastLockCheckAt
-    NestedActivitySource:
+    ReleaseFailedError:
       type: object
       properties:
-        _id:
+        originalMessage:
           type: string
-          description: source's id
-          format: objectid
-        type:
-          description: type of entry source
-          enum:
-          - activity
-          type: string
-          default: activity
-        creationMethod:
-          description: the creation method of the activity
-          enum:
-          - timer
-          - tracked
-          - user
-          type: string
-        category:
-          type:
-          - string
-          - 'null'
-          description: category of this activity, if any
-        technology:
-          type:
-          - string
-          - 'null'
-          description: technology of this activity, if any
-        source:
-          type:
-          - string
-          - 'null'
-          description: source of this activity (e.g. 'macos', 'windows'), if any
-        mechanism:
-          type:
-          - string
-          - 'null'
-          description: mechanism of this activity (e.g. browser used to access web app), if any
+          description: original error message
         title:
           type: string
-          description: activity's title
-        detail:
+          description: mapped title for the original error message
+        description:
           type: string
-          description: activity's detail
-        startedAt:
-          type: string
-          description: date and time this activity started
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        stoppedAt:
-          type: string
-          description: date and time this activity stopped
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
-        clusterId:
-          type:
-          - string
-          - 'null'
-          description: activity's clusterId
-        fromSuggestions:
-          type:
-          - boolean
-          - 'null'
-          description: whether this activity source was added from suggestions
-        fromThemes:
-          type:
-          - boolean
-          - 'null'
-          description: whether this activity source was added from themes
-        hasOverlap:
-          type:
-          - boolean
-          - 'null'
-          description: activity's overlap state
-        overlapTimeInSeconds:
-          type:
-          - number
-          - 'null'
-          description: activity's overlap time in seconds
-          format: int64
-        threadId:
-          type:
-          - string
-          - 'null'
-          description: activity's thread id
-        disableThreading:
-          type:
-          - boolean
-          - 'null'
-          description: if true, disables threading for this activity
-        assignedAt:
-          type:
-          - string
-          - 'null'
-          description: 'Datetime this activity was assigned to the entry it currently belongs to.
-
-            Unset on entries that predate the field; never back-filled.'
-          example: '2022-08-12T20:44:48Z'
-          format: iso-date-time
+          description: mapped description for the original error message
       required:
-      - _id
-      - type
-      - creationMethod
+      - originalMessage
       - title
-      - detail
-      - startedAt
-      - stoppedAt
-    DismissPredictionRequestDto:
+      - description
+    SuggestInitiativesRequestDto:
       type: object
       properties:
         userId:
@@ -1651,36 +1565,122 @@ components:
           description: Target date for the timesheet
           example: '2022-08-12'
           format: iso-date
-        activityId:
-          type: string
-          description: Activity identifier
-          format: objectid
-        initiativeId:
-          type: string
-          description: Initiative identifier to dismiss for this activity
-          format: objectid
       required:
       - userId
       - customerId
       - date
-      - activityId
-      - initiativeId
-    CodeAssignment:
+    DismissInitiativesRequestDto:
       type: object
       properties:
-        assignedBy:
-          description: entity that assigned the code.
-          enum:
-          - user
-          - laurel
+        userId:
           type: string
-        code:
-          description: assigned code
-          allOf:
-          - $ref: '#/components/schemas/CodeDigest'
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        initiativeIds:
+          description: Initiative identifiers to dismiss
+          type: array
+          items:
+            type: string
+            format: objectid
       required:
-      - assignedBy
-      - code
+      - userId
+      - customerId
+      - date
+      - initiativeIds
+    PmsInitiativePropsDto:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: identifier of the initiative props
+          format: objectid
+        colorHex:
+          type: string
+          description: the hex color code for the initiative props
+        tags:
+          type: array
+          description: array of initiative props tags
+          items:
+            type: string
+            enum:
+            - pinned
+        userId:
+          type: string
+          description: identifier of the user who owns the initiative props
+          format: objectid
+        nickname:
+          type:
+          - string
+          - 'null'
+          description: the nickname assigned to this initiative by the user
+      required:
+      - _id
+      - colorHex
+      - tags
+      - userId
+    TimesheetSuccessfulInitiativeCategorizationDto:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Target date for the timesheet
+          example: '2022-08-12'
+          format: iso-date
+        userId:
+          type: string
+          description: Owner user identifier
+          format: objectid
+        customerId:
+          type: string
+          description: Owning customer identifier
+          format: objectid
+        status:
+          description: Current workflow status
+          enum:
+          - successful-initiative-categorization
+          type: string
+        statusCreatedAt:
+          type: string
+          description: Timestamp the status was created
+          example: '2022-08-12T20:44:48Z'
+          format: iso-date-time
+        predictions:
+          type: object
+          description: Prediction results
+          additionalProperties:
+            additionalProperties: true
+            type: object
+        entries:
+          type: array
+          description: Entries created from categorized activities
+          items:
+            $ref: '#/components/schemas/EntryDto'
+        dismissedPredictions:
+          type:
+          - object
+          - 'null'
+          description: Map of activity IDs to dismissed initiative IDs
+          additionalProperties:
+            items:
+              type: string
+            type: array
+      required:
+      - date
+      - userId
+      - customerId
+      - status
+      - statusCreatedAt
+      - predictions
+      - entries
   securitySchemes:
     ApiBearerAuth:
       scheme: bearer
